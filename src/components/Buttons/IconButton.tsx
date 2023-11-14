@@ -4,11 +4,13 @@ import styled, { css } from 'styled-components';
 import { ButtonIcon, iconVariants } from './variants';
 
 type ButtonProps<T extends ElementType> = {
+  id?: string;
   variant: ButtonIcon;
   sizeInPx: number;
 } & ComponentPropsWithoutRef<T>;
 
 const IconButton = <T extends ElementType = 'button'>({
+  id,
   variant,
   sizeInPx,
   onClick,
@@ -17,6 +19,7 @@ const IconButton = <T extends ElementType = 'button'>({
   return (
     <Container onClick={onClick}>
       <StyledIconButton
+        id={id}
         variant={variant}
         size={sizeInPx}
         {...rest}

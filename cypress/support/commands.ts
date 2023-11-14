@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 /// <reference types="cypress" />
 
+import { createMentor } from './helpers';
+import type { Mentor } from './helpers';
+
 Cypress.Commands.add('switchLanguage', (language: string): void => {
   if (document.documentElement.lang !== language) {
     cy.get(`[id="language-buttons"]`).should('be.visible');
@@ -40,11 +43,32 @@ Cypress.Commands.add(
   },
 );
 
+Cypress.Commands.add('createMentor', (name: string): void => {
+  const mentor: Mentor = {
+    password: 'password',
+    role: 'mentor',
+    login_name: name,
+    email: `${name}@mentor.com`,
+    phone: '123-456',
+    display_name: name,
+    birth_year: 1990,
+    gender: 'female',
+    languages: ['fi', 'en'],
+    region: 'HEL',
+    skills: ['speaking', 'helping', 'empathy'],
+    story: `Passionate about helping people.`,
+    communication_channels: ['phone', 'chat'],
+  };
+
+  createMentor(mentor);
+});
+
 declare namespace Cypress {
   interface Chainable {
     switchLanguage(language: string): Chainable<void>;
     fillInput(id: string, value: string): Chainable<void>;
     registerUser(username: string, password: string): Chainable<void>;
     loginUser(username: string, password: string): Chainable<void>;
+    createMentor(name: string): Chainable<void>;
   }
 }

@@ -31,7 +31,12 @@ const Header = ({ showSearch }: Props) => {
             onClick={() => console.log('searching...')}
           />
         )}
-        <IconButton variant="menuLines" sizeInPx={40} onClick={toggleFolders} />
+        <IconButton
+          id="open-folder-menu"
+          variant="menuLines"
+          sizeInPx={40}
+          onClick={toggleFolders}
+        />
       </Buttons>
     </Row>
   );

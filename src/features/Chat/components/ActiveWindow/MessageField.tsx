@@ -41,6 +41,7 @@ const MessageField = ({ chat, sendMessage, isMessageSendLoading }: Props) => {
         value={text}
       />
       <SendButton
+        id="send-message"
         variant="send"
         sizeInPx={46}
         onClick={() => handleMessageSend(chat.buddyId, text)}

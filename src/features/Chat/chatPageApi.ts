@@ -225,7 +225,7 @@ export const extractMostRecentId = (
     .sort(sortByCreated)
     .reverse();
 
-  return allMessages[0].id ?? '';
+  return allMessages[0]?.id ?? '';
 };
 
 const toSeen = (msg: Message) => ({ ...msg, opened: true });
