@@ -204,14 +204,25 @@ const getNextParams = (
 
 const selectChatState = ({ chats }: RootState) => chats;
 
+const compareMessagesByTimeCreated = (
+  messageA: AppMessage,
+  messageB: AppMessage,
+): number =>
+  new Date(messageB.created).getTime() - new Date(messageA.created).getTime();
+
+const sortMessagesByDateDescending = (messages: AppMessage[]): AppMessage[] =>
+  [...messages].sort(compareMessagesByTimeCreated);
+
 export const selectChats = createSelector(
   selectChatState,
-  ({ activeFolder, chats }) => {
-    const filtered = Object.keys(chats)
-      .map(buddyId => chats[buddyId])
-      .filter(chat => chat.status === activeFolder);
-    return filtered;
-  },
+  ({ activeFolder, chats }) =>
+    Object.values(chats)
+      .filter(chat => chat.status === activeFolder)
+      .sort((a, b) => {
+        const mostRecentA = sortMessagesByDateDescending(a.messages)[0];
+        const mostRecentB = sortMessagesByDateDescending(b.messages)[0];
+        return compareMessagesByTimeCreated(mostRecentA, mostRecentB);
+      }),
 );
 
 export const selectAnyChats = createSelector(
