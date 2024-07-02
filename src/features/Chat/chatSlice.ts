@@ -204,9 +204,50 @@ const getNextParams = (
 
 const selectChatState = ({ chats }: RootState) => chats;
 
+const compareMessagesByTimeCreated = (
+  messageA: AppMessage,
+  messageB: AppMessage,
+): number =>
+  new Date(messageB.created).getTime() - new Date(messageA.created).getTime();
+
+const sortMessagesByDateDescending = (messages: AppMessage[]): AppMessage[] =>
+  [...messages].sort(compareMessagesByTimeCreated);
+
+export const selectChats = createSelector(
+  selectChatState,
+  ({ activeFolder, chats }) =>
+    Object.values(chats)
+      .filter(chat => chat.status === activeFolder)
+      .sort((a, b) => {
+        const mostRecentA = sortMessagesByDateDescending(a.messages)[0];
+        const mostRecentB = sortMessagesByDateDescending(b.messages)[0];
+        return compareMessagesByTimeCreated(mostRecentA, mostRecentB);
+      }),
+);
+
+export const selectAnyChats = createSelector(
+  selectChatState,
+  ({ chats }) => Object.values(chats).length > 0,
+);
+
 export const selectActiveChat = createSelector(
   selectChatState,
   ({ activeChatId, chats }) => (activeChatId ? chats[activeChatId] : null),
+);
+
+export const selectIsActiveChat = createSelector(
+  selectChatState,
+  ({ activeChatId, chats }) => Boolean(activeChatId && chats[activeChatId]),
+);
+
+export const selectDefaultChat = createSelector(
+  selectChatState,
+  ({ chats }) => {
+    // Returns most recent unread chat, and the most recent if all are read
+    const keys = Object.keys(chats);
+    const firstKey = keys[0];
+    return chats[firstKey];
+  },
 );
 
 export const selectBuddyMessages = (buddyId: string) =>
@@ -227,16 +268,6 @@ export const selectBuddyMessages = (buddyId: string) =>
       };
     },
   );
-
-export const selectChats = createSelector(
-  selectChatState,
-  ({ activeFolder, chats }) => {
-    const filtered = Object.keys(chats)
-      .map(buddyId => chats[buddyId])
-      .filter(chat => chat.status === activeFolder);
-    return filtered;
-  },
-);
 
 export const selectHasUnreadMessages = createSelector(
   selectChatState,

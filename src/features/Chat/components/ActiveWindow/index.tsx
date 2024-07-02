@@ -1,12 +1,13 @@
-// Libraries
 import styled, { css } from 'styled-components';
 
-// Store and hooks
 import {
+  ChatBuddy,
   selectActiveChat,
   selectIsLoadingBuddyMessages,
+  selectDefaultChat,
+  setActiveChat,
 } from '@/features/Chat/chatSlice';
-import { useAppSelector } from '@/store';
+import { useAppDispatch, useAppSelector } from '@/store';
 import { useSendMessageMutation } from '@/features/Chat/chatPageApi';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 
@@ -26,7 +27,13 @@ import MessageList from './MessageList';
 
 const ActiveWindow = () => {
   const { isTablet } = useGetLayoutMode();
-  const chat = useAppSelector(selectActiveChat);
+  const dispatch = useAppDispatch();
+
+  const activeChat: ChatBuddy | null = useAppSelector(selectActiveChat);
+  const defaultChat: ChatBuddy | null = useAppSelector(selectDefaultChat);
+
+  const chat: ChatBuddy = activeChat ?? defaultChat;
+  dispatch(setActiveChat(chat.buddyId));
 
   const [sendMessage, { isLoading: isLoadingSendMessage }] =
     useSendMessageMutation();
