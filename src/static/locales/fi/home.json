@@ -1,7 +1,61 @@
 {
+  "info": {
+    "title": "Ylitse MentorApp",
+    "description1": "Ylitse MentorApp -vertaismentoripalvelussa mentorit auttavat sinua henkilökohtaisessa tilanteessasi luottamuksellisesti. Voit valita sopivan mentorin ongelmasi perusteella ja saada apua ajasta ja paikasta riippumatta.",
+    "description2": "- Voit käyttää sovellusta nimettömästi ja luottamuksellisesti.",
+    "description3": "- Palvelun käyttö on sinulle maksutonta.",
+    "description4": "- Kohtaat ihmisiä, jotka ovat olleet samassa tilanteessa.",
+    "description5": "He tietävät, mistä puhut."
+  },
   "newMessages": {
     "title": "Sinulle on uusia viestejä",
     "text": "Mikäli haluat palata aiempien keskustelujen pariin, uudet viestit odottelevat sinua chatissa.",
     "button": "Siirry chattiin"
+  },
+  "welcome": {
+    "admin": {
+      "title": "Hallinnoi käyttäjätilejä",
+      "text": "Lorem ipsum aenean fermentum nisl quis risus aliquet consequat. Suspendisse at hendrerit arcu, non consequat sem.",
+      "button": "Siirry tilien hallinnointiin"
+    },
+    "mentor": {
+      "title": "Keskustele aktoreiden kanssa",
+      "text": "Lorem ipsum aenean fermentum nisl quis risus aliquet consequat. Suspendisse at hendrerit arcu, non consequat sem.",
+      "button": "Siirry chattiin"
+    },
+    "mentee": {
+      "title": "Aloita etsimällä mentori",
+      "text": "Selaa mentoreiden profiileja tai hae tietyn hakusanan mukaan. Kun sopiva mentori löytyy, voit aloittaa keskustelun hänen kanssaan.",
+      "button": "Etsi mentori"
+    }
+  },
+  "announcements": {
+    "title": "Tiedotteet",
+    "notice1": "Tervetuloa käyttämään Ylitse MentorApp -palvelua!"
+  },
+  "concepts": {
+    "title": "Käsitteet",
+    "description": "Tässä muutamia käsitteitä, joiden avulla palvelun käyttö on helpompaa.",
+    "equals": "=",
+    "concept1": {
+      "name": "Tilaviesti",
+      "definition": "Jos mentori ei ole tavoitettavissa esimerkiksi loman takia, hän voi ilmoittaa siitä tilaviestillä. Tilaviesti näkyy mentorin profiilissa sekä keskustelussa mentorin kanssa."
+    },
+    "concept2": {
+      "name": "Käsite 2",
+      "definition": "Lorem ipsum dolor sit amet. Vestibulum eu vulputate ipsum. Proin eget dapibus risus."
+    },
+    "concept3": {
+      "name": "Käsite 3",
+      "definition": "Ellentesque scelerisque diam eget metus sollicitudin, tristique interdum lacus tristique."
+    }
+  },
+  "newestMentors": {
+    "title": "Uusimmat mentorit",
+    "info": {
+      "title": "Vertaistukea nuorille ja aikuisille",
+      "text": "Voit jutella vertaismentoreiden kanssa mistä tahansa mieltäsi painavasta asiasta. Vertaismentori voi olla sinulle juttukaveri, opastaja, ymmärtävä kuuntelija tai sparraaja elämän erilaisissa tilanteissa.",
+      "button": "Löydä lisää mentoreita"
+    }
   }
 }

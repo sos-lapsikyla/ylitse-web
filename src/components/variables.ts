@@ -32,6 +32,7 @@ export const palette = {
 };
 
 export const OUTER_VERTICAL_MARGIN = '6vh';
+export const OUTER_HORIZONTAL_MARGIN = '6vw';
 export const NAVIGATION_HEIGHT = '3rem';
 export const MOBILE_NAVIGATION_BORDER_HEIGHT = '4px';
 export const FOOTER_HEIGHT = '3rem';

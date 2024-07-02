@@ -9,7 +9,7 @@ export const Skills = ({ skills }: { skills: Array<string> }) => {
   const { t } = useTranslation('mentors');
   return (
     <Container>
-      <Header variant="h3">{t('card.skills')}</Header>
+      <Text variant="h3">{t('card.skills')}</Text>
       <Chips>
         {skills.map(item => (
           <SimpleChip key={item} text={item} />
@@ -25,10 +25,6 @@ const Container = styled.div`
   gap: 1rem;
   height: fit-content;
   max-height: 8.6rem;
-`;
-
-const Header = styled(Text)`
-  margin: 0;
 `;
 
 const Chips = styled.div`

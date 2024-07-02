@@ -16,40 +16,35 @@ type Props = {
 };
 
 export const MenuItem = ({ buddy }: Props) => {
+  const { buddyId, displayName } = buddy;
   const {
     unread: { hasUnread, count },
     latest,
     isLoading,
-  } = useAppSelector(selectBuddyMessages(buddy.buddyId));
+  } = useAppSelector(selectBuddyMessages(buddyId));
   const activeFolder = useAppSelector(state => state.chats.activeFolder);
   const activeChatId = useAppSelector(state => state.chats.activeChatId);
 
   const dispatch = useAppDispatch();
+  const openChat = () => dispatch(setActiveChat(buddyId));
 
-  const openChat = () => {
-    dispatch(setActiveChat(buddy.buddyId));
+  const getProfileIconColor = () => {
+    if (buddyId === activeChatId) return 'blueDark';
+    if (activeFolder === 'ok') return 'purpleDark';
+    if (activeFolder === 'archived') return 'orangeDark';
+    return 'redDark';
   };
 
   return (
     <ItemRow
-      active={buddy.buddyId === activeChatId}
+      active={buddyId === activeChatId}
       background={folderColors[activeFolder]}
       onClick={openChat}
     >
-      <ProfileIcon
-        color={
-          buddy.buddyId === activeChatId
-            ? 'blueDark'
-            : activeFolder === 'ok'
-              ? 'purpleDark'
-              : activeFolder === 'archived'
-                ? 'orangeDark'
-                : 'redDark'
-        }
-      />
+      <ProfileIcon color={getProfileIconColor()} />
       <MentorInfo>
         <BuddyName>
-          <Text variant="boldSource">{buddy.displayName}</Text>
+          <Text variant="bold">{displayName}</Text>
           {hasUnread && <Badge>{count}</Badge>}
         </BuddyName>
         {isLoading ? (

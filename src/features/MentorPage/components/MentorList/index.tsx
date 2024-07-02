@@ -16,15 +16,13 @@ const MentorList: React.FC<Props> = ({ setVisibleCard, mentors }) => {
 
   return (
     <CardsList isMobile={isMobile} data-testid="mentor-cards-container">
-      <>
-        {mentors.map(mentor => (
-          <ListCard
-            key={mentor.buddyId}
-            mentor={mentor}
-            setVisibleCard={setVisibleCard}
-          />
-        ))}
-      </>
+      {mentors.map(mentor => (
+        <ListCard
+          key={mentor.buddyId}
+          mentor={mentor}
+          setVisibleCard={setVisibleCard}
+        />
+      ))}
     </CardsList>
   );
 };

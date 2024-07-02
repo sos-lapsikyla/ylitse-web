@@ -70,9 +70,7 @@ const Header = ({ chat }: Props) => {
       )}
       <IconContainer>{icons[chat.status]}</IconContainer>
       <MentorName variant="h2">{mentor?.name}</MentorName>
-      <MentorBio isTablet={isTablet} variant="p">
-        {mentor?.statusMessage}
-      </MentorBio>
+      <MentorBio isTablet={isTablet}>{mentor?.statusMessage}</MentorBio>
 
       <ButtonsWrapper>
         {isConfirmDialogOpen && (
@@ -116,7 +114,6 @@ const IconContainer = styled.div`
 `;
 
 const MentorName = styled(Text)`
-  margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

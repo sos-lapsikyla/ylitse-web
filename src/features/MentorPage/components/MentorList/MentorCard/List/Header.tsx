@@ -29,7 +29,7 @@ export const Header: React.FC<Props> = ({
 
   return (
     <Container isAvailable={isAvailable} isMobile={isMobile}>
-      <Availability variant="p" isShowing={!isAvailable}>
+      <Availability isShowing={!isAvailable}>
         {availabilityMessage}
       </Availability>
       <ProfilePicture />
@@ -73,8 +73,6 @@ const ProfilePicture = styled.div`
 `;
 
 const NameText = styled(Text)`
-  margin-bottom: 0;
-  margin-top: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

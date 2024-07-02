@@ -10,6 +10,7 @@ type ApiMentor = D.TypeOf<typeof apiMentorType>;
 const apiMentorType = D.struct({
   birth_year: D.number,
   communication_channels: D.array(D.string),
+  created: D.string,
   display_name: D.string,
   gender: D.string,
   id: D.string,
@@ -30,6 +31,7 @@ export type Mentor = ReturnType<typeof toMentor>;
 const toMentor = ({
   birth_year,
   communication_channels,
+  created,
   display_name,
   id,
   is_vacationing,
@@ -42,6 +44,7 @@ const toMentor = ({
   age: new Date().getFullYear() - birth_year,
   buddyId: user_id,
   communicationChannels: communication_channels,
+  created: new Date(created).getTime(),
   isVacationing: is_vacationing,
   mentorId: id,
   name: display_name,
@@ -148,6 +151,15 @@ export const selectFilteredMentors = () =>
       return filteredMentors;
     },
   );
+
+export const selectNewestMentors = (amount: number) =>
+  createSelector(selectMentors, mentorsQuery => {
+    const mentors = mentorsQuery.data ?? {};
+    const sortedMentors = Object.values(mentors).sort(
+      (a, b) => b.created - a.created,
+    );
+    return sortedMentors.slice(0, amount);
+  });
 
 export const selectMentorById = (buddyId: string) =>
   createSelector(

@@ -38,7 +38,6 @@ const MobileContainer = styled.div`
 
 const MobileHeader = styled(Text)`
   align-self: flex-start;
-  margin: 0;
 `;
 
 export default MobileSearch;

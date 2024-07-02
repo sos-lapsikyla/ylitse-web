@@ -1,4 +1,4 @@
-import i18n from 'i18next';
+import i18n, { Module } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
@@ -18,8 +18,10 @@ export const resources = {
   fi: { chat: chatFi, common: commonFi, home: homeFi, mentors: mentorsFi },
 } as const;
 
+const languageDetector = new LanguageDetector() as Module;
+
 i18n
-  .use(LanguageDetector)
+  .use(languageDetector)
   .use(initReactI18next)
   .init({
     debug: true,

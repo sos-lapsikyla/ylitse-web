@@ -52,7 +52,7 @@ const MentorSearch = ({
           />
           {shouldShowFilterBall && (
             <Ball>
-              <Text variant="boldBaloo">{selectedSkills.length}</Text>
+              <Text variant="bold">{selectedSkills.length}</Text>
             </Ball>
           )}
         </Anchor>
@@ -62,7 +62,6 @@ const MentorSearch = ({
 };
 
 const SearchHeader = styled(Text)`
-  margin: 0;
   text-align: center;
 `;
 

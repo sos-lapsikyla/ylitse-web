@@ -8,6 +8,7 @@ const mentorsResponse = {
     {
       birth_year: 1991,
       communication_channels: [],
+      created: '2020-01-01T00:00:00.000000',
       display_name: 'Nick',
       gender: 'male',
       id: 'id_1',
@@ -22,6 +23,7 @@ const mentorsResponse = {
     {
       birth_year: 1998,
       communication_channels: [],
+      created: '2022-02-02T00:00:00.000000',
       display_name: 'Duffel',
       gender: 'female',
       id: 'id_2',

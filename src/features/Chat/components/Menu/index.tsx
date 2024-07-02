@@ -31,19 +31,20 @@ const Menu = () => {
   const { isTablet } = useGetLayoutMode();
   const { showFolders, activeFolder } = useAppSelector(state => state.chats);
   const chats = useAppSelector(selectChats);
+  const chatsExist = chats.length > 0;
+
+  const showActiveFolderLink =
+    showFolders || activeFolder === 'archived' || activeFolder === 'banned';
+  const showChatList = !showFolders && chatsExist;
+  const showEmptyText = !showFolders && !chatsExist;
 
   const menuContent = (
     <>
-      <Header showSearch={chats.length > 0} />
-      {(showFolders || ['archived', 'banned'].includes(activeFolder)) && (
-        <FolderLink targetFolder="ok" />
-      )}
-      {showFolders ? (
-        <>
-          <FolderLink targetFolder="archived" />
-          <FolderLink targetFolder="banned" />
-        </>
-      ) : chats.length ? (
+      <Header showSearch={chatsExist} />
+      {showActiveFolderLink && <FolderLink targetFolder="ok" />}
+      {showFolders && <FolderLink targetFolder="archived" />}
+      {showFolders && <FolderLink targetFolder="banned" />}
+      {showChatList && (
         <ChatList
           folderLinkOnTopOfMenu={['archived', 'banned'].includes(activeFolder)}
           isTablet={isTablet}
@@ -52,7 +53,8 @@ const Menu = () => {
             return <MenuItem buddy={buddy} key={buddy.buddyId} />;
           })}
         </ChatList>
-      ) : (
+      )}
+      {showEmptyText && (
         <EmptyText>{t(`menu.empty.${activeFolder}`)}</EmptyText>
       )}
     </>

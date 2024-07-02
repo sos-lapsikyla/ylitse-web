@@ -38,7 +38,7 @@ const FolderLink = ({ targetFolder }: Props) => {
     >
       <Link isTargetActiveFolder>
         {isTargetActiveFolder && <BackToActiveIcon src={BackArrowIcon} />}
-        <Text variant="boldBaloo" color="purple">
+        <Text variant="bold" color="purple">
           {isTargetActiveFolder ? t('menu.back') : t(`menu.${targetFolder}`)}
         </Text>
       </Link>

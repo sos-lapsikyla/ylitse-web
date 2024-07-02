@@ -55,7 +55,7 @@ const ConfirmationDialog = ({ variant, chat, close }: Props) => {
           sizeInPx={46}
           onClick={close}
         />
-        <Title variant="h3">{t(`dialog.${variant}.title`)}</Title>
+        <Text variant="h3">{t(`dialog.${variant}.title`)}</Text>
         <Text>
           {t(`dialog.${variant}.description`, { buddyName: chat.displayName })}
         </Text>
@@ -107,10 +107,6 @@ const CloseButton = styled(IconButton)`
   position: absolute;
   right: 13px;
   top: 13px;
-`;
-
-const Title = styled(Text)`
-  margin-bottom: 0;
 `;
 
 const ButtonContainer = styled.div`

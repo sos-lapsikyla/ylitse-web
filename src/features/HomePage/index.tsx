@@ -1,87 +1,72 @@
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import { selectHasUnreadMessages } from '@/features/Chat/chatSlice';
+import { selectUserRole } from '../Authentication/userSlice';
 import { useAppSelector } from '@/store';
+import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 
-import NewMessagesImage from '@/static/img/new-messages.svg';
+import Announcements from './components/Announcements';
+import Background from '@/static/img/mountain-background.svg';
+import Concepts from './components/Concepts';
+import Info from './components/Info';
+import NewestMentors from './components/NewestMentors';
+import NewMessages from './components/NewMessages';
+import { OUTER_HORIZONTAL_MARGIN } from '@/components/variables';
 import PageWithTransition from '@/components/PageWithTransition';
-import { palette } from '@/components/variables';
-import Text from '@/components/Text';
-import { TextButton } from '@/components/Buttons';
+import Welcome from './components/Welcome';
 
 const HomePage = () => {
-  const navigate = useNavigate();
-  const { t } = useTranslation('home');
+  const unreadMessagesFound = useAppSelector(selectHasUnreadMessages);
+  const userRole = useAppSelector(selectUserRole);
 
-  const unreadMessagesFound: boolean = useAppSelector(selectHasUnreadMessages);
-  const navigateToChat = () => navigate('/chat');
+  // TODO: Mobile view
+  const { isMobile } = useGetLayoutMode();
+  console.log('isMobile is ' + isMobile);
 
   return (
     <PageWithTransition>
-      <Container>
-        {unreadMessagesFound && (
-          <NewMessagesNotification>
-            <TextContainer>
-              <Title variant="h2" color="white">
-                {t('newMessages.title')}
-              </Title>
-              <Text color="white">{t('newMessages.text')}</Text>
-              <Button variant="outline" onClick={navigateToChat}>
-                {t('newMessages.button')}
-              </Button>
-            </TextContainer>
-            <Image src={NewMessagesImage} />
-          </NewMessagesNotification>
-        )}
-      </Container>
+      <TopContainer>
+        <Info />
+      </TopContainer>
+      <MiddleContainer>
+        <LeftMiddleContainer>
+          {unreadMessagesFound && <NewMessages />}
+          {userRole && <Welcome role={userRole} />}
+          <Announcements />
+        </LeftMiddleContainer>
+        <RightMiddleContainer>
+          <Concepts />
+        </RightMiddleContainer>
+      </MiddleContainer>
+      <NewestMentors />
     </PageWithTransition>
   );
 };
 
-const Container = styled.div`
-  background-color: ${palette.blueLight};
-  display: flex;
-`;
-
-const NewMessagesNotification = styled.div`
-  align-items: center;
-  background-color: ${palette.purple};
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
-  display: flex;
-  height: 300px;
-  margin-left: 6rem;
-  margin-top: 4rem;
-  padding: 2rem;
+const TopContainer = styled.div`
+  background: url(${Background});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 40rem;
   position: relative;
 `;
 
-const TextContainer = styled.div`
-  align-items: center;
-  color: ${palette.white};
+const MiddleContainer = styled.div`
   display: flex;
+  gap: 2rem;
+  padding: 4rem ${OUTER_HORIZONTAL_MARGIN};
+`;
+
+const LeftMiddleContainer = styled.div`
+  display: flex;
+  flex: 1;
   flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  width: 70%;
+  gap: 2rem;
 `;
 
-const Title = styled(Text)`
-  color: ${palette.white};
-  margin: 0;
-`;
-
-const Button = styled(TextButton)`
-  margin-top: 1rem;
-`;
-
-const Image = styled.img`
-  bottom: 0;
-  position: absolute;
-  right: -4rem;
+const RightMiddleContainer = styled.div`
+  flex: 1;
 `;
 
 export default HomePage;

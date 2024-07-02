@@ -65,7 +65,6 @@ const LowerPart = styled.div`
 `;
 
 const WelcomeText = styled(Text)<{ isHeader?: boolean }>`
-  margin: 0;
   ${({ isHeader }) =>
     isHeader &&
     css`

@@ -15,7 +15,7 @@ const Footer = () => {
   );
 };
 
-const Container = styled.div`
+const Container = styled.footer`
   align-items: center;
   background-color: ${palette.blue};
   bottom: 0;

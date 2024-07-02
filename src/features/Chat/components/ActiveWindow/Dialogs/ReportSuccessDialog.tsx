@@ -22,9 +22,7 @@ const ReportSuccessDialog = ({ close }: Props) => {
         sizeInPx={46}
         onClick={close}
       />
-      <SuccessTitle variant="h3">
-        {t(`dialog.report.success.title`)}
-      </SuccessTitle>
+      <Text variant="h3">{t(`dialog.report.success.title`)}</Text>
       <Text>{t(`dialog.report.success.description`)}</Text>
       <ButtonContainer>
         <OkButton onClick={close} variant="dark">
@@ -60,10 +58,6 @@ const SuccessCloseButton = styled(IconButton)`
   position: absolute;
   right: 13px;
   top: 13px;
-`;
-
-const SuccessTitle = styled(Text)`
-  margin-bottom: 0;
 `;
 
 const ButtonContainer = styled.div`

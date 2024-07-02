@@ -6,18 +6,12 @@ import { Text } from '@/components/Text/Text';
 export const Story = ({ story }: { story: string }) => {
   const { t } = useTranslation('mentors');
   return (
-    <Container>
-      <Header variant="h3">{t('card.bio')}</Header>
+    <div>
+      <Text variant="h3">{t('card.bio')}</Text>
       <TruncatedMultiline>{story}</TruncatedMultiline>
-    </Container>
+    </div>
   );
 };
-
-const Container = styled.div``;
-
-const Header = styled(Text)`
-  margin: 0;
-`;
 
 const TruncatedMultiline = styled(Text)`
   -webkit-box-orient: vertical;

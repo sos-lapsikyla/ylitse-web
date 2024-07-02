@@ -28,7 +28,7 @@ export const Languages = ({
 };
 
 const Header = styled(Text)`
-  margin: 3rem 0 0 0;
+  margin-top: 3rem;
 `;
 
 const Chips = styled.div`

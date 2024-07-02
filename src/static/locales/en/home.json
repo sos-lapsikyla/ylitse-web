@@ -1,7 +1,61 @@
 {
+  "info": {
+    "title": "Ylitse MentorApp",
+    "description1": "In the Ylitse MentorApp peer mentoring service, mentors help you with your personal situation confidentially. You can choose a suitable mentor based on your problem and get help regardless of time and place.",
+    "description2": "- You can use the app anonymously and confidentially.",
+    "description3": "- The service is free of charge.",
+    "description4": "- You will meet people who have been in the same situation.",
+    "description5": "They know what you are talking about."
+  },
   "newMessages": {
     "title": "You have new messages",
     "text": "If you want to return to previous conversations, new messages are waiting for you in the chat.",
     "button": "Go to chat"
+  },
+  "welcome": {
+    "admin": {
+      "title": "Manage user accounts",
+      "text": "Lorem ipsum aenean fermentum nisl quis risus aliquet consequat. Suspendisse at hendrerit arcu, non consequat sem.",
+      "button": "Go to account management"
+    },
+    "mentor": {
+      "title": "Chat with mentees",
+      "text": "Lorem ipsum aenean fermentum nisl quis risus aliquet consequat. Suspendisse at hendrerit arcu, non consequat sem.",
+      "button": "Go to chat"
+    },
+    "mentee": {
+      "title": "Start by finding a mentor",
+      "text": "Browse mentor profiles or search by a specific keyword. Once you find a suitable mentor, you can start a conversation with them.",
+      "button": "Find a mentor"
+    }
+  },
+  "announcements": {
+    "title": "Announcements",
+    "notice1": "Welcome to the Ylitse MentorApp service!"
+  },
+  "concepts": {
+    "title": "Concepts",
+    "description": "Here are some concepts to make using the service easier.",
+    "equals": "=",
+    "concept1": {
+      "name": "Status message",
+      "definition": "If a mentor is not available, for example, due to vacation, they can announce it with a status message. The status message is visible in the mentor's profile and in the chat with the mentor."
+    },
+    "concept2": {
+      "name": "Concept 2",
+      "definition": "Lorem ipsum dolor sit amet. Vestibulum eu vulputate ipsum. Proin eget dapibus risus."
+    },
+    "concept3": {
+      "name": "Concept 3",
+      "definition": "Ellentesque scelerisque diam eget metus sollicitudin, tristique interdum lacus tristique."
+    }
+  },
+  "newestMentors": {
+    "title": "Newest mentors",
+    "info": {
+      "title": "Peer support for young people and adults",
+      "text": "You can talk to peer mentors about any issue weighing on your mind. A peer mentor can be a companion, guide, understanding listener, or coach for various situations in life.",
+      "button": "Find more mentors"
+    }
   }
 }

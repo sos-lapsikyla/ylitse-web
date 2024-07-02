@@ -41,5 +41,5 @@ const Chips = styled.div`
 `;
 
 const Header = styled(Text)`
-  margin: 3rem 0 0 0;
+  margin-top: 3rem;
 `;

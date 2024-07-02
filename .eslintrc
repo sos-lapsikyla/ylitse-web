@@ -34,13 +34,11 @@
     "better-styled-components"
   ],
   "rules": {
-    "prettier/prettier": "error",
     // Rules disabled on purpose
     "react-hooks/exhaustive-deps": ["off"],
     "react/prop-types": ["off"],
     "react/react-in-jsx-scope": "off",
     // Rules enabled
-    "react-hooks/rules-of-hooks": "error",
     "@typescript-eslint/ban-types": [
       "error",
       {
@@ -52,7 +50,10 @@
     ],
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-unused-vars": "error",
-    "better-styled-components/sort-declarations-alphabetically": "error"
+    "better-styled-components/sort-declarations-alphabetically": "error",
+    "no-nested-ternary": "error",
+    "prettier/prettier": "error",
+    "react-hooks/rules-of-hooks": "error"
   },
   "settings": {
     "react": {

@@ -45,7 +45,7 @@ const MobileDropdown: React.FC<Props> = ({ items }) => {
       onClick={() => setIsComponentVisible(!isComponentVisible)}
     >
       <Row>
-        <Text variant="linkHeader" color="white">
+        <Text variant="link" color="white">
           {t('navigation.mobile.menu')}
         </Text>
         <Chevron

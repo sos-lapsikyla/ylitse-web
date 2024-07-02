@@ -8,7 +8,7 @@ export const Languages = ({ languages }: { languages: Array<string> }) => {
   const { t } = useTranslation('mentors');
   return (
     <Container>
-      <Header variant="h3">{t('card.languages')}</Header>
+      <Text variant="h3">{t('card.languages')}</Text>
       <Chips>
         {languages.map(item => (
           <SimpleChip key={item} text={item} />
@@ -22,10 +22,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-`;
-
-const Header = styled(Text)`
-  margin: 0;
 `;
 
 const Chips = styled.div`

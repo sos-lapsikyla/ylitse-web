@@ -75,7 +75,6 @@ const StoryHeader = styled(Text)<{ isMobile: boolean }>`
     !isMobile &&
     css`
       flex-grow: 1;
-      margin: 0;
     `};
 `;
 

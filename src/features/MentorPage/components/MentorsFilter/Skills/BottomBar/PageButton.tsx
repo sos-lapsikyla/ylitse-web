@@ -23,7 +23,7 @@ export const PageButton = ({ isSelected, onClick, page }: Props) => {
       onClick={handleOnClick}
       isClickable={page !== THREE_DOTS}
     >
-      <Text variant="boldBaloo">{page}</Text>
+      <Text variant="bold">{page}</Text>
     </PageNumber>
   );
 };
