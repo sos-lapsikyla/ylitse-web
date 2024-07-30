@@ -2,6 +2,8 @@ import type { Mentor } from '@/features/MentorPage/mentorPageApi';
 
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 import { useEscape } from '@/hooks/useEscape';
+import { useAppSelector } from '@/store';
+import { selectUserId } from '@/features/Authentication/userSlice';
 
 import styled, { css } from 'styled-components';
 import { Header } from './Header';
@@ -15,13 +17,21 @@ type Props = {
 
 export const MentorCard = ({ mentor, onDismiss }: Props) => {
   const { isMobile } = useGetLayoutMode();
+  const currentUserId = useAppSelector(selectUserId);
 
+  const threeMonthsAgo = new Date().setMonth(new Date().getMonth() - 3);
   useEscape(() => onDismiss());
 
   return (
     <Container>
       <Card isMobile={isMobile}>
-        <Header mentor={mentor} onDismiss={onDismiss} />
+        <Header
+          mentor={mentor}
+          onDismiss={onDismiss}
+          isAvailable={!mentor.isVacationing}
+          isMe={currentUserId == mentor.buddyId}
+          isNew={mentor.created > threeMonthsAgo}
+        />
         <Content mentor={mentor} onDismiss={onDismiss} />
       </Card>
     </Container>

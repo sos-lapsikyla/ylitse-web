@@ -6,25 +6,52 @@ import ProfilePicPlaceholder from '@/static/icons/chat-profilepic.svg';
 import { breakpoints, palette } from '@/components/variables';
 import { IconButton } from '@/components/Buttons';
 import { BasicInfo } from './BasicInfo';
-import Text from '@/components/Text';
+import { Tag, type Status } from './Tag';
 import styled, { css } from 'styled-components';
 
 type Props = {
   mentor: Mentor;
+  isAvailable: boolean;
+  isMe: boolean;
+  isNew: boolean;
   onDismiss: () => void;
 };
 
-export const Header = ({ mentor, onDismiss }: Props) => {
-  const availabilityMessage = mentor.isVacationing ? 'Ei tavoitettavissa' : '';
+export const Header = ({
+  mentor,
+  isMe,
+  isNew,
+  isAvailable,
+  onDismiss,
+}: Props) => {
+  // const availabilityMessage = mentor.isVacationing ? 'Ei tavoitettavissa' : '';
   const { isMobile } = useGetLayoutMode();
+
+  const getStatus = (
+    isMe: boolean,
+    isAvailable: boolean,
+    isNew: boolean,
+  ): Status => {
+    if (isMe) {
+      return 'me';
+    }
+    if (!isAvailable) {
+      return 'unavailable';
+    }
+    if (isNew) {
+      return 'new';
+    }
+    return 'empty';
+  };
 
   return isMobile ? (
     <Container isAvailable={!mentor.isVacationing} isMobile>
       <HeaderWrapper>
         <AvatarWrapper>
-          <Availability isShowing={availabilityMessage.length > 0}>
+          {/* <Availability isShowing={availabilityMessage.length > 0}>
             {availabilityMessage}
-          </Availability>
+          </Availability> */}
+          <Tag status={getStatus(isMe, isAvailable, isNew)}></Tag>
           <ProfilePicture isMobile />
         </AvatarWrapper>
         <BasicInfo mentor={mentor} />
@@ -37,9 +64,10 @@ export const Header = ({ mentor, onDismiss }: Props) => {
     </Container>
   ) : (
     <Container isAvailable={!mentor.isVacationing} isMobile={false}>
-      <Availability isShowing={availabilityMessage.length > 0}>
+      {/* <Availability isShowing={availabilityMessage.length > 0}>
         {availabilityMessage}
-      </Availability>
+      </Availability> */}
+      <Tag status={'new'}></Tag>
       <ProfilePicture isMobile={false} />
       <BasicInfo mentor={mentor} />
     </Container>
@@ -71,18 +99,18 @@ const ProfilePicture = styled.div<{ isMobile: boolean }>`
   }
 `;
 
-const Availability = styled(Text)<{ isShowing: boolean }>`
-  display: ${props => (props.isShowing ? `flex` : `none`)};
-  background-color: ${palette.blueWhite};
-  padding: 0.25rem 1rem;
-  border-radius: 0.25rem;
-  width: fit-content;
-          margin: -1rem auto;
+// const Availability = styled(Text)<{ isShowing: boolean }>`
+//   display: ${props => (props.isShowing ? `flex` : `none`)};
+//   background-color: ${palette.blueWhite};
+//   padding: 0.25rem 1rem;
+//   border-radius: 0.25rem;
+//   width: fit-content;
+//           margin: -1rem auto;
 
-  @media screen and (max-width: ${breakpoints.mobile}) {
-    margin -1rem 1rem;
-  }
-`;
+//   @media screen and (max-width: ${breakpoints.mobile}) {
+//     margin -1rem 1rem;
+//   }
+// `;
 
 const HeaderWrapper = styled.div`
   display: flex;
