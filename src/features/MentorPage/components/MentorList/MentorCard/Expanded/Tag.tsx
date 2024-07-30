@@ -4,7 +4,7 @@ import { breakpoints, palette } from '@/components/variables';
 import styled from 'styled-components';
 import { Text } from '@/components/Text/Text';
 
-export type Status = 'new' | 'me' | 'unavailable' | 'empty';
+export type Status = 'me' | 'new' | 'unavailable' | 'empty';
 
 type Props = {
   status: Status;
@@ -15,8 +15,8 @@ export const Tag: React.FC<Props> = ({ status }) => {
 
   const statusMap = {
     me: { text: t('card.me'), color: palette.blueWhite },
-    unavailable: { text: t('card.unavailable'), color: palette.blueWhite },
     new: { text: t('card.new'), color: palette.orange },
+    unavailable: { text: t('card.unavailable'), color: palette.blueWhite },
     empty: { text: '', color: '' },
   };
 

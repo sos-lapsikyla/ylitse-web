@@ -27,10 +27,10 @@ export const MentorCard = ({ mentor, onDismiss }: Props) => {
       <Card isMobile={isMobile}>
         <Header
           mentor={mentor}
-          onDismiss={onDismiss}
           isAvailable={!mentor.isVacationing}
           isMe={currentUserId == mentor.buddyId}
           isNew={mentor.created > threeMonthsAgo}
+          onDismiss={onDismiss}
         />
         <Content mentor={mentor} onDismiss={onDismiss} />
       </Card>

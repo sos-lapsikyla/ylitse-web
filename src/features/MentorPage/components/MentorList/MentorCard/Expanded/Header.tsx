@@ -11,8 +11,8 @@ import styled, { css } from 'styled-components';
 
 type Props = {
   mentor: Mentor;
-  isAvailable: boolean;
   isMe: boolean;
+  isAvailable: boolean;
   isNew: boolean;
   onDismiss: () => void;
 };
@@ -20,11 +20,10 @@ type Props = {
 export const Header = ({
   mentor,
   isMe,
-  isNew,
   isAvailable,
+  isNew,
   onDismiss,
 }: Props) => {
-  // const availabilityMessage = mentor.isVacationing ? 'Ei tavoitettavissa' : '';
   const { isMobile } = useGetLayoutMode();
 
   const getStatus = (
@@ -48,10 +47,7 @@ export const Header = ({
     <Container isAvailable={!mentor.isVacationing} isMobile>
       <HeaderWrapper>
         <AvatarWrapper>
-          {/* <Availability isShowing={availabilityMessage.length > 0}>
-            {availabilityMessage}
-          </Availability> */}
-          <Tag status={getStatus(isMe, isAvailable, isNew)}></Tag>
+          <Tag status={getStatus(isMe, isAvailable, isNew)} />
           <ProfilePicture isMobile />
         </AvatarWrapper>
         <BasicInfo mentor={mentor} />
@@ -64,10 +60,7 @@ export const Header = ({
     </Container>
   ) : (
     <Container isAvailable={!mentor.isVacationing} isMobile={false}>
-      {/* <Availability isShowing={availabilityMessage.length > 0}>
-        {availabilityMessage}
-      </Availability> */}
-      <Tag status={'new'}></Tag>
+      <Tag status={getStatus(isMe, isAvailable, isNew)} />
       <ProfilePicture isMobile={false} />
       <BasicInfo mentor={mentor} />
     </Container>
@@ -98,19 +91,6 @@ const ProfilePicture = styled.div<{ isMobile: boolean }>`
     flex: 1;
   }
 `;
-
-// const Availability = styled(Text)<{ isShowing: boolean }>`
-//   display: ${props => (props.isShowing ? `flex` : `none`)};
-//   background-color: ${palette.blueWhite};
-//   padding: 0.25rem 1rem;
-//   border-radius: 0.25rem;
-//   width: fit-content;
-//           margin: -1rem auto;
-
-//   @media screen and (max-width: ${breakpoints.mobile}) {
-//     margin -1rem 1rem;
-//   }
-// `;
 
 const HeaderWrapper = styled.div`
   display: flex;
