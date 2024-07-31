@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import type { ChatBuddy } from '@/features/Chat/chatSlice';
-
 import { selectUserId } from '@/features/Authentication/userSlice';
 import {
   toSendMessage,
@@ -12,11 +10,12 @@ import {
 import { useAppSelector } from '@/store';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 
+import { IconButton } from '@/components/Buttons';
 import { palette } from '@/components/variables';
 import { ROW_HEIGHT, SHORT_ROW_HEIGHT } from '@/features/Chat/constants';
-
-import { IconButton } from '@/components/Buttons';
 import TextInput from '@/components/TextInput';
+
+import type { ChatBuddy } from '@/features/Chat/chatSlice';
 
 type Props = {
   chat: ChatBuddy;
