@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { selectHasUnreadMessages } from '@/features/Chat/chatSlice';
 import { selectUserRole } from '../Authentication/userSlice';
 import { useAppSelector } from '@/store';
+import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 
 import Announcements from './components/Announcements';
 import Background from '@/static/img/mountain-background.svg';
@@ -18,9 +19,19 @@ const HomePage = () => {
   const unreadMessagesFound = useAppSelector(selectHasUnreadMessages);
   const userRole = useAppSelector(selectUserRole);
 
+  const { isTablet } = useGetLayoutMode();
   // TODO: Mobile view
 
-  return (
+  return isTablet ? (
+    <PageWithTransition>
+      <Info />
+      {unreadMessagesFound && <NewMessages />}
+      {userRole && <Welcome role={userRole} />}
+      <Announcements />
+      <Concepts />
+      <NewestMentors />
+    </PageWithTransition>
+  ) : (
     <PageWithTransition>
       <TopContainer>
         <Info />

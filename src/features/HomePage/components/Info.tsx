@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
+import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
+
 import {
   NAVIGATION_HEIGHT,
   OUTER_HORIZONTAL_MARGIN,
@@ -10,8 +12,18 @@ import Text from '@/components/Text';
 
 const Info = () => {
   const { t } = useTranslation('home');
+  const { isTablet } = useGetLayoutMode();
 
-  return (
+  return isTablet ? (
+    <MobileContainer>
+      <Text variant="h1">{t('info.title')}</Text>
+      <Text>{t('info.description1')}</Text>
+      <Text>{t('info.description2')}</Text>
+      <Text>{t('info.description3')}</Text>
+      <Text>{t('info.description4')}</Text>
+      <Text variant="bold">{t('info.description5')}</Text>
+    </MobileContainer>
+  ) : (
     <Container>
       <Text variant="h1">{t('info.title')}</Text>
       <Text>{t('info.description1')}</Text>
@@ -22,6 +34,11 @@ const Info = () => {
     </Container>
   );
 };
+
+const MobileContainer = styled.div`
+  background-color: ${palette.white};
+  padding: 2rem 2rem 3rem;
+`;
 
 const Container = styled.div`
   background-color: ${palette.blue2};
