@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import type { ChatBuddy } from '@/features/Chat/chatSlice';
@@ -27,19 +27,29 @@ const MessageField = ({ chat, sendMessage, isMessageSendLoading }: Props) => {
   const [text, setText] = useState('');
   const userId = useAppSelector(selectUserId);
 
+  const [isNewMessageLoading, setIsNewMessageLoading] = useState(false);
+
   const handleMessageSend = (buddyId: string, text: string) => {
     if (!userId || isMessageSendLoading) return;
 
+    setIsNewMessageLoading(true);
     const message = toSendMessage(buddyId, userId, text);
     sendMessage({ userId, message });
-    setText('');
   };
+
+  useEffect(() => {
+    if (isNewMessageLoading) {
+      setText('');
+      setIsNewMessageLoading(false);
+    }
+  }, [chat.messages]);
 
   return (
     <Container>
       <Input
         variant="textarea"
         color={text ? 'blueDark' : 'greyFaded'}
+        isDisabled={isNewMessageLoading}
         onChange={setText}
         placeholder={t('input.placeholder')}
         value={text}
@@ -47,6 +57,7 @@ const MessageField = ({ chat, sendMessage, isMessageSendLoading }: Props) => {
       />
       <SendButton
         variant="send"
+        isDisabled={isNewMessageLoading}
         sizeInPx={46}
         onClick={() => handleMessageSend(chat.buddyId, text)}
       />

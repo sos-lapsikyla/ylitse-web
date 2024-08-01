@@ -5,11 +5,13 @@ import { ButtonIcon, iconVariants } from './variants';
 
 type ButtonProps<T extends ElementType> = {
   variant: ButtonIcon;
+  isDisabled?: boolean;
   sizeInPx: number;
 } & ComponentPropsWithoutRef<T>;
 
 const IconButton = <T extends ElementType = 'button'>({
   variant,
+  isDisabled = false,
   sizeInPx,
   onClick,
   ...rest
@@ -18,6 +20,7 @@ const IconButton = <T extends ElementType = 'button'>({
     <Container onClick={onClick}>
       <StyledIconButton
         variant={variant}
+        disabled={isDisabled}
         size={sizeInPx}
         {...rest}
         aria-label={variant}
@@ -28,6 +31,7 @@ const IconButton = <T extends ElementType = 'button'>({
 
 const StyledIconButton = styled.button<{
   variant: ButtonIcon;
+  disabled: boolean;
   size: number;
 }>`
   appearance: none;
@@ -40,6 +44,12 @@ const StyledIconButton = styled.button<{
     height: ${size}px;
     width: ${size}px;
   `}
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      cursor: not-allowed;
+      opacity: 0.5;
+    `}
   ${({ variant }) => variant && iconVariants[variant]}
 `;
 
