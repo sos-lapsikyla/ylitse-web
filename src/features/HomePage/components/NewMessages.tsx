@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -10,7 +10,11 @@ import { palette } from '@/components/variables';
 import Text from '@/components/Text';
 import { TextButton } from '@/components/Buttons';
 
-const NewMessages = () => {
+type Props = {
+  isMobile?: boolean;
+};
+
+const NewMessages = ({ isMobile = false }: Props) => {
   const { t } = useTranslation('home');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -21,7 +25,7 @@ const NewMessages = () => {
   };
 
   return (
-    <Container>
+    <Container isDesktop={!isMobile}>
       <TextContainer>
         <Text variant="h2" color="white">
           {t('newMessages.title')}
@@ -31,21 +35,30 @@ const NewMessages = () => {
           {t('newMessages.button')}
         </Button>
       </TextContainer>
-      <Image src={NewMessagesImage} />
+      {!isMobile && <Image src={NewMessagesImage} />}
     </Container>
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ isDesktop: boolean }>`
   align-items: center;
   background-color: ${palette.purple};
-  border-radius: 10px;
-  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
   display: flex;
-  height: 16rem;
-  padding: 4rem 16rem 4rem 4rem;
-  position: relative;
+
+  ${({ isDesktop }) =>
+    isDesktop
+      ? css`
+          border-radius: 10px;
+          box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+          box-sizing: border-box;
+          min-height: 16rem;
+          padding: 4rem 16rem 4rem 4rem;
+          position: relative;
+        `
+      : css`
+          justify-content: center;
+          padding: 3rem;
+        `}
 `;
 
 const TextContainer = styled.div`

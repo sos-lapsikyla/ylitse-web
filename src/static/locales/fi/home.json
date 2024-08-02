@@ -1,11 +1,11 @@
 {
   "info": {
     "title": "Ylitse MentorApp",
-    "description1": "Ylitse MentorApp -vertaismentoripalvelussa mentorit auttavat sinua henkilökohtaisessa tilanteessasi luottamuksellisesti. Voit valita sopivan mentorin ongelmasi perusteella ja saada apua ajasta ja paikasta riippumatta.",
-    "description2": "- Voit käyttää sovellusta nimettömästi ja luottamuksellisesti.",
-    "description3": "- Palvelun käyttö on sinulle maksutonta.",
-    "description4": "- Kohtaat ihmisiä, jotka ovat olleet samassa tilanteessa.",
-    "description5": "He tietävät, mistä puhut."
+    "description": "Ylitse MentorApp -vertaismentoripalvelussa mentorit auttavat sinua henkilökohtaisessa tilanteessasi luottamuksellisesti. Voit valita sopivan mentorin ongelmasi perusteella ja saada apua ajasta ja paikasta riippumatta.",
+    "bullet1": "Voit käyttää sovellusta nimettömästi ja luottamuksellisesti.",
+    "bullet2": "Palvelun käyttö on sinulle maksutonta.",
+    "bullet3": "Kohtaat ihmisiä, jotka ovat olleet samassa tilanteessa.",
+    "bullet3Bold": "He tietävät, mistä puhut."
   },
   "newMessages": {
     "title": "Sinulle on uusia viestejä",

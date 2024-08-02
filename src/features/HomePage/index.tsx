@@ -8,6 +8,7 @@ import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 import Announcements from './components/Announcements';
 import Background from '@/static/img/mountain-background.svg';
 import Concepts from './components/Concepts';
+import FindMentor from './components/FindMentor';
 import Info from './components/Info';
 import NewestMentors from './components/NewestMentors';
 import NewMessages from './components/NewMessages';
@@ -20,16 +21,16 @@ const HomePage = () => {
   const userRole = useAppSelector(selectUserRole);
 
   const { isTablet } = useGetLayoutMode();
-  // TODO: Mobile view
 
   return isTablet ? (
     <PageWithTransition>
-      <Info />
-      {unreadMessagesFound && <NewMessages />}
-      {userRole && <Welcome role={userRole} />}
-      <Announcements />
-      <Concepts />
-      <NewestMentors />
+      <Info isMobile />
+      {unreadMessagesFound && <NewMessages isMobile />}
+      {userRole && <Welcome isMobile role={userRole} />}
+      <Announcements isMobile />
+      <NewestMentors isMobile />
+      <FindMentor isMobile />
+      <Concepts isMobile />
     </PageWithTransition>
   ) : (
     <PageWithTransition>

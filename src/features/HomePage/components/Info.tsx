@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
-import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
-
 import {
   NAVIGATION_HEIGHT,
   OUTER_HORIZONTAL_MARGIN,
@@ -10,34 +8,79 @@ import {
 } from '@/components/variables';
 import Text from '@/components/Text';
 
-const Info = () => {
-  const { t } = useTranslation('home');
-  const { isTablet } = useGetLayoutMode();
+type Props = {
+  isMobile?: boolean;
+};
 
-  return isTablet ? (
+const Info = ({ isMobile = false }: Props) => {
+  const { t } = useTranslation('home');
+
+  return isMobile ? (
     <MobileContainer>
       <Text variant="h1">{t('info.title')}</Text>
-      <Text>{t('info.description1')}</Text>
-      <Text>{t('info.description2')}</Text>
-      <Text>{t('info.description3')}</Text>
-      <Text>{t('info.description4')}</Text>
-      <Text variant="bold">{t('info.description5')}</Text>
+      <Text>{t('info.description')}</Text>
+      <Bullets>
+        <Row>
+          <Bullet />
+          <BulletText>{t('info.bullet1')}</BulletText>
+        </Row>
+        <Row>
+          <Bullet />
+          <BulletText>{t('info.bullet2')}</BulletText>
+        </Row>
+        <Row>
+          <Bullet />
+          <BulletText>
+            {`${t('info.bullet3')} `}
+            <BoldText>{t('info.bullet3Bold')}</BoldText>
+          </BulletText>
+        </Row>
+      </Bullets>
     </MobileContainer>
   ) : (
     <Container>
       <Text variant="h1">{t('info.title')}</Text>
-      <Text>{t('info.description1')}</Text>
-      <Text>{t('info.description2')}</Text>
-      <Text>{t('info.description3')}</Text>
-      <Text>{t('info.description4')}</Text>
-      <Text variant="bold">{t('info.description5')}</Text>
+      <Text>{t('info.description')}</Text>
+      <Text>{`- ${t('info.bullet1')}`}</Text>
+      <Text>{`- ${t('info.bullet2')}`}</Text>
+      <Text>
+        {`- ${t('info.bullet3')} `}
+        <BoldText>{t('info.bullet3Bold')}</BoldText>
+      </Text>
     </Container>
   );
 };
 
 const MobileContainer = styled.div`
   background-color: ${palette.white};
-  padding: 2rem 2rem 3rem;
+  padding: 3rem;
+`;
+
+const Bullets = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+const Row = styled.div`
+  align-items: center;
+  display: flex;
+`;
+
+const Bullet = styled.div`
+  background-color: ${palette.purple};
+  border-radius: 50%;
+  height: 8px;
+  margin-right: 1rem;
+  min-width: 8px;
+`;
+
+const BulletText = styled(Text)`
+  margin: 0;
+`;
+
+const BoldText = styled.span`
+  font-weight: 600;
 `;
 
 const Container = styled.div`

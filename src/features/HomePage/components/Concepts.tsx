@@ -1,14 +1,18 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
 import { palette } from '@/components/variables';
 import Text from '@/components/Text';
 
-const Concepts = () => {
+type Props = {
+  isMobile?: boolean;
+};
+
+const Concepts = ({ isMobile = false }: Props) => {
   const { t } = useTranslation('home');
 
   return (
-    <Container>
+    <Container isDesktop={!isMobile}>
       <Text variant="h2">{t('concepts.title')}</Text>
       <Text>{t('concepts.description')} </Text>
       <InnerContainer>
@@ -32,14 +36,19 @@ const Concepts = () => {
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ isDesktop: boolean }>`
   background-color: ${palette.white};
-  border-radius: 10px;
-  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: ${({ isDesktop }) => (isDesktop ? '2rem' : '3rem')};
+
+  ${({ isDesktop }) =>
+    isDesktop &&
+    css`
+      border-radius: 10px;
+      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+      box-sizing: border-box;
+    `}
 `;
 
 const InnerContainer = styled.div`

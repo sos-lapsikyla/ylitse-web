@@ -1,11 +1,11 @@
 {
   "info": {
     "title": "Ylitse MentorApp",
-    "description1": "In the Ylitse MentorApp peer mentoring service, mentors help you with your personal situation confidentially. You can choose a suitable mentor based on your problem and get help regardless of time and place.",
-    "description2": "- You can use the app anonymously and confidentially.",
-    "description3": "- The service is free of charge.",
-    "description4": "- You will meet people who have been in the same situation.",
-    "description5": "They know what you are talking about."
+    "description": "In the Ylitse MentorApp peer mentoring service, mentors help you with your personal situation confidentially. You can choose a suitable mentor based on your problem and get help regardless of time and place.",
+    "bullet1": "You can use the app anonymously and confidentially.",
+    "bullet2": "The service is free of charge.",
+    "bullet3": "You will meet people who have been in the same situation.",
+    "bullet3Bold": "They know what you are talking about."
   },
   "newMessages": {
     "title": "You have new messages",
