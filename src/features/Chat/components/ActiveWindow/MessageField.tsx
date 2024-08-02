@@ -5,7 +5,10 @@ import { useTranslation } from 'react-i18next';
 import type { ChatBuddy } from '@/features/Chat/chatSlice';
 
 import { selectUserId } from '@/features/Authentication/userSlice';
-import { toSendMessage, NewMessage } from '@/features/Chat/chatPageApi';
+import {
+  toSendMessage,
+  useSendMessageMutation,
+} from '@/features/Chat/chatPageApi';
 import { useAppSelector } from '@/store';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 
@@ -17,30 +20,36 @@ import TextInput from '@/components/TextInput';
 
 type Props = {
   chat: ChatBuddy;
-  sendMessage: (msg: NewMessage) => void;
-  isMessageSendLoading: boolean;
 };
 
-const MessageField = ({ chat, sendMessage, isMessageSendLoading }: Props) => {
+const MessageField = ({ chat }: Props) => {
   const { t } = useTranslation('chat');
   const { isMobile } = useGetLayoutMode();
-  const [text, setText] = useState('');
   const userId = useAppSelector(selectUserId);
+  const [sendMessage] = useSendMessageMutation();
 
-  const [isNewMessageLoading, setIsNewMessageLoading] = useState(false);
+  const [text, setText] = useState('');
+  const [isLoadingNewMessage, setIsLoadingNewMessage] = useState(false);
 
-  const handleMessageSend = (buddyId: string, text: string) => {
-    if (!userId || isMessageSendLoading) return;
+  const handleMessageSend = async (buddyId: string, text: string) => {
+    if (!userId || isLoadingNewMessage) return;
 
-    setIsNewMessageLoading(true);
+    setIsLoadingNewMessage(true);
     const message = toSendMessage(buddyId, userId, text);
-    sendMessage({ userId, message });
+
+    try {
+      await sendMessage({ userId, message }).unwrap();
+    } catch (error) {
+      console.error('Failed to send message:', error);
+      // TODO: Tässä voitaisiin näyttää virheviesti käyttäjälle.
+      setIsLoadingNewMessage(false);
+    }
   };
 
   useEffect(() => {
-    if (isNewMessageLoading) {
+    if (isLoadingNewMessage) {
       setText('');
-      setIsNewMessageLoading(false);
+      setIsLoadingNewMessage(false);
     }
   }, [chat.messages]);
 
@@ -49,7 +58,7 @@ const MessageField = ({ chat, sendMessage, isMessageSendLoading }: Props) => {
       <Input
         variant="textarea"
         color={text ? 'blueDark' : 'greyFaded'}
-        isDisabled={isNewMessageLoading}
+        isDisabled={isLoadingNewMessage}
         onChange={setText}
         placeholder={t('input.placeholder')}
         value={text}
@@ -57,7 +66,7 @@ const MessageField = ({ chat, sendMessage, isMessageSendLoading }: Props) => {
       />
       <SendButton
         variant="send"
-        isDisabled={isNewMessageLoading}
+        isDisabled={isLoadingNewMessage}
         sizeInPx={46}
         onClick={() => handleMessageSend(chat.buddyId, text)}
       />

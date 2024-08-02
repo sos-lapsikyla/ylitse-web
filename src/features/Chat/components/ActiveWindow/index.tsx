@@ -37,8 +37,7 @@ const ActiveWindow = () => {
     dispatch(setActiveChat(chat.buddyId));
   }, [chat.buddyId]);
 
-  const [sendMessage, { isLoading: isLoadingSendMessage }] =
-    useSendMessageMutation();
+  const [, { isLoading: isLoadingSendMessage }] = useSendMessageMutation();
 
   const isLoadingMessages = useAppSelector(
     selectIsLoadingBuddyMessages(chat?.buddyId),
@@ -56,13 +55,7 @@ const ActiveWindow = () => {
           status={chat.status}
           isLoading={isLoading}
         />
-        {chat.status === 'ok' && (
-          <MessageField
-            chat={chat}
-            sendMessage={sendMessage}
-            isMessageSendLoading={isLoadingSendMessage}
-          />
-        )}
+        {chat.status === 'ok' && <MessageField chat={chat} />}
       </Container>
     )
   );
