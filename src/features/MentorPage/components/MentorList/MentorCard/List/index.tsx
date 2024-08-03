@@ -3,6 +3,7 @@ import type { Mentor } from '@/features/MentorPage/mentorPageApi';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 import { useAppSelector } from '@/store';
 import { selectUserId } from '@/features/Authentication/userSlice';
+import { getIsOlderThanDaysAgo } from '@/utils/utils';
 
 import styled, { css } from 'styled-components';
 import { Header } from './Header';
@@ -26,8 +27,7 @@ export const ListCard: React.FC<Props> = ({
   const { isMobile } = useGetLayoutMode();
   const currentUserId = useAppSelector(selectUserId);
 
-  const threeMonthsAgo = new Date().setMonth(new Date().getMonth() - 3);
-
+  const isthreeMonthsOld = getIsOlderThanDaysAgo(90, mentor.created);
   return (
     <Container isHomePage={isHomePage} isMobile={isMobile}>
       <Header
@@ -36,7 +36,7 @@ export const ListCard: React.FC<Props> = ({
         region={mentor.region}
         isAvailable={!mentor.isVacationing}
         isMe={currentUserId == mentor.buddyId}
-        isNew={mentor.created > threeMonthsAgo}
+        isNew={!isthreeMonthsOld}
         message={mentor.statusMessage}
       />
       <CardContent isMobile={isMobile}>

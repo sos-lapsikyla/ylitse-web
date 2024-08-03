@@ -1,5 +1,5 @@
 import { MentorCard } from '.';
-import { renderWithProviders } from '../../../../../../test/testStore';
+import { renderWithProviders } from '@/test/testStore';
 
 const mentors = [
   {

@@ -4,6 +4,7 @@ import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 import { useEscape } from '@/hooks/useEscape';
 import { useAppSelector } from '@/store';
 import { selectUserId } from '@/features/Authentication/userSlice';
+import { getIsOlderThanDaysAgo } from '@/utils/utils';
 
 import styled, { css } from 'styled-components';
 import { Header } from './Header';
@@ -19,7 +20,7 @@ export const MentorCard = ({ mentor, onDismiss }: Props) => {
   const { isMobile } = useGetLayoutMode();
   const currentUserId = useAppSelector(selectUserId);
 
-  const threeMonthsAgo = new Date().setMonth(new Date().getMonth() - 3);
+  const isthreeMonthsOld = getIsOlderThanDaysAgo(90, mentor.created);
   useEscape(() => onDismiss());
 
   return (
@@ -29,7 +30,7 @@ export const MentorCard = ({ mentor, onDismiss }: Props) => {
           mentor={mentor}
           isAvailable={!mentor.isVacationing}
           isMe={currentUserId == mentor.buddyId}
-          isNew={mentor.created > threeMonthsAgo}
+          isNew={!isthreeMonthsOld}
           onDismiss={onDismiss}
         />
         <Content mentor={mentor} onDismiss={onDismiss} />
