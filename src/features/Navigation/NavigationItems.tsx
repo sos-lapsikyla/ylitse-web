@@ -31,14 +31,14 @@ export const Item = ({ hasNotification, text, url }: NavigationItem) => {
 };
 
 export const Items = ({ items }: { items: Array<NavigationItem> }) => {
-  const unreadMessagesFound: boolean = useAppSelector(selectHasUnreadMessages);
+  const hasUnreadMessages: boolean = useAppSelector(selectHasUnreadMessages);
 
   return (
     <>
       {items.map(item => (
         <Item
           key={item.text}
-          hasNotification={item.url === '/chat' && unreadMessagesFound}
+          hasNotification={item.url === '/chat' && hasUnreadMessages}
           text={item.text}
           url={item.url}
         />

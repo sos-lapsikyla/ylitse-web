@@ -17,7 +17,7 @@ import PageWithTransition from '@/components/PageWithTransition';
 import Welcome from './components/Welcome';
 
 const HomePage = () => {
-  const unreadMessagesFound = useAppSelector(selectHasUnreadMessages);
+  const hasUnreadMessages = useAppSelector(selectHasUnreadMessages);
   const userRole = useAppSelector(selectUserRole);
 
   const { isTablet } = useGetLayoutMode();
@@ -25,7 +25,7 @@ const HomePage = () => {
   return isTablet ? (
     <PageWithTransition>
       <Info isMobile />
-      {unreadMessagesFound && <NewMessages isMobile />}
+      {hasUnreadMessages && <NewMessages isMobile />}
       {userRole && <Welcome isMobile role={userRole} />}
       <Announcements isMobile />
       <NewestMentors isMobile />
@@ -39,7 +39,7 @@ const HomePage = () => {
       </TopContainer>
       <MiddleContainer>
         <LeftMiddleContainer>
-          {unreadMessagesFound && <NewMessages />}
+          {hasUnreadMessages && <NewMessages />}
           {userRole && <Welcome role={userRole} />}
           <Announcements />
         </LeftMiddleContainer>

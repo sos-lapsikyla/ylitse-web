@@ -37,7 +37,7 @@ const MobileDropdown: React.FC<Props> = ({ items }) => {
     i18n.changeLanguage(langCode);
   };
 
-  const unreadMessagesFound: boolean = useAppSelector(selectHasUnreadMessages);
+  const hasUnreadMessages: boolean = useAppSelector(selectHasUnreadMessages);
 
   return (
     <Dropdown
@@ -60,7 +60,7 @@ const MobileDropdown: React.FC<Props> = ({ items }) => {
           {items.map(item => (
             <NavigationItem
               key={item.url}
-              hasNotification={item.url === '/chat' && unreadMessagesFound}
+              hasNotification={item.url === '/chat' && hasUnreadMessages}
               text={item.text}
               url={item.url}
               currentLocation={pathname}
