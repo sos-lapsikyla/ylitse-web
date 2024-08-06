@@ -27,7 +27,7 @@ export const ListCard: React.FC<Props> = ({
   const { isMobile } = useGetLayoutMode();
   const currentUserId = useAppSelector(selectUserId);
 
-  const isthreeMonthsOld = getIsOlderThanDaysAgo(90, mentor.created);
+  const isLessThan90DaysOld = getIsOlderThanDaysAgo(90, mentor.created);
   return (
     <Container isHomePage={isHomePage} isMobile={isMobile}>
       <Header
@@ -36,7 +36,7 @@ export const ListCard: React.FC<Props> = ({
         region={mentor.region}
         isAvailable={!mentor.isVacationing}
         isMe={currentUserId == mentor.buddyId}
-        isNew={!isthreeMonthsOld}
+        isNew={isLessThan90DaysOld}
         message={mentor.statusMessage}
       />
       <CardContent isMobile={isMobile}>

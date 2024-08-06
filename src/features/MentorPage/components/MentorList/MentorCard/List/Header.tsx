@@ -48,7 +48,7 @@ export const Header: React.FC<Props> = ({
   };
 
   return (
-    <Container isAvailable={isAvailable} isMobile={isMobile}>
+    <Container isAvailable={isAvailable} isMobile={isMobile} isMe={isMe}>
       <Tag status={getStatus(isMe, isAvailable, isNew)}></Tag>
       <ProfilePicture />
       <BasicInfo>
@@ -65,7 +65,11 @@ export const Header: React.FC<Props> = ({
   );
 };
 
-const Container = styled.div<{ isAvailable: boolean; isMobile: boolean }>`
+const Container = styled.div<{
+  isAvailable: boolean;
+  isMobile: boolean;
+  isMe: boolean;
+}>`
   align-items: center;
   background-color: ${({ isAvailable }) =>
     isAvailable ? palette.purple : palette.blueGrey};

@@ -14,25 +14,25 @@ export const Tag: React.FC<Props> = ({ status }) => {
   const { t } = useTranslation('mentors');
 
   const statusMap = {
-    me: { text: t('card.me'), color: palette.blueWhite },
-    new: { text: t('card.new'), color: palette.orange },
-    unavailable: { text: t('card.unavailable'), color: palette.blueWhite },
-    empty: { text: '', color: '' },
+    me: { text: t('card.me'), tagColor: palette.blueWhite },
+    new: { text: t('card.new'), tagColor: palette.orange },
+    unavailable: { text: t('card.unavailable'), tagColor: palette.blueWhite },
+    empty: { text: '', tagColor: '' },
   };
 
   const tagMessage = statusMap[status].text;
-  const backgroundColor = statusMap[status].color;
+  const tagColor = statusMap[status].tagColor;
   const shouldTagShow = status !== 'empty';
 
   return (
-    <MentorTag isShowing={shouldTagShow} backgroundColor={backgroundColor}>
+    <MentorTag variant="bold" isShowing={shouldTagShow} tagColor={tagColor}>
       {tagMessage}
     </MentorTag>
   );
 };
 
-const MentorTag = styled(Text)<{ isShowing: boolean; backgroundColor: string }>`
-  background-color: ${props => props.backgroundColor};
+const MentorTag = styled(Text)<{ isShowing: boolean; tagColor: string }>`
+  background-color: ${props => props.tagColor};
   border-radius: 0.25rem;
   display: ${props => (props.isShowing ? 'flex' : 'none')};
   margin: 0;

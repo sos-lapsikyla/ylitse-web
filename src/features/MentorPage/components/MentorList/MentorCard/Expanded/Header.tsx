@@ -68,6 +68,7 @@ export const Header = ({
 };
 
 const Container = styled.div<{ isAvailable: boolean; isMobile: boolean }>`
+  align-items: center;
   background-color: ${({ isAvailable }) =>
     isAvailable ? palette.purple : palette.blueGrey};
   border-radius: 10px;

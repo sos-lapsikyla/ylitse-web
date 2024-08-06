@@ -3,5 +3,5 @@ export const capitalize = (str: string) =>
 
 export const getIsOlderThanDaysAgo = (daysAgo: number, compareTime: number) => {
   const timestampDaysAgo = new Date().getTime() - daysAgo * 24 * 60 * 60 * 1000;
-  return compareTime < timestampDaysAgo;
+  return compareTime > timestampDaysAgo;
 };

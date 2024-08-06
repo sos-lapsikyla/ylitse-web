@@ -20,7 +20,7 @@ export const MentorCard = ({ mentor, onDismiss }: Props) => {
   const { isMobile } = useGetLayoutMode();
   const currentUserId = useAppSelector(selectUserId);
 
-  const isthreeMonthsOld = getIsOlderThanDaysAgo(90, mentor.created);
+  const isLessThan90DaysOld = getIsOlderThanDaysAgo(90, mentor.created);
   useEscape(() => onDismiss());
 
   return (
@@ -30,7 +30,7 @@ export const MentorCard = ({ mentor, onDismiss }: Props) => {
           mentor={mentor}
           isAvailable={!mentor.isVacationing}
           isMe={currentUserId == mentor.buddyId}
-          isNew={!isthreeMonthsOld}
+          isNew={isLessThan90DaysOld}
           onDismiss={onDismiss}
         />
         <Content mentor={mentor} onDismiss={onDismiss} />
