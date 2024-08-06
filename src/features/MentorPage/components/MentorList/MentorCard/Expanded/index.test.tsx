@@ -71,20 +71,20 @@ describe('<MentorListItem />', () => {
     const { queryAllByText } = renderWithProviders(
       <MentorCard onDismiss={onDismiss} mentor={mentors[0]} />,
     );
-    expect(queryAllByText('Uusi')).toBeTruthy();
+    expect(queryAllByText('card.new')).toBeTruthy();
   });
 
   it('Offline mentor is rendered correctly', () => {
     const { queryAllByText } = renderWithProviders(
       <MentorCard onDismiss={onDismiss} mentor={mentors[0]} />,
     );
-    expect(queryAllByText('Ei tavoitettavissa').length).toBe(1);
+    expect(queryAllByText('card.unavailable').length).toBe(1);
   });
 
   it('Online mentor is rendered correctly', () => {
     const { queryAllByText } = renderWithProviders(
       <MentorCard onDismiss={onDismiss} mentor={mentors[1]} />,
     );
-    expect(queryAllByText('Ei tavoitettavissa').length).toBe(0);
+    expect(queryAllByText('card.unavailable').length).toBe(0);
   });
 });
