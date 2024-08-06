@@ -77,7 +77,7 @@ describe('<MentorListItem />', () => {
         mentors={mentorListCards}
       />,
     );
-    expect(queryAllByText('Uusi')).toBeTruthy();
+    expect(queryAllByText('card.new')).toBeTruthy();
   });
   it('Offline mentor is rendered correctly', () => {
     const { queryAllByText } = renderWithProviders(
@@ -86,6 +86,6 @@ describe('<MentorListItem />', () => {
         mentors={mentorListCards}
       />,
     );
-    expect(queryAllByText('Ei tavoitettavissa')).toBeTruthy();
+    expect(queryAllByText('card.unavailable')).toBeTruthy();
   });
 });
