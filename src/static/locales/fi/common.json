@@ -1,4 +1,8 @@
 {
+  "about": {
+    "title": "Tietoa palvelusta",
+    "licenses": "Lisenssit"
+  },
   "footer": "Palvelun tarjoaa",
   "navigation": {
     "chat": "Chat",

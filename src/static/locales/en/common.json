@@ -1,4 +1,8 @@
 {
+  "about": {
+    "title": "Application info",
+    "licenses": "Licenses"
+  },
   "footer": "Provided by",
   "navigation": {
     "chat": "Chat",

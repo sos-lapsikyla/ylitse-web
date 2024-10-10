@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useComponentVisible } from '@/hooks/useComponentShow';
 import { useTranslation } from 'react-i18next';
 
@@ -6,11 +7,14 @@ import styled from 'styled-components';
 import { InfoItem, Container } from './InfoItem';
 import { DropdownButton } from './DropdownButton';
 import Text from '@/components/Text';
+import About from '@/features/About';
 
 const InfoDropdown = () => {
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible<HTMLDivElement>(false);
   const { t } = useTranslation('common');
+  const [isAboutVisible, setIsAboutVisible] = useState(false);
+  const toggleAbout = () => setIsAboutVisible(!isAboutVisible);
 
   return (
     <Anchor ref={ref}>
@@ -34,13 +38,14 @@ const InfoDropdown = () => {
               url: t('navigation.info.link.termsAndPrivacy.url'),
             }}
           />
-          <Container onClick={() => console.log('TODO: show modal')}>
+          <Container onClick={() => toggleAbout()}>
             <Text variant="link" color="purple">
               {t('navigation.info.applicationInfo')}
             </Text>
           </Container>
         </Menu>
       )}
+      {isAboutVisible && <About onDismiss={toggleAbout} />}
     </Anchor>
   );
 };
