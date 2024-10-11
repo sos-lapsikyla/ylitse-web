@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { useComponentVisible } from '@/hooks/useComponentShow';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
@@ -20,6 +22,8 @@ import Text from '@/components/Text';
 import type { LangCode } from '../LanguageDropdown';
 import type { NavigationItem as NavItemType } from '../NavigationItems';
 
+import About from '@/features/About';
+
 type Props = {
   items: Array<NavItemType>;
 };
@@ -36,6 +40,9 @@ const MobileDropdown: React.FC<Props> = ({ items }) => {
   const changeLanguage = (langCode: LangCode): void => {
     i18n.changeLanguage(langCode);
   };
+
+  const [isAboutVisible, setIsAboutVisible] = useState(false);
+  const toggleAbout = () => setIsAboutVisible(!isAboutVisible);
 
   const hasUnreadMessages: boolean = useAppSelector(selectHasUnreadMessages);
 
@@ -88,6 +95,12 @@ const MobileDropdown: React.FC<Props> = ({ items }) => {
             </Text>
           </UnstyledLink>
 
+          <MobileContainer onClick={() => toggleAbout()}>
+            <Text variant="link" color="purple">
+              {t('navigation.info.applicationInfo')}
+            </Text>
+          </MobileContainer>
+
           <Divider />
 
           <LanguageItem
@@ -110,6 +123,7 @@ const MobileDropdown: React.FC<Props> = ({ items }) => {
           />
         </Menu>
       )}
+      {isAboutVisible && <About onDismiss={toggleAbout} />}
     </Dropdown>
   );
 };
@@ -147,6 +161,17 @@ const Menu = styled.div`
   top: ${NAVIGATION_HEIGHT};
   transform-origin: top center;
   width: 100vw;
+`;
+
+const MobileContainer = styled.button`
+  background: transparent;
+  background-color: ${palette.white};
+  border: none;
+  cursor: pointer;
+  display: flex;
+  gap: 0.5rem;
+  height: ${NAVIGATION_HEIGHT};
+  padding: 0 2rem;
 `;
 
 const UnstyledLink = styled.a`
