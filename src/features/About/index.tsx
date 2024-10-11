@@ -1,50 +1,69 @@
 import { breakpoints, palette } from '@/components/constants';
 import { useEscape } from '@/hooks/useEscape';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Text } from '@/components/Text/Text';
 import { useTranslation } from 'react-i18next';
-import { TextButton } from '@/components/Buttons';
+import { IconButton, TextButton } from '@/components/Buttons';
+import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 
 type Props = {
   onDismiss: () => void;
 };
 
 export const About = ({ onDismiss }: Props) => {
+  const { isMobile } = useGetLayoutMode();
   const { t } = useTranslation('common');
+
   const handleClick = () => {
-    console.log('todo');
+    console.log('TODO');
   };
 
   useEscape(() => onDismiss());
 
   return (
     <Container>
-      <AboutCard>
+      <AboutCard isMobile={isMobile}>
+        <CloseContainer>
+          <IconButton
+            onClick={onDismiss}
+            variant="closeWithBackground"
+            sizeInPx={38}
+          />
+        </CloseContainer>
         <Text variant="h1">{t('about.title')} </Text>
-        <LicenseButton onClick={handleClick}>
+        <Text variant="p">UI version</Text>
+        <Text variant="p">API version</Text>
+        <LicensesButton onClick={handleClick}>
           {t('about.licenses')}
-        </LicenseButton>
+        </LicensesButton>
       </AboutCard>
     </Container>
   );
 };
 
-const AboutCard = styled.div`
+const AboutCard = styled.div<{ isMobile: boolean }>`
   align-items: center;
   background-color: ${palette.white};
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  height: 40vh;
   height: fit-content;
   justify-content: center;
   left: 50%;
   margin: auto;
   opacity: 1;
+  padding: 1rem 1rem 2rem 1rem;
   position: fixed;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 40vw;
+  ${({ isMobile }) =>
+    isMobile
+      ? css`
+          width: 80vw;
+        `
+      : css`
+          width: 35vw;
+        `}
 `;
 
 const Container = styled.div`
@@ -65,8 +84,13 @@ const Container = styled.div`
   }
 `;
 
-const LicenseButton = styled(TextButton)`
+const CloseContainer = styled.div`
+  align-self: flex-end;
+`;
+
+const LicensesButton = styled(TextButton)`
   height: 48px;
+  margin: 1rem;
   width: fit-content;
 `;
 
