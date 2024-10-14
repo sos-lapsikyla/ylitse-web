@@ -1,10 +1,12 @@
-import { breakpoints, palette } from '@/components/constants';
-import { useEscape } from '@/hooks/useEscape';
-import styled, { css } from 'styled-components';
-import { Text } from '@/components/Text/Text';
 import { useTranslation } from 'react-i18next';
-import { IconButton } from '@/components/Buttons';
+
+import { useEscape } from '@/hooks/useEscape';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
+
+import { breakpoints, palette } from '@/components/constants';
+import { Text } from '@/components/Text/Text';
+import { IconButton } from '@/components/Buttons';
+import styled, { css } from 'styled-components';
 
 type Props = {
   onDismiss: () => void;
