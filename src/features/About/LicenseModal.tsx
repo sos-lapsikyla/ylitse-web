@@ -1,29 +1,24 @@
-import { useState } from 'react';
-
 import { breakpoints, palette } from '@/components/constants';
 import { useEscape } from '@/hooks/useEscape';
 import styled, { css } from 'styled-components';
 import { Text } from '@/components/Text/Text';
 import { useTranslation } from 'react-i18next';
-import { IconButton, TextButton } from '@/components/Buttons';
+import { IconButton } from '@/components/Buttons';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
-import LicenseModal from './LicenseModal';
 
 type Props = {
   onDismiss: () => void;
 };
 
-export const About = ({ onDismiss }: Props) => {
+export const LicenseModal = ({ onDismiss }: Props) => {
   const { isMobile } = useGetLayoutMode();
   const { t } = useTranslation('common');
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const toggleModal = () => setIsModalVisible(!isModalVisible);
 
   useEscape(() => onDismiss());
 
   return (
     <Container>
-      <AboutCard isMobile={isMobile}>
+      <Modal isMobile={isMobile}>
         <CloseContainer>
           <IconButton
             onClick={onDismiss}
@@ -31,39 +26,40 @@ export const About = ({ onDismiss }: Props) => {
             sizeInPx={38}
           />
         </CloseContainer>
-        <Text variant="h1">{t('about.title')} </Text>
-        <Text variant="p">UI version</Text>
-        <Text variant="p">API version</Text>
-        <LicensesButton onClick={toggleModal}>
-          {t('about.licenses')}
-        </LicensesButton>
-      </AboutCard>
-      {isModalVisible && <LicenseModal onDismiss={toggleModal} />}
+        <Text variant="h1">{t('about.licenses')} </Text>
+        <Text variant="p">render licenses here</Text>
+      </Modal>
     </Container>
   );
 };
 
-const AboutCard = styled.div<{ isMobile: boolean }>`
+const Modal = styled.div<{ isMobile: boolean }>`
   align-items: center;
   background-color: ${palette.white};
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  height: fit-content;
-  justify-content: center;
   left: 50%;
   margin: auto;
   opacity: 1;
+  overflow: auto;
   padding: 1rem 1rem 2rem 1rem;
   position: fixed;
+  scroll-snap-type: x mandatory;
   top: 50%;
   transform: translate(-50%, -50%);
+  white-space: nowrap;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   ${({ isMobile }) =>
     isMobile
       ? css`
+          height: 80vw;
           width: 80vw;
         `
       : css`
+          height: 40rem;
           width: 35vw;
         `}
 `;
@@ -90,10 +86,4 @@ const CloseContainer = styled.div`
   align-self: flex-end;
 `;
 
-const LicensesButton = styled(TextButton)`
-  height: 48px;
-  margin: 1rem;
-  width: fit-content;
-`;
-
-export default About;
+export default LicenseModal;
