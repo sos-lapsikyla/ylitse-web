@@ -1,12 +1,14 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { useEscape } from '@/hooks/useEscape';
+import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 
 import { breakpoints, palette } from '@/components/constants';
-import { useEscape } from '@/hooks/useEscape';
-import styled, { css } from 'styled-components';
 import { Text } from '@/components/Text/Text';
-import { useTranslation } from 'react-i18next';
 import { IconButton, TextButton } from '@/components/Buttons';
-import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
+import styled, { css } from 'styled-components';
+
 import LicenseModal from './LicenseModal';
 
 type Props = {
