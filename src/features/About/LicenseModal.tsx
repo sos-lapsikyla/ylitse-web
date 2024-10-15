@@ -8,6 +8,8 @@ import { Text } from '@/components/Text/Text';
 import { IconButton } from '@/components/Buttons';
 import styled, { css } from 'styled-components';
 
+import licenses from '../../../licenses.json';
+
 type Props = {
   onDismiss: () => void;
 };
@@ -15,6 +17,12 @@ type Props = {
 export const LicenseModal = ({ onDismiss }: Props) => {
   const { isMobile } = useGetLayoutMode();
   const { t } = useTranslation('common');
+  const licenseMap = Object.entries(licenses).map(
+    ([libraryName, libraryData]) => ({
+      name: libraryName,
+      ...libraryData,
+    }),
+  );
 
   useEscape(() => onDismiss());
 
@@ -29,7 +37,11 @@ export const LicenseModal = ({ onDismiss }: Props) => {
           />
         </CloseContainer>
         <Text variant="h1">{t('about.licenses')} </Text>
-        <Text variant="p">render licenses here</Text>
+        {licenseMap.map(license => (
+          <Text key={license.name} variant="p">
+            {license.name}
+          </Text>
+        ))}
       </Modal>
     </Container>
   );
@@ -51,9 +63,7 @@ const Modal = styled.div<{ isMobile: boolean }>`
   top: 50%;
   transform: translate(-50%, -50%);
   white-space: nowrap;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+
   ${({ isMobile }) =>
     isMobile
       ? css`
