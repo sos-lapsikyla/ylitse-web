@@ -1,7 +1,9 @@
 {
   "about": {
     "title": "Tiedot palvelusta",
-    "licenses": "Lisenssit"
+    "licenses": "Lisenssit",
+    "open": "Avaa lisenssit",
+    "close": "Sulje lisenssit"
   },
   "footer": "Palvelun tarjoaa",
   "navigation": {

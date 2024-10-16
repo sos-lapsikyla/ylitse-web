@@ -9,7 +9,7 @@ import { Text } from '@/components/Text/Text';
 import { IconButton, TextButton } from '@/components/Buttons';
 import styled, { css } from 'styled-components';
 
-import LicenseModal from './LicenseModal';
+import LicenseModal from './LicenseList';
 
 type Props = {
   onDismiss: () => void;
@@ -36,11 +36,11 @@ export const About = ({ onDismiss }: Props) => {
         <Text variant="h1">{t('about.title')} </Text>
         <Text variant="p">UI version</Text>
         <Text variant="p">API version</Text>
+        {isModalVisible && <LicenseModal />}
         <LicensesButton onClick={toggleModal}>
-          {t('about.licenses')}
+          {!isModalVisible ? t('about.open') : t('about.close')}
         </LicensesButton>
       </AboutCard>
-      {isModalVisible && <LicenseModal onDismiss={toggleModal} />}
     </Container>
   );
 };

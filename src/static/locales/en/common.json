@@ -1,7 +1,9 @@
 {
   "about": {
     "title": "Application info",
-    "licenses": "Licenses"
+    "licenses": "Licenses",
+    "open": "Open licenses",
+    "close": "Close licenses"
   },
   "footer": "Provided by",
   "navigation": {
