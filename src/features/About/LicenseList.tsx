@@ -25,14 +25,11 @@ export const LicenseModal = () => {
     <Container isMobile={isMobile}>
       {licenseMap.map(license => (
         <LicenseRow key={license.name}>
-          <LicenseInfo variant="p">{license.name} </LicenseInfo>
           <LicenseInfo variant="p">
-            {license.licenses}
-            {license.repository ? (
-              <a href={license.repository}>{license.repository}</a>
-            ) : (
-              ''
-            )}
+            {license.name} {license.licenses}
+          </LicenseInfo>
+          <LicenseInfo variant="p">
+            <a href={license.repository}>{license.repository}</a>
           </LicenseInfo>
         </LicenseRow>
       ))}

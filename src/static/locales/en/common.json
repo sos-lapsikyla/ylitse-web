@@ -3,7 +3,9 @@
     "title": "Application info",
     "licenses": "Licenses",
     "open": "Open licenses",
-    "close": "Close licenses"
+    "close": "Close licenses",
+    "ui": "UI Version",
+    "api": "API Version 2.0"
   },
   "footer": "Provided by",
   "navigation": {
