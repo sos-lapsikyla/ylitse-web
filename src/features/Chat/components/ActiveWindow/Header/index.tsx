@@ -73,7 +73,7 @@ const Header = ({ chat }: Props) => {
       {isTablet && (
         <IconButton
           variant="back"
-          sizeInPx={DEFAULT_ICON_SIZE.MEDIUM}
+          sizeInPx={DEFAULT_ICON_SIZE.LARGE}
           onClick={returnToTabletMenu}
         />
       )}

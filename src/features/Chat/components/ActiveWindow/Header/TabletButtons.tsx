@@ -39,7 +39,7 @@ const TabletButtons = ({ chat, openDialog }: Props) => {
     <Container>
       <IconButton
         variant="menuLines"
-        sizeInPx={DEFAULT_ICON_SIZE.MEDIUM}
+        sizeInPx={DEFAULT_ICON_SIZE.LARGE}
         onClick={toggleDropdown}
       />
       {isDropdownOpen && (

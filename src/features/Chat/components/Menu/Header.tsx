@@ -24,7 +24,7 @@ const Header = () => {
       <Buttons>
         <IconButton
           variant="menuLines"
-          sizeInPx={DEFAULT_ICON_SIZE.MEDIUM}
+          sizeInPx={DEFAULT_ICON_SIZE.LARGE}
           onClick={toggleFolders}
         />
       </Buttons>
