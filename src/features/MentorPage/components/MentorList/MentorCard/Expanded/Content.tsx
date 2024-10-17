@@ -1,20 +1,20 @@
-import { useAppDispatch, useAppSelector } from '@/store';
-import { setConversation } from '@/features/Chat/chatSlice';
-
-import type { Mentor } from '@/features/MentorPage/mentorPageApi';
-
-import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
+import styled, { css } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import styled, { css } from 'styled-components';
-import { Text } from '@/components/Text/Text';
-import { Skills } from './Skills';
-import { TextButton } from '@/components/Buttons';
-import { Languages } from './Languages';
-import { IconButton } from '@/components/Buttons';
-import { breakpoints } from '@/components/constants';
 import { selectUserId } from '@/features/Authentication/userSlice';
+import { setConversation } from '@/features/Chat/chatSlice';
+import { useAppDispatch, useAppSelector } from '@/store';
+import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
+
+import { breakpoints, DEFAULT_ICON_SIZE } from '@/components/constants';
+import { IconButton } from '@/components/Buttons';
+import { Languages } from './Languages';
+import { Skills } from './Skills';
+import { Text } from '@/components/Text/Text';
+import { TextButton } from '@/components/Buttons';
+
+import type { Mentor } from '@/features/MentorPage/mentorPageApi';
 
 type Props = {
   mentor: Mentor;
@@ -44,7 +44,7 @@ export const Content = ({
           <IconButton
             onClick={onDismiss}
             variant="closeWithBackground"
-            sizeInPx={38}
+            sizeInPx={DEFAULT_ICON_SIZE.MEDIUM}
           />
         </CloseContainer>
       )}

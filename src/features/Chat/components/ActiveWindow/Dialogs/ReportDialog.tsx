@@ -6,8 +6,12 @@ import { selectUserId } from '@/features/Authentication/userSlice';
 import { useAppSelector } from '@/store';
 import { useReportMentorMutation } from '@/features/Chat/chatPageApi';
 
-import { DIALOG_WIDTH } from '@/components/constants';
+import { DEFAULT_ICON_SIZE, DIALOG_WIDTH } from '@/components/constants';
 import { IconButton, TextButton } from '@/components/Buttons';
+import {
+  isContactInfoTooLong,
+  isReportReasonTooLong,
+} from '@/features/Chat/validators';
 import LabeledInput from '@/components/LabeledInput';
 import { palette } from '@/components/constants';
 import ReportSuccessDialog from './ReportSuccessDialog';
@@ -43,6 +47,11 @@ const ReportDialog = ({ buddyId, close }: Props) => {
   const [reportReason, setReportReason] = useState('');
   const [contactInfo, setContactInfo] = useState('');
 
+  const isSavingDisabled =
+    reportReason.length < 1 ||
+    isReportReasonTooLong(reportReason) ||
+    isContactInfoTooLong(contactInfo);
+
   return (
     <>
       <Overlay />
@@ -52,7 +61,7 @@ const ReportDialog = ({ buddyId, close }: Props) => {
         <Container>
           <CloseButton
             variant="closeWithBackground"
-            sizeInPx={38}
+            sizeInPx={DEFAULT_ICON_SIZE.MEDIUM}
             onClick={close}
           />
           <Title color="white" variant="h1">
@@ -63,11 +72,21 @@ const ReportDialog = ({ buddyId, close }: Props) => {
             <Paragraph>{t('dialog.report.description2')}</Paragraph>
             <Paragraph>{t('dialog.report.description3')}</Paragraph>
             <LabeledInput
+              error={
+                isReportReasonTooLong(reportReason)
+                  ? t('dialog.report.input.tooLongError')
+                  : null
+              }
               label={t('dialog.report.input.reason')}
               onChange={setReportReason}
               value={reportReason}
             />
             <LabeledInput
+              error={
+                isContactInfoTooLong(contactInfo)
+                  ? t('dialog.report.input.tooLongError')
+                  : null
+              }
               label={t('dialog.report.input.contactInfo')}
               onChange={setContactInfo}
               value={contactInfo}
@@ -76,7 +95,11 @@ const ReportDialog = ({ buddyId, close }: Props) => {
               <ActionButton onClick={close} variant="light">
                 {t('dialog.cancel')}
               </ActionButton>
-              <ActionButton onClick={sendReportRequest} variant="dark">
+              <ActionButton
+                isDisabled={isSavingDisabled}
+                onClick={sendReportRequest}
+                variant={isSavingDisabled ? 'disabled' : 'dark'}
+              >
                 {t('dialog.report.confirm')}
               </ActionButton>
             </ButtonContainerWithMargin>

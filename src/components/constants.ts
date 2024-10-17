@@ -34,7 +34,7 @@ export const palette = {
 };
 
 // Size
-export const DEFAULT_ICON_SIZE = { SMALL: 24, LARGE: 46 };
+export const DEFAULT_ICON_SIZE = { SMALL: 24, MEDIUM: 38, LARGE: 46 };
 
 // Height
 export const FOOTER_HEIGHT = '3rem';

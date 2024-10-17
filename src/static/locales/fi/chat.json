@@ -18,7 +18,8 @@
       "description3": "Tähdellä * merkityt kentät tulee täyttää.",
       "input": {
         "reason": "Syy ilmiantoon *",
-        "contactInfo": "Sähköposti tai puhelinumero yhteydenottoa varten"
+        "contactInfo": "Sähköposti tai puhelinumero yhteydenottoa varten",
+        "tooLongError": "Syöte on liian pitkä"
       },
       "success": {
         "confirm": "Ok",
