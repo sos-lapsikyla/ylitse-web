@@ -6,6 +6,8 @@ import { DEFAULT_ICON_SIZE } from '@/components/constants';
 
 import type { ChatBuddy } from '@/features/Chat/mappers';
 import type { DialogVariant } from '../Dialogs';
+import { useAppSelector } from '@/store';
+import { selectIsMentee } from '@/features/Authentication/userSlice';
 
 type Props = {
   chat: ChatBuddy;
@@ -14,6 +16,7 @@ type Props = {
 
 const DesktopButtons = ({ chat, openDialog }: Props) => {
   const { t } = useTranslation('chat');
+  const isMentee = useAppSelector(selectIsMentee);
 
   const openArchiveDialog = () => openDialog('archive');
   const openBlockDialog = () => openDialog('block');
@@ -42,16 +45,18 @@ const DesktopButtons = ({ chat, openDialog }: Props) => {
           text={t('header.restore')}
         />
       )}
-      <Button
-        onClick={openReportDialog}
-        leftIcon={'danger'}
-        sizeInPx={DEFAULT_ICON_SIZE.SMALL}
-        text={{
-          color: 'purple',
-          text: t('header.report'),
-          variant: 'link',
-        }}
-      />
+      {isMentee && (
+        <Button
+          onClick={openReportDialog}
+          leftIcon={'danger'}
+          sizeInPx={DEFAULT_ICON_SIZE.SMALL}
+          text={{
+            color: 'purple',
+            text: t('header.report'),
+            variant: 'link',
+          }}
+        />
+      )}
     </Container>
   );
 };
