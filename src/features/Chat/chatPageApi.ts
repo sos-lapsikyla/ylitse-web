@@ -220,6 +220,15 @@ export const chatApi = createApi({
           reporter_user_id: userId,
         },
       }),
+      async onQueryStarted(_, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
+        } catch (err) {
+          toast.error(t('chat:dialog.report.failure'), {
+            id: `report-failure`,
+          });
+        }
+      },
     }),
   }),
 });

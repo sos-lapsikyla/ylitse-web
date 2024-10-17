@@ -14,11 +14,13 @@
     "report": {
       "confirm": "Send",
       "description1": "Report a user if you detect criminal or wrongful activity violating SOS-Lapsikylä rules or values.",
-      "description2": "An SOS-Lapsikylä representative will contact you after the investigation. Your contact information will be used accordingly and won’t be admitted to outside parties.",
+      "description2": "An SOS-Lapsikylä representative will contact you after the investigation, if you provide contact information. Your contact information will be used accordingly and won’t be admitted to outside parties.",
       "description3": "Fields marked with a star * are required.",
+      "failure": "Sending report failed",
       "input": {
         "reason": "Reason for reporting *",
-        "contactInfo": "Contact information"
+        "contactInfo": "Email or phone number for contact purposes",
+        "tooLongError": "Input is too long"
       },
       "success": {
         "confirm": "Ok",

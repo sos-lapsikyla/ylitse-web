@@ -26,31 +26,29 @@ export const Dialog = ({
   onConfirm,
   description,
   title,
-}: Props) => {
-  return (
-    <>
-      <Overlay />
-      <Container borderColor={borderColor}>
-        <WarningIcon src={IconWarning} />
-        <CloseButton
-          variant="closeWithBackground"
-          sizeInPx={DEFAULT_ICON_SIZE.LARGE}
-          onClick={onClose}
-        />
-        <Text variant="h3">{title}</Text>
-        <Text>{description}</Text>
-        <ButtonContainer>
-          <TextButton onClick={onClose} variant="light">
-            {closeText}
-          </TextButton>
-          <TextButton id={confirmId} onClick={onConfirm} variant="dark">
-            {confirmText}
-          </TextButton>
-        </ButtonContainer>
-      </Container>
-    </>
-  );
-};
+}: Props) => (
+  <>
+    <Overlay />
+    <Container borderColor={borderColor}>
+      <WarningIcon src={IconWarning} />
+      <CloseButton
+        variant="closeWithBackground"
+        sizeInPx={DEFAULT_ICON_SIZE.MEDIUM}
+        onClick={onClose}
+      />
+      <Text variant="h3">{title}</Text>
+      <Text>{description}</Text>
+      <ButtonContainer>
+        <TextButton onClick={onClose} variant="light">
+          {closeText}
+        </TextButton>
+        <TextButton id={confirmId} onClick={onConfirm} variant="dark">
+          {confirmText}
+        </TextButton>
+      </ButtonContainer>
+    </Container>
+  </>
+);
 
 const Overlay = styled.div`
   background: var(--greyscale-overlay, rgba(57, 57, 57, 0.75));

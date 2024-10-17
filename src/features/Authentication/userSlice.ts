@@ -61,6 +61,11 @@ export const selectUserId = createSelector(selectUser, ({ id }) => id);
 
 export const selectUserRole = createSelector(selectUser, ({ role }) => role);
 
+export const selectIsMentee = createSelector(
+  selectUserRole,
+  role => role === 'mentee',
+);
+
 export const selectIsMentor = createSelector(
   selectUserRole,
   role => role === 'mentor',

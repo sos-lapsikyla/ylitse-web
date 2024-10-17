@@ -62,7 +62,7 @@ const MessageField = ({ chat }: Props) => {
       <SendButton
         variant="send"
         isDisabled={isLoadingNewMessage}
-        sizeInPx={DEFAULT_ICON_SIZE.LARGE}
+        sizeInPx={DEFAULT_ICON_SIZE.HUGE}
         onClick={() => handleMessageSend(chat.buddyId, text)}
       />
     </Container>

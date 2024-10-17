@@ -61,7 +61,7 @@ export const AppToast = ({ toast }: Props) => {
       <ButtonContainer>
         <IconButton
           variant="closeWithBackground"
-          sizeInPx={40}
+          sizeInPx={DEFAULT_ICON_SIZE.MEDIUM}
           onClick={() => toastEffect.dismiss(toast.id)}
         />
       </ButtonContainer>

@@ -1,4 +1,4 @@
-import { accounts } from 'cypress/fixtures/accounts';
+import { accounts, Mentee, Mentor } from 'cypress/fixtures/accounts';
 import { api } from '../support/api';
 
 describe('chat', () => {
@@ -9,6 +9,32 @@ describe('chat', () => {
   after(() => {
     api.deleteAccounts();
   });
+
+  const signUpAndMessageMentor = (
+    mentee: Mentee,
+    mentor: Mentor,
+    message: string,
+  ) => {
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
+    api.signUpMentee(mentee).then((menteeResponse: any) => {
+      //eslint-disable-next-line @typescript-eslint/no-explicit-any
+      api.signUpMentor(mentor).then((mentorResponse: any) => {
+        const sender = {
+          id: menteeResponse.body.id,
+          loginName: mentee.loginName,
+          password: mentee.password,
+        };
+        const reciever = { id: mentorResponse.body.user_id };
+
+        // send message between users
+        api.sendMessage({
+          sender,
+          reciever,
+          content: message,
+        });
+      });
+    });
+  };
 
   it('can start a conversation with mentor', () => {
     const mentee = accounts.mentees[0];
@@ -89,25 +115,7 @@ describe('chat', () => {
     const mentee = accounts.mentees[0];
     const mentor = accounts.mentors[0];
     const message = 'I would like to talk to you';
-    //eslint-disable-next-line @typescript-eslint/no-explicit-any
-    api.signUpMentee(mentee).then((menteeResponse: any) => {
-      //eslint-disable-next-line @typescript-eslint/no-explicit-any
-      api.signUpMentor(mentor).then((mentorResponse: any) => {
-        const sender = {
-          id: menteeResponse.body.id,
-          loginName: mentee.loginName,
-          password: mentee.password,
-        };
-        const reciever = { id: mentorResponse.body.user_id };
-
-        // send message between users
-        api.sendMessage({
-          sender,
-          reciever,
-          content: message,
-        });
-      });
-    });
+    signUpAndMessageMentor(mentee, mentor, message);
 
     cy.loginUser(mentor.loginName, mentor.password);
 
@@ -203,25 +211,7 @@ describe('chat', () => {
     const mentee = accounts.mentees[0];
     const mentor = accounts.mentors[0];
     const message = 'I would like to talk to you';
-    //eslint-disable-next-line @typescript-eslint/no-explicit-any
-    api.signUpMentee(mentee).then((menteeResponse: any) => {
-      //eslint-disable-next-line @typescript-eslint/no-explicit-any
-      api.signUpMentor(mentor).then((mentorResponse: any) => {
-        const sender = {
-          id: menteeResponse.body.id,
-          loginName: mentee.loginName,
-          password: mentee.password,
-        };
-        const reciever = { id: mentorResponse.body.user_id };
-
-        // send message between users
-        api.sendMessage({
-          sender,
-          reciever,
-          content: message,
-        });
-      });
-    });
+    signUpAndMessageMentor(mentee, mentor, message);
 
     cy.loginUser(mentor.loginName, mentor.password);
 
@@ -316,25 +306,7 @@ describe('chat', () => {
     const mentee = accounts.mentees[0];
     const mentor = accounts.mentors[0];
     const message = 'I would like to talk to you';
-    //eslint-disable-next-line @typescript-eslint/no-explicit-any
-    api.signUpMentee(mentee).then((menteeResponse: any) => {
-      //eslint-disable-next-line @typescript-eslint/no-explicit-any
-      api.signUpMentor(mentor).then((mentorResponse: any) => {
-        const sender = {
-          id: menteeResponse.body.id,
-          loginName: mentee.loginName,
-          password: mentee.password,
-        };
-        const reciever = { id: mentorResponse.body.user_id };
-
-        // send message between users
-        api.sendMessage({
-          sender,
-          reciever,
-          content: message,
-        });
-      });
-    });
+    signUpAndMessageMentor(mentee, mentor, message);
 
     cy.loginUser(mentor.loginName, mentor.password);
 
@@ -423,5 +395,57 @@ describe('chat', () => {
     cy.get('button[aria-label="menuLines"]').click();
     cy.getByText('Estetyt keskustelut', 'a');
     cy.get('div[aria-label="unseen-messages-dot"]').should('not.exist');
+  });
+
+  it('can report mentor succesfully', () => {
+    const mentee = accounts.mentees[0];
+    const mentor = accounts.mentors[0];
+    const message = 'I would like to talk to you';
+    signUpAndMessageMentor(mentee, mentor, message);
+
+    cy.loginUser(mentee.loginName, mentee.password);
+    cy.get('[href="/chat"]').click();
+
+    // open report modal
+    cy.getByText('Ilmianna', 'button').click();
+
+    cy.getByText('Ilmianna käyttäjä', 'h1').should('be.visible');
+    cy.getByText(
+      'Ilmianna käyttäjä, jos epäilet tai havaitset mentorin käyttävän palvelua väärin.',
+      'p',
+    ).should('be.visible');
+    cy.getByText('Lähetä', 'button').should('be.disabled');
+
+    cy.fillInputByLabel('Syy ilmiantoon *', 'exampleReason');
+    cy.fillInputByLabel(
+      'Sähköposti tai puhelinumero yhteydenottoa varten',
+      'exampleContactInfo',
+    );
+
+    // Send report
+    cy.getByText('Lähetä', 'button').click();
+    cy.wait(500);
+
+    // should show success modal
+    cy.contains('Käyttäjän ilmianto onnistui').should('be.visible');
+    cy.contains(
+      'SOS-Lapsikylän työntekijä selvittää tilanteen ja ottaa sinuun yhteyttä.',
+    ).should('be.visible');
+  });
+
+  it('will not show report button to mentor', () => {
+    const mentee = accounts.mentees[0];
+    const mentor = accounts.mentors[0];
+    const message = 'I would like to talk to you';
+    signUpAndMessageMentor(mentee, mentor, message);
+
+    cy.loginUser(mentor.loginName, mentor.password);
+    cy.get('[href="/chat"]').click();
+
+    // should show other buttons
+    cy.getByText('Arkistoi', 'button').should('be.visible');
+    cy.getByText('Estä käyttäjä', 'button').should('be.visible');
+
+    cy.getByText('Ilmianna', 'button').should('not.exist');
   });
 });

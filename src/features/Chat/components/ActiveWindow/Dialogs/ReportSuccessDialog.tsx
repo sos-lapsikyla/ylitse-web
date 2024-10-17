@@ -19,7 +19,7 @@ const ReportSuccessDialog = ({ close }: Props) => {
       <SuccessIcon src={IconSuccess} />
       <SuccessCloseButton
         variant="closeWithBackground"
-        sizeInPx={DEFAULT_ICON_SIZE.LARGE}
+        sizeInPx={DEFAULT_ICON_SIZE.MEDIUM}
         onClick={close}
       />
       <Text variant="h3">{t(`dialog.report.success.title`)}</Text>
