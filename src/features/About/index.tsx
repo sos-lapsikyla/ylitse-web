@@ -35,9 +35,11 @@ export const About = ({ onDismiss }: Props) => {
             sizeInPx={38}
           />
         </CloseContainer>
-        <Text variant="h1">{t('about.title')} </Text>
-        <Text variant="p">UI version {version.version}</Text>
-        <Text variant="p">API version</Text>
+        <Text variant="h1">{t('about.title')}</Text>
+        <InfoText variant="p">
+          {t('about.ui')} {version.version}+git:{' '}
+        </InfoText>
+        <InfoText variant="p">{t('about.api')} </InfoText>
         {isLicenseModalVisible && <LicenseModal />}
         <LicensesButton onClick={toggleLicenseModal}>
           {!isLicenseModalVisible ? t('about.open') : t('about.close')}
@@ -98,6 +100,10 @@ const LicensesButton = styled(TextButton)`
   height: 48px;
   margin: 1rem;
   width: fit-content;
+`;
+
+const InfoText = styled(Text)`
+  margin: 10px;
 `;
 
 export default About;

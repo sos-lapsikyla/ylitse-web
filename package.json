@@ -8,6 +8,7 @@
     "eslint:fix": "eslint --fix .",
     "eslint": "eslint .",
     "lint": "tsc && npm run eslint:check && npm run eslint",
+    "licenses": "npm install license-checker --save-dev && npx license-checker --json > licenses.json",
     "test:unit": "jest",
     "test:e2e": "npm run wait && cypress run",
     "test": "npm run test:unit && npm run test:e2e",
