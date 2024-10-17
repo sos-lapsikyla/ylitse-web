@@ -1,8 +1,10 @@
-import { setShowFolders } from '@/features/Chat/chatSlice';
-import { useAppDispatch, useAppSelector } from '@/store';
+import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
-import styled from 'styled-components';
+import { setShowFolders } from '@/features/Chat/chatSlice';
+import { useAppDispatch, useAppSelector } from '@/store';
+
+import { DEFAULT_ICON_SIZE } from '@/components/constants';
 import IconButton from '@/components/Buttons/IconButton';
 import { Row } from './Row';
 import Text from '@/components/Text';
@@ -20,7 +22,11 @@ const Header = () => {
     <HeaderRow>
       <Title variant="h1">{t(`menu.title.${activeFolder}`)}</Title>
       <Buttons>
-        <IconButton variant="menuLines" sizeInPx={40} onClick={toggleFolders} />
+        <IconButton
+          variant="menuLines"
+          sizeInPx={DEFAULT_ICON_SIZE.MEDIUM}
+          onClick={toggleFolders}
+        />
       </Buttons>
     </HeaderRow>
   );

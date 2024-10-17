@@ -37,7 +37,11 @@ const TabletButtons = ({ chat, openDialog }: Props) => {
 
   return (
     <Container>
-      <IconButton variant="menuLines" sizeInPx={40} onClick={toggleDropdown} />
+      <IconButton
+        variant="menuLines"
+        sizeInPx={DEFAULT_ICON_SIZE.MEDIUM}
+        onClick={toggleDropdown}
+      />
       {isDropdownOpen && (
         <Dropdown>
           {chat.status === 'ok' ? (

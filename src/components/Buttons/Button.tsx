@@ -8,7 +8,6 @@ import { ButtonIcon, iconVariants } from './variants';
 
 type ButtonProps<T extends ElementType> = {
   leftIcon?: ButtonIcon;
-  rightIcon?: ButtonIcon;
   sizeInPx: number;
   text?: { variant: TextVariant; color: Color; text: string };
 } & ComponentPropsWithoutRef<T>;
@@ -18,7 +17,6 @@ const Button = <T extends ElementType = 'button'>({
   sizeInPx,
   text,
   leftIcon,
-  rightIcon,
   onClick,
   ...rest
 }: ButtonProps<T>): JSX.Element => {
@@ -31,8 +29,6 @@ const Button = <T extends ElementType = 'button'>({
           {text.text}
         </Text>
       )}
-
-      {rightIcon && <Icon variant={rightIcon} size={sizeInPx} />}
     </StyledButton>
   );
 };

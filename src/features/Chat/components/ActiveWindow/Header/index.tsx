@@ -18,7 +18,11 @@ import {
   HIGH_ROW_HEIGHT,
   ROW_HEIGHT,
 } from '@/features/Chat/constants';
-import { CONTENT_WIDTH, palette } from '@/components/constants';
+import {
+  CONTENT_WIDTH,
+  DEFAULT_ICON_SIZE,
+  palette,
+} from '@/components/constants';
 
 // Components
 import ArchivedIcon from '@/static/icons/archived-chats.svg';
@@ -67,7 +71,11 @@ const Header = ({ chat }: Props) => {
   return (
     <Container tablet={isTablet}>
       {isTablet && (
-        <IconButton variant="back" sizeInPx={40} onClick={returnToTabletMenu} />
+        <IconButton
+          variant="back"
+          sizeInPx={DEFAULT_ICON_SIZE.MEDIUM}
+          onClick={returnToTabletMenu}
+        />
       )}
       <IconContainer>{icons[chat.status]}</IconContainer>
       <DisplayName variant="h2">{chat.displayName}</DisplayName>
