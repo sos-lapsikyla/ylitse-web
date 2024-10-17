@@ -6,9 +6,15 @@ import styled, { css } from 'styled-components';
 
 import licenses from '../../../licenses.json';
 
+type LicenseData = {
+  name: string;
+  licenses: string;
+  repository?: string;
+};
+
 export const LicenseModal = () => {
   const { isMobile } = useGetLayoutMode();
-  const licenseMap = Object.entries(licenses).map(
+  const licenseMap = Object.entries(licenses).map<LicenseData>(
     ([libraryName, libraryData]) => ({
       name: libraryName,
       ...libraryData,
@@ -16,24 +22,40 @@ export const LicenseModal = () => {
   );
 
   return (
-    <Modal isMobile={isMobile}>
+    <Container isMobile={isMobile}>
       {licenseMap.map(license => (
-        <LicenseRow key={license.name} variant="p">
-          {license.name} {license.licenses}
+        <LicenseRow key={license.name}>
+          <LicenseInfo variant="p">{license.name} </LicenseInfo>
+          <LicenseInfo variant="p">
+            {license.licenses}
+            {license.repository ? (
+              <a href={license.repository}>{license.repository}</a>
+            ) : (
+              ''
+            )}
+          </LicenseInfo>
         </LicenseRow>
       ))}
-    </Modal>
+    </Container>
   );
 };
 
-const LicenseRow = styled(Text)`
+const LicenseRow = styled.div`
+  align-items: left;
+  display: flex;
+  flex-direction: row;
+  flexwrap: wrap;
+  justify-content: space-between;
+  margin: 0px;
+`;
+
+const LicenseInfo = styled(Text)`
   display: flex;
   flexwrap: wrap;
   margin: 0px;
 `;
 
-const Modal = styled.div<{ isMobile: boolean }>`
-  align-items: center;
+const Container = styled.div<{ isMobile: boolean }>`
   background-color: ${palette.white};
   border-radius: 10px;
   display: flex;
@@ -49,9 +71,11 @@ const Modal = styled.div<{ isMobile: boolean }>`
     isMobile
       ? css`
           height: 10rem;
+          width: 80vw;
         `
       : css`
           height: 10rem;
+          width: 35vw;
         `}
 `;
 
