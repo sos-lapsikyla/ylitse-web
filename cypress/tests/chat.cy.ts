@@ -427,7 +427,7 @@ describe('chat', () => {
     cy.wait(200);
 
     // should show success modal
-    // cy.getByText('Käyttäjän ilmianto onnistui', 'h3').should('be.visible');
+    cy.getByText('Käyttäjän ilmianto onnistui', 'h3').should('be.visible');
     cy.getByText(
       'SOS-Lapsikylän työntekijä selvittää tilanteen ja ottaa sinuun yhteyttä.',
       'p',
