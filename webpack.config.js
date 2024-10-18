@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const webpack = require('webpack');
+const commitHash = require('child_process')
+  .execSync('git rev-parse --short HEAD')
+  .toString()
+  .trim();
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -77,6 +81,10 @@ module.exports = {
           context: path.resolve(__dirname, 'src'),
         },
       ],
+    }),
+
+    new webpack.DefinePlugin({
+      COMMIT_HASH: JSON.stringify(commitHash),
     }),
   ],
   resolve: {
