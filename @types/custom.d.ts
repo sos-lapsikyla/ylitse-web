@@ -4,3 +4,5 @@ declare module '*.svg' {
 }
 
 declare const BASE_PATH: string;
+
+declare const COMMIT_HASH: string;

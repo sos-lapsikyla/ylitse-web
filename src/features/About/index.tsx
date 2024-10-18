@@ -37,7 +37,7 @@ export const About = ({ onDismiss }: Props) => {
         </CloseContainer>
         <Text variant="h1">{t('about.title')}</Text>
         <InfoText variant="p">
-          {t('about.ui')} {version.version}+git:{' '}
+          {t('about.ui')} {version.version}+git:{COMMIT_HASH}
         </InfoText>
         <InfoText variant="p">{t('about.api')} </InfoText>
         {isLicenseModalVisible && <LicenseModal />}
