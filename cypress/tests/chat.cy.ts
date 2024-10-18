@@ -423,8 +423,8 @@ describe('chat', () => {
     );
 
     // Send report
-    cy.getByText('Lähetä', 'button').click();
-    cy.wait(200);
+    cy.getByText('Lähetä', 'button').should('be.enabled').click();
+    cy.wait(500);
 
     // should show success modal
     cy.getByText('Käyttäjän ilmianto onnistui', 'h3').should('be.visible');
