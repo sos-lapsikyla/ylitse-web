@@ -108,7 +108,7 @@ const PasswordEditor = () => {
         <IconButton
           id="open-password-editor"
           onClick={toggleIsOpen}
-          sizeInPx={DEFAULT_ICON_SIZE.LARGE}
+          sizeInPx={DEFAULT_ICON_SIZE.HUGE}
           variant="edit"
         />
       </SpacedRow>

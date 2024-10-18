@@ -14,11 +14,13 @@
     "report": {
       "confirm": "Lähetä",
       "description1": "Ilmianna käyttäjä, jos epäilet tai havaitset mentorin käyttävän palvelua väärin. Tällaisia tilanteita ovat esimerkiksi SOS-Lapsikylän arvojen vastainen toiminta ja rikollinen toiminta.",
-      "description2": "Ilmiantamisen jälkeen SOS-Lapsikylän työntekijä selvittää tilanteen ja ottaa sinuun yhteyttä. Yhteystietoja käytetään selvityksen ajan eikä niitä luovuteta ulkopuolisille.",
+      "description2": "Ilmiantamisen jälkeen SOS-Lapsikylän työntekijä selvittää tilanteen, ja ottaa sinuun yhteyttä, mikäli olet antanut yhteystietosi. Yhteystietoja käytetään selvityksen ajan eikä niitä luovuteta ulkopuolisille.",
       "description3": "Tähdellä * merkityt kentät tulee täyttää.",
+      "failure": "Käyttäjän ilmianto epäonnistui",
       "input": {
         "reason": "Syy ilmiantoon *",
-        "contactInfo": "Yhteystietosi"
+        "contactInfo": "Sähköposti tai puhelinumero yhteydenottoa varten",
+        "tooLongError": "Syöte on liian pitkä"
       },
       "success": {
         "confirm": "Ok",

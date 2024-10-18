@@ -76,7 +76,7 @@ const DisplayNameEditor = () => {
         <IconButton
           id="open-display-name-editor"
           onClick={toggleIsOpen}
-          sizeInPx={DEFAULT_ICON_SIZE.LARGE}
+          sizeInPx={DEFAULT_ICON_SIZE.HUGE}
           variant="edit"
         />
       </SpacedRow>
