@@ -424,12 +424,13 @@ describe('chat', () => {
 
     // Send report
     cy.getByText('Lähetä', 'button').click();
-    cy.wait(500);
+    cy.wait(200);
 
     // should show success modal
-    cy.contains('Käyttäjän ilmianto onnistui').should('be.visible');
-    cy.contains(
+    // cy.getByText('Käyttäjän ilmianto onnistui', 'h3').should('be.visible');
+    cy.getByText(
       'SOS-Lapsikylän työntekijä selvittää tilanteen ja ottaa sinuun yhteyttä.',
+      'p',
     ).should('be.visible');
   });
 
