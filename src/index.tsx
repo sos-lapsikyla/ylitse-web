@@ -1,9 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { StrictMode } from 'react';
+import ReactDOM from 'react-dom/client';
+
+import './i18n';
+import { ConfirmationDialogProvider } from '@/features/Confirmation/ConfirmationDialogProvider';
 import { Provider } from 'react-redux';
 import { setupStore } from './store';
-import './i18n';
 
 import App from './App';
 
@@ -12,11 +14,13 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <React.StrictMode>
+  <StrictMode>
     <Provider store={setupStore({})}>
-      <BrowserRouter basename={BASE_PATH || '/'}>
-        <App />
-      </BrowserRouter>
+      <ConfirmationDialogProvider>
+        <BrowserRouter basename={BASE_PATH || '/'}>
+          <App />
+        </BrowserRouter>
+      </ConfirmationDialogProvider>
     </Provider>
-  </React.StrictMode>,
+  </StrictMode>,
 );

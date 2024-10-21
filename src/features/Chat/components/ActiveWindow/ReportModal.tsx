@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { selectUserId } from '@/features/Authentication/userSlice';
 import { useAppSelector } from '@/store';
+import { useConfirm } from '@/hooks/useConfirm';
 import { useReportMentorMutation } from '@/features/Chat/chatPageApi';
 
 import { DIALOG_WIDTH, ICON_SIZES } from '@/components/constants';
@@ -14,7 +15,6 @@ import {
 } from '@/features/Chat/validators';
 import LabeledInput from '@/components/LabeledInput';
 import { palette } from '@/components/constants';
-import ReportSuccessDialog from './ReportSuccessDialog';
 import Text from '@/components/Text';
 
 type Props = {
@@ -22,9 +22,9 @@ type Props = {
   close: () => void;
 };
 
-const ReportDialog = ({ buddyId, close }: Props) => {
+const ReportModal = ({ buddyId, close }: Props) => {
   const { t } = useTranslation('chat');
-
+  const { getConfirmation } = useConfirm();
   const userId = useAppSelector(selectUserId);
   const [reportMentor] = useReportMentorMutation();
 
@@ -37,13 +37,18 @@ const ReportDialog = ({ buddyId, close }: Props) => {
         reportReason,
         userId,
       }).unwrap();
-      setIsReported(true);
+      await getConfirmation({
+        borderColor: palette.blue,
+        closeText: t(`dialog.report.success.confirm`),
+        confirmId: `confirm-report-success`,
+        description: t(`dialog.report.success.description`),
+        title: t(`dialog.report.success.title`),
+      });
     } catch (err) {
       console.error(err);
     }
   };
 
-  const [isReported, setIsReported] = useState(false);
   const [reportReason, setReportReason] = useState('');
   const [contactInfo, setContactInfo] = useState('');
 
@@ -55,57 +60,53 @@ const ReportDialog = ({ buddyId, close }: Props) => {
   return (
     <>
       <Overlay />
-      {isReported ? (
-        <ReportSuccessDialog close={close} />
-      ) : (
-        <Container>
-          <CloseButton
-            variant="closeWithBackground"
-            sizeInPx={ICON_SIZES.MEDIUM}
-            onClick={close}
+      <Container>
+        <CloseButton
+          variant="closeWithBackground"
+          sizeInPx={ICON_SIZES.MEDIUM}
+          onClick={close}
+        />
+        <Title color="white" variant="h1">
+          {t('dialog.report.title')}
+        </Title>
+        <Content>
+          <Paragraph>{t('dialog.report.description1')}</Paragraph>
+          <Paragraph>{t('dialog.report.description2')}</Paragraph>
+          <Paragraph>{t('dialog.report.description3')}</Paragraph>
+          <LabeledInput
+            error={
+              isReportReasonTooLong(reportReason)
+                ? t('dialog.report.input.tooLongError')
+                : null
+            }
+            label={t('dialog.report.input.reason')}
+            onChange={setReportReason}
+            value={reportReason}
           />
-          <Title color="white" variant="h1">
-            {t('dialog.report.title')}
-          </Title>
-          <Content>
-            <Paragraph>{t('dialog.report.description1')}</Paragraph>
-            <Paragraph>{t('dialog.report.description2')}</Paragraph>
-            <Paragraph>{t('dialog.report.description3')}</Paragraph>
-            <LabeledInput
-              error={
-                isReportReasonTooLong(reportReason)
-                  ? t('dialog.report.input.tooLongError')
-                  : null
-              }
-              label={t('dialog.report.input.reason')}
-              onChange={setReportReason}
-              value={reportReason}
-            />
-            <LabeledInput
-              error={
-                isContactInfoTooLong(contactInfo)
-                  ? t('dialog.report.input.tooLongError')
-                  : null
-              }
-              label={t('dialog.report.input.contactInfo')}
-              onChange={setContactInfo}
-              value={contactInfo}
-            />
-            <ButtonContainerWithMargin>
-              <ActionButton onClick={close} variant="light">
-                {t('dialog.cancel')}
-              </ActionButton>
-              <ActionButton
-                isDisabled={isSavingDisabled}
-                onClick={sendReportRequest}
-                variant={isSavingDisabled ? 'disabled' : 'dark'}
-              >
-                {t('dialog.report.confirm')}
-              </ActionButton>
-            </ButtonContainerWithMargin>
-          </Content>
-        </Container>
-      )}
+          <LabeledInput
+            error={
+              isContactInfoTooLong(contactInfo)
+                ? t('dialog.report.input.tooLongError')
+                : null
+            }
+            label={t('dialog.report.input.contactInfo')}
+            onChange={setContactInfo}
+            value={contactInfo}
+          />
+          <ButtonContainerWithMargin>
+            <ActionButton onClick={close} variant="light">
+              {t('dialog.cancel')}
+            </ActionButton>
+            <ActionButton
+              isDisabled={isSavingDisabled}
+              onClick={sendReportRequest}
+              variant={isSavingDisabled ? 'disabled' : 'dark'}
+            >
+              {t('dialog.report.confirm')}
+            </ActionButton>
+          </ButtonContainerWithMargin>
+        </Content>
+      </Container>
     </>
   );
 };
@@ -167,4 +168,4 @@ const ActionButton = styled(TextButton)`
   flex-grow: 1;
 `;
 
-export default ReportDialog;
+export default ReportModal;

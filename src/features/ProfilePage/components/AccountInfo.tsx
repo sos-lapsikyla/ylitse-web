@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -8,9 +7,9 @@ import {
 } from '@/features/Authentication/userSlice';
 import { useAppSelector } from '@/store';
 import { useDeleteAccountMutation } from '@/features/Authentication/authenticationApi';
+import { useConfirm } from '@/hooks/useConfirm';
 
 import AdminIcon from '@/static/icons/admin.svg';
-import Dialog from '@/components/Dialog';
 import DisplayNameEditor from './DisplayNameEditor';
 import EmailEditor from './EmailEditor';
 import MentorIcon from '@/static/icons/mentor.svg';
@@ -27,14 +26,24 @@ type Props = {
 
 const AccountInfo = ({ isMobile = false }: Props) => {
   const { t } = useTranslation('profile');
+  const { getConfirmation } = useConfirm();
   const { id, login_name: loginName, role } = useAppSelector(selectAccount);
   const isMentor = useAppSelector(selectIsMentor);
   const [deleteAccount] = useDeleteAccountMutation();
 
-  const [isDeleteConfirmationOpen, setIsDeleteConfirmationOpen] =
-    useState(false);
-  const openDeleteConfirmation = () => setIsDeleteConfirmationOpen(true);
-  const closeDeleteConfirmation = () => setIsDeleteConfirmationOpen(false);
+  const confirmDelete = async () => {
+    const isConfirmed = await getConfirmation({
+      borderColor: palette.redSalmon,
+      closeText: t('account.delete.cancel'),
+      confirmId: 'confirm-delete',
+      confirmText: t('account.delete.confirm'),
+      description: t('account.delete.description'),
+      title: t('account.delete.title'),
+    });
+    if (isConfirmed) {
+      deleteAccount(id);
+    }
+  };
 
   const userRoleIcons = {
     admin: <img src={AdminIcon} />,
@@ -44,19 +53,6 @@ const AccountInfo = ({ isMobile = false }: Props) => {
 
   return (
     <Container isMentor={isMentor} isMobile={isMobile}>
-      {isDeleteConfirmationOpen && (
-        <Dialog
-          borderColor={palette.redSalmon}
-          closeText={t('account.delete.cancel')}
-          confirmId="confirm-delete"
-          confirmText={t('account.delete.confirm')}
-          onClose={closeDeleteConfirmation}
-          onConfirm={() => deleteAccount(id)}
-          description={t('account.delete.description')}
-          title={t('account.delete.title')}
-        />
-      )}
-
       {!isMentor && (
         <MenteeHeader>
           <Text variant="h1">{t('title')}</Text>
@@ -84,7 +80,7 @@ const AccountInfo = ({ isMobile = false }: Props) => {
             <Text variant="h2">{t('public.title')}</Text>
             <DisplayNameEditor />
           </Public>
-          <DeleteButton variant="danger" onClick={openDeleteConfirmation}>
+          <DeleteButton variant="danger" onClick={confirmDelete}>
             {t('account.delete.title')}
           </DeleteButton>
         </>

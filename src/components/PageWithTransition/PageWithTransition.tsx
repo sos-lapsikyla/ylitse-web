@@ -1,5 +1,5 @@
 // Libraries
-import React, { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 // Store and hooks
@@ -15,7 +15,7 @@ import {
 } from '../constants';
 
 type Props = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 const TRANSITION_LENGTH = 0.7;

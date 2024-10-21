@@ -1,27 +1,33 @@
-import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
+
+import { selectIsMentee } from '@/features/Authentication/userSlice';
+import { useAppSelector } from '@/store';
 
 import { Button, StatusButton } from '@/components/Buttons';
 import { ICON_SIZES } from '@/components/constants';
 
 import type { ChatBuddy } from '@/features/Chat/mappers';
-import type { DialogVariant } from '../Dialogs';
-import { useAppSelector } from '@/store';
-import { selectIsMentee } from '@/features/Authentication/userSlice';
+
+type DialogVariant = 'archive' | 'block' | 'restore';
 
 type Props = {
   chat: ChatBuddy;
-  openDialog: (variant: DialogVariant) => void;
+  confirmStatusChange: (variant: DialogVariant) => void;
+  openReportModal: () => void;
 };
 
-const DesktopButtons = ({ chat, openDialog }: Props) => {
+const DesktopButtons = ({
+  chat,
+  confirmStatusChange,
+  openReportModal,
+}: Props) => {
   const { t } = useTranslation('chat');
   const isMentee = useAppSelector(selectIsMentee);
 
-  const openArchiveDialog = () => openDialog('archive');
-  const openBlockDialog = () => openDialog('block');
-  const openRestoreDialog = () => openDialog('restore');
-  const openReportDialog = () => openDialog('report');
+  const openArchiveDialog = () => confirmStatusChange('archive');
+  const openBlockDialog = () => confirmStatusChange('block');
+  const openRestoreDialog = () => confirmStatusChange('restore');
 
   return (
     <Container>
@@ -47,7 +53,7 @@ const DesktopButtons = ({ chat, openDialog }: Props) => {
       )}
       {isMentee && (
         <Button
-          onClick={openReportDialog}
+          onClick={openReportModal}
           leftIcon={'danger'}
           sizeInPx={ICON_SIZES.SMALL}
           text={{

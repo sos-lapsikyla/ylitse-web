@@ -1,4 +1,5 @@
 import CSS from 'csstype';
+import { ReactNode } from 'react';
 import { variants } from './variants';
 import { palette } from '../constants';
 import type { TextVariant } from './variants';
@@ -8,7 +9,7 @@ type Props = {
   variant?: TextVariant;
   color?: Color;
   className?: string;
-  children: React.ReactNode;
+  children: ReactNode;
   inputId?: string;
 };
 

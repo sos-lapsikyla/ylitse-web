@@ -3,17 +3,26 @@ import styled from 'styled-components';
 import { DIALOG_WIDTH } from '@/components/constants';
 import { IconButton, TextButton } from '@/components/Buttons';
 import { ICON_SIZES, palette } from '@/components/constants';
+import IconSuccess from '@/static/icons/success.svg';
 import IconWarning from '@/static/icons/warning.svg';
 import Text from '@/components/Text';
+
+export type IconVariant = 'success' | 'warning';
+
+const iconMap: Record<IconVariant, string> = {
+  success: IconSuccess,
+  warning: IconWarning,
+};
 
 type Props = {
   borderColor: string;
   closeText: string;
   confirmId: string;
-  confirmText: string;
-  onClose: () => void;
-  onConfirm: () => void;
+  confirmText?: string;
   description: string;
+  iconVariant?: IconVariant;
+  onClose: () => void;
+  onConfirm?: (() => void) | null;
   title: string;
 };
 
@@ -21,16 +30,17 @@ export const Dialog = ({
   borderColor,
   closeText,
   confirmId,
-  confirmText,
-  onClose,
-  onConfirm,
+  confirmText = '',
   description,
+  iconVariant = 'warning',
+  onClose,
+  onConfirm = null,
   title,
 }: Props) => (
   <>
     <Overlay />
     <Container borderColor={borderColor}>
-      <WarningIcon src={IconWarning} />
+      <WarningIcon src={iconMap[iconVariant]} />
       <CloseButton
         variant="closeWithBackground"
         sizeInPx={ICON_SIZES.MEDIUM}
@@ -38,14 +48,22 @@ export const Dialog = ({
       />
       <Text variant="h3">{title}</Text>
       <Text>{description}</Text>
-      <ButtonContainer>
-        <TextButton onClick={onClose} variant="light">
-          {closeText}
-        </TextButton>
-        <TextButton id={confirmId} onClick={onConfirm} variant="dark">
-          {confirmText}
-        </TextButton>
-      </ButtonContainer>
+      {onConfirm ? (
+        <ButtonContainer>
+          <TextButton onClick={onClose} variant="light">
+            {closeText}
+          </TextButton>
+          <TextButton id={confirmId} onClick={onConfirm} variant="dark">
+            {confirmText}
+          </TextButton>
+        </ButtonContainer>
+      ) : (
+        <ButtonContainer>
+          <TextButton onClick={onClose} variant="dark">
+            {closeText}
+          </TextButton>
+        </ButtonContainer>
+      )}
     </Container>
   </>
 );
