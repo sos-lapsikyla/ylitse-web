@@ -68,7 +68,7 @@
     "jest": "^28.1.1",
     "jest-environment-jsdom": "^28.1.1",
     "license-checker": "^25.0.1",
-    "msw": "^0.47.4",
+    "msw": "^2.4.11",
     "node-2fa": "^2.0.3",
     "prettier": "^3.0.3",
     "react-test-renderer": "^18.2.0",
