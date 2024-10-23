@@ -80,6 +80,10 @@ module.exports = {
           from: 'register/**/*',
           context: path.resolve(__dirname, 'src'),
         },
+        {
+          from: path.resolve(__dirname, 'licenses.json'),
+          to: path.resolve(__dirname, 'dist'),
+        }
       ],
     }),
 
