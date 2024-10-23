@@ -12,7 +12,7 @@
     "test:unit": "jest",
     "test:e2e": "npm run wait && cypress run",
     "test": "npm run test:unit && npm run test:e2e",
-    "build": "webpack",
+    "build": "npm run licensesjson:create && webpack",
     "start": "webpack serve --open",
     "wait": "wait-on http://localhost:8080/version && wait-on http://localhost:8082"
   },
