@@ -71,7 +71,7 @@
       "leavePage": {
         "cancel": "Peruuta",
         "confirm": "Poistu tallentamatta",
-        "description": "Haluatko varmasti poistua sivulta? Menetät kaikki tallentamattomat tiedot poistuessasi sivulta.",
+        "description": "Haluatko varmasti poistua? Kun poistut sivulta, menetät kaikki tallentamattomat tiedot.",
         "title": "Sinulla on tallentamattomia muutoksia"
       },
       "mandatoryNotice": "Tähdellä * merkityt tiedot tulee täyttää.",
