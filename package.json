@@ -4,10 +4,9 @@
   "description": "Ylitse web UI",
   "main": "index.js",
   "scripts": {
-    "eslint:check": "eslint-config-prettier src/App.tsx",
-    "eslint:fix": "eslint --fix .",
     "eslint": "eslint .",
-    "lint": "tsc && npm run eslint:check && npm run eslint",
+    "eslint:fix": "eslint --fix .",
+    "lint": "tsc && npm run eslint",
     "licensesjson:create": "license-checker --json > licenses.json",
     "test:unit": "jest",
     "test:e2e": "npm run wait && cypress run",
