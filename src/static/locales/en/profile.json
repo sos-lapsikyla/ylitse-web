@@ -68,6 +68,12 @@
         "tooLongError": "Display name is too long",
         "tooShortError": "Display name is too short"
       },
+      "leavePage": {
+        "cancel": "Peruuta",
+        "confirm": "Poistu tallentamatta",
+        "description": "Haluatko varmasti poistua sivulta? Menetät kaikki tallentamattomat tiedot poistuessasi sivulta.",
+        "title": "Sinulla on tallentamattomia muutoksia"
+      },
       "mandatoryNotice": "Fields marked with a star * are required.",
       "region": {
         "label": "Region",

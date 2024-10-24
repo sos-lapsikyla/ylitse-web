@@ -68,6 +68,12 @@
         "tooLongError": "Nimimerkki on liian pitkä",
         "tooShortError": "Nimimerkki on liian lyhyt"
       },
+      "leavePage": {
+        "cancel": "Peruuta",
+        "confirm": "Poistu tallentamatta",
+        "description": "Haluatko varmasti poistua sivulta? Menetät kaikki tallentamattomat tiedot poistuessasi sivulta.",
+        "title": "Sinulla on tallentamattomia muutoksia"
+      },
       "mandatoryNotice": "Tähdellä * merkityt tiedot tulee täyttää.",
       "region": {
         "label": "Alue",

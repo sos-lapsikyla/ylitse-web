@@ -1,4 +1,3 @@
-import { BrowserRouter } from 'react-router-dom';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 
@@ -17,9 +16,7 @@ root.render(
   <StrictMode>
     <Provider store={setupStore({})}>
       <ConfirmationDialogProvider>
-        <BrowserRouter basename={BASE_PATH || '/'}>
-          <App />
-        </BrowserRouter>
+        <App />
       </ConfirmationDialogProvider>
     </Provider>
   </StrictMode>,
