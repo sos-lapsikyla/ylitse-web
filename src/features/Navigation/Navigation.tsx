@@ -1,24 +1,33 @@
-import { Route, Routes } from 'react-router-dom';
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 
 import ChatPage from '@/features/Chat';
 import HomePage from '@/features/HomePage';
-import MentorPage from '@/features/MentorPage';
 import { Logout } from '@/features/Authentication/components/Logout';
+import MentorPage from '@/features/MentorPage';
 import { Navbar } from './Navbar';
 import ProfilePage from '@/features/ProfilePage';
 
-const Navigation = () => (
+const Layout = () => (
   <>
     <Navbar />
-
-    <Routes>
-      <Route path="/*" element={<HomePage />} />
-      <Route path="/chat" element={<ChatPage />} />
-      <Route path="/mentors" element={<MentorPage />} />
-      <Route path="/profile" element={<ProfilePage />} />
-      <Route path="/logout" element={<Logout />} />
-    </Routes>
+    <Outlet />
   </>
 );
+
+const router = createBrowserRouter([
+  {
+    element: <Layout />,
+    children: [
+      { path: '/', element: <HomePage /> },
+      { path: '/chat', element: <ChatPage /> },
+      { path: '/mentors', element: <MentorPage /> },
+      { path: '/profile', element: <ProfilePage /> },
+      { path: '/logout', element: <Logout /> },
+      { path: '*', element: <HomePage /> },
+    ],
+  },
+]);
+
+const Navigation = () => <RouterProvider router={router} />;
 
 export default Navigation;

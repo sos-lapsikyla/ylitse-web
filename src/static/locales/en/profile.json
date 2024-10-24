@@ -68,6 +68,12 @@
         "tooLongError": "Display name is too long",
         "tooShortError": "Display name is too short"
       },
+      "leavePage": {
+        "cancel": "Cancel",
+        "confirm": "Leave without saving",
+        "description": "Are you sure you want to leave? When you leave the page, you will lose all unsaved data.",
+        "title": "You have unsaved changes"
+      },
       "mandatoryNotice": "Fields marked with a star * are required.",
       "region": {
         "label": "Region",

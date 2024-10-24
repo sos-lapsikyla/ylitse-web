@@ -1,7 +1,7 @@
 import Navigation from './Navigation';
 import { server } from '@/test/server';
 import { rest } from 'msw';
-import { renderWithProviders } from '@/test/testStore';
+import { renderWithStoreProvider } from '@/test/testStore';
 import { act } from '@testing-library/react';
 import { mentorsApi } from '../MentorPage/mentorPageApi';
 
@@ -31,7 +31,7 @@ server.use(
 
 describe('<Navigation/>', () => {
   it('Can navigate to other page', async () => {
-    const { getByRole, findByRole, user, store } = renderWithProviders(
+    const { getByRole, findByRole, user, store } = renderWithStoreProvider(
       <Navigation />,
     );
 
