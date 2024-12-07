@@ -10,6 +10,16 @@
     "skills": "Voin auttaa myös näissä",
     "unavailable": "Ei tavoitettavissa"
   },
+  "empty": {
+    "title": "Mentoreita ei löytynyt",
+    "description": "Mentoreita ei löytynyt antamillasi kriteereillä.",
+    "tips": {
+      "title": "Vinkkejä hakuun",
+      "tip1": "Käytä hakukentässä perusmuodossa olevia sanoja, esimerkiksi \"Masennus\" tai \"Lapsuuden traumat\".",
+      "tip2": "Tarkista, että hakusana on kirjoitettu oikein.",
+      "tip3": "Voi olla, että antamillasi kriteereillä ei löydy yhtään mentoria. Aseta hakuun vähemmän hakukriteerejä."
+    }
+  },
   "filters": {
     "clear": "Poista suodattimet",
     "close": "Sulje suodatus",
