@@ -63,6 +63,7 @@ const TopContainer = styled.div`
 `;
 
 const MiddleContainer = styled.div`
+  align-self: center;
   display: flex;
   gap: 2rem;
   padding: 4rem ${OUTER_HORIZONTAL_MARGIN};

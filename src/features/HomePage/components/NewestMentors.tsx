@@ -54,7 +54,7 @@ const NewestMentors = ({ isMobile = false }: Props) => {
         </>
       ) : (
         <>
-          <RightContainer>
+          <LeftContainer>
             <Title variant="h2" isMobile={isMobile}>
               {t('newestMentors.title')}
             </Title>
@@ -78,7 +78,7 @@ const NewestMentors = ({ isMobile = false }: Props) => {
                 </MentorCards>
               )}
             </MentorContainer>
-          </RightContainer>
+          </LeftContainer>
           <FindMentor />
         </>
       )}
@@ -91,6 +91,7 @@ const Container = styled.div<{ isMobile: boolean }>`
   display: flex;
   flex-direction: ${props => (props.isMobile ? 'column' : 'row')};
   gap: 2rem;
+  justify-content: center;
   padding: 4rem ${OUTER_HORIZONTAL_MARGIN};
 `;
 
@@ -127,7 +128,7 @@ const MentorCards = styled.div<{ isMobile: boolean }>`
     `}
 `;
 
-const RightContainer = styled.div`
+const LeftContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;

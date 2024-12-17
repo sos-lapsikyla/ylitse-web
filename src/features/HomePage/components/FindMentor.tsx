@@ -46,7 +46,7 @@ const Container = styled.div<{ isDesktop: boolean }>`
       box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
       box-sizing: border-box;
       height: 26rem;
-      max-width: 50%;
+      max-width: 55rem;
     `}
 `;
 
