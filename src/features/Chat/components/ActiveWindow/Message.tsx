@@ -61,6 +61,7 @@ const Container = styled.div<{ isSent: boolean; isVisible: boolean }>`
   align-items: ${({ isSent }) => (isSent ? 'flex-end' : 'flex-start')};
   display: flex;
   flex-direction: column;
+  margin-bottom: 8px;
 `;
 
 const Bubble = styled.div<{
@@ -81,8 +82,7 @@ const Content = styled(Text)`
 `;
 
 const Timestamp = styled(Text)<{ isSent: boolean }>`
+  margin: 0;
   ${({ isSent }) => (isSent ? 'margin-right: 14px;' : 'margin-left: 14px;')}
-  margin-bottom: 0;
-  margin-top: 0;
   text-align: right;
 `;
