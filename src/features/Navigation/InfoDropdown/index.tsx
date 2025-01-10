@@ -14,7 +14,6 @@ const InfoDropdown = () => {
     useComponentVisible<HTMLDivElement>(false);
   const { t } = useTranslation('common');
   const [isAboutVisible, setIsAboutVisible] = useState(false);
-  const toggleAbout = () => setIsAboutVisible(!isAboutVisible);
 
   return (
     <Anchor ref={ref}>
@@ -27,25 +26,26 @@ const InfoDropdown = () => {
       {isComponentVisible && (
         <Menu>
           <InfoItem
-            {...{
-              text: t('navigation.info.link.feedback.text'),
-              url: t('navigation.info.link.feedback.url'),
-            }}
+            text={t('navigation.info.link.feedback.text')}
+            url={t('navigation.info.link.feedback.url')}
           />
           <InfoItem
-            {...{
-              text: t('navigation.info.link.termsAndPrivacy.text'),
-              url: t('navigation.info.link.termsAndPrivacy.url'),
-            }}
+            text={t('navigation.info.link.termsAndPrivacy.text')}
+            url={t('navigation.info.link.termsAndPrivacy.url')}
           />
-          <Container onClick={toggleAbout}>
+          <Container
+            onClick={() => {
+              setIsComponentVisible(false);
+              setIsAboutVisible(true);
+            }}
+          >
             <Text variant="link" color="purple">
               {t('navigation.info.applicationInfo')}
             </Text>
           </Container>
         </Menu>
       )}
-      {isAboutVisible && <About onDismiss={toggleAbout} />}
+      {isAboutVisible && <About onDismiss={() => setIsAboutVisible(false)} />}
     </Anchor>
   );
 };
