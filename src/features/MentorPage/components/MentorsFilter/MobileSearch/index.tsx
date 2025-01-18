@@ -59,7 +59,7 @@ const MobileSearch = ({
 
 const Anchor = styled.div`
   display: flex;
-  margin: 2rem auto 1rem auto;
+  margin-top: 2rem;
   position: relative;
 `;
 
