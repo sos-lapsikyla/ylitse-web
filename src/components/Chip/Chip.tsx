@@ -39,6 +39,7 @@ const StyledChip = styled.button<{ isSelected: boolean; shouldShake: boolean }>`
   appearance: none;
   border: none;
   border-radius: 2rem;
+  box-shadow: 0 2px 8px 0 rgba(118, 117, 117, 0.2);
   cursor: pointer;
   display: flex;
   flex: 0 0 auto;

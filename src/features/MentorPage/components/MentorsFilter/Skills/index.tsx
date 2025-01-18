@@ -5,6 +5,7 @@ import {
   toggleSkill,
 } from '@/features/MentorPage/mentorsFilterSlice';
 import { useAppDispatch, useAppSelector } from '@/store';
+import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 
 import { usePillShakeChecker } from './usePillShakeChecker';
 import { useTranslation } from 'react-i18next';
@@ -14,6 +15,7 @@ import styled from 'styled-components';
 import { Text } from '@/components/Text/Text';
 import { Chip } from '@/components/Chip';
 import BottomBar from './BottomBar';
+import MobileBottomBar from './BottomBar/MobileBottomBar';
 
 type Props = { skills: Array<string> };
 
@@ -28,6 +30,8 @@ const SkillChips = ({ skills }: Props) => {
 
   const { t } = useTranslation('mentors');
   const dispatch = useAppDispatch();
+
+  const { isMobile } = useGetLayoutMode();
 
   const handleSkillToggle = (skill: string) => {
     dispatch(toggleSkill(skill));
@@ -63,13 +67,24 @@ const SkillChips = ({ skills }: Props) => {
           );
         })}
       </Skills>
-      <BottomBar
-        skillTotalAmount={skills.length}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        skillsInPage={skillsInPage}
-        setSkillsInPage={setSkillsInPage}
-      />
+
+      {isMobile ? (
+        <MobileBottomBar
+          skillTotalAmount={skills.length}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          skillsInPage={skillsInPage}
+          setSkillsInPage={setSkillsInPage}
+        ></MobileBottomBar>
+      ) : (
+        <BottomBar
+          skillTotalAmount={skills.length}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          skillsInPage={skillsInPage}
+          setSkillsInPage={setSkillsInPage}
+        />
+      )}
     </Container>
   );
 };
@@ -98,6 +113,7 @@ const Skills = styled.div`
   gap: 1rem;
   justify-content: center;
   overflow: hidden;
+  padding: 1rem;
   width: 100%;
 `;
 
