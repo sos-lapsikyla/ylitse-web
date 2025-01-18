@@ -30,7 +30,7 @@ const MobileSearch = ({
     <MobileContainer>
       <MobileHeader variant="h1">{t('filters.title')}</MobileHeader>
       <Text>{t('filters.description')}</Text>
-      <SearchBar
+      <NarrowSearchBar
         variant="small"
         placeholder={t('filters.search')}
         value={searchString}
@@ -59,6 +59,7 @@ const MobileSearch = ({
 
 const Anchor = styled.div`
   display: flex;
+  margin: 2rem auto 1rem auto;
   position: relative;
 `;
 
@@ -90,6 +91,12 @@ const MobileContainer = styled.div`
 
 const MobileHeader = styled(Text)`
   align-self: flex-start;
+`;
+
+const NarrowSearchBar = styled(SearchBar)`
+  flex: 1;
+  width: 100%;
+  z-index: 1;
 `;
 
 export default MobileSearch;
