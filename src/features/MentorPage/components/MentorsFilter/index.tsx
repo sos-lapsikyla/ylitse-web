@@ -31,6 +31,8 @@ const MentorsFilter = () => {
 
   return isMobile ? (
     <MobileSearch
+      isExpanded={isSkillFilterExpanded}
+      toggleExpanded={setIsSKillFilterExpanded}
       searchString={searchString}
       onSearchStringChange={handleSearchStringChange}
     />
