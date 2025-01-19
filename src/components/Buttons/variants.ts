@@ -8,6 +8,7 @@ import CloseIcon from '@/static/icons/close.svg';
 import CloseWithBackgroundIcon from '@/static/icons/close-with-background.svg';
 import DangerIcon from '@/static/icons/danger.svg';
 import DeleteIcon from '@/static/icons/delete.svg';
+import DownIcon from '@/static/icons/down.svg';
 import EditIcon from '@/static/icons/edit.svg';
 import FilterIcon from '@/static/icons/filter.svg';
 import ForwardIcon from '@/static/icons/forward.svg';
@@ -135,6 +136,7 @@ export const iconVariants = {
   closeWithBackground: `url(${CloseWithBackgroundIcon})`,
   danger: `url(${DangerIcon})`,
   delete: `url(${DeleteIcon})`,
+  down: `url(${DownIcon})`,
   edit: `url(${EditIcon})`,
   filter: `url(${FilterIcon})`,
   forward: `url(${ForwardIcon})`,

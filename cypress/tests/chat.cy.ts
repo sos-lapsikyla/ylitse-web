@@ -446,4 +446,46 @@ describe('chat', () => {
     cy.getByText('Estetyt keskustelut', 'a').click();
     cy.get('div[aria-label="unseen-messages-dot"]').should('not.exist');
   });
+
+  it('can use scroll-to-bottom-button to scroll to bottom', () => {
+    const message = 'Huzzah';
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
+    api.signUpMentee(mentee).then((menteeResponse: any) => {
+      //eslint-disable-next-line @typescript-eslint/no-explicit-any
+      api.signUpMentor(mentor).then((mentorResponse: any) => {
+        api.sendMultipleMessage({
+          sender: {
+            id: menteeResponse.body.id,
+            loginName: mentee.loginName,
+            password: mentee.password,
+          },
+          reciever: { id: mentorResponse.body.user_id },
+          content: message,
+          amountOfMessages: 20,
+        });
+      });
+    });
+
+    // go to chat page
+    cy.loginUser(mentor.loginName, mentor.password);
+    cy.get('[href="/chat"]').click();
+
+    // initially we should see this message
+    // newest message is `Huzzah 20`, but its also shown on the
+    // left conversation-list -> thats why we want to make sure it is scrolled to the bottom
+    cy.getByText(`${message} 19!`, 'p').should('be.visible');
+
+    // then scroll up to see older message
+    cy.getByText(`${message} 5!`, 'p').scrollIntoView().should('be.visible');
+
+    // click scroll-to-bottom-button
+    cy.get('button[aria-label="scroll-to-bottom-button"]').click();
+
+    // when scrolled to bottom, this button should disappear
+    cy.get('button[aria-label="scroll-to-bottom-button"]').should(
+      'not.be.visible',
+    );
+    // and a bottom message should be visible
+    cy.getByText(`${message} 19!`, 'p').should('be.visible');
+  });
 });

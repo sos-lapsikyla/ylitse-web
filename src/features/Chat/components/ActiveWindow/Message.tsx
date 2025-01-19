@@ -46,7 +46,12 @@ export const Message = ({ folder, buddyId, message }: Props) => {
     messageColors[folder][message.isSent ? 'sent' : 'received'];
 
   return (
-    <Container isSent={message.isSent} isVisible={isVisible} ref={ref}>
+    <Container
+      isSent={message.isSent}
+      isVisible={isVisible}
+      ref={ref}
+      aria-label="message-bubble"
+    >
       <Bubble background={background}>
         <Content>{message.content}</Content>
       </Bubble>

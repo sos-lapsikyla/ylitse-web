@@ -1,17 +1,21 @@
-import { useEffect, useRef, Fragment } from 'react';
+import { useRef, useMemo, Fragment } from 'react';
 import type { AppMessage, ChatFolder } from '@/features/Chat/models';
 
-import { useAppDispatch } from '@/store';
+import { useAppDispatch, useAppSelector } from '@/store';
 import { addPollParam } from '@/features/Chat/chatSlice';
+import { selectBuddyMessages } from '../../selectors';
 
-import { useScrollToTop } from '@/hooks/useScrollToTop';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
+import { useBottomAction } from './ScrollToBottomButton/useBottomAction';
+import { useOnScrollToTop } from './useOnScrollToTop';
+import { toGroupedMessages } from './mappers';
 
 import styled, { css } from 'styled-components';
 import { palette } from '@/components/constants';
 import { Message } from './Message';
 import Text from '@/components/Text';
 import Spinner from '@/components/Spinner';
+import ScrollToBottomButton from './ScrollToBottomButton';
 
 type Props = {
   messageList: Array<AppMessage>;
@@ -20,34 +24,24 @@ type Props = {
   isLoading: boolean;
 };
 
-type GroupedMessages = Record<string, AppMessage[]>;
-
-const toGroupedMessages = (messages: Array<AppMessage>) =>
-  messages.reduce<GroupedMessages>(
-    (grouped: GroupedMessages, current: AppMessage) => {
-      const messageDate = new Date(current.created).toLocaleDateString(
-        'fi-FI',
-        {
-          day: 'numeric',
-          month: 'numeric',
-          year: 'numeric',
-        },
-      );
-
-      const existingGroup = grouped[messageDate] ?? [];
-      const nextMessages = existingGroup.concat(current);
-
-      return { ...grouped, [messageDate]: nextMessages };
-    },
-    {},
-  );
-
 const MessageList = ({ messageList, status, buddyId, isLoading }: Props) => {
   const { isTablet } = useGetLayoutMode();
   const groupedMessages = toGroupedMessages(messageList);
+  const {
+    unread: { hasUnread },
+  } = useAppSelector(selectBuddyMessages(buddyId));
 
   const dispatch = useAppDispatch();
   const oldestMessage = messageList.length > 0 ? messageList[0].id : '0';
+  const historyRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
+
+  const offsets = useMemo(() => ({ bottom: 20, right: 20 }), []);
+  const { isScrolled, handleBottomActionClick } = useBottomAction(
+    historyRef,
+    buttonRef,
+    offsets,
+  );
 
   const handleFetchOlderMessages = (messageId: string, buddyId: string) => {
     if (isLoading) {
@@ -57,26 +51,13 @@ const MessageList = ({ messageList, status, buddyId, isLoading }: Props) => {
     dispatch(addPollParam({ type: 'OlderThan', buddyId, messageId }));
   };
 
-  const historyRef = useRef<HTMLDivElement>(null);
-
-  const { isScrolledToTop } = useScrollToTop({
+  useOnScrollToTop({
     ref: historyRef,
+    onScrollToTop: () => handleFetchOlderMessages(oldestMessage, buddyId),
   });
 
-  useEffect(() => {
-    historyRef.current?.lastElementChild?.scrollIntoView({
-      behavior: 'smooth',
-    });
-  }, []);
-
-  useEffect(() => {
-    if (isScrolledToTop) {
-      handleFetchOlderMessages(oldestMessage, buddyId);
-    }
-  }, [isScrolledToTop]);
-
   return (
-    <ChatHistory ref={historyRef}>
+    <ChatHistory ref={historyRef} aria-label="chat-history">
       {isLoading && <Spinner variant="small" isDark />}
       {Object.keys(groupedMessages).map(date => (
         <Fragment key={date}>
@@ -93,6 +74,14 @@ const MessageList = ({ messageList, status, buddyId, isLoading }: Props) => {
           </Messages>
         </Fragment>
       ))}
+      <ScrollToBottomButton
+        ref={buttonRef}
+        sizeInPx={isTablet ? 48 : 32}
+        variant="down"
+        onClick={handleBottomActionClick}
+        isVisible={isScrolled}
+        hasUnreadMessagesAtBottom={hasUnread}
+      />
     </ChatHistory>
   );
 };
@@ -102,6 +91,7 @@ const ChatHistory = styled.div`
   flex: 1;
   overflow: auto;
   padding-bottom: 10px;
+  position: relative;
 `;
 
 const DateDivider = styled(Text)<{ isTablet: boolean }>`

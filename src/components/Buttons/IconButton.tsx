@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 import { ButtonIcon, iconVariants } from './variants';
 
-type ButtonProps<T extends ElementType> = {
+export type ButtonProps<T extends ElementType> = {
   isDisabled?: boolean;
   sizeInPx: number;
   variant: ButtonIcon;
