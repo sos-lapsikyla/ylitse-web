@@ -1,201 +1,257 @@
 <!doctype html>
 <html lang="fi">
-   <head>
-      <meta charset="utf-8" />
-      <title localization-key="pageTitle"></title>
-      <meta name="description" content="Ylitse MentorApp" />
-      <meta name="author" content="SOS Children's Villages Finland" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link rel="stylesheet" href="../static/styles/normalize.css" />
-      <link rel="stylesheet" href="../static/styles/static-pages.css" />
-      <link rel="stylesheet" href="../static/styles/fonts.css" />
-      <link rel="stylesheet" href="styles.css" />
-      <link rel="icon" href="../static/favicon/favicon.ico" sizes="32x32">
-      <link rel="icon" href="../static/favicon/icon.svg" type="image/svg+xml">
-      <link rel="apple-touch-icon" href="../static/favicon/apple-touch-icon.png">
-   </head>
-   <body>
-      <main>
-         <div class="top-container">
-            <div class="card" >
-               <img class="ylitse-logo" src="../static/img/ylitse-logo-mountain.svg" />
-               <p localization-key="cardText"></p>
-               <div class="card-buttons">
-                  <a class="button" href="../login/" localization-key="loginButton"></a>
-                  <a class="button" href="../register/" localization-key="registerButton"></a>
-               </div>
+  <head>
+    <meta charset="utf-8" />
+    <title localization-key="pageTitle"></title>
+    <meta name="description" content="Ylitse MentorApp" />
+    <meta name="author" content="SOS Children's Villages Finland" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../static/styles/normalize.css" />
+    <link rel="stylesheet" href="../static/styles/static-pages.css" />
+    <link rel="stylesheet" href="../static/styles/fonts.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="../static/favicon/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="../static/favicon/icon.svg" type="image/svg+xml" />
+    <link
+      rel="apple-touch-icon"
+      href="../static/favicon/apple-touch-icon.png"
+    />
+  </head>
+  <body>
+    <main>
+      <div class="top-container">
+        <div class="card">
+          <img
+            class="ylitse-logo"
+            src="../static/img/ylitse-logo-mountain.svg"
+          />
+          <p class="center" localization-key="cardText"></p>
+          <div class="card-buttons">
+            <a
+              class="button"
+              href="../login/"
+              localization-key="loginButton"
+            ></a>
+            <a
+              class="button"
+              href="../register/"
+              localization-key="registerButton"
+            ></a>
+          </div>
+        </div>
+        <div class="art-jumbo-container"></div>
+      </div>
+      <div class="middle-container">
+        <div class="middle-card">
+          <div class="middle-left-content">
+            <div class="info-ring">
+              <p class="white" dynamic-localization-key="infoRing1"></p>
             </div>
-            <div class="art-jumbo-container"></div>
-         </div>
-         <div class="middle-container">
-            <div class="middle-card">
-               <div class="middle-left-content">
-                  <div class="info-ring">
-                     <p class="white" dynamic-localization-key="infoRing1"></p>
-                  </div>
-                  <div class="info-ring">
-                     <p class="white" dynamic-localization-key="infoRing2"></p>
-                  </div>
-                  <img src="../static/img/ylitse-middle-illustration.svg" class="middle-illustration" />
-               </div>
-               <div class="middle-right-content">
-                  <div>
-                     <h2 localization-key="middleInfo1Heading"></h2>
-                     <p class="white" localization-key="middleInfo1Text"></p>
-                  </div>
-                  <div>
-                     <h2 localization-key="middleInfo2Heading"></h2>
-                     <p class="white" localization-key="middleInfo2Text"></p>
-                  </div>
-                  <div>
-                     <h2 localization-key="middleInfo3Heading"></h2>
-                     <p class="white" localization-key="middleInfo3Text"></p>
-                  </div>
-               </div>
+            <div class="info-ring">
+              <p class="white" dynamic-localization-key="infoRing2"></p>
             </div>
-            <div class="middle-bottom-footer">
-               <p localization-key="middleInfoFooter"></p>
-               <a class="button" href="../register/" localization-key="registerButton"></a>
+            <img
+              src="../static/img/ylitse-middle-illustration.svg"
+              class="middle-illustration"
+            />
+          </div>
+          <div class="middle-right-content">
+            <div>
+              <h2 localization-key="middleInfo1Heading"></h2>
+              <p class="white" localization-key="middleInfo1Text"></p>
             </div>
-         </div>
-         <div class="bottom-container">
-            <div class="bottom-top-content">
-               <h2 class="black" localization-key="bottomContentHeader"></h2>
-               <p localization-key="bottomContentText"></p>
+            <div>
+              <h2 localization-key="middleInfo2Heading"></h2>
+              <p class="white" localization-key="middleInfo2Text"></p>
             </div>
-            <div class="bottom-bottom-content">
-               <div class="mentor-card-item">
-                  <img src="../static/img/mentor-left.svg" class="mentor" />
-                  <div class="mentor-card-container">
-                     <div class="mentor-card-header">
-                        <img src="../static/icons/chat-profilepic.svg" />
-                        <div class="mentor-card-header-text-container">
-                           <h2 class="card-h2">Aalto</h2>
-                           <p class="white">42 v.  |  Etelä-Pohjanmaa </p>
-                           <p class="white">Olen tavoitettavissa joka päivä ...</p>
-                        </div>
-                     </div>
-                     <div class="mentor-card-content">
-                        <div class="mentor-card-story-container">
-                           <h2 class="card-h2 black" localization-key="mentorCardMyStory"></h2>
-                           <p>Olen nuorisokodista itsenäistynyt teini-ikäisen pojan vanhempi. Voin olla sinulle tukena opintoihin, itsenäistymiseen, jälkihuoltoon ja vanhemmuuteen liittyvissä asioissa.</p>
-                        </div>
-                        <div class="mentor-card-languages-container">
-                           <h2 class="card-h2 black" localization-key="mentorCardSpokenLanguages"></h2>
-                           <div class="pill-container">
-                              <div class="pill">
-                                 <p>Suomi</p>
-                              </div>
-                              <div class="pill">
-                                 <p>Englanti</p>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="mentor-card-skill-container">
-                           <h2 class="card-h2 black" localization-key="mentorCardSkills"></h2>
-                           <div class="pill-container">
-                              <div class="pill">
-                                 <p>Lastensuojelu</p>
-                              </div>
-                              <div class="pill">
-                                 <p>Itsenäistyminen</p>
-                              </div>
-                              <div class="pill">
-                                 <p>Vanhemmuus</p>
-                              </div>
-                              <div class="pill">
-                                 <p>Opinnot</p>
-                              </div>
-                              <div class="pill">
-                                 <p>Kela</p>
-                              </div>
-                              <div class="pill">
-                                 <p>Stressi</p>
-                              </div>
-                              <div class="pill">
-                                 <p>Oma lapsuus</p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
+            <div>
+              <h2 localization-key="middleInfo3Heading"></h2>
+              <p class="white" localization-key="middleInfo3Text"></p>
+            </div>
+          </div>
+        </div>
+        <div class="middle-bottom-footer">
+          <p localization-key="middleInfoFooter"></p>
+          <a
+            class="button"
+            href="../register/"
+            localization-key="registerButton"
+          ></a>
+        </div>
+      </div>
+      <div class="bottom-container">
+        <div class="bottom-top-content">
+          <h2 class="black" localization-key="bottomContentHeader"></h2>
+          <p localization-key="bottomContentText"></p>
+        </div>
+        <div class="bottom-bottom-content">
+          <div class="mentor-card-item">
+            <img src="../static/img/mentor-left.svg" class="mentor" />
+            <div class="mentor-card-container">
+              <div class="mentor-card-header">
+                <img src="../static/icons/chat-profilepic.svg" />
+                <div class="mentor-card-header-text-container">
+                  <h2 class="card-h2">Aalto</h2>
+                  <p class="white">42 v. | Etelä-Pohjanmaa</p>
+                  <p class="white">Olen tavoitettavissa joka päivä ...</p>
+                </div>
+              </div>
+              <div class="mentor-card-content">
+                <div class="mentor-card-story-container">
+                  <h2
+                    class="card-h2 black"
+                    localization-key="mentorCardMyStory"
+                  ></h2>
+                  <p>
+                    Olen nuorisokodista itsenäistynyt teini-ikäisen pojan
+                    vanhempi. Voin olla sinulle tukena opintoihin,
+                    itsenäistymiseen, jälkihuoltoon ja vanhemmuuteen liittyvissä
+                    asioissa.
+                  </p>
+                </div>
+                <div class="mentor-card-languages-container">
+                  <h2
+                    class="card-h2 black"
+                    localization-key="mentorCardSpokenLanguages"
+                  ></h2>
+                  <div class="pill-container">
+                    <div class="pill">
+                      <p>Suomi</p>
+                    </div>
+                    <div class="pill">
+                      <p>Englanti</p>
+                    </div>
                   </div>
-               </div>
-               <div class="mentor-card-item">
-                  <div class="mentor-card-container">
-                     <div class="mentor-card-header">
-                        <img src="../static/icons/chat-profilepic.svg" />
-                        <div class="mentor-card-header-text-container">
-                           <h2 class="card-h2">Havu</h2>
-                           <p class="white">27 v.  |  Uusimaa </p>
-                           <p class="white">Olen tavoitettavissa joka päivä ...</p>
-                        </div>
-                     </div>
-                     <div class="mentor-card-content">
-                        <div class="mentor-card-story-container">
-                           <h2 class="card-h2 black" localization-key="mentorCardMyStory"></h2>
-                           <p>Olen helsinkiläinen Havu. Voin olla sinulle tukena esimerkiksi mielenterveyteen liittyvissä pulmissa. Tuen sinua parhaani mukaan kuitenkin missä tahansa aiheessa.</p>
-                        </div>
-                        <div class="mentor-card-languages-container">
-                           <h2 class="card-h2 black" localization-key="mentorCardSpokenLanguages"></h2>
-                           <div class="pill-container">
-                              <div class="pill">
-                                 <p>Suomi</p>
-                              </div>
-                              <div class="pill">
-                                 <p>Ruotsi</p>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="mentor-card-skill-container">
-                           <h2 class="card-h2 black" localization-key="mentorCardSkills"></h2>
-                           <div class="pill-container">
-                              <div class="pill">
-                                 <p>Mielenterveys</p>
-                              </div>
-                              <div class="pill">
-                                 <p>Syömishäiriöt</p>
-                              </div>
-                              <div class="pill">
-                                 <p>Opinnot</p>
-                              </div>
-                              <div class="pill">
-                                 <p>Päihteet</p>
-                              </div>
-                              <div class="pill">
-                                 <p>Eroperhe</p>
-                              </div>
-                              <div class="pill">
-                                 <p>Stressi</p>
-                              </div>
-                              <div class="pill">
-                                 <p>Lasinen lapsuus</p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
+                </div>
+                <div class="mentor-card-skill-container">
+                  <h2
+                    class="card-h2 black"
+                    localization-key="mentorCardSkills"
+                  ></h2>
+                  <div class="pill-container">
+                    <div class="pill">
+                      <p>Lastensuojelu</p>
+                    </div>
+                    <div class="pill">
+                      <p>Itsenäistyminen</p>
+                    </div>
+                    <div class="pill">
+                      <p>Vanhemmuus</p>
+                    </div>
+                    <div class="pill">
+                      <p>Opinnot</p>
+                    </div>
+                    <div class="pill">
+                      <p>Kela</p>
+                    </div>
+                    <div class="pill">
+                      <p>Stressi</p>
+                    </div>
+                    <div class="pill">
+                      <p>Oma lapsuus</p>
+                    </div>
                   </div>
-                  <img src="../static/img/mentor-right.svg"  class="mentor"/>
-               </div>
+                </div>
+              </div>
             </div>
-         </div>
-         <div class="final-container">
-            <div class="final-container-content">
-               <h2 class="black" localization-key="finalContainerHeader"></h2>
-               <p localization-key="finalContainerText"></p>
-               <div class="final-button-container">
-                  <a class="button" href="../login/" localization-key="loginButton"></a>
-                  <a class="button" href="../register/" localization-key="registerButton"></a>
-               </div>
+          </div>
+          <div class="mentor-card-item">
+            <div class="mentor-card-container">
+              <div class="mentor-card-header">
+                <img src="../static/icons/chat-profilepic.svg" />
+                <div class="mentor-card-header-text-container">
+                  <h2 class="card-h2">Havu</h2>
+                  <p class="white">27 v. | Uusimaa</p>
+                  <p class="white">Olen tavoitettavissa joka päivä ...</p>
+                </div>
+              </div>
+              <div class="mentor-card-content">
+                <div class="mentor-card-story-container">
+                  <h2
+                    class="card-h2 black"
+                    localization-key="mentorCardMyStory"
+                  ></h2>
+                  <p>
+                    Olen helsinkiläinen Havu. Voin olla sinulle tukena
+                    esimerkiksi mielenterveyteen liittyvissä pulmissa. Tuen
+                    sinua parhaani mukaan kuitenkin missä tahansa aiheessa.
+                  </p>
+                </div>
+                <div class="mentor-card-languages-container">
+                  <h2
+                    class="card-h2 black"
+                    localization-key="mentorCardSpokenLanguages"
+                  ></h2>
+                  <div class="pill-container">
+                    <div class="pill">
+                      <p>Suomi</p>
+                    </div>
+                    <div class="pill">
+                      <p>Ruotsi</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="mentor-card-skill-container">
+                  <h2
+                    class="card-h2 black"
+                    localization-key="mentorCardSkills"
+                  ></h2>
+                  <div class="pill-container">
+                    <div class="pill">
+                      <p>Mielenterveys</p>
+                    </div>
+                    <div class="pill">
+                      <p>Syömishäiriöt</p>
+                    </div>
+                    <div class="pill">
+                      <p>Opinnot</p>
+                    </div>
+                    <div class="pill">
+                      <p>Päihteet</p>
+                    </div>
+                    <div class="pill">
+                      <p>Eroperhe</p>
+                    </div>
+                    <div class="pill">
+                      <p>Stressi</p>
+                    </div>
+                    <div class="pill">
+                      <p>Lasinen lapsuus</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-         </div>
-      </main>
-      <footer>
-        <a id="footer-link-a" class="footer-link" href="#" target="_blank">
-           <p localization-key="footer"></p>
-           <div class="footer-logo"></div>
-        </a>
-      </footer>
-      <script src="index.js"></script>
-      <script src="../static/localization.js"></script>
-   </body>
+            <img src="../static/img/mentor-right.svg" class="mentor" />
+          </div>
+        </div>
+      </div>
+      <div class="final-container">
+        <div class="final-container-content">
+          <h2 class="black" localization-key="finalContainerHeader"></h2>
+          <p localization-key="finalContainerText"></p>
+          <div class="final-button-container">
+            <a
+              class="button"
+              href="../login/"
+              localization-key="loginButton"
+            ></a>
+            <a
+              class="button"
+              href="../register/"
+              localization-key="registerButton"
+            ></a>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <a id="footer-link-a" class="footer-link" href="#" target="_blank">
+        <p localization-key="footer"></p>
+        <div class="footer-logo"></div>
+      </a>
+    </footer>
+    <script src="index.js"></script>
+    <script src="../static/localization.js"></script>
+  </body>
 </html>
