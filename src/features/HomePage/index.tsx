@@ -6,7 +6,7 @@ import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 import { selectMyMentorProfile } from '../MentorPage/selectors';
 
 import Announcements from './components/Announcements';
-import Background from '@/static/img/home-page-background.svg';
+import Background from '@/static/img/home-page-background.png';
 import { Column } from '@/components/common';
 import Concepts from './components/Concepts';
 import FindMentor from './components/FindMentor';
