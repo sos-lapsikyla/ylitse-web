@@ -74,7 +74,7 @@ const Ball = styled.div`
   left: -0.75rem;
   padding: 0.1rem;
   position: absolute;
-  top: 0.25rem;
+  top: -0.3rem;
   width: 20px;
   z-index: 20;
 `;
@@ -95,6 +95,7 @@ const MobileHeader = styled(Text)`
 
 const NarrowSearchBar = styled(SearchBar)`
   flex: 1;
+  padding-top: 1rem;
   width: 100%;
   z-index: 1;
 `;
