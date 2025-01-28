@@ -85,7 +85,7 @@ const MobileContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   padding: 1.5rem;
 `;
 

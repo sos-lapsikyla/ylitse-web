@@ -39,6 +39,7 @@ const CardsList = styled.div<{ isMobile: boolean }>`
       ? css`
           gap: 1.5rem;
           overflow: auto;
+          padding-top: 1.5rem;
           scroll-snap-type: x mandatory;
           white-space: nowrap;
           &::-webkit-scrollbar {

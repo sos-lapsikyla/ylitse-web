@@ -87,29 +87,35 @@ export const MobileBottomBar = ({
         setSkillsInPage={handleSetPageSize}
       />
       {shouldShowRemoveFiltersButton && (
-        <Button
-          leftIcon="delete"
-          onClick={handleReset}
-          sizeInPx={20}
-          text={{
-            color: 'redDark',
-            text: t('filters.clear'),
-            variant: 'boldBaloo',
-          }}
-        />
+        <ButtonContainer>
+          <Button
+            leftIcon="delete"
+            onClick={handleReset}
+            sizeInPx={20}
+            text={{
+              color: 'redDark',
+              text: t('filters.clear'),
+              variant: 'boldBaloo',
+            }}
+          />
+        </ButtonContainer>
       )}
     </Container>
   );
 };
+
+const ButtonContainer = styled.div`
+  padding: 0.5rem;
+`;
 
 const Container = styled.div`
   align-items: center;
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.7rem;
   justify-content: center;
-  padding-bottom: 3rem;
+  padding-bottom: 2rem;
   padding-top: 0.5rem;
   width: 100%;
 `;

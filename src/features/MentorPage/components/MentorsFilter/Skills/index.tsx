@@ -113,6 +113,7 @@ const Skills = styled.div`
   gap: 1rem;
   justify-content: center;
   overflow: hidden;
+  padding: 1rem;
   width: 100%;
 `;
 
