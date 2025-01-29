@@ -1,12 +1,15 @@
 import { useTranslation } from 'react-i18next';
 
 import styled from 'styled-components';
-import { Button } from '@/components/Buttons';
+import { Button, IconButton } from '@/components/Buttons';
 import { palette } from '@/components/constants';
 import { Text } from '@/components/Text/Text';
 import SearchBar from '@/components/SearchBar';
-import { useAppSelector } from '@/store';
-import { selectSelectedSkills } from '@/features/MentorPage/mentorsFilterSlice';
+import { useAppDispatch, useAppSelector } from '@/store';
+import {
+  resetSearch,
+  selectSelectedSkills,
+} from '@/features/MentorPage/mentorsFilterSlice';
 
 type Props = {
   isExpanded: boolean;
@@ -21,21 +24,40 @@ const MobileSearch = ({
   searchString,
   onSearchStringChange,
 }: Props) => {
+  const dispatch = useAppDispatch();
   const { t } = useTranslation('mentors');
   const buttonText = isExpanded ? 'filters.close' : 'filters.show';
   const selectedSkills = useAppSelector(selectSelectedSkills);
+
+  const shouldShowResetButton = searchString !== '';
+
   const shouldShowFilterBall = !isExpanded && selectedSkills.length > 0;
+
+  const handleReset = () => {
+    dispatch(resetSearch());
+  };
 
   return (
     <MobileContainer>
       <MobileHeader variant="h1">{t('filters.title')}</MobileHeader>
       <Text>{t('filters.description')}</Text>
-      <NarrowSearchBar
-        variant="small"
-        placeholder={t('filters.search')}
-        value={searchString}
-        onChange={onSearchStringChange}
-      />
+      <SearchBarContainer>
+        <NarrowSearchBar
+          variant="small"
+          placeholder={t('filters.search')}
+          value={searchString}
+          onChange={onSearchStringChange}
+        />
+        {shouldShowResetButton && (
+          <ResetSearch>
+            <IconButton
+              onClick={handleReset}
+              variant="closeWithBackground"
+              sizeInPx={32}
+            />
+          </ResetSearch>
+        )}
+      </SearchBarContainer>
       <Anchor>
         <Button
           onClick={() => toggleExpanded(!isExpanded)}
@@ -95,9 +117,24 @@ const MobileHeader = styled(Text)`
 
 const NarrowSearchBar = styled(SearchBar)`
   flex: 1;
+  max-width: 100%;
   padding-top: 1rem;
-  width: 100%;
   z-index: 1;
+`;
+
+const SearchBarContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+`;
+
+const ResetSearch = styled.div`
+  display: flex;
+  margin-left: -2.8rem;
+  margin-top: 1rem;
+  position: relative;
+  z-index: 2;
 `;
 
 export default MobileSearch;
