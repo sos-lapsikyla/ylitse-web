@@ -2,6 +2,45 @@ html,
 body {
   min-height: 100%;
   background-color: #e4f3fb;
+  font-family: 'Source Sans Pro';
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 27px;
+}
+
+h2 {
+  font-family: 'Baloo 2';
+  font-size: 26px;
+  font-weight: normal;
+  line-height: 42px;
+  color: #ffffff;
+  margin: 0;
+}
+
+h3 {
+  font-family: 'Baloo 2';
+  font-size: 21px;
+  font-weight: normal;
+  line-height: 34px;
+  color: #ffffff;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  color: #1c325d;
+}
+
+p.center {
+  text-align: center;
+}
+
+.white {
+  color: #ffffff;
+}
+
+.black {
+  color: #1c325d;
 }
 
 main {
@@ -63,28 +102,6 @@ main {
   border-left: solid 8px #e4f3fb;
 }
 
-p {
-  font-family: 'Baloo 2';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 26px;
-  margin: 0;
-  color: #1c325d;
-}
-
-p.center {
-  text-align: center;
-}
-
-.white {
-  color: #ffffff;
-}
-
-.black {
-  color: #1c325d;
-}
-
 .button,
 button {
   display: flex;
@@ -135,20 +152,25 @@ a:target {
 .middle-card {
   background-color: #4a2acb;
   display: flex;
-  width: 100%;
+  padding: 0;
+  padding-top: 4rem;
   border-radius: 1rem 1rem 0 0;
 }
 
 .middle-left-content {
-  flex: 1;
+  flex: 5;
   position: relative;
   display: flex;
   justify-content: space-between;
-  padding: 1rem 1rem 0 1rem;
+  padding: 1rem 5rem 0;
+  background: url(../static/img/ylitse-middle-illustration.svg);
+  background-size: 100% 110%;
+  background-position: 0 80%;
+  background-repeat: no-repeat;
 }
 
 .info-ring {
-  border: 6px #01a5ec solid;
+  border: solid 0.5rem #01a5ec;
   width: 12rem;
   height: 12rem;
   border-radius: 50%;
@@ -166,11 +188,11 @@ a:target {
 }
 
 .middle-right-content {
-  flex: 1;
+  flex: 3;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 4rem 2rem 4rem 0;
+  padding: 0 5rem 4rem 0;
   overflow: auto;
 }
 
@@ -269,16 +291,6 @@ a:target {
 .mentor {
   align-self: flex-end;
   height: 600px;
-}
-
-h2 {
-  font-family: 'Baloo 2';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 26px;
-  line-height: 42px;
-  margin: 0;
-  color: #ffffff;
 }
 
 .final-container {
