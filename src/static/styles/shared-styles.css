@@ -1,3 +1,8 @@
+:root {
+  --ff-heading: 'Baloo 2';
+  --ff-body: 'Source Sans 3';
+}
+
 .en-alt-text {
   display: none;
 }
@@ -11,7 +16,7 @@
 }
 
 #language-buttons a {
-  font-family: 'Baloo 2';
+  font-family: var(--ff-heading);
   text-decoration: none;
   font-style: normal;
   font-weight: 700;
@@ -29,8 +34,6 @@
 }
 
 footer {
-  font-family: 'Source Sans Pro';
-  font-style: normal;
   font-weight: 600;
   font-size: 18px;
   line-height: 27px;
