@@ -116,7 +116,7 @@ const UnseenDot = styled.div`
   border-radius: 50%;
   color: ${palette.blueDark};
   display: flex;
-  font-family: 'Source Sans Pro';
+  font-family: 'Source Sans 3';
   font-size: '1rem',
   font-weight: 600;
   height: 27px;

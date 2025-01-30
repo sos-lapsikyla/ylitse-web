@@ -60,7 +60,7 @@ const SearchInput = styled.input<{
   box-sizing: border-box;
   display: flex;
   flex: 1;
-  font-family: 'Source Sans Pro';
+  font-family: 'Source Sans 3';
   font-size: 1.1rem;
   font-style: normal;
   font-weight: 400;

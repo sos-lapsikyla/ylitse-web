@@ -94,7 +94,7 @@ form[name='login'] {
 
 input[type='text'],
 input[type='password'] {
-  font-family: 'Source Sans Pro';
+  font-family: 'Source Sans 3';
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -151,7 +151,7 @@ button[type='submit'] {
 }
 
 .right p {
-  font-family: 'Source Sans Pro';
+  font-family: 'Source Sans 3';
   font-style: normal;
   font-weight: 400;
   font-size: 1.25rem;
@@ -169,7 +169,7 @@ button[type='submit'] {
 }
 
 label {
-  font-family: 'Source Sans Pro';
+  font-family: 'Source Sans 3';
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
@@ -188,7 +188,7 @@ label {
   letter-spacing: 0.01071em;
   background-color: #f9e5e4;
   color: #972232;
-  font-family: 'Source Sans Pro';
+  font-family: 'Source Sans 3';
   font-style: normal;
   font-weight: 700;
   font-size: 15px;

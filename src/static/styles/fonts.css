@@ -4,70 +4,70 @@ html {
 
 @font-face {
   font-family: 'Baloo 2';
-  src: url('Baloo2-Regular.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/Baloo2-Regular.eot');
   src:
-    url('Baloo2-Regular.eot?#iefix') format('embedded-opentype') /* IE6-IE8 */,
-    url('Baloo2-Regular.woff2') format('woff2') /* Super Modern Browsers */,
-    url('Baloo2-Regular.woff') format('woff') /* Modern Browsers */,
-    url('Baloo2-Regular.ttf') format('truetype') /* Safari, Android, iOS */,
-    url('Baloo2-Regular.svg#Baloo2-Regular') format('svg') /* Legacy iOS */;
+    url('../fonts/Baloo2-Regular.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Baloo2-Regular.woff2') format('woff2'),
+    url('../fonts/Baloo2-Regular.woff') format('woff'),
+    url('../fonts/Baloo2-Regular.ttf') format('truetype'),
+    url('../fonts/Baloo2-Regular.svg#Baloo2-Regular') format('svg');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: fallback;
 }
 
 @font-face {
   font-family: 'Baloo 2';
-  src: url('Baloo2-SemiBold.eot');
+  src: url('../fonts/Baloo2-SemiBold.eot');
   src:
-    url('Baloo2-SemiBold.eot?#iefix') format('embedded-opentype'),
-    url('Baloo2-SemiBold.woff2') format('woff2'),
-    url('Baloo2-SemiBold.woff') format('woff'),
-    url('Baloo2-SemiBold.ttf') format('truetype'),
-    url('Baloo2-SemiBold.svg#Baloo2-SemiBold') format('svg');
+    url('../fonts/Baloo2-SemiBold.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Baloo2-SemiBold.woff2') format('woff2'),
+    url('../fonts/Baloo2-SemiBold.woff') format('woff'),
+    url('../fonts/Baloo2-SemiBold.ttf') format('truetype'),
+    url('../fonts/Baloo2-SemiBold.svg#Baloo2-SemiBold') format('svg');
   font-weight: 600;
   font-style: normal;
-  font-display: swap;
+  font-display: fallback;
 }
 
 @font-face {
   font-family: 'Baloo 2';
-  src: url('Baloo2-Bold.eot');
+  src: url('../fonts/Baloo2-Bold.eot');
   src:
-    url('Baloo2-Bold.eot?#iefix') format('embedded-opentype'),
-    url('Baloo2-Bold.woff2') format('woff2'),
-    url('Baloo2-Bold.woff') format('woff'),
-    url('Baloo2-Bold.ttf') format('truetype'),
-    url('Baloo2-Bold.svg#Baloo2-Bold') format('svg');
+    url('../fonts/Baloo2-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Baloo2-Bold.woff2') format('woff2'),
+    url('../fonts/Baloo2-Bold.woff') format('woff'),
+    url('../fonts/Baloo2-Bold.ttf') format('truetype'),
+    url('../fonts/Baloo2-Bold.svg#Baloo2-Bold') format('svg');
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: fallback;
 }
 
 @font-face {
   font-family: 'Source Sans 3';
-  src: url('SourceSans3-Regular.eot');
+  src: url('../fonts/SourceSans3-Regular.eot');
   src:
-    url('SourceSans3-Regular.eot?#iefix') format('embedded-opentype'),
-    url('SourceSans3-Regular.woff2') format('woff2'),
-    url('SourceSans3-Regular.woff') format('woff'),
-    url('SourceSans3-Regular.ttf') format('truetype'),
-    url('SourceSans3-Regular.svg#SourceSans3-Regular') format('svg');
+    url('../fonts/SourceSans3-Regular.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/SourceSans3-Regular.woff2') format('woff2'),
+    url('../fonts/SourceSans3-Regular.woff') format('woff'),
+    url('../fonts/SourceSans3-Regular.ttf') format('truetype'),
+    url('../fonts/SourceSans3-Regular.svg#SourceSans3-Regular') format('svg');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: fallback;
 }
 
 @font-face {
   font-family: 'Source Sans 3';
-  src: url('SourceSans3-SemiBold.eot');
+  src: url('../fonts/SourceSans3-SemiBold.eot');
   src:
-    url('SourceSans3-SemiBold.eot?#iefix') format('embedded-opentype'),
-    url('SourceSans3-SemiBold.woff2') format('woff2'),
-    url('SourceSans3-SemiBold.woff') format('woff'),
-    url('SourceSans3-SemiBold.ttf') format('truetype'),
-    url('SourceSans3-SemiBold.svg#SourceSans3-SemiBold') format('svg');
+    url('../fonts/SourceSans3-SemiBold.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/SourceSans3-SemiBold.woff2') format('woff2'),
+    url('../fonts/SourceSans3-SemiBold.woff') format('woff'),
+    url('../fonts/SourceSans3-SemiBold.ttf') format('truetype'),
+    url('../fonts/SourceSans3-SemiBold.svg#SourceSans3-SemiBold') format('svg');
   font-weight: 600;
   font-style: normal;
-  font-display: swap;
+  font-display: fallback;
 }
