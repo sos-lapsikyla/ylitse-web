@@ -2,24 +2,23 @@ html,
 body {
   min-height: 100%;
   background-color: #e4f3fb;
-  font-family: 'Source Sans Pro';
-  font-size: 18px;
+  font-family: var(--ff-body);
   font-weight: 300;
   line-height: 27px;
 }
 
 h2 {
-  font-family: 'Baloo 2';
-  font-size: 26px;
-  font-weight: normal;
+  font-family: var(--ff-heading);
+  font-size: 1.444rem;
+  font-weight: 600;
   line-height: 42px;
   color: #ffffff;
   margin: 0;
 }
 
 h3 {
-  font-family: 'Baloo 2';
-  font-size: 21px;
+  font-family: var(--ff-heading);
+  font-size: 1.166rem;
   font-weight: normal;
   line-height: 34px;
   color: #ffffff;
@@ -69,6 +68,14 @@ main {
   position: relative;
 }
 
+.card p {
+  font-family: var(--ff-heading);
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 2.4rem;
+  padding: 0 1rem;
+}
+
 .card:after {
   position: absolute;
   content: '';
@@ -80,7 +87,7 @@ main {
 }
 
 .ylitse-logo {
-  height: 12.5rem;
+  max-width: 260px;
 }
 
 .card-buttons {
@@ -88,7 +95,7 @@ main {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .art-jumbo-container {
@@ -108,16 +115,16 @@ button {
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: 1.25rem;
-  line-height: 1.25rem;
   white-space: nowrap;
   border-radius: 1.75rem;
   cursor: pointer;
   box-sizing: border-box;
-  height: 3rem;
+  height: 2.66rem;
   max-height: 3rem;
-  padding: 1rem 2rem;
-  font-family: 'Baloo 2';
+  padding: 0 2rem;
+  font-family: var(--ff-heading);
+  font-size: 1.22rem;
+  line-height: 1;
   text-decoration: none;
   font-style: normal;
   font-weight: 700;

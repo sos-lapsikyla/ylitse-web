@@ -9,7 +9,7 @@ export const variants = {
     styles: {
       border: `1px solid ${palette.purple}`,
       borderRadius: '20px',
-      fontFamily: '"Source Sans Pro"',
+      fontFamily: 'Source Sans 3',
       fontSize: '1rem',
       fontStyle: 'normal',
       fontWeight: '400',
@@ -23,7 +23,7 @@ export const variants = {
       border: `1px solid ${palette.purple}`,
       borderRadius: '5px',
       boxSizing: 'border-box',
-      fontFamily: '"Source Sans Pro"',
+      fontFamily: 'Source Sans 3',
       fontSize: '1rem',
       fontStyle: 'normal',
       fontWeight: '400',
@@ -37,7 +37,7 @@ export const variants = {
     styles: {
       border: `1px solid ${palette.purple}`,
       borderRadius: '10px',
-      fontFamily: '"Source Sans Pro"',
+      fontFamily: 'Source Sans 3',
       fontSize: '1rem',
       fontStyle: 'normal',
       fontWeight: '400',
