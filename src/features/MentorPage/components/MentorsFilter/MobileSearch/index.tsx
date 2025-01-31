@@ -123,17 +123,15 @@ const NarrowSearchBar = styled(SearchBar)`
 `;
 
 const SearchBarContainer = styled.div`
-  display: flex;
-  flex-direction: row;
   justify-content: center;
+  position: relative;
   width: 100%;
 `;
 
 const ResetSearch = styled.div`
-  display: flex;
-  margin-left: -2.8rem;
-  margin-top: 1rem;
-  position: relative;
+  position: absolute;
+  right: 5%;
+  top: 1.5rem;
   z-index: 2;
 `;
 
