@@ -1,4 +1,15 @@
 :root {
   --ff-heading: 'Baloo 2';
   --ff-body: 'Source Sans 3';
+
+  --font-color-primary: #1c325d;
+  --font-color-secondary: #fff;
+
+  --primary-color: #4a2acb;
+  --primary-color-lighter: #5c33ff;
+  --secondary-color: #43bfff;
+  --secondary-color-darker: #01a5ec;
+  --highlight-color: #f0ba8c;
+  --background-color: #e4f3fb;
+  --secondary-background-color: #d3efff;
 }
