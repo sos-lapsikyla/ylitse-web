@@ -9,7 +9,7 @@ export const variants = {
       backgroundColor: `${palette.blueWhite}`,
       borderLeft: '10px white solid',
       boxShadow: `-10px 0 0 0 ${palette.blue}`,
-      fontFamily: 'Source Sans 3',
+      fontFamily: '"Source Sans 3"',
       fontSize: '1rem',
       fontStyle: 'normal',
       fontWeight: 400,
@@ -34,7 +34,7 @@ export const variants = {
   bold: {
     element: 'p',
     styles: {
-      fontFamily: 'Source Sans 3',
+      fontFamily: '"Source Sans 3"',
       fontSize: '1rem',
       fontStyle: 'normal',
       fontWeight: 600,
@@ -45,7 +45,7 @@ export const variants = {
   chip: {
     element: 'p',
     styles: {
-      fontFamily: 'Source Sans 3',
+      fontFamily: '"Source Sans 3"',
       fontSize: '1rem',
       fontStyle: 'normal',
       fontWeight: 400,
@@ -56,7 +56,7 @@ export const variants = {
   error: {
     element: 'p',
     styles: {
-      fontFamily: 'Source Sans 3',
+      fontFamily: '"Source Sans 3"',
       fontSize: '0.8rem',
       fontStyle: 'normal',
       fontWeight: 700,
@@ -67,7 +67,7 @@ export const variants = {
   footer: {
     element: 'p',
     styles: {
-      fontFamily: 'Source Sans 3',
+      fontFamily: '"Source Sans 3"',
       fontSize: '1rem',
       fontStyle: 'normal',
       fontWeight: 400,
@@ -111,7 +111,7 @@ export const variants = {
   label: {
     element: 'label',
     styles: {
-      fontFamily: 'Source Sans 3',
+      fontFamily: '"Source Sans 3"',
       fontSize: '1rem',
       fontStyle: 'normal',
       fontWeight: 600,
@@ -163,7 +163,7 @@ export const variants = {
   menuOption: {
     element: 'p',
     styles: {
-      fontFamily: 'Source Sans 3',
+      fontFamily: '"Source Sans 3"',
       fontSize: '1rem',
       fontStyle: 'normal',
       fontWeight: 400,
@@ -174,7 +174,7 @@ export const variants = {
   p: {
     element: 'p',
     styles: {
-      fontFamily: 'Source Sans 3',
+      fontFamily: '"Source Sans 3"',
       fontSize: '1rem',
       fontStyle: 'normal',
       fontWeight: 400,
