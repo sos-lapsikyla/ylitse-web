@@ -82,7 +82,7 @@ main {
   flex-direction: row;
   gap: 0rem;
   filter: drop-shadow(0px -0.625rem 0.938rem #000);
-  margin: 0 0 9rem;
+  margin: 0 0 11rem;
 }
 
 .card {
@@ -94,7 +94,7 @@ main {
   justify-content: center;
   align-items: center;
   padding: 0 5.625rem;
-  max-width: 45rem;
+  max-width: 40.5rem;
   position: relative;
 }
 
@@ -134,13 +134,14 @@ main {
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 45rem;
+  height: 57.1875rem;
   position: relative;
   border-left: solid 0.5rem var(--background-color);
 }
 
 .middle-container {
-  margin: 5.625rem;
+  max-width: 105.9375rem;
+  margin: 0 auto 7.5rem;
   display: flex;
   flex-direction: column;
 }
@@ -214,7 +215,7 @@ main {
   flex-direction: column;
   gap: 1.688rem;
   align-items: center;
-  padding: 4.5rem 0;
+  padding: 5rem 0 5.5rem;
 }
 
 .bottom-top-content {
@@ -300,7 +301,7 @@ main {
   display: flex;
   justify-content: center;
   background-color: var(--secondary-color);
-  padding: 4.5rem 0;
+  padding: 5.5rem 0 6.5rem;
 }
 
 .final-container-content {
@@ -341,12 +342,8 @@ footer {
 }
 
 .footer-logo {
-  background: url(../static/img/footer-logo.svg);
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 12.375rem;
-  height: 2.8125rem;
+  max-height: 3.5rem;
+  margin: 0 1rem;
 }
 
 @media only screen and (min-width: 2300px) {
