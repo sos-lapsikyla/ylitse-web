@@ -88,24 +88,26 @@ main {
 }
 
 .card {
-  flex: 1;
-  background-color: var(--secondary-color);
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1.688rem;
   justify-content: center;
   align-items: center;
-  padding: 0 5.625rem;
-  max-width: 40.5rem;
+  gap: 1.75rem;
+  max-width: 36.5rem;
+  padding: 0 2rem;
+  background-color: var(--secondary-color);
   position: relative;
 }
 
 .card p {
+  max-width: 26rem;
   font-family: var(--ff-heading);
   font-size: 1.688rem;
   font-weight: 400;
   line-height: 2.688rem;
   padding: 0 1rem;
+  margin: 0 0 1.25rem;
 }
 
 .card:after {
@@ -168,11 +170,12 @@ main {
 }
 
 .info-ring {
+  display: flex;
+  flex-direction: column;
   border: solid 0.625rem var(--secondary-color-darker);
-  width: 3.5rem;
+  width: 13.5rem;
   height: 13.5rem;
   border-radius: 50%;
-  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -180,7 +183,14 @@ main {
   top: 2.5rem;
   font-weight: 600;
   line-height: 1.5rem;
-  padding: 0 5rem;
+}
+
+.info-ring:nth-child(1) {
+  left: 6.25rem;
+}
+
+.info-ring:nth-child(2) {
+  right: 8.75rem;
 }
 
 .info-ring:before {
@@ -194,12 +204,10 @@ main {
   left: 12.125rem;
 }
 
-.info-ring:nth-child(1) {
-  left: 6.25rem;
-}
-
-.info-ring:nth-child(2) {
-  right: 8.75rem;
+.info-ring span {
+  font-size: 2.8125rem;
+  font-weight: 700;
+  line-height: 3rem;
 }
 
 .middle-illustration {
