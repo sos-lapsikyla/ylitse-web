@@ -12,6 +12,8 @@ import { ICON_SIZES, palette } from '@/components/constants';
 
 // Components
 import { Button, IconButton, StatusButton } from '@/components/Buttons';
+import { useAppSelector } from '@/store';
+import { selectIsMentee } from '@/features/Authentication/selectors';
 
 type DialogVariant = 'archive' | 'block' | 'restore' | 'unblock';
 
@@ -30,6 +32,7 @@ const TabletButtons = ({
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
   const closeDropdown = () => setIsDropdownOpen(false);
+  const isMentee = useAppSelector(selectIsMentee);
 
   const confirmAction = (variant: DialogVariant) => {
     closeDropdown();
@@ -78,16 +81,18 @@ const TabletButtons = ({
               text={t('header.unblock')}
             />
           )}
-          <ReportButton
-            onClick={showReportModal}
-            leftIcon={'danger'}
-            sizeInPx={ICON_SIZES.SMALL}
-            text={{
-              color: 'purple',
-              text: t('header.report'),
-              variant: 'link',
-            }}
-          />
+          {isMentee && (
+            <ReportButton
+              onClick={showReportModal}
+              leftIcon={'danger'}
+              sizeInPx={ICON_SIZES.SMALL}
+              text={{
+                color: 'purple',
+                text: t('header.report'),
+                variant: 'link',
+              }}
+            />
+          )}
         </Dropdown>
       )}
     </Container>
