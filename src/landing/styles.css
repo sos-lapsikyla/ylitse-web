@@ -134,7 +134,7 @@ main {
 
 .art-jumbo-container {
   flex: 3;
-  background: url(../static/img/home-page-background.png);
+  background: url(../static/img/home-page-background-static.svg);
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
