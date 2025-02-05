@@ -133,7 +133,7 @@ main {
 }
 
 .art-jumbo-container {
-  flex: 3;
+  width: 100%;
   background: url(../static/img/home-page-background-static.svg);
   background-position: bottom;
   background-repeat: no-repeat;
@@ -398,121 +398,386 @@ footer {
 
 /* MEDIA QUERIES */
 
-/* @media only screen and (min-width: 2300px) {
-  .middle-left-content {
-    justify-content: space-evenly;
-    padding-top: 2.25rem;
-  }
-}
-
-@media only screen and (max-width: 1200px) {
-  .middle-container {
-    margin: 2.25rem;
-  }
-}
-
-@media only screen and (max-width: 1000px) {
-  .middle-container {
-    margin: 1.125rem;
-  }
-
-  .middle-left-content {
-    flex: 1;
-    justify-content: space-evenly;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .middle-illustration {
-    display: none;
-  }
-
-  .bottom-container {
-    padding: 2.25rem 0;
-  }
-}
-
-@media only screen and (max-width: 880px) {
-  p {
-    font-size: 1.25rem;
-    line-height: 1.625rem;
+@media only screen and (max-width: 991px) {
+  body {
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 
   h2 {
-    font-size: 1.5rem;
-    line-height: 1.75rem;
+    font-size: 1.4375rem;
+    line-height: 2.25rem;
   }
 
-  a {
-    font-size: 1.25rem !important;
-    line-height: 1.625rem !important;
-    height: 2.25rem !important;
+  h3 {
+    font-size: 1.25rem;
+    line-height: 2rem;
   }
 
-  .card-buttons {
-    justify-content: center;
-    gap: 1.125rem;
+  p {
   }
 
-  .middle-container {
-    margin: 0.563rem;
+  .button,
+  button {
+    font-size: 1.1875rem;
+    line-height: 1.875;
   }
 
-  .middle-card {
-    flex-direction: column-reverse;
-    height: auto;
+  .button:hover,
+  a:hover {
   }
 
-  .middle-right-content {
-    padding: 1.125rem;
+  .button:focus,
+  a:focus,
+  .button:active,
+  a:active,
+  .button:target,
+  a:target {
   }
 
-  .middle-left-content {
-    flex: 0;
-    display: none;
+  .center {
   }
 
-  .middle-bottom-footer {
-    gap: 0.5rem;
-    padding: 0.5rem;
+  main {
   }
 
-  .info-ring {
-    width: 4.5rem;
-    height: 4.5rem;
-  }
+  /* TOP COPNTAINER */
 
-  .bottom-top-content {
-    padding: 0.5rem;
-  }
-
-  .final-container {
-    padding: 0.5rem;
-  }
-
-  .mentor-card-container {
-    width: 23.5rem;
-  }
-
-  .mentor {
-    display: none;
-  }
-}
-
-@media only screen and (max-width: 660px) {
   .top-container {
-    flex-direction: column;
   }
 
   .card {
-    padding: 0.5rem;
+    max-width: 21.875rem;
+  }
+
+  .card img {
+    max-width: 13rem;
+  }
+
+  .card p {
+    max-width: 20rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+  .card:after {
   }
 
   .ylitse-logo {
-    height: 9rem;
+  }
+
+  .card-buttons {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .art-jumbo-container {
+    height: 36rem;
+    background-position: right bottom;
+    border-left: none;
+  }
+
+  /* MIDDLE CONTAINER */
+
+  .middle-container {
+  }
+
+  .middle-card {
+  }
+
+  .middle-left-content {
+  }
+
+  .info-ring {
+  }
+
+  .info-ring:nth-child(1) {
+  }
+
+  .info-ring:nth-child(2) {
+  }
+
+  .info-ring:before {
+  }
+
+  .info-ring span {
+  }
+
+  .middle-illustration {
+  }
+
+  .middle-right-content {
+  }
+
+  .middle-right-content > div {
   }
 
   .middle-bottom-footer {
-    padding: 1.125rem;
   }
-} */
+
+  .middle-bottom-footer p {
+  }
+
+  /* BOTTOM CONTAINER */
+
+  .bottom-container {
+  }
+
+  .bottom-container-inner {
+  }
+
+  .bottom-container-header {
+  }
+
+  .mentor-cards {
+  }
+
+  .mentor-card {
+  }
+
+  .mentor-card::before {
+    display: none;
+  }
+
+  .mentor-card:nth-child(1):before {
+  }
+
+  .mentor-card:nth-child(2):before {
+  }
+
+  .mentor-card-header {
+  }
+
+  .mentor-card-header h2 {
+  }
+
+  .mentor-card-content {
+  }
+
+  .mentor-card-content > div {
+  }
+
+  .mentor-card-content h3 {
+  }
+
+  .pill-container {
+  }
+
+  .pill {
+  }
+
+  /* FINAL CONTAINER */
+
+  .final-container {
+  }
+
+  .final-container-content {
+  }
+
+  .final-container-content p {
+  }
+
+  .final-button-container {
+  }
+
+  /* FOOTER */
+
+  footer {
+  }
+
+  .footer-link {
+  }
+
+  .footer-link:hover,
+  .footer-link:focus,
+  .footer-link:active,
+  .footer-link:target {
+  }
+
+  .footer-logo {
+  }
+}
+
+/**
+
+NEXT MEDIA QUERY 
+
+**/
+
+@media only screen and (max-width: 100px) {
+  body {
+  }
+
+  h2 {
+  }
+
+  h3 {
+  }
+
+  p {
+  }
+
+  .button,
+  button {
+  }
+
+  .button:hover,
+  a:hover {
+  }
+
+  .button:focus,
+  a:focus,
+  .button:active,
+  a:active,
+  .button:target,
+  a:target {
+  }
+
+  .center {
+  }
+
+  main {
+  }
+
+  /* TOP COPNTAINER */
+
+  .top-container {
+  }
+
+  .card {
+  }
+
+  .card p {
+  }
+
+  .card:after {
+  }
+
+  .ylitse-logo {
+  }
+
+  .card-buttons {
+  }
+
+  .art-jumbo-container {
+  }
+
+  /* MIDDLE CONTAINER */
+
+  .middle-container {
+  }
+
+  .middle-card {
+  }
+
+  .middle-left-content {
+  }
+
+  .info-ring {
+  }
+
+  .info-ring:nth-child(1) {
+  }
+
+  .info-ring:nth-child(2) {
+  }
+
+  .info-ring:before {
+  }
+
+  .info-ring span {
+  }
+
+  .middle-illustration {
+  }
+
+  .middle-right-content {
+  }
+
+  .middle-right-content > div {
+  }
+
+  .middle-bottom-footer {
+  }
+
+  .middle-bottom-footer p {
+  }
+
+  /* BOTTOM CONTAINER */
+
+  .bottom-container {
+  }
+
+  .bottom-container-inner {
+  }
+
+  .bottom-container-header {
+  }
+
+  .mentor-cards {
+  }
+
+  .mentor-card {
+  }
+
+  .mentor-card:before {
+  }
+
+  .mentor-card:nth-child(1):before {
+  }
+
+  .mentor-card:nth-child(2):before {
+  }
+
+  .mentor-card-header {
+  }
+
+  .mentor-card-header h2 {
+  }
+
+  .mentor-card-content {
+  }
+
+  .mentor-card-content > div {
+  }
+
+  .mentor-card-content h3 {
+  }
+
+  .pill-container {
+  }
+
+  .pill {
+  }
+
+  /* FINAL CONTAINER */
+
+  .final-container {
+  }
+
+  .final-container-content {
+  }
+
+  .final-container-content p {
+  }
+
+  .final-button-container {
+  }
+
+  /* FOOTER */
+
+  footer {
+  }
+
+  .footer-link {
+  }
+
+  .footer-link:hover,
+  .footer-link:focus,
+  .footer-link:active,
+  .footer-link:target {
+  }
+
+  .footer-logo {
+  }
+}
