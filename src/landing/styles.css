@@ -161,7 +161,7 @@ main {
 }
 
 .middle-left-content {
-  width: 63%;
+  flex: 8;
   position: relative;
   background: url(../static/img/ylitse-middle-illustration.svg);
   background-size: 100% 110%;
@@ -218,15 +218,19 @@ main {
 }
 
 .middle-right-content {
-  flex: 3;
+  flex: 4;
   display: flex;
   flex-direction: column;
   gap: 1.125rem;
-  padding: 0 5.625rem 4.5rem 0;
+  padding: 0;
   overflow: auto;
 }
 
-.middle-right-content > div {
+.middle-right-content-inner {
+  padding: 0 5.625rem 4.5rem 0;
+}
+
+.middle-right-content-inner > div {
   margin: 0 0 1rem;
 }
 
@@ -444,6 +448,7 @@ footer {
   /* TOP COPNTAINER */
 
   .top-container {
+    margin-bottom: 6rem;
   }
 
   .card {
@@ -486,6 +491,7 @@ footer {
   }
 
   .middle-left-content {
+    flex: 5;
   }
 
   .info-ring {
@@ -507,9 +513,13 @@ footer {
   }
 
   .middle-right-content {
+    flex: 6;
   }
 
-  .middle-right-content > div {
+  .middle-right-content-inner {
+  }
+
+  .middle-right-content-inner > div {
   }
 
   .middle-bottom-footer {
@@ -694,7 +704,10 @@ NEXT MEDIA QUERY
   .middle-right-content {
   }
 
-  .middle-right-content > div {
+  .middle-right-content-inner {
+  }
+
+  .middle-right-content-inner > div {
   }
 
   .middle-bottom-footer {
