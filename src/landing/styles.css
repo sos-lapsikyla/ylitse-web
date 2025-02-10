@@ -186,11 +186,13 @@ main {
 }
 
 .info-ring:nth-child(1) {
-  left: 6.25rem;
+  left: 50%;
+  margin-left: -27rem;
 }
 
 .info-ring:nth-child(2) {
-  right: 8.75rem;
+  right: 50%;
+  margin-right: -24.5rem;
 }
 
 .info-ring:before {
@@ -201,20 +203,13 @@ main {
   border-radius: 50%;
   position: absolute;
   top: 2.313rem;
-  left: 12.125rem;
+  right: 0;
 }
 
 .info-ring span {
   font-size: 2.8125rem;
   font-weight: 700;
   line-height: 3rem;
-}
-
-.middle-illustration {
-  height: 31.5rem;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
 }
 
 .middle-right-content {
@@ -256,6 +251,7 @@ main {
   background-color: var(--secondary-background-color);
   align-items: center;
   padding: 5rem 0 5.5rem;
+  overflow: hidden;
 }
 
 .bottom-container-inner {
@@ -271,6 +267,7 @@ main {
 .mentor-cards {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   gap: 2rem;
 }
 
@@ -318,6 +315,12 @@ main {
 .mentor-card-header h2 {
   margin: 0;
   line-height: 2rem;
+}
+
+.mentor-card-header p {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .mentor-card-content {
@@ -402,6 +405,56 @@ footer {
 
 /* MEDIA QUERIES */
 
+@media only screen and (max-width: 1441px) {
+  .middle-left-content {
+    flex: 1;
+    background-size: 36rem 100%;
+    background-position: center 7rem;
+  }
+
+  .info-ring:nth-child(1) {
+    top: 0;
+    left: 2.5rem;
+    margin-left: 0;
+  }
+
+  .info-ring:nth-child(2) {
+    top: 0;
+    right: 2.5rem;
+    margin-right: 0;
+  }
+
+  .middle-right-content {
+    flex: 1;
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  .middle-left-content {
+    flex: 1;
+    background-size: 44rem 100%;
+    background-position: center 5rem;
+  }
+
+  .info-ring {
+    width: 8.75rem;
+    height: 8.75rem;
+    border-width: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.25rem;
+  }
+
+  .info-ring:before {
+    top: 1.875rem;
+    right: -0.75rem;
+  }
+
+  .info-ring span {
+    font-size: 2.1875rem;
+    line-height: 2.25rem;
+  }
+}
+
 @media only screen and (max-width: 991px) {
   body {
     font-size: 1rem;
@@ -485,6 +538,7 @@ footer {
   /* MIDDLE CONTAINER */
 
   .middle-container {
+    margin-bottom: 2.5rem;
   }
 
   .middle-card {
@@ -509,11 +563,8 @@ footer {
   .info-ring span {
   }
 
-  .middle-illustration {
-  }
-
   .middle-right-content {
-    flex: 6;
+    flex: 5;
   }
 
   .middle-right-content-inner {
@@ -526,65 +577,88 @@ footer {
   }
 
   .middle-bottom-footer p {
+    font-size: 1.25rem;
+    line-height: 2rem;
   }
 
   /* BOTTOM CONTAINER */
 
   .bottom-container {
+    padding: 2.5rem 0 3rem;
   }
 
   .bottom-container-inner {
   }
 
   .bottom-container-header {
+    max-width: 35rem;
+    margin: 0 auto 3.5rem;
   }
 
   .mentor-cards {
   }
 
   .mentor-card {
+    max-width: 20.3125rem;
+    min-height: 0;
   }
 
   .mentor-card::before {
-    display: none;
   }
 
   .mentor-card:nth-child(1):before {
+    background-size: auto 21rem;
   }
 
   .mentor-card:nth-child(2):before {
+    background-size: auto 20.25rem;
   }
 
   .mentor-card-header {
+    background-size: 4.375rem;
+    background-position: 1.625rem center;
+    padding-left: 7rem;
+    margin-bottom: 1.375rem;
   }
 
   .mentor-card-header h2 {
   }
 
+  .mentor-card-header p {
+  }
+
   .mentor-card-content {
+    padding: 0 1.875rem 1.875rem;
   }
 
   .mentor-card-content > div {
+    margin-bottom: 1.25rem;
   }
 
   .mentor-card-content h3 {
+    margin-bottom: 0.4rem;
   }
 
   .pill-container {
   }
 
   .pill {
+    padding: 0.219rem 0.8rem;
   }
 
   /* FINAL CONTAINER */
 
   .final-container {
+    padding: 2.875rem 2rem;
   }
 
   .final-container-content {
+    max-width: 35rem;
   }
 
   .final-container-content p {
+    font-size: 1.125rem;
+    line-height: 1.6875rem;
   }
 
   .final-button-container {
@@ -605,6 +679,32 @@ footer {
   }
 
   .footer-logo {
+  }
+}
+
+@media only screen and (max-width: 920px) {
+  .middle-left-content {
+    /* flex: 1;
+    background-size: 44rem 100%;
+    background-position: center 5rem; */
+  }
+
+  .info-ring {
+    /* width: 8.75rem;
+    height: 8.75rem;
+    border-width: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.25rem; */
+  }
+
+  .info-ring:before {
+    /* top: 1.875rem;
+    right: -0.75rem; */
+  }
+
+  .info-ring span {
+    /* font-size: 2.1875rem;
+    line-height: 2.25rem; */
   }
 }
 
@@ -696,9 +796,6 @@ NEXT MEDIA QUERY
   }
 
   .info-ring span {
-  }
-
-  .middle-illustration {
   }
 
   .middle-right-content {
