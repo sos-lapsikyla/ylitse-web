@@ -8,6 +8,8 @@
   --primary-color: #4a2acb;
   --primary-color-lighter: #5c33ff;
   --secondary-color: #43bfff;
+  --secondary-color-opacity-50: #43bfff7f;
+  --secondary-color-opacity-0: #43bfff00;
   --secondary-color-darker: #01a5ec;
   --highlight-color: #f0ba8c;
   --background-color: #e4f3fb;

@@ -250,14 +250,14 @@ main {
 .bottom-container {
   background-color: var(--secondary-background-color);
   align-items: center;
-  padding: 5rem 0 5.5rem;
+  padding: 5rem 2rem 5.5rem;
   overflow: hidden;
 }
 
 .bottom-container-inner {
   max-width: 57rem;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0;
 }
 
 .bottom-container-header {
@@ -429,6 +429,8 @@ footer {
   }
 }
 
+/* DESKTOP */
+
 @media only screen and (max-width: 1199px) {
   .middle-left-content {
     flex: 1;
@@ -454,6 +456,8 @@ footer {
     line-height: 2.25rem;
   }
 }
+
+/* TABLET */
 
 @media only screen and (max-width: 991px) {
   body {
@@ -584,7 +588,7 @@ footer {
   /* BOTTOM CONTAINER */
 
   .bottom-container {
-    padding: 2.5rem 0 3rem;
+    padding: 2.5rem 2rem 3rem;
   }
 
   .bottom-container-inner {
@@ -705,6 +709,233 @@ footer {
   .info-ring span {
     /* font-size: 2.1875rem;
     line-height: 2.25rem; */
+  }
+}
+
+/* MOBILE */
+
+@media only screen and (max-width: 767px) {
+  body {
+  }
+
+  h2 {
+  }
+
+  h3 {
+  }
+
+  p {
+    font-size: 1.125rem;
+    line-height: 1.6875rem;
+  }
+
+  .button,
+  button {
+  }
+
+  .button:hover,
+  a:hover {
+  }
+
+  .button:focus,
+  a:focus,
+  .button:active,
+  a:active,
+  .button:target,
+  a:target {
+  }
+
+  .center {
+  }
+
+  main {
+  }
+
+  /* TOP COPNTAINER */
+
+  .top-container {
+    flex-direction: column-reverse;
+    filter: none;
+    margin-bottom: 0;
+  }
+
+  .card {
+    max-width: none;
+    width: calc(100% - 4rem);
+    padding: 30% 2rem 2.5rem;
+    margin-top: -30%;
+    z-index: 10;
+    background: var(--secondary-color);
+    background: linear-gradient(
+      0deg,
+      var(--secondary-color) 0%,
+      var(--secondary-color) 75%,
+      var(--secondary-color-opacity-50) 85%,
+      var(--secondary-color-opacity-0) 100%
+    );
+  }
+
+  .card p {
+    font-size: 1.25rem;
+    line-height: 2rem;
+  }
+
+  .card:after {
+  }
+
+  .ylitse-logo {
+  }
+
+  .card-buttons {
+  }
+
+  .art-jumbo-container {
+    background-position: 70% bottom;
+  }
+
+  /* MIDDLE CONTAINER */
+
+  .middle-container {
+    padding: 0;
+    margin-bottom: 0;
+  }
+
+  .middle-card {
+    flex-direction: column-reverse;
+    padding: 6rem 2rem 0 0;
+    border-radius: 0;
+  }
+
+  .middle-left-content {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 1rem;
+    background-size: contain;
+    background-position: -7rem bottom;
+    padding-bottom: 2rem;
+  }
+
+  .info-ring {
+    position: relative;
+  }
+
+  .info-ring:nth-child(1) {
+    top: auto;
+    left: auto;
+  }
+
+  .info-ring:nth-child(2) {
+    top: auto;
+    right: auto;
+  }
+
+  .info-ring:before {
+  }
+
+  .info-ring span {
+  }
+
+  .middle-right-content {
+    padding-left: 2rem;
+  }
+
+  .middle-right-content-inner {
+    padding: 0;
+  }
+
+  .middle-right-content-inner > div {
+  }
+
+  .middle-bottom-footer {
+    flex-direction: column;
+  }
+
+  .middle-bottom-footer p {
+  }
+
+  /* BOTTOM CONTAINER */
+
+  .bottom-container {
+  }
+
+  .bottom-container-inner {
+  }
+
+  .bottom-container-header {
+    max-width: none;
+  }
+
+  .mentor-cards {
+  }
+
+  .mentor-card {
+  }
+
+  .mentor-card:before {
+    display: none;
+  }
+
+  .mentor-card:nth-child(1):before {
+  }
+
+  .mentor-card:nth-child(2):before {
+  }
+
+  .mentor-card-header {
+  }
+
+  .mentor-card-header h2 {
+  }
+
+  .mentor-card-content {
+  }
+
+  .mentor-card-content > div {
+  }
+
+  .mentor-card-content h3 {
+  }
+
+  .pill-container {
+  }
+
+  .pill {
+  }
+
+  /* FINAL CONTAINER */
+
+  .final-container {
+  }
+
+  .final-container-content {
+  }
+
+  .final-container-content p {
+  }
+
+  .final-button-container {
+    flex-direction: column;
+  }
+
+  /* FOOTER */
+
+  footer {
+    padding: 0.5rem 0;
+  }
+
+  .footer-link {
+  }
+
+  .footer-link:hover,
+  .footer-link:focus,
+  .footer-link:active,
+  .footer-link:target {
+  }
+
+  .footer-logo {
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 }
 
