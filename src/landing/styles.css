@@ -867,6 +867,7 @@ footer {
   }
 
   .mentor-cards {
+    justify-content: start;
   }
 
   .mentor-card {
