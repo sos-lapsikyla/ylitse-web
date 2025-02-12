@@ -68,18 +68,14 @@ a:target {
   outline-offset: 0.25rem;
 }
 
-.center {
-  text-align: center;
-}
-
 main {
   display: flex;
   flex-direction: column;
 }
 
-/* TOP COPNTAINER */
+/* HEADER */
 
-.top-container {
+header {
   display: flex;
   flex-direction: row;
   gap: 0rem;
@@ -108,6 +104,7 @@ main {
   line-height: 2.688rem;
   padding: 0 1rem;
   margin: 0 0 1.25rem;
+  text-align: center;
 }
 
 .card:after {
@@ -124,7 +121,7 @@ main {
   max-width: 16.25rem;
 }
 
-.card-buttons {
+nav {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -132,7 +129,7 @@ main {
   gap: 2.125rem;
 }
 
-.art-jumbo-container {
+.art-container {
   width: 100%;
   background: url(../static/img/home-page-background-static.svg);
   background-position: bottom;
@@ -381,7 +378,7 @@ footer {
   color: var(--font-color-primary);
 }
 
-.footer-link {
+footer a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -390,10 +387,10 @@ footer {
   color: var(--font-color-primary);
 }
 
-.footer-link:hover,
-.footer-link:focus,
-.footer-link:active,
-.footer-link:target {
+footer a:hover,
+footer a:focus,
+footer a:active,
+footer a:target {
   background-color: unset;
   outline: none;
 }
@@ -502,9 +499,9 @@ footer {
   main {
   }
 
-  /* TOP COPNTAINER */
+  /* HEADER */
 
-  .top-container {
+  header {
     margin-bottom: 6rem;
   }
 
@@ -528,12 +525,12 @@ footer {
   .ylitse-logo {
   }
 
-  .card-buttons {
+  nav {
     flex-direction: column;
     gap: 1.5rem;
   }
 
-  .art-jumbo-container {
+  .art-container {
     height: 36rem;
     background-position: right bottom;
     border-left: none;
@@ -673,13 +670,13 @@ footer {
   footer {
   }
 
-  .footer-link {
+  footer a {
   }
 
-  .footer-link:hover,
-  .footer-link:focus,
-  .footer-link:active,
-  .footer-link:target {
+  footer a:hover,
+  footer a:focus,
+  footer a:active,
+  footer a:target {
   }
 
   .footer-logo {
@@ -751,9 +748,9 @@ footer {
   main {
   }
 
-  /* TOP COPNTAINER */
+  /* HEADER */
 
-  .top-container {
+  header {
     flex-direction: column-reverse;
     filter: none;
     margin-bottom: 0;
@@ -786,10 +783,11 @@ footer {
   .ylitse-logo {
   }
 
-  .card-buttons {
+  nav {
   }
 
-  .art-jumbo-container {
+  .art-container {
+    height: 31rem;
     background-position: 70% bottom;
   }
 
@@ -922,16 +920,18 @@ footer {
   /* FOOTER */
 
   footer {
-    padding: 0.5rem 0;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    padding: 0.5rem 0 0.4rem;
   }
 
-  .footer-link {
+  footer a {
   }
 
-  .footer-link:hover,
-  .footer-link:focus,
-  .footer-link:active,
-  .footer-link:target {
+  footer a:hover,
+  footer a:focus,
+  footer a:active,
+  footer a:target {
   }
 
   .footer-logo {
@@ -981,9 +981,9 @@ NEXT MEDIA QUERY
   main {
   }
 
-  /* TOP COPNTAINER */
+  /* HEADER */
 
-  .top-container {
+  header {
   }
 
   .card {
@@ -998,10 +998,10 @@ NEXT MEDIA QUERY
   .ylitse-logo {
   }
 
-  .card-buttons {
+  nav {
   }
 
-  .art-jumbo-container {
+  .art-container {
   }
 
   /* MIDDLE CONTAINER */
@@ -1111,13 +1111,13 @@ NEXT MEDIA QUERY
   footer {
   }
 
-  .footer-link {
+  footer a {
   }
 
-  .footer-link:hover,
-  .footer-link:focus,
-  .footer-link:active,
-  .footer-link:target {
+  footer a:hover,
+  footer a:focus,
+  footer a:active,
+  footer a:target {
   }
 
   .footer-logo {
