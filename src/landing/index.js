@@ -28,6 +28,6 @@
     element.innerText = translation;
   }
 
-  const footerLink = document.getElementById('footer-link-a');
+  const footerLink = document.getElementById('footer-link');
   footerLink.href = links.sosLapsikylaUrl;
 })(window, document);
