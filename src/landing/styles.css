@@ -142,7 +142,7 @@ main {
   flex-direction: column;
 }
 
-section {
+main > section {
   display: flex;
   justify-content: center;
   padding: 0 2rem;
@@ -150,8 +150,16 @@ section {
   background-color: var(--background-color);
 }
 
+main > section:last-child {
+  margin-bottom: 0;
+}
+
 section.bg-secondary {
   background-color: var(--secondary-background-color);
+}
+
+section.bg-third {
+  background-color: var(--secondary-color);
 }
 
 /* INFORMATION CONTAINER */
@@ -427,25 +435,18 @@ section.bg-secondary {
 
 /* GENERAL */
 
-/* FINAL CONTAINER */
-
-.final-container {
-  background-color: var(--secondary-color);
-  padding: 6.25rem 2rem;
-}
-
-.final-container-content {
+.general {
   max-width: 40rem;
-  gap: 1.125rem;
   text-align: center;
   margin: 0 auto;
+  padding: 6.25rem 0;
 }
 
-.final-container-content p {
+.general p {
   margin-bottom: 2.25rem;
 }
 
-.final-button-container {
+.general .buttons {
   display: flex;
   justify-content: center;
   gap: 1.688rem;
@@ -721,22 +722,19 @@ footer a:target {
     padding: 0.219rem 0.8rem;
   }
 
-  /* FINAL CONTAINER */
+  /* GENERAL */
 
-  .final-container {
-    padding: 2.875rem 2rem;
-  }
-
-  .final-container-content {
+  .general {
     max-width: 35rem;
+    padding: 2.875rem 0;
   }
 
-  .final-container-content p {
+  .general p {
     font-size: 1.125rem;
     line-height: 1.6875rem;
   }
 
-  .final-button-container {
+  .general .buttons {
   }
 
   /* FOOTER */
@@ -956,18 +954,19 @@ footer a:target {
   .pill {
   }
 
-  /* FINAL CONTAINER */
+  /* GENERAL */
 
-  .final-container {
+  .general {
+    max-width: 35rem;
+    padding: 2.875rem 0;
   }
 
-  .final-container-content {
+  .general p {
+    font-size: 1.125rem;
+    line-height: 1.6875rem;
   }
 
-  .final-container-content p {
-  }
-
-  .final-button-container {
+  .general .buttons {
     flex-direction: column;
   }
 
@@ -1145,18 +1144,15 @@ NEXT MEDIA QUERY
   .pill {
   }
 
-  /* FINAL CONTAINER */
+  /* GENERAL */
 
-  .final-container {
+  .general {
   }
 
-  .final-container-content {
+  .general p {
   }
 
-  .final-container-content p {
-  }
-
-  .final-button-container {
+  .general .buttons {
   }
 
   /* FOOTER */
