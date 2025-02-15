@@ -110,7 +110,10 @@ const Container = styled.div`
 `;
 
 const Anchor = styled.div`
+  align-items: center;
   display: flex;
+  flex-direction: row;
+  gap: 1rem;
   position: relative;
 `;
 
@@ -118,16 +121,12 @@ const Ball = styled.div`
   align-items: center;
   background: ${palette.blue2};
   border-radius: 50%;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 20%);
   display: flex;
   height: 20px;
   justify-content: center;
-  left: -0.75rem;
-  padding: 0.1rem;
-  position: absolute;
-  top: 0.25rem;
+  margin-bottom: 5px;
+  padding: 0.2rem;
   width: 20px;
-  z-index: 20;
 `;
 
 const SearchBarContainer = styled.div`
