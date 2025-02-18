@@ -9,7 +9,7 @@ jobs:
     services:
       postgres:
         image: postgres
-        env: 
+        env:
           POSTGRES_USER: postgres
           POSTGRES_DB: ylitse
           POSTGRES_PASSWORD: ${{ secrets.YLITSE_POSTGRES_PASSWORD }}
@@ -44,8 +44,8 @@ jobs:
           make env
           source env/bin/activate
           make conf
-          make db-upgrade-head 
-          make db-insert-admin 
+          make db-upgrade-head
+          make db-insert-admin
         env:
           YLITSE_POSTGRES_URL: postgresql://postgres:${{ secrets.YLITSE_POSTGRES_PASSWORD }}@localhost/ylitse
         working-directory: ylitse-api

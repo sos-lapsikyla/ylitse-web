@@ -1,8 +1,8 @@
-name: Test and deploy master branch
+name: Test and deploy feature branch
 
 on:
   push:
-    branches:
+    branches-ignore:
       - master
 
 jobs:
@@ -13,10 +13,13 @@ jobs:
   deploy:
     runs-on: ubuntu-22.04
     needs: test
+    environment:
+      name: dev
     steps:
       - uses: actions/checkout@v4
       - name: Deploy
         run: >
           curl --fail-with-body -X POST -F token=${{ secrets.DEPLOYMENT_TOKEN }}
           -F ref=master -F "variables[SERVICE]=webui2"
+          -F "variables[WEBUI2_BRANCH]=${{ github.ref_name }}"
           ${{ secrets.DEPLOYMENT_URL }}
