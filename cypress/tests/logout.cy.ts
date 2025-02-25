@@ -19,7 +19,7 @@ describe('logout', () => {
   it('logout redirects user to landing page', () => {
     cy.clickLogout();
     cy.url().should('match', /landing/);
-    cy.getByText('Kirjaudu', 'a').should('be.visible');
+    cy.getByText('Kirjaudu sisään', 'a').should('be.visible');
   });
 
   // FIXME: re-enable when dev server issue is resolved
