@@ -1,0 +1,26 @@
+:root {
+  --ff-heading: 'Baloo 2';
+  --ff-body: 'Source Sans 3';
+
+  --font-color-primary: #1c325d;
+  --font-color-secondary: #fff;
+
+  --primary-color: #4a2acb;
+  --primary-color-lighter: #5c33ff;
+  --secondary-color: #43bfff;
+  --secondary-color-opacity-50: #43bfff7f;
+  --secondary-color-opacity-0: #43bfff00;
+  --secondary-color-darker: #01a5ec;
+  --highlight-color: #f0ba8c;
+
+  --background-color: #e4f3fb;
+  --secondary-background-color: #c2edfe;
+  --background-color-light: #ffffff;
+
+  /* These are the minimum values for the breakpoint */
+  --breakpoint-mobile: 576px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 992px;
+  --breakpoint-large-desktop: 1200px;
+  --breakpoint-extra-large-desktop: 1400px;
+}

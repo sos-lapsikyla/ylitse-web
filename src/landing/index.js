@@ -9,11 +9,11 @@
 
   const getInfoLocalizations = (mentorAmount, yearsOfService) => ({
     en: {
-      infoRing1: `${mentorAmount} mentors`,
+      infoRing1: `${mentorAmount} active mentors`,
       infoRing2: `${yearsOfService} years of conversations`,
     },
     fi: {
-      infoRing1: `${mentorAmount} mentoria`,
+      infoRing1: `${mentorAmount} aktiivista mentoria`,
       infoRing2: `keskusteluja jo ${yearsOfService} vuotta`,
     },
   });
@@ -28,6 +28,6 @@
     element.innerText = translation;
   }
 
-  const footerLink = document.getElementById('footer-link-a');
+  const footerLink = document.getElementById('footer-link');
   footerLink.href = links.sosLapsikylaUrl;
 })(window, document);
