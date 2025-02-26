@@ -27,12 +27,11 @@ import { CONTENT_WIDTH, ICON_SIZES, palette } from '@/components/constants';
 
 import ArchivedIcon from '@/static/icons/archived-chats.svg';
 import BlockedIcon from '@/static/icons/blocked-chats.svg';
-import DesktopButtons from './DesktopButtons';
 import { IconButton } from '@/components/Buttons';
 import { Profile as ProfileIcon } from '@/components/Icons/Profile';
 import ReportModal from '../ReportModal';
-import TabletButtons from './TabletButtons';
 import Text from '@/components/Text';
+import Buttons from './Buttons';
 
 type DialogVariant = 'archive' | 'block' | 'restore' | 'unblock';
 
@@ -120,19 +119,11 @@ const Header = ({ chat }: Props) => {
       )}
 
       <ButtonsWrapper>
-        {isTablet ? (
-          <TabletButtons
-            chat={chat}
-            confirmStatusChange={confirmAction}
-            openReportModal={() => setIsReportModalOpen(true)}
-          />
-        ) : (
-          <DesktopButtons
-            chat={chat}
-            confirmStatusChange={confirmAction}
-            openReportModal={() => setIsReportModalOpen(true)}
-          />
-        )}
+        <Buttons
+          chat={chat}
+          confirmStatusChange={confirmAction}
+          openReportModal={() => setIsReportModalOpen(true)}
+        />
       </ButtonsWrapper>
     </Container>
   );
