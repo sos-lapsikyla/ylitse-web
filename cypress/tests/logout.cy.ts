@@ -26,10 +26,10 @@ describe('logout', () => {
   xit('logout ends session', () => {
     cy.clickLogout();
     cy.url().should('match', /landing/);
-    cy.getByText('Kirjaudu', 'a').should('be.visible');
+    cy.getByText('Kirjaudu sisään', 'a').should('be.visible');
 
     cy.visit('/');
     cy.url().should('match', /landing/);
-    cy.getByText('Kirjaudu', 'a').should('be.visible');
+    cy.getByText('Kirjaudu sisään', 'a').should('be.visible');
   });
 });
