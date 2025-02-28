@@ -1,0 +1,42 @@
+@import 'variables.css';
+@import 'normalize.css';
+@import 'fonts.css';
+
+.en-alt-text {
+  display: none;
+}
+
+#language-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1.563rem;
+  margin-bottom: 1.563rem;
+  margin-top: 1.563rem;
+}
+
+#language-buttons a {
+  font-family: var(--ff-heading);
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.188rem;
+  display: flex;
+  align-items: center;
+  color: #37119d;
+  margin: 0;
+}
+
+.separator {
+  border-right: 0.063rem solid #1c325d;
+  height: 1.563rem;
+}
+
+footer {
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.688rem;
+  margin-top: 1.563rem;
+  margin-bottom: 1.563rem;
+  color: #ffffff;
+}

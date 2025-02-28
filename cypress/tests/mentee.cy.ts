@@ -64,7 +64,7 @@ describe('mentee profile', () => {
     cy.getByText('Kirjaudu ulos').click();
 
     // go to login page
-    cy.getByText('Kirjaudu', 'a').click();
+    cy.getByText('Kirjaudu sisään', 'a').click();
 
     // old password should not work
     cy.fillInput('username', mentee.loginName);
@@ -166,7 +166,7 @@ describe('mentee profile', () => {
     cy.location('pathname').should('eq', '/landing/');
 
     // go to login page
-    cy.getByText('Kirjaudu', 'a').click();
+    cy.getByText('Kirjaudu sisään', 'a').click();
 
     // logging in should not be possible anymore
     cy.fillInput('username', mentee.loginName);

@@ -53,7 +53,7 @@ h2 {
 }
 
 p {
-  font-family: 'Source Sans Pro';
+  font-family: 'Source Sans 3';
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -67,7 +67,7 @@ section p {
 }
 
 a {
-  font-family: 'Source Sans Pro';
+  font-family: 'Source Sans 3';
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
@@ -87,7 +87,7 @@ fieldset {
 }
 
 label {
-  font-family: 'Source Sans Pro';
+  font-family: 'Source Sans 3';
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
@@ -96,7 +96,7 @@ label {
 }
 
 input {
-  font-family: 'Source Sans Pro';
+  font-family: 'Source Sans 3';
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -125,7 +125,7 @@ input:focus {
 }
 
 .error-message {
-  font-family: 'Source Sans Pro';
+  font-family: 'Source Sans 3';
   font-style: normal;
   font-weight: 700;
   font-size: 15px;
@@ -169,7 +169,7 @@ input:focus {
 
 /* Tooltip text */
 .tooltip-text {
-  font-family: 'Source Sans Pro';
+  font-family: 'Source Sans 3';
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
