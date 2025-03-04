@@ -72,11 +72,19 @@ a:target {
 
 header {
   display: flex;
-  flex-direction: row;
-  gap: 0rem;
-  filter: drop-shadow(0px -0.625rem 0.938rem #000000);
+  flex-direction: column;
+  align-items: center;
+  filter: drop-shadow(0 -0.625rem 0.938rem #000000);
   margin: 0 0 11rem;
   background-color: var(--secondary-color);
+}
+
+.header-inner {
+  display: flex;
+  width: 100%;
+  max-width: 1921px;
+  flex-direction: row;
+  gap: 0rem;
 }
 
 .card {
@@ -140,10 +148,12 @@ nav {
 main {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 main > section {
   display: flex;
+  width: calc(100% - 4rem);
   justify-content: center;
   padding: 0 2rem;
   margin: 0 0 6.25rem;
@@ -161,6 +171,10 @@ section.bg-secondary {
 
 section.bg-third {
   background-color: var(--secondary-color);
+}
+
+section.max-width {
+  max-width: calc(1921px - 4rem);
 }
 
 /* INFORMATION CONTAINER */
@@ -457,8 +471,9 @@ section.bg-third {
 
 footer {
   background-color: var(--secondary-color-darker);
-  margin: 0;
+  margin: 0 auto;
   color: var(--font-color-primary);
+  max-width: 1921px;
 }
 
 footer a {
@@ -686,9 +701,12 @@ footer a:target {
   }
 
   header {
-    flex-direction: column-reverse;
     filter: none;
     margin-bottom: 0;
+  }
+
+  .header-inner {
+    flex-direction: column-reverse;
   }
 
   .card {
@@ -719,6 +737,7 @@ footer a:target {
   }
 
   section.no-padding-mobile {
+    width: 100%;
     padding: 0;
   }
 

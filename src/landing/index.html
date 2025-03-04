@@ -17,19 +17,24 @@
   </head>
   <body>
     <header>
-      <div class="card">
-        <img class="ylitse-logo" src="../static/img/ylitse-logo-mountain.svg" />
-        <p localization-key="cardText"></p>
-        <nav>
-          <a class="button" href="/login/" localization-key="loginButton"></a>
-          <a
-            class="button"
-            href="/register/"
-            localization-key="registerButton"
-          ></a>
-        </nav>
+      <div class="header-inner">
+        <div class="card">
+          <img
+            class="ylitse-logo"
+            src="../static/img/ylitse-logo-mountain.svg"
+          />
+          <p localization-key="cardText"></p>
+          <nav>
+            <a class="button" href="/login/" localization-key="loginButton"></a>
+            <a
+              class="button"
+              href="/register/"
+              localization-key="registerButton"
+            ></a>
+          </nav>
+        </div>
+        <div class="art-container"></div>
       </div>
-      <div class="art-container"></div>
     </header>
     <main>
       <section class="no-padding-mobile">
@@ -155,7 +160,7 @@
         </div>
       </section>
 
-      <section class="bg-third">
+      <section class="bg-third max-width">
         <div class="general">
           <h2 localization-key="finalContainerHeader"></h2>
           <p localization-key="finalContainerText"></p>
