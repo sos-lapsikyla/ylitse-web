@@ -84,8 +84,8 @@ header {
   max-width: 1921px;
   flex-direction: row;
   gap: 0rem;
-  filter: drop-shadow(-0.5rem 0 0.5rem rgba(0, 0, 0, 0.1)) 
-          drop-shadow(0.5rem 0 0.5rem rgba(0, 0, 0, 0.1))
+  filter: drop-shadow(-0.5rem 0 0.5rem rgba(0, 0, 0, 0.01)) 
+          drop-shadow(0.5rem 0 0.5rem rgba(0, 0, 0, 0.01))
           drop-shadow(0 0.5rem 0.5rem rgba(0, 0, 0, 0.1));
 
 }
@@ -190,8 +190,8 @@ section.max-width {
   max-width: 106rem;
   background-color: var(--primary-color);
   border-radius: 1.125rem;
-  margin-top: 11.25rem;
-  margin-bottom: 6.25rem;
+  margin-top: 10.35rem;
+  margin-bottom: 6.25em;
 }
 
 .information-illustration {
