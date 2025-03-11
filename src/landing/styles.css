@@ -74,9 +74,8 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  filter: drop-shadow(0 -0.625rem 0.938rem #000000);
   margin: 0 0 11rem;
-  background-color: var(--secondary-color);
+  background-color: var(--background-color);
 }
 
 .header-inner {
@@ -85,6 +84,10 @@ header {
   max-width: 1921px;
   flex-direction: row;
   gap: 0rem;
+  filter: drop-shadow(-0.5rem 0 0.5rem rgba(0, 0, 0, 0.1)) 
+          drop-shadow(0.5rem 0 0.5rem rgba(0, 0, 0, 0.1))
+          drop-shadow(0 0.5rem 0.5rem rgba(0, 0, 0, 0.1));
+
 }
 
 .card {
@@ -97,6 +100,7 @@ header {
   max-width: 36.5rem;
   padding: 0 2rem;
   position: relative;
+  background-color: var(--secondary-color);
 }
 
 .card p {
@@ -149,7 +153,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: -10.5rem;
+  margin-top: -11rem;
 }
 
 main > section {
@@ -186,7 +190,7 @@ section.max-width {
   max-width: 106rem;
   background-color: var(--primary-color);
   border-radius: 1.125rem;
-  margin-top: 10.25rem;
+  margin-top: 11.25rem;
   margin-bottom: 6.25rem;
 }
 
@@ -714,6 +718,7 @@ footer a:target {
 
   .header-inner {
     flex-direction: column-reverse;
+    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0.0));
   }
 
   .card {
