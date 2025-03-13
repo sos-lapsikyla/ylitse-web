@@ -291,6 +291,7 @@ section.max-width {
   flex-direction: row;
   justify-content: center;
   gap: 2rem;
+  overflow-x: auto;
 }
 
 .mentor-card {
@@ -809,6 +810,7 @@ footer a:target {
   .mentors {
     overflow: hidden;
     padding: 0 2rem;
+    z-index: 1;
   }
 
   .mentors-header {
@@ -817,6 +819,12 @@ footer a:target {
 
   .mentor-cards {
     justify-content: start;
+    margin-right: -2rem;
+  }
+
+  .mentor-cards::after {
+    content: "";
+    flex: 0 0 0.75rem;
   }
 
   .mentor-card:before {
