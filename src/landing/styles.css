@@ -291,6 +291,7 @@ section.max-width {
   flex-direction: row;
   justify-content: center;
   gap: 2rem;
+  overflow-x: auto;
 }
 
 .mentor-card {
