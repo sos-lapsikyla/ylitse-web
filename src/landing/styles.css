@@ -816,7 +816,24 @@ footer a:target {
   }
 
   .mentor-cards {
+    width: calc(100% + 4rem);
+    margin-left: -2rem;
     justify-content: start;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .mentor-card {
+    scroll-snap-align: center; 
+  }
+
+  .mentor-card:first-child {
+    margin-left: 2rem;
+  }
+
+  .mentor-cards::after {
+    content: "";
+    flex: 0 0 0.75rem;
   }
 
   .mentor-card:before {
