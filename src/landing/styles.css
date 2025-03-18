@@ -821,6 +821,12 @@ footer a:target {
     justify-content: start;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+  }
+
+  .mentor-cards::-webkit-scrollbar {
+    display: none; 
   }
 
   .mentor-card {
