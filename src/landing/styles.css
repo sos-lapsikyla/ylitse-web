@@ -178,6 +178,10 @@ section.bg-third {
   background-color: var(--secondary-color);
 }
 
+section.bg-dark {
+  background-color: var(--background-color-dark);
+}
+
 section.max-width {
   max-width: calc(1921px - 4rem);
 }
@@ -273,6 +277,24 @@ section.max-width {
 .information-footer p {
   font-size: 1.313rem;
   font-weight: 600;
+}
+
+/* MOBILE APP ADD*/
+
+.mobile-app-add {
+  align-items: center;
+  display: flex;
+  max-width: 87.5rem;
+}
+
+.mobile-app-mock-up {
+  max-width: 42.25rem;
+}
+
+
+.app-call-to-action {
+  max-width: 20.5rem;
+  max-height: 5.75rem;
 }
 
 /* MENTORS */
