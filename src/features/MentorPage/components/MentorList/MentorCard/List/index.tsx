@@ -57,6 +57,10 @@ const Container = styled.div<{ isHomePage: boolean; isMobile: boolean }>`
   flex-direction: column;
   max-width: 450px;
   min-width: 300px;
+  filter: drop-shadow(-0.5rem 0 0.5rem rgba(0, 0, 0, 0.01)) 
+        drop-shadow(0.5rem 0 0.5rem rgba(0, 0, 0, 0.01))
+        drop-shadow(0 0.5rem 0.5rem rgba(0, 0, 0, 0.01));
+}
 
   ${({ isMobile }) =>
     isMobile &&
@@ -82,7 +86,7 @@ const Container = styled.div<{ isHomePage: boolean; isMobile: boolean }>`
       flex: 1;
     `}
 
-    ${({ isHomePage, isMobile }) =>
+  ${({ isHomePage, isMobile }) =>
     !isHomePage &&
     !isMobile &&
     css`
