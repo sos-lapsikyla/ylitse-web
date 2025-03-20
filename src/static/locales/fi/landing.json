@@ -16,6 +16,8 @@
   "middleInfo3Heading": "Voinko käyttää palvelua anonyymisti?",
   "middleInfo3Text": "Voit käyttää sovellusta nimettömästi. Valitse vain nimimerkki, josta sinua ei voi tunnistaa. Keskustelut mentoreiden kanssa ovat luottamuksellisia.",
   "middleInfoFooter": "Aloita palvelun käyttö rekisteröitymällä",
+  "mobileAppAddHeading": "Saatavilla myös mobiilisovelluksena",
+  "mobileAppAddText": "Voit käyttää Ylitse-palvelua itsellesi sopivalla tavalla, oli se sitten kännykällä tai tietokoneella. Löydät Ylitsen Android- ja iOS-laitteiden sovelluskaupoista.",
   "pageTitle": "Ylitse MentorApp",
   "registerButton": "Rekisteröidy"
 }

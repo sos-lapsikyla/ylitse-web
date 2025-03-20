@@ -178,6 +178,10 @@ section.bg-third {
   background-color: var(--secondary-color);
 }
 
+section.bg-dark {
+  background-color: var(--background-color-dark);
+}
+
 section.max-width {
   max-width: calc(1921px - 4rem);
 }
@@ -274,6 +278,48 @@ section.max-width {
   font-size: 1.313rem;
   font-weight: 600;
 }
+
+/* MOBILE APP ADD*/
+
+.mobile-app-add {
+  align-items: center;
+  display: flex;
+  max-height: 30.44rem;
+  max-width: 87.5rem;
+}
+
+.mobile-app-mock-up {
+  max-width: 42.25rem;
+  padding-top: 1.5rem;
+}
+
+.app-buttons {
+  display: flex;
+  gap: 2rem;
+}
+
+.app-call-to-action {
+  max-width: 20.5rem;
+  height: 5.75rem;
+}
+
+.app-information {
+  padding-bottom: 2.5rem;
+}
+
+.add-button {
+  background: none;
+}
+
+.add-button:hover,
+.add-button:focus,
+.add-button:active,
+.add-button:target {
+  background-color: transparent;
+  background: none;
+  outline: none;
+}
+
 
 /* MENTORS */
 
