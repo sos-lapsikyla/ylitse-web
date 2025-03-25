@@ -279,42 +279,51 @@ section.max-width {
   font-weight: 600;
 }
 
-/* MOBILE APP ADD*/
+/* MOBILE APP AD*/
 
-.mobile-app-add {
+.mobile-app-ad-mobile {
+  display: none;
+}
+
+.mobile-app-ad-desktop {
   align-items: center;
   display: flex;
-  max-height: 30.44rem;
   max-width: 87.5rem;
 }
 
 .mobile-app-mock-up {
+  display: flex;
+  width: 100%;
   max-width: 42.25rem;
+  min-width: 28.25rem;
   padding-top: 1.5rem;
 }
 
-.app-buttons {
+.ad-information {
+  padding-bottom: 2.5rem;
+}
+
+.ad-buttons {
   display: flex;
   gap: 2rem;
 }
 
-.app-call-to-action {
+.ad-call-to-action {
+  display: flex;
+  width: 100%;
   max-width: 20.5rem;
-  height: 5.75rem;
+  height: auto;
+  max-height: 5.75rem;
 }
 
-.app-information {
-  padding-bottom: 2.5rem;
-}
-
-.add-button {
+.ad-button {
   background: none;
 }
 
-.add-button:hover,
-.add-button:focus,
-.add-button:active,
-.add-button:target {
+.ad-button:hover,
+.ad-button:focus,
+.ad-button:active,
+.ad-button:target {
   background-color: transparent;
   background: none;
   outline: none;
@@ -661,8 +670,8 @@ footer a:target {
     border-left: none;
   }
 
-  main > section {
-    margin-bottom: 2.5rem;
+  .information {
+    margin-bottom: 5rem;
   }
 
   .information-footer p {
@@ -747,6 +756,11 @@ footer a:target {
     top: auto;
     right: auto;
   }
+
+  .mobile-app-mock-up {
+    min-width: 20.25rem;
+  }
+
 }
 
 /* MOBILE */
@@ -755,6 +769,11 @@ footer a:target {
   main {
     margin: 0;
   }
+
+  main > section {
+    margin-bottom: 2.5rem;
+  }
+
   p {
     font-size: 1.125rem;
     line-height: 1.6875rem;
@@ -767,7 +786,6 @@ footer a:target {
 
   .header-inner {
     flex-direction: column-reverse;
-    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0.0));
   }
 
   .card {
@@ -802,14 +820,19 @@ footer a:target {
     padding: 0;
   }
 
+  section.no-margin-mobile {
+    margin: 0;
+  }
+
   section.bg-mobile {
     background-color: var(--background-color);
   }
 
+
   .information {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    padding-top: 6rem;
+    padding-top: 3rem;
     margin: 0;
   }
 
@@ -853,6 +876,40 @@ footer a:target {
   .information-footer {
     flex-direction: column;
     order: 3;
+  }
+
+  .mobile-app-ad-mobile {
+    display: flex;
+    flex-direction: column;
+    padding-top: 7rem;
+    padding-bottom: 3rem;
+  }
+
+  .mobile-app-ad-desktop {
+    display: none;
+  }
+
+  .mobile-app-mock-up-mobile {
+    max-width: 100vw;
+    padding: 0 2rem;
+  }
+
+  .ad-information {
+    padding: 0 5rem;
+    text-align: center;
+  }
+
+  .ad-buttons {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 3rem;
+  }
+
+  .ad-call-to-action {
+    max-height: none;
+    max-width: 15rem;
   }
 
   .mentors {
