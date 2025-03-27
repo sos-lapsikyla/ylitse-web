@@ -670,8 +670,8 @@ footer a:target {
     border-left: none;
   }
 
-  main > section {
-    margin-bottom: 2.5rem;
+  .information {
+    margin-bottom: 5rem;
   }
 
   .information-footer p {
@@ -756,6 +756,11 @@ footer a:target {
     top: auto;
     right: auto;
   }
+
+  .mobile-app-mock-up {
+    min-width: 20.25rem;
+  }
+
 }
 
 /* MOBILE */
@@ -764,6 +769,11 @@ footer a:target {
   main {
     margin: 0;
   }
+
+  main > section {
+    margin-bottom: 2.5rem;
+  }
+
   p {
     font-size: 1.125rem;
     line-height: 1.6875rem;
