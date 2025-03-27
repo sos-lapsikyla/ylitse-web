@@ -9,13 +9,16 @@
   "mentorCardMyStory": "Tarinani",
   "mentorCardSkills": "Voin auttaa myös näissä",
   "mentorCardSpokenLanguages": "Puhun näitä kieliä",
-  "middleInfo1Heading": "Mikä on ylitse?",
+  "middleInfo1Heading": "Mikä on Ylitse?",
   "middleInfo1Text": "Maksuttomassa Ylitse-palvelussa SOS-Lapsikylän valmentamat vapaaehtoiset mentorit auttavat 17 vuotta täyttäneitä luottamuksellisesti — saat apua ajasta ja paikasta riippumatta. Vertaismentori voi olla sinulle juttukaveri, opastaja, ymmärtävä kuuntelija tai sparraaja elämän erilaisissa tilanteissa.",
   "middleInfo2Heading": "Mistä voin jutella mentorin kanssa?",
   "middleInfo2Text": "Voit jutella vertaismentoreiden kanssa mistä tahansa mieltäsi painavasta asiasta niin usein kuin haluat. Keskusteluajankohdat päätätte yhdessä.",
   "middleInfo3Heading": "Voinko käyttää palvelua anonyymisti?",
   "middleInfo3Text": "Voit käyttää sovellusta nimettömästi. Valitse vain nimimerkki, josta sinua ei voi tunnistaa. Keskustelut mentoreiden kanssa ovat luottamuksellisia.",
   "middleInfoFooter": "Aloita palvelun käyttö rekisteröitymällä",
+  "mobileAppAdHeading": "Saatavilla myös mobiilisovelluksena",
+  "mobileAppAdText": "Voit käyttää Ylitse-palvelua itsellesi sopivalla tavalla, oli se sitten kännykällä tai tietokoneella. Löydät Ylitsen Android- ja iOS-laitteiden sovelluskaupoista.",
+  "mobileAppDownload": "Lataa Ylitse-sovellus",
   "pageTitle": "Ylitse MentorApp",
   "registerButton": "Rekisteröidy"
 }
