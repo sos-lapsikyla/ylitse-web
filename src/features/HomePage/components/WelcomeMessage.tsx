@@ -23,7 +23,7 @@ const Container = styled.div`
   border-top-left-radius: 15px;
   display: flex;
   opacity: 0.9;
-  padding: 1rem 10rem 1rem 1rem;
+  padding: 1.5rem 10rem 1.5rem 1.5rem;
   position: absolute;
   right: 0;
   top: 50%;
