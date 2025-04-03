@@ -73,5 +73,6 @@
     },
     "text": "Haluatko muuttaa profiilisi tietoja? ",
     "link": "Siirry profiiliin"
-  }
+  },
+  "welcomeMessage": "Tervetuloa, {{user.display_name}}!"
 }
