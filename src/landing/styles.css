@@ -288,7 +288,7 @@ section.max-width {
 .mobile-app-ad-desktop {
   align-items: center;
   display: flex;
-  max-width: 87.5rem;
+  max-width: 85.5rem;
 }
 
 .mobile-app-mock-up {
@@ -759,6 +759,10 @@ footer a:target {
 
   .mobile-app-mock-up {
     min-width: 20.25rem;
+  }
+
+  .mobile-app-ad-desktop {
+    margin: 2rem auto;
   }
 
 }
