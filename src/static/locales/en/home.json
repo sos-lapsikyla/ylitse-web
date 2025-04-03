@@ -73,5 +73,6 @@
     },
     "text": "Do you want to edit your profile information? ",
     "link": "Go to profile"
-  }
+  },
+  "welcomeMessage": "Welcome, {{user.display_name}}!"
 }
