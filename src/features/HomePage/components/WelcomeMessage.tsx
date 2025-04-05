@@ -1,11 +1,13 @@
 import styled from 'styled-components';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { useAppSelector } from '@/store';
 import { useComponentVisible } from '@/hooks/useComponentShow';
+import { selectUser } from '@/features/Authentication/selectors';
+
 import { palette } from '@/components/constants';
 import Text from '@/components/Text';
-import { useAppSelector } from '@/store';
-import { selectUser } from '@/features/Authentication/selectors';
-import { useEffect, useState } from 'react';
 
 const WelcomeMessage = () => {
   const { t } = useTranslation('home');
