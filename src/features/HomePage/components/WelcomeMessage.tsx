@@ -1,16 +1,36 @@
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import { useComponentVisible } from '@/hooks/useComponentShow';
 import { palette } from '@/components/constants';
 import Text from '@/components/Text';
 import { useAppSelector } from '@/store';
 import { selectUser } from '@/features/Authentication/selectors';
+import { useEffect, useState } from 'react';
 
 const WelcomeMessage = () => {
   const { t } = useTranslation('home');
   const user = useAppSelector(selectUser);
 
+  const [shouldCheck, setShouldCheck] = useState(true);
+  const { ref, isComponentVisible, setIsComponentVisible } =
+    useComponentVisible<HTMLDivElement>(false);
+
+  useEffect(() => {
+    if (shouldCheck) {
+      const fromLogin = sessionStorage.getItem('fromLogin') === 'true';
+      console.log('fromLogin flag:', fromLogin);
+      if (fromLogin) {
+        setIsComponentVisible(true);
+      }
+      sessionStorage.removeItem('fromLogin');
+      setShouldCheck(false);
+    }
+  }, [shouldCheck, setIsComponentVisible]);
+
+  if (!isComponentVisible) return null;
+
   return (
-    <Container>
+    <Container ref={ref}>
       <Text variant="boldBaloo">{t('welcomeMessage', { user })}</Text>
     </Container>
   );
