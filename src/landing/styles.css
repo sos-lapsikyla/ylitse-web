@@ -281,11 +281,11 @@ section.max-width {
 
 /* MOBILE APP AD*/
 
-.mobile-app-ad-mobile {
+.mobile-app-mobile {
   display: none;
 }
 
-.mobile-app-ad-desktop {
+.mobile-app-desktop {
   align-items: center;
   display: flex;
   max-width: 85.5rem;
@@ -299,16 +299,16 @@ section.max-width {
   padding-top: 1.5rem;
 }
 
-.ad-information {
+.app-information {
   padding-bottom: 2.5rem;
 }
 
-.ad-buttons {
+.app-buttons {
   display: flex;
   gap: 2rem;
 }
 
-.ad-call-to-action {
+.app-call-to-action {
   display: flex;
   width: 100%;
   max-width: 20.5rem;
@@ -316,14 +316,14 @@ section.max-width {
   max-height: 5.75rem;
 }
 
-.ad-button {
+.app-button {
   background: none;
 }
 
-.ad-button:hover,
-.ad-button:focus,
-.ad-button:active,
-.ad-button:target {
+.app-button:hover,
+.app-button:focus,
+.app-button:active,
+.app-button:target {
   background-color: transparent;
   background: none;
   outline: none;
@@ -882,14 +882,14 @@ footer a:target {
     order: 3;
   }
 
-  .mobile-app-ad-mobile {
+  .mobile-app-mobile {
     display: flex;
     flex-direction: column;
     padding-top: 7rem;
     padding-bottom: 3rem;
   }
 
-  .mobile-app-ad-desktop {
+  .mobile-app-desktop {
     display: none;
   }
 
@@ -898,12 +898,12 @@ footer a:target {
     padding: 0 2rem;
   }
 
-  .ad-information {
+  .app-information {
     padding: 0 5rem;
     text-align: center;
   }
 
-  .ad-buttons {
+  .app-buttons {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -911,7 +911,7 @@ footer a:target {
     padding: 0 3rem;
   }
 
-  .ad-call-to-action {
+  .app-call-to-action {
     max-height: none;
     max-width: 15rem;
   }
