@@ -54,6 +54,7 @@
 
       // Redirect to root
       if (updateUserResponse.ok) {
+        sessionStorage.setItem('fromAuth', 'true');
         window.location.replace('/');
       }
     } catch (error) {
