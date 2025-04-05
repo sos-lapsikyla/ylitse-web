@@ -11,21 +11,20 @@ const WelcomeMessage = () => {
   const { t } = useTranslation('home');
   const user = useAppSelector(selectUser);
 
-  const [shouldCheck, setShouldCheck] = useState(true);
+  const [shouldCheckPath, setShouldCheckPath] = useState(true);
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible<HTMLDivElement>(false);
 
   useEffect(() => {
-    if (shouldCheck) {
-      const fromLogin = sessionStorage.getItem('fromLogin') === 'true';
-      console.log('fromLogin flag:', fromLogin);
-      if (fromLogin) {
+    if (shouldCheckPath) {
+      const fromAuth = sessionStorage.getItem('fromAuth') === 'true';
+      if (fromAuth) {
         setIsComponentVisible(true);
       }
-      sessionStorage.removeItem('fromLogin');
-      setShouldCheck(false);
+      sessionStorage.removeItem('fromAuth');
+      setShouldCheckPath(false);
     }
-  }, [shouldCheck, setIsComponentVisible]);
+  }, [shouldCheckPath, setIsComponentVisible]);
 
   if (!isComponentVisible) return null;
 

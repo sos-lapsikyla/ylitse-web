@@ -22,7 +22,7 @@
           throw new TypeError("Couldn't log in.");
         })
         .then(function () {
-          sessionStorage.setItem('fromLogin', 'true');
+          sessionStorage.setItem('fromAuth', 'true');
           window.location.href = '/';
         })
         .catch(function (error) {
