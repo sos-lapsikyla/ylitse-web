@@ -288,32 +288,31 @@ section.max-width {
 .mobile-app-desktop {
   align-items: center;
   display: flex;
-  max-width: 85.5rem;
+  margin: -1.5rem auto;
 }
 
 .mobile-app-mock-up {
   display: flex;
   width: 100%;
-  max-width: 42.25rem;
-  min-width: 28.25rem;
-  padding-top: 1.5rem;
+  max-width: 47.56rem;
+  min-width: 25.11rem;
 }
 
 .app-information {
   padding-bottom: 2.5rem;
+  max-width: 47.56rem;
 }
 
 .app-buttons {
   display: flex;
-  gap: 2rem;
+  gap: 1.2rem;
 }
 
 .app-call-to-action {
   display: flex;
   width: 100%;
-  max-width: 20.5rem;
   height: auto;
-  max-height: 5.75rem;
+  max-height: 4.7rem;
 }
 
 .app-button {
@@ -616,6 +615,11 @@ footer a:target {
     font-size: 2.1875rem;
     line-height: 2.25rem;
   }
+
+  .mobile-app-desktop {
+    margin: 1rem auto;
+  }
+
 }
 
 /* TABLET */
@@ -663,6 +667,14 @@ footer a:target {
   nav {
     flex-direction: column;
     gap: 1.5rem;
+  }
+
+  .app-information {
+    max-width: none;
+  }
+
+  .app-buttons {
+    max-width: 25rem;
   }
 
   .art-container {
@@ -759,10 +771,6 @@ footer a:target {
 
   .mobile-app-mock-up {
     min-width: 20.25rem;
-  }
-
-  .mobile-app-ad-desktop {
-    margin: 2rem auto;
   }
 
 }
@@ -909,6 +917,7 @@ footer a:target {
     flex-direction: column;
     gap: 2rem;
     padding: 0 3rem;
+    max-width: none;
   }
 
   .app-call-to-action {
