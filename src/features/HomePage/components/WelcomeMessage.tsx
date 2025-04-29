@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useAppSelector } from '@/store';
-import { useComponentVisible } from '@/hooks/useComponentShow';
 import { selectUser } from '@/features/Authentication/selectors';
+import { useManualComponentShow } from '@/hooks/useManualComponentShow';
 
 import { palette } from '@/components/constants';
 import Text from '@/components/Text';
@@ -15,7 +15,7 @@ const WelcomeMessage = () => {
 
   const [shouldCheckPath, setShouldCheckPath] = useState(true);
   const { ref, isComponentVisible, setIsComponentVisible } =
-    useComponentVisible<HTMLDivElement>(false);
+    useManualComponentShow<HTMLDivElement>(false);
 
   useEffect(() => {
     if (shouldCheckPath) {
