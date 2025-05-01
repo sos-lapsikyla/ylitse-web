@@ -17,6 +17,7 @@ import { OUTER_HORIZONTAL_MARGIN } from '@/components/constants';
 import PageWithTransition from '@/components/PageWithTransition';
 import ProfileWidget from './components/ProfileWidget';
 import Welcome from './components/Welcome';
+import WelcomeMessage from './components/WelcomeMessage';
 
 const HomePage = () => {
   const hasUnreadMessages = useAppSelector(selectHasUnreadMessages);
@@ -36,6 +37,7 @@ const HomePage = () => {
     <PageWithTransition>
       <TopContainer>
         <Info />
+        <WelcomeMessage />
       </TopContainer>
       <MiddleContainer>
         <InnerContainer>
