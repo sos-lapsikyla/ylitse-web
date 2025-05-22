@@ -13,7 +13,7 @@ import FindMentor from './components/FindMentor';
 import Info from './components/Info';
 import NewestMentors from './components/NewestMentors';
 import NewMessages from './components/NewMessages';
-import { OUTER_HORIZONTAL_MARGIN } from '@/components/constants';
+import { OUTER_HORIZONTAL_MARGIN, palette } from '@/components/constants';
 import PageWithTransition from '@/components/PageWithTransition';
 import ProfileWidget from './components/ProfileWidget';
 import Welcome from './components/Welcome';
@@ -50,7 +50,9 @@ const HomePage = () => {
           <Concepts />
         </InnerContainer>
       </MiddleContainer>
-      <NewestMentors />
+      <BottomContainer>
+        <NewestMentors />
+      </BottomContainer>
     </PageWithTransition>
   );
 };
@@ -72,7 +74,12 @@ const MiddleContainer = styled.div`
   align-self: center;
   display: flex;
   gap: 2rem;
+  max-width: 95rem;
   padding: 6rem ${OUTER_HORIZONTAL_MARGIN};
+`;
+
+const BottomContainer = styled.div`
+  background-color: ${palette.blueWhite};
 `;
 
 const InnerContainer = styled(Column)`

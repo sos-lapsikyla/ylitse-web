@@ -64,7 +64,7 @@ const InfoBoxTitle = styled(Text)`
 `;
 
 const InfoBoxText = styled(Text)`
-  padding: 0 0 0 1.5rem;
+  padding: 0 1.5rem 0 1.5rem;
 `;
 
 const MiddleContainer = styled.div`

@@ -2,14 +2,13 @@ import styled from 'styled-components';
 
 import SvgLogo from '@/static/img/ylitse-logo-small-new.svg';
 import { MOBILE_TRESHOLD } from '@/components/constants';
-import Link from '@/components/Link';
 
 export const LogoContainer = () => {
   return (
     <Container>
-      <Link url={'/'}>
+      <a href="/">
         <Logo />
-      </Link>
+      </a>
     </Container>
   );
 };
@@ -26,6 +25,7 @@ const Logo = styled.div`
 const Container = styled.div`
   color: white;
   display: flex;
+  gap: 0.5rem
   height: 50px;
   margin-left: 10%;
   max-width: fit-content;

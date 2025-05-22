@@ -92,6 +92,8 @@ const Container = styled.div<{ isMobile: boolean }>`
   flex-direction: ${props => (props.isMobile ? 'column' : 'row')};
   gap: 2rem;
   justify-content: center;
+  margin: 0 auto;
+  max-width: 95rem;
   padding: 4rem ${OUTER_HORIZONTAL_MARGIN};
 `;
 

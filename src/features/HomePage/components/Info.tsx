@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
-import {
-  NAVIGATION_HEIGHT,
-  OUTER_HORIZONTAL_MARGIN,
-  palette,
-} from '@/components/constants';
+import { NAVIGATION_HEIGHT, palette } from '@/components/constants';
 import Text from '@/components/Text';
 
 type Props = {
@@ -99,11 +95,15 @@ const Container = styled.div`
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
   height: calc(37rem - ${NAVIGATION_HEIGHT} - 2rem);
   justify-content: center;
-  left: ${OUTER_HORIZONTAL_MARGIN};
+  left: 6rem;
   max-width: 26rem;
   padding: 6rem 3rem 0 3.5rem;
   position: absolute;
   top: 3rem;
+
+  @media only screen and (max-width: 1920px) {
+    left: 6vw;
+  }
 `;
 
 export default Info;
