@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
-import { TABLET_TRESHOLD, MOBILE_TRESHOLD } from '@/components/constants';
+import {
+  TABLET_TRESHOLD,
+  MOBILE_TRESHOLD,
+  HOME_TABLET_TRESHOLD,
+} from '@/components/constants';
 
 /**
  * Checks the width of screen and returns flags for size
@@ -19,8 +23,9 @@ export const useGetLayoutMode = () => {
     };
   }, []);
 
+  const isHomeTablet = width <= HOME_TABLET_TRESHOLD;
   const isTablet = width <= TABLET_TRESHOLD;
   const isMobile = width <= MOBILE_TRESHOLD;
 
-  return { isTablet, isMobile };
+  return { isTablet, isMobile, isHomeTablet };
 };

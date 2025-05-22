@@ -57,6 +57,7 @@ export const OUTER_HORIZONTAL_MARGIN = '6vw';
 
 // Breakpoints
 export const TABLET_TRESHOLD = 1310; // (CHAT_MENU_WIDTH + 5 * CHAT_GAP_WIDTH + CHAT_WINDOW_MIN_WIDTH)
+export const HOME_TABLET_TRESHOLD = 991; // temporary variable, matches landing page breakpoints
 export const MOBILE_TRESHOLD = 768;
 export const breakpoints = {
   mobile: `${MOBILE_TRESHOLD}px`,
