@@ -32,7 +32,7 @@ describe('home', () => {
     cy.url().should('match', /mentors/);
 
     // return to home page
-    cy.get('[href="/"]').click();
+    cy.get('[href="/"]').first().click();
 
     // assure welcome-message is not visible when navigated back to home-page
     cy.getByText('Tervetuloa', 'p').should('not.exist');
