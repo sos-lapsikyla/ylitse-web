@@ -21,10 +21,10 @@ import WelcomeMessage from './components/WelcomeMessage';
 
 const HomePage = () => {
   const hasUnreadMessages = useAppSelector(selectHasUnreadMessages);
-  const { isHomeTablet } = useGetLayoutMode();
+  const { isTabletNarrow } = useGetLayoutMode();
   const mentor = useAppSelector(selectMyMentorProfile);
 
-  return isHomeTablet ? (
+  return isTabletNarrow ? (
     <PageWithTransition>
       <Info isMobile />
       {hasUnreadMessages ? <NewMessages isMobile /> : <Welcome isMobile />}

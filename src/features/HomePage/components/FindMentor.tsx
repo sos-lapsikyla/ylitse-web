@@ -47,6 +47,7 @@ const Container = styled.div<{ isDesktop: boolean }>`
       box-sizing: border-box;
       max-width: 33rem;
       min-height: 26rem;
+      min-width: 20rem;
     `}
 `;
 
