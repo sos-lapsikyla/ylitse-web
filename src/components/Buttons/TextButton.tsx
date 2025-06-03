@@ -46,7 +46,7 @@ const StyledTextButton = styled.button<{
   font-style: normal;
   font-weight: 700;
   line-height: 1.5rem;
-  padding: 0.5rem 2rem;
+  padding: ${({ size }) => (size === 'large' ? '0.58rem 2rem' : '0.5rem 2rem')};
   width: fit-content;
 
   &:hover {

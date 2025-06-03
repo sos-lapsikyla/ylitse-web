@@ -22,7 +22,11 @@ const FindMentor = ({ isMobile = false }: Props) => {
           {t('newestMentors.info.title')}
         </Text>
         <Text color="white">{t('newestMentors.info.text')}</Text>
-        <Button variant="outlineOrange" onClick={navigateToMentors}>
+        <Button
+          size="large"
+          variant="outlineOrange"
+          onClick={navigateToMentors}
+        >
           {t('newestMentors.info.button')}
         </Button>
       </TextContainer>
@@ -47,7 +51,6 @@ const Container = styled.div<{ isDesktop: boolean }>`
       box-sizing: border-box;
       max-width: 33rem;
       min-height: 26rem;
-      min-width: 20rem;
     `}
 `;
 

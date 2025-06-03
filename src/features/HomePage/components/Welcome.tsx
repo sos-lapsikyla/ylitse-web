@@ -45,7 +45,11 @@ const Welcome = ({ isMobile = false }: Props) => {
           {t(`welcome.${userRole}.title`)}
         </Text>
         <Text color="white">{t(`welcome.${userRole}.text`)}</Text>
-        <Button variant="outlineOrange" onClick={navigateBasedOnRole}>
+        <Button
+          size="large"
+          variant="outlineOrange"
+          onClick={navigateBasedOnRole}
+        >
           {t(`welcome.${userRole}.button`)}
         </Button>
       </TextContainer>
