@@ -13,7 +13,7 @@ import FindMentor from './components/FindMentor';
 import Info from './components/Info';
 import NewestMentors from './components/NewestMentors';
 import NewMessages from './components/NewMessages';
-import { OUTER_HORIZONTAL_MARGIN } from '@/components/constants';
+import { OUTER_HORIZONTAL_MARGIN, palette } from '@/components/constants';
 import PageWithTransition from '@/components/PageWithTransition';
 import ProfileWidget from './components/ProfileWidget';
 import Welcome from './components/Welcome';
@@ -21,10 +21,10 @@ import WelcomeMessage from './components/WelcomeMessage';
 
 const HomePage = () => {
   const hasUnreadMessages = useAppSelector(selectHasUnreadMessages);
-  const { isTablet } = useGetLayoutMode();
+  const { isTabletNarrow } = useGetLayoutMode();
   const mentor = useAppSelector(selectMyMentorProfile);
 
-  return isTablet ? (
+  return isTabletNarrow ? (
     <PageWithTransition>
       <Info isMobile />
       {hasUnreadMessages ? <NewMessages isMobile /> : <Welcome isMobile />}
@@ -50,25 +50,36 @@ const HomePage = () => {
           <Concepts />
         </InnerContainer>
       </MiddleContainer>
-      <NewestMentors />
+      <BottomContainer>
+        <NewestMentors />
+      </BottomContainer>
     </PageWithTransition>
   );
 };
 
 const TopContainer = styled.div`
   background: url(${Background});
-  background-position: center;
+  background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 40rem;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  height: 39rem;
+  margin: 0 auto;
+  max-width: 110rem;
   position: relative;
+  width: 100%;
 `;
 
 const MiddleContainer = styled.div`
   align-self: center;
   display: flex;
   gap: 2rem;
-  padding: 4rem ${OUTER_HORIZONTAL_MARGIN};
+  max-width: 95rem;
+  padding: 6rem ${OUTER_HORIZONTAL_MARGIN};
+`;
+
+const BottomContainer = styled.div`
+  background-color: ${palette.blueWhite};
 `;
 
 const InnerContainer = styled(Column)`

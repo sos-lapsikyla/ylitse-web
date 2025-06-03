@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
-import {
-  NAVIGATION_HEIGHT,
-  OUTER_HORIZONTAL_MARGIN,
-  palette,
-} from '@/components/constants';
+import { NAVIGATION_HEIGHT, palette } from '@/components/constants';
 import Text from '@/components/Text';
 
 type Props = {
@@ -39,6 +35,7 @@ const Info = ({ isMobile = false }: Props) => {
     </MobileContainer>
   ) : (
     <Container>
+      <DecorativeBar />
       <Text variant="h1">{t('info.title')}</Text>
       <Text>{t('info.description')}</Text>
       <Text>{`- ${t('info.bullet1')}`}</Text>
@@ -83,16 +80,30 @@ const BoldText = styled.span`
   font-weight: 600;
 `;
 
+const DecorativeBar = styled.div`
+  background-color: ${palette.purpleDark};
+  height: 4px;
+  position: relative;
+  right: 6rem;
+  top: 3rem;
+  width: 79px;
+`;
+
 const Container = styled.div`
   background-color: ${palette.blue2};
-  border-bottom-right-radius: 275px;
+  border-bottom-right-radius: 333px;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
-  height: calc(40rem - ${NAVIGATION_HEIGHT} - 2rem);
-  left: calc(${OUTER_HORIZONTAL_MARGIN} - 2vw);
-  max-width: 25vw;
-  padding: 2rem;
+  height: calc(37rem - ${NAVIGATION_HEIGHT} - 2rem);
+  justify-content: center;
+  left: 6rem;
+  max-width: 26rem;
+  padding: 6rem 3rem 0 3.5rem;
   position: absolute;
-  top: 2rem;
+  top: 3rem;
+
+  @media only screen and (max-width: 1920px) {
+    left: 6vw;
+  }
 `;
 
 export default Info;

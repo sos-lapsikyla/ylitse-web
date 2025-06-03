@@ -31,7 +31,11 @@ const NewMessages = ({ isMobile = false }: Props) => {
           {t('newMessages.title')}
         </Text>
         <Text color="white">{t('newMessages.text')}</Text>
-        <Button variant="outlineOrange" onClick={navigateToNewMessages}>
+        <Button
+          size="large"
+          variant="outlineOrange"
+          onClick={navigateToNewMessages}
+        >
           {t('newMessages.button')}
         </Button>
       </TextContainer>

@@ -22,7 +22,11 @@ const FindMentor = ({ isMobile = false }: Props) => {
           {t('newestMentors.info.title')}
         </Text>
         <Text color="white">{t('newestMentors.info.text')}</Text>
-        <Button variant="outlineOrange" onClick={navigateToMentors}>
+        <Button
+          size="large"
+          variant="outlineOrange"
+          onClick={navigateToMentors}
+        >
           {t('newestMentors.info.button')}
         </Button>
       </TextContainer>
@@ -45,21 +49,20 @@ const Container = styled.div<{ isDesktop: boolean }>`
       border-radius: 10px;
       box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
       box-sizing: border-box;
-      height: 26rem;
-      max-width: 55rem;
+      max-width: 33rem;
+      min-height: 26rem;
     `}
 `;
 
 const TextContainer = styled.div`
-  align-items: center;
   color: ${palette.white};
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
 `;
 
 const Button = styled(TextButton)`
+  align-self: center;
   margin-top: 1rem;
 `;
 
