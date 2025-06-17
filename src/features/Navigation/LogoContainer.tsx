@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import SvgLogo from '@/static/img/ylitse-logo-small-new.svg';
-import { MOBILE_TRESHOLD } from '@/components/constants';
+import { MOBILE_THRESHOLD } from '@/components/constants';
 
 export const LogoContainer = () => {
   return (
@@ -34,7 +34,7 @@ const Container = styled.div`
     margin-left: 4%;
   }
 
-  @media screen and (max-width: ${MOBILE_TRESHOLD}px) {
+  @media screen and (max-width: ${MOBILE_THRESHOLD}px) {
     margin-left: 0;
   }
 `;

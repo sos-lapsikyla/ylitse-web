@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import {
-  TABLET_TRESHOLD,
-  MOBILE_TRESHOLD,
+  TABLET_THRESHOLD,
+  MOBILE_THRESHOLD,
   TABLET_NARROW_THRESHOLD,
 } from '@/components/constants';
 
@@ -25,8 +25,8 @@ export const useGetLayoutMode = () => {
   }, []);
 
   const isTabletNarrow = width <= TABLET_NARROW_THRESHOLD;
-  const isTablet = width <= TABLET_TRESHOLD;
-  const isMobile = width <= MOBILE_TRESHOLD;
+  const isTablet = width <= TABLET_THRESHOLD;
+  const isMobile = width <= MOBILE_THRESHOLD;
 
   return { isTablet, isMobile, isTabletNarrow };
 };
