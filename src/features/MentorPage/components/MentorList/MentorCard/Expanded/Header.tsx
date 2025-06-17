@@ -27,7 +27,7 @@ export const Header = ({
   isNew,
   onDismiss,
 }: Props) => {
-  const { isMobile } = useGetLayoutMode();
+  const { isTabletNarrow } = useGetLayoutMode();
 
   const status = getStatus(isMe, isAvailable, isNew);
 
@@ -38,12 +38,12 @@ export const Header = ({
     empty: palette.purple,
   };
 
-  return isMobile ? (
-    <Container statusColor={statusColors[status]} isMobile>
+  return isTabletNarrow ? (
+    <Container statusColor={statusColors[status]} isTabletNarrow>
       <SpacedRow>
         <Column>
           <Tag status={status} />
-          <ProfilePicture isMe={isMe} isMobile />
+          <ProfilePicture isMe={isMe} isTabletNarrow />
         </Column>
         <BasicInfo isMe={isMe} mentor={mentor} />
         <CloseButton
@@ -54,26 +54,26 @@ export const Header = ({
       </SpacedRow>
     </Container>
   ) : (
-    <Container statusColor={statusColors[status]} isMobile={false}>
+    <Container statusColor={statusColors[status]} isTabletNarrow={false}>
       <Tag status={status} />
-      <ProfilePicture isMe={isMe} isMobile={false} />
+      <ProfilePicture isMe={isMe} isTabletNarrow={false} />
       <BasicInfo isMe={isMe} mentor={mentor} />
     </Container>
   );
 };
 
-const Container = styled.div<{ statusColor: string; isMobile: boolean }>`
+const Container = styled.div<{ statusColor: string; isTabletNarrow: boolean }>`
   background-color: ${({ statusColor }) => statusColor}};
   border-radius: 0.75rem;
   box-sizing: border-box;
   border-radius: 10px;
-  display: ${({ isMobile }) => (isMobile ? 'flex' : '')}
+  display: ${({ isTabletNarrow }) => (isTabletNarrow ? 'flex' : '')}
   flex: 0 0 21vw;
   min-height: 7.5rem;
-  ${({ isMobile }) => !isMobile && css`padding: 2rem;'`}
+  ${({ isTabletNarrow }) => !isTabletNarrow && css`padding: 2rem;'`}
 `;
 
-const ProfilePicture = styled.div<{ isMe: boolean; isMobile: boolean }>`
+const ProfilePicture = styled.div<{ isMe: boolean; isTabletNarrow: boolean }>`
   background-image: ${({ isMe }) =>
     `url(${isMe ? ProfilePicPlaceholderForMe : ProfilePicPlaceholder})`};
   background-repeat: no-repeat;

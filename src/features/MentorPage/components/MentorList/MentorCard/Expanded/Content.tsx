@@ -26,7 +26,7 @@ export const Content = ({
   mentor: { skills, story, languages, buddyId, name, isVacationing },
   onDismiss,
 }: Props) => {
-  const { isMobile } = useGetLayoutMode();
+  const { isTabletNarrow } = useGetLayoutMode();
   const { t } = useTranslation('mentors');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -38,12 +38,12 @@ export const Content = ({
     navigate('/chat');
   };
 
-  const areLanguagesDisplayed = isMobile && languages.length > 0;
+  const areLanguagesDisplayed = isTabletNarrow && languages.length > 0;
   const isStartingConversationDisabled = isMe || isVacationing;
 
   return (
-    <Container isMobile={isMobile}>
-      {!isMobile && (
+    <Container isTabletNarrow={isTabletNarrow}>
+      {!isTabletNarrow && (
         <CloseButton
           onClick={onDismiss}
           variant="closeWithBackground"
@@ -55,7 +55,11 @@ export const Content = ({
         <Text>{story}</Text>
       </div>
       {areLanguagesDisplayed && (
-        <Languages isMe={isMe} isMobile={isMobile} languages={languages} />
+        <Languages
+          isMe={isMe}
+          isTabletNarrow={isTabletNarrow}
+          languages={languages}
+        />
       )}
       <Skills skills={skills} />
       <OpenConversationButton
@@ -70,13 +74,14 @@ export const Content = ({
   );
 };
 
-const Container = styled.div<{ isMobile: boolean }>`
+const Container = styled.div<{ isTabletNarrow: boolean }>`
   display: flex;
   flex: 1;
   flex-direction: column;
   gap: 1.5rem;
   overflow-y: auto;
-  padding: ${({ isMobile }) => (isMobile ? '1rem 1.25rem' : '4rem 5rem')};
+  padding: ${({ isTabletNarrow }) =>
+    isTabletNarrow ? '1rem 1.25rem' : '4rem 5rem'};
 `;
 
 const CloseButton = styled(IconButton)`
@@ -90,7 +95,7 @@ const OpenConversationButton = styled(TextButton)`
   bottom: 0;
   margin-top: auto;
 
-  @media screen and (max-width: ${breakpoints.mobile}) {
+  @media screen and (max-width: ${breakpoints.tabletNarrow}) {
     padding: 0.75rem 3rem;
   }
 `;

@@ -17,7 +17,7 @@ type Props = {
 };
 
 export const MentorCard = ({ mentor, onDismiss }: Props) => {
-  const { isMobile } = useGetLayoutMode();
+  const { isTabletNarrow } = useGetLayoutMode();
   const currentUserId = useAppSelector(selectUserId);
 
   const isLessThan90DaysOld = getIsOlderThanDaysAgo(90, mentor.created);
@@ -26,7 +26,7 @@ export const MentorCard = ({ mentor, onDismiss }: Props) => {
 
   return (
     <Container>
-      <Card isMobile={isMobile}>
+      <Card isTabletNarrow={isTabletNarrow}>
         <Header
           mentor={mentor}
           isAvailable={!mentor.isVacationing}
@@ -44,20 +44,22 @@ export const MentorCard = ({ mentor, onDismiss }: Props) => {
   );
 };
 
-const Card = styled.div<{ isMobile: boolean }>`
+const Card = styled.div<{ isTabletNarrow: boolean }>`
   background-color: ${palette.white};
   border-radius: 10px;
   opacity: 1;
   z-index: 100;
 
-  ${({ isMobile }) =>
-    isMobile
+  ${({ isTabletNarrow }) =>
+    isTabletNarrow
       ? css`
           display: flex;
           flex: 1;
           flex-direction: column;
           margin: 1rem;
           margin-top: 4rem;
+          max-height: 50rem;
+          max-width: 35rem;
         `
       : css`
           display: flex;
@@ -82,12 +84,13 @@ const Container = styled.div`
   width: 100vw;
   z-index: 10;
 
-  @media screen and (max-width: ${breakpoints.mobile}) {
+  @media screen and (max-width: ${breakpoints.tabletNarrow}) {
     display: flex;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    justify-content: center;
   }
 `;
 

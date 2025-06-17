@@ -17,48 +17,55 @@ export const BasicInfo = ({
   mentor: { name, age, region, statusMessage, languages },
   isMe,
 }: Props) => {
-  const { isMobile } = useGetLayoutMode();
+  const { isTabletNarrow } = useGetLayoutMode();
   const { t } = useTranslation('mentors');
-  const areLanguagesDisplayed = !isMobile && languages.length > 0;
+  const areLanguagesDisplayed = !isTabletNarrow && languages.length > 0;
   const isDividerDisplayed = Boolean(age) && Boolean(region);
 
   return (
-    <Container isMobile={isMobile}>
+    <Container isTabletNarrow={isTabletNarrow}>
       <NameText
-        variant={isMobile ? 'h2' : 'h3'}
+        variant={isTabletNarrow ? 'h2' : 'h3'}
         color={isMe ? 'blueDark' : 'white'}
       >
         {name}
       </NameText>
-      {!isMobile && <NameDivider isMe={isMe} />}
+      {!isTabletNarrow && <NameDivider isMe={isMe} />}
       <WrappedText color={isMe ? 'blueDark' : 'white'}>
         {age}
         {t('card.age')}
         {isDividerDisplayed && <Divider>|</Divider>}
         {region}
       </WrappedText>
-      <TruncateText isMobile={isMobile} color={isMe ? 'blueDark' : 'white'}>
+      <TruncateText
+        isTabletNarrow={isTabletNarrow}
+        color={isMe ? 'blueDark' : 'white'}
+      >
         {statusMessage}
       </TruncateText>
       {areLanguagesDisplayed && (
-        <Languages languages={languages} isMe={isMe} isMobile={isMobile} />
+        <Languages
+          languages={languages}
+          isMe={isMe}
+          isTabletNarrow={isTabletNarrow}
+        />
       )}
     </Container>
   );
 };
 
-const Container = styled.div<{ isMobile: boolean }>`
+const Container = styled.div<{ isTabletNarrow: boolean }>`
   align-items: center;
   box-sizing: border-box;
   display: flex;
   flex: 1;
   flex-direction: column;
-  margin: ${({ isMobile }) =>
-    isMobile ? '1.5rem auto 0.5rem auto' : ' 0 auto'};
+  margin: ${({ isTabletNarrow }) =>
+    isTabletNarrow ? '1.5rem auto 0.5rem auto' : ' 0 auto'};
   max-width: 70%;
-  padding-bottom: ${({ isMobile }) => (isMobile ? '0' : '5rem')};
+  padding-bottom: ${({ isTabletNarrow }) => (isTabletNarrow ? '0' : '5rem')};
 
-  @media screen and (max-width: ${breakpoints.mobile}) {
+  @media screen and (max-width: ${breakpoints.tabletNarrow}) {
     align-items: flex-start;
     justify-content: center;
     margin-left: -2rem;
@@ -88,11 +95,11 @@ export const WrappedText = styled(Text)`
   margin: 0px;
 `;
 
-export const TruncateText = styled(Text)<{ isMobile: boolean }>`
-  ${({ isMobile }) => `
-    margin: ${isMobile ? '0.25rem 0 0.5rem 0' : '1rem 0 3rem 0'};
-    max-width: ${isMobile ? '100%' : '25vw'};
-    text-align: ${isMobile ? 'left' : 'center'};
+export const TruncateText = styled(Text)<{ isTabletNarrow: boolean }>`
+  ${({ isTabletNarrow }) => `
+    margin: ${isTabletNarrow ? '0.25rem 0 0.5rem 0' : '1rem 0 3rem 0'};
+    max-width: ${isTabletNarrow ? '100%' : '25vw'};
+    text-align: ${isTabletNarrow ? 'left' : 'center'};
   `}
   overflow: hidden;
 `;
