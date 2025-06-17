@@ -62,6 +62,7 @@ export const MOBILE_TRESHOLD = 768;
 export const breakpoints = {
   mobile: `${MOBILE_TRESHOLD}px`,
   tablet: `${TABLET_TRESHOLD}px`,
+  tabletNarrow: `${TABLET_NARROW_THRESHOLD}px`,
 };
 
 export const spacing = {
