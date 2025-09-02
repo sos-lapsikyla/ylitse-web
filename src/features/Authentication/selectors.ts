@@ -32,6 +32,11 @@ export const selectIsMentor = createSelector(
   role => role === 'mentor',
 );
 
+export const selectIsAdmin = createSelector(
+  selectUserRole,
+  role => role === 'admin',
+);
+
 export const selectAppRole = createSelector(
   selectUserRole,
   selectHasBeenChatting,

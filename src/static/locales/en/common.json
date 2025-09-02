@@ -15,6 +15,12 @@
   },
   "footer": "Provided by",
   "navigation": {
+    "admin": {
+      "users": "Users",
+      "statistics": "Statistics",
+      "topics": "Topics",
+      "reports": "Reports"
+    },
     "chat": "Chat",
     "home": "Home",
     "info": {

@@ -13,26 +13,62 @@ import { LogoContainer } from './LogoContainer';
 import InfoDropdown from './InfoDropdown';
 import MobileDropdown from './MobileDropdown';
 import LangDropdown from './LanguageDropdown';
+import { useAppSelector } from '@/store';
+import { selectIsAdmin } from '../Authentication/selectors';
 
 export const Navbar = () => {
   const { isTablet } = useGetLayoutMode();
   const { t } = useTranslation('common');
 
-  const navigationItems = [
-    {
-      text: t('navigation.home'),
-      url: '/',
-    },
-    {
-      text: t('navigation.mentors'),
-      url: '/mentors',
-    },
-    {
-      text: t('navigation.chat'),
-      url: '/chat',
-    },
-    { text: t('navigation.profile'), url: '/profile' },
-  ];
+  const isAdmin = useAppSelector(selectIsAdmin);
+
+  const navigationItems = !isAdmin
+    ? [
+        {
+          text: t('navigation.home'),
+          url: '/',
+        },
+        {
+          text: t('navigation.mentors'),
+          url: '/mentors',
+        },
+        {
+          text: t('navigation.chat'),
+          url: '/chat',
+        },
+        { text: t('navigation.profile'), url: '/profile' },
+      ]
+    : [
+        {
+          text: t('navigation.home'),
+          url: '/',
+        },
+        {
+          text: t('navigation.mentors'),
+          url: '/mentors',
+        },
+        {
+          text: t('navigation.chat'),
+          url: '/chat',
+        },
+        {
+          text: t('navigation.admin.users'),
+          url: '/users',
+        },
+        {
+          text: t('navigation.admin.statistics'),
+          url: '/statistics',
+        },
+        {
+          text: t('navigation.admin.topics'),
+          url: '/topics',
+        },
+        {
+          text: t('navigation.admin.reports'),
+          url: '/reports',
+        },
+        { text: t('navigation.profile'), url: '/profile' },
+      ];
 
   return isTablet ? (
     <Container isTablet={isTablet}>
