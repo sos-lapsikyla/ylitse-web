@@ -19,7 +19,6 @@ import { selectIsAdmin } from '../Authentication/selectors';
 export const Navbar = () => {
   const { isTablet } = useGetLayoutMode();
   const { t } = useTranslation('common');
-
   const isAdmin = useAppSelector(selectIsAdmin);
 
   const navigationItems = !isAdmin
@@ -52,19 +51,19 @@ export const Navbar = () => {
           url: '/chat',
         },
         {
-          text: t('navigation.admin.users'),
+          text: t('navigation.users'),
           url: '/users',
         },
         {
-          text: t('navigation.admin.statistics'),
+          text: t('navigation.statistics'),
           url: '/statistics',
         },
         {
-          text: t('navigation.admin.topics'),
+          text: t('navigation.topics'),
           url: '/topics',
         },
         {
-          text: t('navigation.admin.reports'),
+          text: t('navigation.reports'),
           url: '/reports',
         },
         { text: t('navigation.profile'), url: '/profile' },

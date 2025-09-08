@@ -15,12 +15,10 @@
   },
   "footer": "Palvelun tarjoaa",
   "navigation": {
-    "admin": {
-      "users": "Käyttäjät",
-      "statistics": "Tilastot",
-      "topics": "Aiheet",
-      "reports": "Ilmiannot"
-    },
+    "users": "Käyttäjät",
+    "statistics": "Tilastot",
+    "topics": "Aiheet",
+    "reports": "Ilmiannot",
     "chat": "Chat",
     "home": "Koti",
     "info": {
