@@ -1,3 +1,7 @@
 {
-  "title": "Käyttäjät"
+  "title": "Käyttäjät",
+  "notification": {
+    "parsingUsersError": "Parsing failed",
+    "fetchingUsersError": "Fetching failed"
+  }
 }

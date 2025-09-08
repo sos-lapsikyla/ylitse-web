@@ -8,11 +8,19 @@ import {
   palette,
 } from '@/components/constants';
 import PageWithTransition from '@/components/PageWithTransition';
+import UserCard from './components/UserCard';
 import Text from '@/components/Text';
+import { useAppSelector } from '@/store';
 
-const UsersPage = () => {
+import { selectAllManagedUsers } from '../UserManagement/selectors';
+
+const UsersPage = ({}) => {
   const { t } = useTranslation('users');
   const { isTablet } = useGetLayoutMode();
+  const managedUsers = useAppSelector(selectAllManagedUsers());
+  //  const user: ManagedUser = {id : '1', name: 'Harri Hai', created: 6, userId: '20', role: 'mentor'}
+  const user = managedUsers[4];
+  console.log('moi ' + user);
 
   return (
     <PageWithTransition>
@@ -20,6 +28,7 @@ const UsersPage = () => {
         <Header isMobile={isTablet}>
           <Text variant="h1">{t('title')}</Text>
         </Header>
+        <UserCard user={user}></UserCard>
       </Container>
     </PageWithTransition>
   );
@@ -40,7 +49,7 @@ const Container = styled.div<{ isMobile: boolean }>`
       : css`
           gap: 1rem;
           margin: ${OUTER_VERTICAL_MARGIN} auto;
-          max-width: ${CONTENT_WIDTH};
+          max-width: 92.5rem;
           width: ${CONTENT_WIDTH};
         `}
 `;
