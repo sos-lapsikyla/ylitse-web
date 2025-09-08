@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import process from 'process';
 
 import { selectAppRole } from '@/features/Authentication/selectors';
 import { useAppSelector } from '@/store';
@@ -19,7 +20,10 @@ const Welcome = ({ isMobile = false }: Props) => {
 
   const navigate = useNavigate();
   const navigation = {
-    admin: '/admin',
+    admin:
+      process.env.NODE_ENV === 'development'
+        ? 'http://localhost:3000/'
+        : '/admin',
     freshMentor: '/mentors',
     freshMentee: '/mentors',
     mentor: '/chat',
@@ -29,6 +33,7 @@ const Welcome = ({ isMobile = false }: Props) => {
   const navigateBasedOnRole = () => {
     if (userRole == 'admin') {
       location.href = navigation[userRole];
+      return null;
     }
 
     userRole && navigate(navigation[userRole]);
