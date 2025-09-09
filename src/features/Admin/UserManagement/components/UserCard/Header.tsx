@@ -1,6 +1,7 @@
 // import { useTranslation } from 'react-i18next';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 
+import ProfilePicPlaceholder from '@/static/icons/chat-profilepic.svg';
 import { palette } from '@/components/constants';
 import styled from 'styled-components';
 import { Text } from '@/components/Text/Text';
@@ -14,6 +15,7 @@ export const Header: React.FC<Props> = ({ name }) => {
 
   return (
     <Container isMobile={isMobile}>
+      <ProfilePicture />
       <NameText variant="h2" color="white">
         {name}
       </NameText>
@@ -40,4 +42,13 @@ const NameText = styled(Text)`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+`;
+
+const ProfilePicture = styled.div`
+  background-image: ${ProfilePicPlaceholder};
+  background-repeat: no-repeat;
+  background-size: contain;
+  flex: 0 0 4rem;
+  height: 4rem;
+  width: 4rem;
 `;

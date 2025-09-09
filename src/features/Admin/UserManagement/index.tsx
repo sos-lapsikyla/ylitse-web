@@ -14,7 +14,7 @@ import Text from '@/components/Text';
 import { useAppSelector } from '@/store';
 import { selectAllManagedUsers } from '../UserManagement/selectors';
 import { useGetManagedUsersQuery } from './userManagementApi';
-import type { ManagedUser } from './models';
+import type { ManagedUser } from '../../Admin/UserManagement/models';
 import UserCardList from './components/List';
 import Spinner from '@/components/Spinner';
 

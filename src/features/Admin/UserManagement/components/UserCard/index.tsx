@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 import { CONTENT_WIDTH, palette, spacing } from '@/components/constants';
 import { Header } from './Header';
 import { ManagedUser } from '../../models';
+import CardContent from './CardContent';
 
 type Props = {
   setVisibleCard: (managedUser: ManagedUser) => void;
@@ -17,8 +18,8 @@ export const UserCard: React.FC<Props> = ({ setVisibleCard, managedUser }) => {
 
   return (
     <Container isMobile={isMobile}>
-      <Header name={managedUser.name}></Header>
-      <CardContent isMobile={isMobile}></CardContent>
+      <Header name={managedUser.nickname}></Header>
+      <CardContent managedUser={managedUser} />
     </Container>
   );
 };
@@ -90,15 +91,6 @@ const Container = styled.div<{ isMobile: boolean }>`
           }
         `}
   
-`;
-
-const CardContent = styled.div<{ isMobile: boolean }>`
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: 1.5rem;
-  justify-content: space-between;
-  padding: ${({ isMobile }) => (isMobile ? '1.5rem' : '2.5rem')};
 `;
 
 export default UserCard;

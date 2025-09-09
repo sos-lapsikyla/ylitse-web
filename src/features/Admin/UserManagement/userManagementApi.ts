@@ -1,9 +1,9 @@
 import { parseAndTransformTo } from '../../../utils/http';
 import toast from 'react-hot-toast';
 import { t } from 'i18next';
-import { managedUserListResponseType, toManagedUsertRecord } from './models';
+import { managedUserListResponseType, toManagedUserRecord } from './models';
 
-import { type ManagedUsers } from './models';
+import type { ManagedUsers } from './models';
 
 import { baseApi } from '../../../baseApi';
 
@@ -17,7 +17,7 @@ export const managedUsersApi = baseApi.injectEndpoints({
           response,
           managedUserListResponseType,
           { resources: [] },
-          toManagedUsertRecord,
+          toManagedUserRecord,
           () =>
             toast.error(t('users:notification.parsingUsersError'), {
               id: 'users-parse-failure',
