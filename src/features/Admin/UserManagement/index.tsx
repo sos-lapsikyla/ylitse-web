@@ -16,10 +16,11 @@ import { selectAllManagedUsers } from '../UserManagement/selectors';
 import { useGetManagedUsersQuery } from './userManagementApi';
 import type { ManagedUser } from './models';
 import UserCardList from './components/List';
+import Spinner from '@/components/Spinner';
 
 const UsersPage = () => {
   const { t } = useTranslation('users');
-  const { isTablet, isMobile } = useGetLayoutMode();
+  const { isMobile } = useGetLayoutMode();
   const managedUsers = useAppSelector(selectAllManagedUsers());
   const { isLoading } = useGetManagedUsersQuery();
   const [selectedManagedUser, setSelectedManagedUser] =
@@ -28,14 +29,12 @@ const UsersPage = () => {
   console.log(selectedManagedUser);
 
   const PageContent = isLoading ? (
-    <PageWithTransition>
-      <Container isMobile={isTablet}></Container>
-    </PageWithTransition>
+    <Spinner variant="large" />
   ) : (
     <>
-      <Header isMobile={isTablet}>
+      <PageHeader isMobile={isMobile}>
         <Text variant="h1">{t('title')}</Text>
-      </Header>
+      </PageHeader>
       <UserCardList
         managedUsers={managedUsers}
         setVisibleCard={setSelectedManagedUser}
@@ -45,11 +44,7 @@ const UsersPage = () => {
 
   return (
     <PageWithTransition>
-      {isMobile ? (
-        PageContent
-      ) : (
-        <Container isMobile={isTablet}>{PageContent}</Container>
-      )}
+      <Container isMobile={isMobile}>{PageContent}</Container>
     </PageWithTransition>
   );
 };
@@ -74,7 +69,7 @@ const Container = styled.div<{ isMobile: boolean }>`
         `}
 `;
 
-const Header = styled.div<{ isMobile: boolean }>`
+const PageHeader = styled.div<{ isMobile: boolean }>`
   box-sizing: border-box;
   display: flex;
   justify-content: center;

@@ -14,7 +14,9 @@ export const Header: React.FC<Props> = ({ name }) => {
 
   return (
     <Container isMobile={isMobile}>
-      <NameText variant="h2">{name}</NameText>
+      <NameText variant="h2" color="white">
+        {name}
+      </NameText>
     </Container>
   );
 };
