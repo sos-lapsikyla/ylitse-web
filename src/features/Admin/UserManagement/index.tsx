@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import styled, { css } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
@@ -8,28 +10,46 @@ import {
   palette,
 } from '@/components/constants';
 import PageWithTransition from '@/components/PageWithTransition';
-import UserCard from './components/UserCard';
 import Text from '@/components/Text';
 import { useAppSelector } from '@/store';
-
 import { selectAllManagedUsers } from '../UserManagement/selectors';
+import { useGetManagedUsersQuery } from './userManagementApi';
+import type { ManagedUser } from './models';
+import UserCardList from './components/List';
 
-const UsersPage = ({}) => {
+const UsersPage = () => {
   const { t } = useTranslation('users');
-  const { isTablet } = useGetLayoutMode();
+  const { isTablet, isMobile } = useGetLayoutMode();
   const managedUsers = useAppSelector(selectAllManagedUsers());
-  //  const user: ManagedUser = {id : '1', name: 'Harri Hai', created: 6, userId: '20', role: 'mentor'}
-  const user = managedUsers[4];
-  console.log('moi ' + user);
+  const { isLoading } = useGetManagedUsersQuery();
+  const [selectedManagedUser, setSelectedManagedUser] =
+    useState<ManagedUser | null>(null);
+
+  console.log(selectedManagedUser);
+
+  const PageContent = isLoading ? (
+    <PageWithTransition>
+      <Container isMobile={isTablet}></Container>
+    </PageWithTransition>
+  ) : (
+    <>
+      <Header isMobile={isTablet}>
+        <Text variant="h1">{t('title')}</Text>
+      </Header>
+      <UserCardList
+        managedUsers={managedUsers}
+        setVisibleCard={setSelectedManagedUser}
+      ></UserCardList>
+    </>
+  );
 
   return (
     <PageWithTransition>
-      <Container isMobile={isTablet}>
-        <Header isMobile={isTablet}>
-          <Text variant="h1">{t('title')}</Text>
-        </Header>
-        <UserCard user={user}></UserCard>
-      </Container>
+      {isMobile ? (
+        PageContent
+      ) : (
+        <Container isMobile={isTablet}>{PageContent}</Container>
+      )}
     </PageWithTransition>
   );
 };

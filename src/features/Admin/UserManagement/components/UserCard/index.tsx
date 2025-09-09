@@ -4,23 +4,39 @@ import styled, { css } from 'styled-components';
 import { palette } from '@/components/constants';
 import { Header } from './Header';
 import { ManagedUser } from '../../models';
+import { useGetManagedUsersQuery } from '../../userManagementApi';
+import PageWithTransition from '@/components/PageWithTransition';
 
 type Props = {
-  // setVisibleCard: (user: User) => void;
-  user: ManagedUser;
+  setVisibleCard: (managedUser: ManagedUser) => void;
+  managedUser: ManagedUser;
 };
 
-export const UserCard: React.FC<Props> = ({
-  //  setVisibleCard,
-  user,
-}) => {
+export const UserCard: React.FC<Props> = ({ setVisibleCard, managedUser }) => {
   const { isMobile } = useGetLayoutMode();
+  const { isLoading } = useGetManagedUsersQuery();
 
-  return (
+  console.log(setVisibleCard);
+
+  const PageContent = isLoading ? (
     <Container isMobile={isMobile}>
-      <Header name={user.name}></Header>
       <CardContent isMobile={isMobile}></CardContent>
     </Container>
+  ) : (
+    <Container isMobile={isMobile}>
+      <Header name={managedUser.name}></Header>
+      <CardContent isMobile={isMobile}></CardContent>
+    </Container>
+  );
+
+  return (
+    <PageWithTransition>
+      {isMobile ? (
+        PageContent
+      ) : (
+        <Container isMobile={isMobile}>{PageContent}</Container>
+      )}
+    </PageWithTransition>
   );
 };
 

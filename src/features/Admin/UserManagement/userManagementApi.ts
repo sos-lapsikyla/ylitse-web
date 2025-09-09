@@ -10,8 +10,8 @@ import { baseApi } from '../../../baseApi';
 export const managedUsersApi = baseApi.injectEndpoints({
   endpoints: builder => ({
     getManagedUsers: builder.query<ManagedUsers, void>({
-      query: () => 'users',
-      providesTags: ['users'],
+      query: () => 'accounts',
+      providesTags: ['accounts'],
       transformResponse: (response: unknown) =>
         parseAndTransformTo(
           response,

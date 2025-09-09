@@ -6,7 +6,7 @@ export const selectManagedUsers =
 
 export const selectAllManagedUsers = () =>
   createSelector(selectManagedUsers, managedUsersQuery => {
-    const managedUsers = managedUsersQuery.data ?? {};
-    console.log('kk' + typeof managedUsersQuery);
+    const accounts = managedUsersQuery.data ?? {};
+    const managedUsers = Object.values(accounts);
     return managedUsers;
   });

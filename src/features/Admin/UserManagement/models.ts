@@ -1,15 +1,28 @@
 import * as D from 'io-ts/Decoder';
+import { pipe } from 'fp-ts/lib/function';
 
 export type ApiManagedUser = D.TypeOf<typeof managedUserCodec>;
 
-export const managedUserCodec = D.struct({
+export const role = D.literal('mentee', 'mentor', 'admin');
+
+const managedUserMandatory = D.struct({
   id: D.string,
   login_name: D.string,
-  role: D.string,
+  role: role,
   active: D.boolean,
-  updated: D.string,
   created: D.string,
+  updated: D.string,
 });
+
+const managedUserOptional = D.partial({
+  email: D.string,
+  phone: D.string,
+});
+
+export const managedUserCodec = pipe(
+  managedUserMandatory,
+  D.intersect(managedUserOptional),
+);
 
 export const managedUserListResponseType = D.struct({
   resources: D.array(managedUserCodec),
