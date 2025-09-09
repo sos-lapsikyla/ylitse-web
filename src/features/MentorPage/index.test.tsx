@@ -2,7 +2,7 @@ import AppToaster from '@/components/Toaster';
 import MentorPage from '.';
 import { server } from '@/test/server';
 import { renderWithProviders } from '@/test/testStore';
-import { rest } from 'msw';
+import { http, delay, HttpResponse } from 'msw';
 
 const mentorsResponse = {
   resources: [
@@ -61,8 +61,9 @@ beforeAll(() => {
 afterAll(() => server.close());
 
 server.use(
-  rest.get(`api/mentors`, (_req, res, ctx) => {
-    return res(ctx.json(mentorsResponse), ctx.delay(1000));
+  http.get('api/mentors', async () => {
+    await delay(1000);
+    return HttpResponse.json(mentorsResponse);
   }),
 );
 
@@ -179,11 +180,9 @@ describe('<MentorPage />', () => {
 
   it('wont display mentors if response is not correct', async () => {
     server.use(
-      rest.get(`api/mentors`, (_req, res, ctx) => {
-        return res(
-          ctx.json([{ resources: [{ wrong: 'data' }] }]),
-          ctx.delay(1000),
-        );
+      http.get('api/mentors', async () => {
+        await delay(1000);
+        return HttpResponse.json([{ resources: [{ wrong: 'data' }] }]);
       }),
     );
 

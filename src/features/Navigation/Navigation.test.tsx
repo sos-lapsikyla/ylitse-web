@@ -1,6 +1,6 @@
 import Navigation from './Navigation';
 import { server } from '@/test/server';
-import { rest } from 'msw';
+import { http, HttpResponse } from 'msw';
 import { renderWithStoreProvider } from '@/test/testStore';
 import { act } from '@testing-library/react';
 import { mentorsApi } from '../MentorPage/mentorPageApi';
@@ -24,8 +24,8 @@ afterAll(() => {
 });
 
 server.use(
-  rest.get(`api/mentors`, (_req, res, ctx) => {
-    return res(ctx.json(mentorsResponse), ctx.delay(0));
+  http.get('api/mentors', () => {
+    return HttpResponse.json(mentorsResponse);
   }),
 );
 
