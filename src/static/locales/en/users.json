@@ -1,5 +1,11 @@
 {
   "title": "Users",
+  "card": {
+    "created": "Created",
+    "email": "Email",
+    "publicName": "Public name",
+    "userName": "Username"
+  },
   "notification": {
     "parsingUsersError": "Parsing failed",
     "fetchingUsersError": "Fetching failed"
