@@ -8,19 +8,20 @@ import {
   CONTENT_WIDTH,
   OUTER_VERTICAL_MARGIN,
   palette,
+  spacing,
 } from '@/components/constants';
 import PageWithTransition from '@/components/PageWithTransition';
 import Text from '@/components/Text';
 import { useAppSelector } from '@/store';
 import { selectAllManagedUsers } from '../UserManagement/selectors';
-import { useGetManagedUsersQuery } from './userManagementApi';
-import type { ManagedUser } from '../../Admin/UserManagement/models';
+import { useGetManagedUsersQuery } from '././userManagementApi';
+import type { ManagedUser } from '../UserManagement/models';
 import UserCardList from './components/List';
 import Spinner from '@/components/Spinner';
 
 const UsersPage = () => {
   const { t } = useTranslation('users');
-  const { isMobile } = useGetLayoutMode();
+  const { isTabletNarrow } = useGetLayoutMode();
   const managedUsers = useAppSelector(selectAllManagedUsers());
   const { isLoading } = useGetManagedUsersQuery();
   const [selectedManagedUser, setSelectedManagedUser] =
@@ -32,7 +33,7 @@ const UsersPage = () => {
     <Spinner variant="large" />
   ) : (
     <>
-      <PageHeader isMobile={isMobile}>
+      <PageHeader isMobile={isTabletNarrow}>
         <Text variant="h1">{t('title')}</Text>
       </PageHeader>
       <UserCardList
@@ -44,21 +45,23 @@ const UsersPage = () => {
 
   return (
     <PageWithTransition>
-      <Container isMobile={isMobile}>{PageContent}</Container>
+      <Container isMobile={isTabletNarrow}>{PageContent}</Container>
     </PageWithTransition>
   );
 };
 
 const Container = styled.div<{ isMobile: boolean }>`
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  margin: ${OUTER_VERTICAL_MARGIN} auto;
+  max-width: ${CONTENT_WIDTH};
+  width: ${CONTENT_WIDTH};
   ${({ isMobile }) =>
     isMobile
       ? css`
-          background-color: ${palette.white};
-          padding-bottom: 8rem;
-          padding-top: 3rem;
+          background-color: ${palette.blueLight};
+          flex: 1;
+          padding-bottom: 4rem;
           width: 100%;
         `
       : css`
@@ -67,21 +70,31 @@ const Container = styled.div<{ isMobile: boolean }>`
           max-width: 92.5rem;
           width: ${CONTENT_WIDTH};
         `}
+  @media screen and (max-width: 1500px) {
+    max-width: calc(100vw - (${spacing.layout_spacing} * 2));
+    width: 1130px;
+  }
 `;
 
 const PageHeader = styled.div<{ isMobile: boolean }>`
-  box-sizing: border-box;
+  align-items: center;
   display: flex;
   justify-content: center;
+  margin-bottom: 1rem;
   ${({ isMobile }) =>
-    !isMobile &&
-    css`
-      align-items: center;
-      background-color: ${palette.blue2};
-      border-radius: 10px;
-      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
-      height: 4rem;
-    `}
+    isMobile
+      ? css`
+          background-color: ${palette.blueLight};
+          height: 6rem;
+          margin-bottom: -2rem;
+          width: 100%;
+        `
+      : css`
+          background-color: ${palette.blue2};
+          border-radius: 10px;
+          height: 80px;
+          max-height: 80px;
+        `}
 `;
 
 export default UsersPage;

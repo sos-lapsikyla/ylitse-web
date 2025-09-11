@@ -6,7 +6,7 @@ import { palette } from '@/components/constants';
 import styled from 'styled-components';
 import { WrappedText } from '../Expanded/BasicInfo';
 import ProfilePicPlaceholder from '@/static/icons/chat-profilepic.svg';
-import ProfilePicPlaceholderForMe from '@/static/icons/chat-profilepic-me.svg';
+import ProfilePicPlaceholderForMe from '@/static/icons/chat-profilepic-dark.svg';
 import { Text } from '@/components/Text/Text';
 import { Tag } from './Tag';
 

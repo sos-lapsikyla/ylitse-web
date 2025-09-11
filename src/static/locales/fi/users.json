@@ -9,5 +9,10 @@
   "notification": {
     "parsingUsersError": "Parsing failed",
     "fetchingUsersError": "Fetching failed"
+  },
+  "role": {
+    "admin": "Admin",
+    "mentee": "Aktori",
+    "mentor": "Mentori"
   }
 }

@@ -48,6 +48,7 @@ const Card = styled.div<{ isMobile: boolean }>`
   flex-direction: column;
   gap: 1.5rem;
   justify-content: space-between;
+  max-height: 32.5rem;
   padding: ${({ isMobile }) => (isMobile ? '1.5rem' : '2.5rem')};
 `;
 

@@ -14,11 +14,28 @@ type Props = {
 export const UserCard: React.FC<Props> = ({ setVisibleCard, managedUser }) => {
   const { isMobile } = useGetLayoutMode();
 
-  console.log(setVisibleCard);
+  const isVacationingMentor =
+    managedUser.role === 'mentor' && managedUser.isVacationing === true;
+  const isMentor = managedUser.role === 'mentor' && !managedUser.isVacationing;
+  const isMentee = managedUser.role === 'mentee';
+  const isAdmin = managedUser.role === 'admin';
 
+  console.log(setVisibleCard);
+  console.log(
+    managedUser.role,
+    managedUser.nickname,
+    managedUser.isVacationing,
+    managedUser.birthYear,
+  );
   return (
     <Container isMobile={isMobile}>
-      <Header name={managedUser.nickname}></Header>
+      <Header
+        isAdmin={isAdmin}
+        isMentor={isMentor}
+        isMentee={isMentee}
+        isVacationingMentor={isVacationingMentor}
+        name={managedUser.nickname}
+      />
       <CardContent managedUser={managedUser} />
     </Container>
   );
@@ -29,8 +46,9 @@ const Container = styled.div<{ isMobile: boolean }>`
   border-radius: 0.75rem;
   display: flex;
   flex-direction: column;
-  max-width: 450px;
+  max-width: 440px;
   min-width: 300px;
+  max-height: 42.5rem;
   filter: drop-shadow(-0.5rem 0 0.5rem rgba(0, 0, 0, 0.01)) 
         drop-shadow(0.5rem 0 0.5rem rgba(0, 0, 0, 0.01))
         drop-shadow(0 0.5rem 0.5rem rgba(0, 0, 0, 0.01));

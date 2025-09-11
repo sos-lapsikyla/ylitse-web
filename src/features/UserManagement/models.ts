@@ -5,21 +5,24 @@ export type ApiManagedUser = D.TypeOf<typeof managedUserCodec>;
 
 const role = D.literal('mentee', 'mentor', 'admin');
 
-// nested user object
+// from /accounts
 const userCodec = D.struct({
   id: D.string,
-  displayName: D.string, // nickname
+  displayName: D.string,
   role: role,
   accountId: D.string,
 });
 
-// nested mentor object
+// from /mentors
 const mentorCodec = D.partial({
   birthYear: D.number,
   languages: D.array(D.string),
+  isVacationing: D.boolean,
+  area: D.string,
+  story: D.string,
+  skills: D.array(D.string),
 });
 
-// Main managedUser object
 export const managedUserMandatory = D.struct({
   id: D.string,
   login_name: D.string,
@@ -32,10 +35,6 @@ export const managedUserMandatory = D.struct({
 const managedUserOptional = D.partial({
   email: D.string,
   phone: D.string,
-  area: D.string,
-  story: D.string,
-  skills: D.array(D.string),
-  languages: D.array(D.string),
   user: userCodec,
   mentor: mentorCodec,
 });
@@ -53,8 +52,6 @@ const toManagedUser = ({
   created,
   mentor,
   email,
-  area,
-  story,
 }: ApiManagedUser) => ({
   id,
   role,
@@ -62,16 +59,16 @@ const toManagedUser = ({
   username: user?.displayName ?? login_name,
   nickname: login_name,
   email,
-  area,
-  story,
+  area: mentor?.area,
+  story: mentor?.story,
   created: new Date(created).getTime(),
+  isVacationing: mentor?.isVacationing,
 });
 
 export type ManagedUser = ReturnType<typeof toManagedUser>;
 
 export type ManagedUsersResponse = D.TypeOf<typeof managedUserListResponseType>;
 
-// Response decoder
 export const managedUserListResponseType = D.struct({
   resources: D.array(managedUserCodec),
 });

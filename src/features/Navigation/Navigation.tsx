@@ -6,7 +6,7 @@ import { Logout } from '@/features/Authentication/components/Logout';
 import MentorPage from '@/features/MentorPage';
 import { Navbar } from './Navbar';
 import ProfilePage from '@/features/ProfilePage';
-import UsersPage from '../Admin/UserManagement';
+import UsersPage from '../UserManagement';
 
 const Layout = () => (
   <>

@@ -1,3 +1,4 @@
+import { RoleStatus } from '@/features/UserManagement/components/UserCard/RoleTag';
 import { Status } from '@/features/MentorPage/components/MentorList/MentorCard/List/Tag';
 
 export const getIsOlderThanDaysAgo = (daysAgo: number, compareTime: number) => {
@@ -20,4 +21,17 @@ export const getStatus = (
     return 'new';
   }
   return 'empty';
+};
+
+export const getRoleStatus = (
+  isMentor: boolean,
+  isVacationingMentor: boolean,
+  isMentee: boolean,
+  isAdmin: boolean,
+): RoleStatus => {
+  if (isMentor) return 'mentor';
+  if (isVacationingMentor) return 'vacationingMentor';
+  if (isMentee) return 'mentee';
+  if (isAdmin) return 'admin';
+  return 'default';
 };
