@@ -21,10 +21,7 @@ const RoleTag: React.FC<Props> = ({ role }) => {
     mentor: { text: t('role.mentor'), tagColor: palette.purplePale },
     mentee: { text: t('role.mentee'), tagColor: palette.blueLight },
     admin: { text: t('role.admin'), tagColor: palette.orangeLight },
-    vacationingMentor: {
-      text: t('role.mentor'),
-      tagColor: palette.blueWhite,
-    },
+    vacationingMentor: { text: t('role.mentor'), tagColor: palette.blueWhite },
     default: { text: '', tagColor: palette.purple },
   };
 

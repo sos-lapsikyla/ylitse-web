@@ -49,6 +49,7 @@ const Container = styled.div<{ isMobile: boolean }>`
   max-width: 440px;
   min-width: 300px;
   max-height: 42.5rem;
+  margin-botton: 8rem;
   filter: drop-shadow(-0.5rem 0 0.5rem rgba(0, 0, 0, 0.01)) 
         drop-shadow(0.5rem 0 0.5rem rgba(0, 0, 0, 0.01))
         drop-shadow(0 0.5rem 0.5rem rgba(0, 0, 0, 0.01));

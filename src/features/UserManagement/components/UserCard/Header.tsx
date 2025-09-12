@@ -2,6 +2,7 @@
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 
 import ProfilePicPlaceholder from '@/static/icons/chat-profilepic.svg';
+import ProfilePicPlaceholderDark from '@/static/icons/chat-profilepic-dark.svg';
 import { palette } from '@/components/constants';
 import styled from 'styled-components';
 import { Text } from '@/components/Text/Text';
@@ -16,6 +17,10 @@ type Props = {
   isAdmin: boolean;
 };
 
+interface ProfilePictureProps {
+  variation: string;
+}
+
 export const Header: React.FC<Props> = ({
   name,
   isMentor,
@@ -27,19 +32,41 @@ export const Header: React.FC<Props> = ({
 
   const role = getRoleStatus(isMentor, isVacationingMentor, isMentee, isAdmin);
 
-  const headerColor = {
-    mentor: palette.purpleDark,
-    admin: palette.orange,
-    mentee: palette.blue,
-    default: palette.orangeDark,
-    vacationingMentor: palette.blueGrey,
-  };
+  const headerColorMap = {
+    mentor: {
+      header: palette.purpleDark,
+      text: 'white',
+      profilePictureVariation: ProfilePicPlaceholder,
+    },
+    admin: {
+      header: palette.orange,
+      text: 'blueDark',
+      profilePictureVariation: ProfilePicPlaceholderDark,
+    },
+    mentee: {
+      header: palette.blue,
+      text: 'blueDark',
+      profilePictureVariation: ProfilePicPlaceholderDark,
+    },
+    default: {
+      header: palette.orangeDark,
+      text: 'white',
+      profilePictureVariation: ProfilePicPlaceholder,
+    },
+    vacationingMentor: {
+      header: palette.blueGrey,
+      text: 'white',
+      profilePictureVariation: ProfilePicPlaceholder,
+    },
+  } as const;
 
   return (
-    <Container headerColor={headerColor[role]} isMobile={isMobile}>
+    <Container headerColor={headerColorMap[role].header} isMobile={isMobile}>
       <RoleTag role={role} />
-      <ProfilePicture />
-      <NameText variant="h2" color="white">
+      <ProfilePicture
+        variation={headerColorMap[role].profilePictureVariation}
+      />
+      <NameText variant="h2" color={headerColorMap[role].text}>
         {name}
       </NameText>
     </Container>
@@ -68,8 +95,8 @@ const NameText = styled(Text)`
   white-space: nowrap;
 `;
 
-const ProfilePicture = styled.div`
-  background-image: url(${ProfilePicPlaceholder});
+const ProfilePicture = styled.div<ProfilePictureProps>`
+  background-image: url(${props => props.variation});
   background-repeat: no-repeat;
   background-size: contain;
   flex: 0 0 4rem;
