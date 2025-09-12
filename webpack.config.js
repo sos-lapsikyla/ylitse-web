@@ -83,11 +83,9 @@ module.exports = (env, argv) => {
         BASE_PATH: JSON.stringify(process.env.YLITSE_BASE_PATH || ''),
         COMMIT_HASH: JSON.stringify(commitHash),
       }),
-
       new HtmlWebpackPlugin({
         template: path.join(__dirname, 'src', 'index.html'),
       }),
-
       new CopyWebpackPlugin({
         patterns: [
           {
@@ -116,7 +114,6 @@ module.exports = (env, argv) => {
           },
         ],
       }),
-
       new MiniCssExtractPlugin({
         filename: isProd ? 'css/[name].[contenthash].css' : 'css/[name].css',
       }),

@@ -1,10 +1,22 @@
+import * as OTPAuth from 'otpauth';
+
 import type { Mentee, Mentor } from '../fixtures/accounts';
-import { generateToken } from 'node-2fa';
 
 const API_URL = Cypress.env('apiUrl') || 'http://127.0.0.1:8080';
 const API_USER = Cypress.env('apiUser') || 'admin';
 const API_PASS = Cypress.env('apiPass') || '';
 const MFA_SECRET = Cypress.env('mfaSecret') || '';
+
+const generateTotp = (secret: string) => {
+  const totp = new OTPAuth.TOTP({
+    secret: OTPAuth.Secret.fromBase32(secret),
+    algorithm: 'SHA1',
+    digits: 6,
+    period: 30,
+  });
+
+  return { token: totp.generate() };
+};
 
 /**
  * Get access_token for admin
@@ -21,7 +33,7 @@ const accessToken = (
   password: string,
   mfaSecret?: string,
 ) => {
-  const newSecret = generateToken(mfaSecret ?? '');
+  const newSecret = generateTotp(mfaSecret ?? '');
 
   return cy
     .request({
@@ -33,9 +45,7 @@ const accessToken = (
         ...(newSecret && { mfa_token: newSecret.token }),
       },
     })
-    .then(response => {
-      return response.body.tokens.access_token;
-    });
+    .then(response => response.body.tokens.access_token);
 };
 
 const loginAdmin = () => {

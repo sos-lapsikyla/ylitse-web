@@ -170,15 +170,20 @@ describe('chat', () => {
 
     cy.loginUser(mentor.loginName, mentor.password);
 
-    // see unseen-message-ball
+    // Unseen ball is visible
     cy.get('div[id="unseen-messages-dot-navigation"]').should('be.visible');
-    // go to chat-page and mark message unseen
-    cy.get('[href="/chat"]').click();
-    cy.getByText(message, 'p').should('be.visible');
-    cy.wait(1000);
-    cy.get('[href="/mentors"]').click();
 
-    // unseen-message-ball-disappears
+    // Go to chat page and mark message unseen
+    cy.get('[href="/chat"]').click();
+    cy.location('pathname').should('eq', '/chat');
+    cy.getByText(message, 'p').should('be.visible');
+
+    // Unseen ball should disappear before navigating away
+    cy.get('div[id="unseen-messages-dot-navigation"]').should('not.exist');
+
+    cy.get('[href="/mentors"]').click();
+    cy.location('pathname').should('eq', '/mentors');
+    // Unseen ball still gone
     cy.get('div[id="unseen-messages-dot-navigation"]').should('not.exist');
   });
 
