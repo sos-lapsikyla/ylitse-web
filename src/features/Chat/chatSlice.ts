@@ -29,34 +29,50 @@ const initialState: ChatState = {
 export const chats = createSlice({
   initialState,
   name: 'chats',
-  reducers: {
-    setShowFolders: (state, action: PayloadAction<boolean>) => {
+
+  reducers: create => ({
+    setShowFolders: create.reducer((state, action: PayloadAction<boolean>) => {
       state.showFolders = action.payload;
-    },
-    setActiveFolder: (state, action: PayloadAction<ChatFolder>) => {
-      state.activeFolder = action.payload;
-    },
-    setActiveChat: (state, action: PayloadAction<string>) => {
+    }),
+
+    setActiveFolder: create.reducer(
+      (state, action: PayloadAction<ChatFolder>) => {
+        state.activeFolder = action.payload;
+      },
+    ),
+
+    setActiveChat: create.reducer((state, action: PayloadAction<string>) => {
       state.activeChatId = action.payload;
-    },
-    clearActiveChat: state => {
+    }),
+
+    clearActiveChat: create.reducer(state => {
       state.activeChatId = null;
-    },
-    addPollParam: (state, action: PayloadAction<PollingParam>) => {
-      const currentParams = state.pollingParams ?? [];
-      state.pollingParams = [action.payload, ...currentParams];
-    },
-    setConversation: (state, action: PayloadAction<Conversation>) => {
-      const buddyId = action.payload.buddyId;
-      const isConversationExisting = Boolean(state.chats[buddyId]);
+    }),
 
-      state.activeChatId = buddyId;
+    addPollParam: create.reducer(
+      (state, action: PayloadAction<PollingParam>) => {
+        const currentParams = state.pollingParams ?? [];
+        state.pollingParams = [action.payload, ...currentParams];
+      },
+    ),
 
-      if (!isConversationExisting) {
-        state.chats = { ...state.chats, [buddyId]: toNewBuddy(action.payload) };
-      }
-    },
-  },
+    setConversation: create.reducer(
+      (state, action: PayloadAction<Conversation>) => {
+        const buddyId = action.payload.buddyId;
+        const isConversationExisting = Boolean(state.chats[buddyId]);
+
+        state.activeChatId = buddyId;
+
+        if (!isConversationExisting) {
+          state.chats = {
+            ...state.chats,
+            [buddyId]: toNewBuddy(action.payload),
+          };
+        }
+      },
+    ),
+  }),
+
   extraReducers: builder => {
     builder
       .addMatcher(

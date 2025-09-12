@@ -20,11 +20,8 @@ const LoadingPage = () => {
 
 const Page = styled.div`
   align-items: center;
-  background: linear-gradient(
-      0deg,
-      rgba(74, 54, 201, 0.87),
-      rgba(74, 54, 201, 0.87)
-    ),
+  background:
+    linear-gradient(0deg, rgba(74, 54, 201, 0.87), rgba(74, 54, 201, 0.87)),
     url(${Background});
   background-position: center;
   display: flex;

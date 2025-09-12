@@ -13,12 +13,6 @@
     "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
-  "overrides": [
-    {
-      "files": ["*.json", "*.json5", "*.jsonc"],
-      "parser": "jsonc-eslint-parser"
-    }
-  ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -39,22 +33,44 @@
     "react/prop-types": ["off"],
     "react/react-in-jsx-scope": "off",
     // Rules enabled
-    "@typescript-eslint/ban-types": [
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-unused-vars": [
       "error",
       {
-        "extendDefaults": true,
-        "types": {
-          "{}": true
-        }
+        "caughtErrors": "none"
       }
     ],
-    "@typescript-eslint/no-explicit-any": "error",
-    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-require-imports": [
+      "error",
+      {
+        "allow": ['/licenses.json$']
+      }
+    ],
+    "@typescript-eslint/no-unused-expressions": [
+      "error",
+      {
+        "allowShortCircuit": true,
+        "allowTernary": true
+      }
+    ],
     "better-styled-components/sort-declarations-alphabetically": "error",
     "no-nested-ternary": "error",
+    "no-unused-vars": "off",
+    "no-unused-expressions": "off",
     "prettier/prettier": "error",
     "react-hooks/rules-of-hooks": "error"
   },
+  "overrides": [
+    {
+      "files": ["*.json", "*.json5", "*.jsonc"],
+      "parser": "jsonc-eslint-parser"
+    },{
+      "files": ["webpack.config.js"],
+      "rules": {
+        "@typescript-eslint/no-require-imports": "off"
+      }
+    }
+  ],
   "settings": {
     "react": {
       "version": "detect"

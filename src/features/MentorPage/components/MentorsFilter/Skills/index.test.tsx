@@ -37,19 +37,17 @@ describe('<MentorChips />', () => {
     ).toEqual(true);
   });
 
-  it('Selected chips have different bg', () => {
+  it('Selected chips are rendered correctly', () => {
     const { getByText } = renderWithProviders(<SkillChips {...props} />, {
       preloadedState: {
         mentorsFilter: { searchString: '', selectedSkills: [items[0]] },
       },
     });
 
-    const selectedSkillPill = getByText(items[0]);
-    const notSelectedSkillPill = getByText(items[1]);
+    const selectedSkillPill = getByText(items[0]).closest('button');
+    const notSelectedSkillPill = getByText(items[1]).closest('button');
 
-    const selectedBg = getComputedStyle(selectedSkillPill);
-    const notSelectedBg = getComputedStyle(notSelectedSkillPill);
-
-    expect(selectedBg).not.toEqual(notSelectedBg);
+    expect(selectedSkillPill).toHaveAttribute('aria-pressed', 'true');
+    expect(notSelectedSkillPill).toHaveAttribute('aria-pressed', 'false');
   });
 });

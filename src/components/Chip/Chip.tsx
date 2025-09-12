@@ -24,6 +24,7 @@ const Chip: React.FC<Props> = ({
       onClick={() => onToggle(text)}
       isSelected={isSelected}
       shouldShake={shouldShake}
+      aria-pressed={isSelected}
     >
       <Text variant="chip" color={isSelected ? 'white' : 'blueDark'}>
         {text}

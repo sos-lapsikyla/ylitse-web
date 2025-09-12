@@ -6,7 +6,7 @@ import {
   FetchArgs,
   FetchBaseQueryError,
   fetchBaseQuery,
-} from '@reduxjs/toolkit/dist/query';
+} from '@reduxjs/toolkit/query';
 
 const parse =
   <A, B>(model: D.Decoder<A, B>, onError?: (error: D.DecodeError) => void) =>
@@ -33,7 +33,7 @@ export const parseAndTransformTo = <A, B, C>(
 ) => pipe(response, parse(model, onError), getValueOr(defaultValue), mapper);
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: '/api',
+  baseUrl: new URL('/api', location.origin).href,
 });
 
 export const refreshingBaseQuery: BaseQueryFn<

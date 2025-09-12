@@ -6,7 +6,7 @@ import {
   useGetMessagesQuery,
 } from './features/Chat/chatPageApi';
 import { selectCurrentPollingParams } from './features/Chat/selectors';
-import { skipToken } from '@reduxjs/toolkit/dist/query';
+import { skipToken } from '@reduxjs/toolkit/query';
 
 import Navigation from './features/Navigation';
 import Footer from './components/Footer';

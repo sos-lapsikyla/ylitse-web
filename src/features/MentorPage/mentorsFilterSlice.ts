@@ -13,20 +13,26 @@ const initialState: MentorsFilter = {
 export const mentorsFilter = createSlice({
   initialState: initialState,
   name: 'mentorsFilter',
-  reducers: {
-    changeSearchString: (state, { payload }: PayloadAction<string>) => ({
-      ...state,
-      searchString: payload,
-    }),
-    resetFilters: state => ({
+
+  reducers: create => ({
+    changeSearchString: create.reducer(
+      (state, { payload }: PayloadAction<string>) => ({
+        ...state,
+        searchString: payload,
+      }),
+    ),
+
+    resetFilters: create.reducer(state => ({
       ...state,
       selectedSkills: [],
-    }),
-    resetSearch: state => ({
+    })),
+
+    resetSearch: create.reducer(state => ({
       ...state,
       searchString: '',
-    }),
-    toggleSkill: (state, { payload }: PayloadAction<string>) => {
+    })),
+
+    toggleSkill: create.reducer((state, { payload }: PayloadAction<string>) => {
       const isSkillExisting = state.selectedSkills.find(
         skill => skill === payload,
       );
@@ -38,8 +44,8 @@ export const mentorsFilter = createSlice({
         ...state,
         selectedSkills: nextSkills,
       };
-    },
-  },
+    }),
+  }),
 });
 
 export const selectSelectedSkills = ({ mentorsFilter }: RootState) =>

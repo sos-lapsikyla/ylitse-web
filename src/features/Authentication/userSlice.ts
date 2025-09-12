@@ -11,18 +11,23 @@ const initialState: AppUser = defaultAppUser;
 export const user = createSlice({
   initialState: initialState,
   name: 'user',
-  reducers: {
-    logout: () => initialState,
-    setAccount: (state, action: PayloadAction<Account>) => {
+
+  reducers: create => ({
+    logout: create.reducer(() => initialState),
+
+    setAccount: create.reducer((state, action: PayloadAction<Account>) => {
       state.account = action.payload;
-    },
-    setMentor: (state, action: PayloadAction<ApiMentor>) => {
+    }),
+
+    setMentor: create.reducer((state, action: PayloadAction<ApiMentor>) => {
       state.mentor = action.payload;
-    },
-    setUser: (state, action: PayloadAction<User>) => {
+    }),
+
+    setUser: create.reducer((state, action: PayloadAction<User>) => {
       state.user = action.payload;
-    },
-  },
+    }),
+  }),
+
   extraReducers: builder => {
     builder
       .addMatcher(
