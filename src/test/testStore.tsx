@@ -7,7 +7,7 @@ import { setupStore } from '../store';
 import type { AppStore, RootState } from '../store';
 
 import userEvent from '@testing-library/user-event';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router';
 
 // This type interface extends the default options for render from RTL, as well
 // as allows the user to specify other things such as initialState, store.

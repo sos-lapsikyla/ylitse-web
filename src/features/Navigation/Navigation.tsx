@@ -1,4 +1,5 @@
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Outlet } from 'react-router';
+import { RouterProvider } from 'react-router/dom';
 
 import ChatPage from '@/features/Chat';
 import HomePage from '@/features/HomePage';

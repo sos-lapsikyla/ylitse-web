@@ -1,7 +1,7 @@
 import { palette } from '@/components/constants';
 import styled, { css } from 'styled-components';
 
-import { NavLink as RouterNavLink } from 'react-router-dom';
+import { NavLink as RouterNavLink } from 'react-router';
 import Text from '@/components/Text';
 
 type Props = {

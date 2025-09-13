@@ -1,4 +1,4 @@
-import { useBlocker } from 'react-router-dom';
+import { useBlocker } from 'react-router';
 import { useEffect } from 'react';
 
 import { useConfirm } from '@/features/Confirmation/useConfirm';

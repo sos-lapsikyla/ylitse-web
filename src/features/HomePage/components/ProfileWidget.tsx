@@ -4,7 +4,7 @@ import { type Mentor } from '@/features/MentorPage/models';
 
 import { palette } from '@/components/constants';
 import Text from '@/components/Text';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 type Props = {
   isMobile?: boolean;

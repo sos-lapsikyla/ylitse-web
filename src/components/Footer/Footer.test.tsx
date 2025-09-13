@@ -3,7 +3,7 @@
  */
 import { render } from '@testing-library/react';
 import Footer from './Footer';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router';
 
 describe('<Footer/>', () => {
   it('Footer bar is rendered correctly', () => {

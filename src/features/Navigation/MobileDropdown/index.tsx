@@ -15,7 +15,7 @@ import {
   palette,
 } from '@/components/constants';
 import { Chevron } from '@/components/Icons/Chevron';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import { LanguageItem } from './MobileLangItem';
 import { NavigationItem } from './MobileNavItem';
 import Text from '@/components/Text';

@@ -1,4 +1,4 @@
-import { NavLink as RouterNavLink, useLocation } from 'react-router-dom';
+import { NavLink as RouterNavLink, useLocation } from 'react-router';
 import styled from 'styled-components';
 import { useState } from 'react';
 
