@@ -9,8 +9,8 @@
     "licenses": "Lisenssit",
     "open": "Avaa lisenssit",
     "close": "Sulje lisenssit",
-    "ui": "UI Version: {{uiVersion}}",
-    "api": "API Version: {{apiVersion}}",
+    "ui": "UI-versio: {{uiVersion}}",
+    "api": "API-versio: {{apiVersion}}",
     "noFile": "Lisenssitiedostoa ei löytynyt"
   },
   "footer": "Palvelun tarjoaa",
