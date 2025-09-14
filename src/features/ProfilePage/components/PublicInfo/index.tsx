@@ -137,7 +137,9 @@ const PublicInfo = ({ isMobile = false }: Props) => {
         </TextButton>
         <TextButton
           isDisabled={isSavingDisabled}
-          onClick={saveMentorData}
+          onClick={() => {
+            void saveMentorData();
+          }}
           variant={isSavingDisabled ? 'disabled' : 'dark'}
         >
           {t('public.mentor.save')}

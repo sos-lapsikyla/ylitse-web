@@ -8,8 +8,8 @@ export const Logout = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(authenticationApi.endpoints.logout.initiate());
-  }, []);
+    void dispatch(authenticationApi.endpoints.logout.initiate());
+  }, [dispatch]);
 
   return <Spinner variant="large" />;
 };

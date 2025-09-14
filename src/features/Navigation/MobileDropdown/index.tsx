@@ -39,7 +39,7 @@ const MobileDropdown: React.FC<Props> = ({ items }) => {
     i18n.language === langCode;
 
   const changeLanguage = (langCode: LangCode): void => {
-    i18n.changeLanguage(langCode);
+    void i18n.changeLanguage(langCode);
   };
 
   const [isAboutVisible, setIsAboutVisible] = useState(false);

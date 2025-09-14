@@ -82,7 +82,9 @@ const ActiveWindow = () => {
         />
         {activeChat.status === 'ok' && (
           <MessageField
-            handleSend={handleMessageSend}
+            handleSend={() => {
+              void handleMessageSend();
+            }}
             isInputDisabled={isLoadingSentMessage}
             isSendDisabled={isSendingDisabled}
             message={message}

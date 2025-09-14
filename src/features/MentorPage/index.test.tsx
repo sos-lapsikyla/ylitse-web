@@ -129,7 +129,7 @@ describe('<MentorPage />', () => {
 
     // show the filters
     const showFiltersButton = getByRole('button', { name: /filter/i });
-    user.click(showFiltersButton);
+    void user.click(showFiltersButton);
     await findByText(/filters.clear/i);
 
     // click the skill

@@ -32,7 +32,7 @@ export const Message = ({ folder, buddyId, message }: Props) => {
   const handleMarkSeen = () => {
     if (!userId) return;
 
-    markSeen({ userId, message: toPutMessage(message, buddyId, userId) });
+    void markSeen({ userId, message: toPutMessage(message, buddyId, userId) });
   };
 
   useEffect(() => {

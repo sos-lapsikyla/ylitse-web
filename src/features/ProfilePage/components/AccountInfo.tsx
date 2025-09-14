@@ -41,7 +41,7 @@ const AccountInfo = ({ isMobile = false }: Props) => {
       title: t('account.delete.title'),
     });
     if (isConfirmed) {
-      deleteAccount(id);
+      void deleteAccount(id);
     }
   };
 

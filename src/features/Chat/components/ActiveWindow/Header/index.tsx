@@ -121,7 +121,9 @@ const Header = ({ chat }: Props) => {
       <ButtonsWrapper>
         <Buttons
           chat={chat}
-          confirmStatusChange={confirmAction}
+          confirmStatusChange={(variant: DialogVariant) => {
+            void confirmAction(variant);
+          }}
           openReportModal={() => setIsReportModalOpen(true)}
         />
       </ButtonsWrapper>

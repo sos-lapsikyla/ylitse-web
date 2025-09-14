@@ -10,7 +10,8 @@ type ButtonProps<T extends ElementType> = {
   leftIcon?: ButtonIcon;
   sizeInPx: number;
   text?: { variant: TextVariant; color: Color; text: string };
-} & ComponentPropsWithoutRef<T>;
+  onClick?: React.MouseEventHandler<HTMLElement>;
+} & Omit<ComponentPropsWithoutRef<T>, 'onClick'>;
 
 const Button = <T extends ElementType = 'button'>({
   variant,

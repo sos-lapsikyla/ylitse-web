@@ -36,13 +36,13 @@ describe('<Navigation/>', () => {
     );
 
     act(() => {
-      store.dispatch(mentorsApi.endpoints.getMentors.initiate());
+      void store.dispatch(mentorsApi.endpoints.getMentors.initiate());
       jest.advanceTimersByTime(1000);
     });
 
     // Go to Chat-page
     const link = getByRole('link', { name: 'navigation.mentors' });
-    user.click(link);
+    void user.click(link);
 
     // the mentors should be received
     const heading = await findByRole('heading', { name: 'title' });

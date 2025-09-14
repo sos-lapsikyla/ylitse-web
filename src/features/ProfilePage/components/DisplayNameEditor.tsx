@@ -58,7 +58,9 @@ const DisplayNameEditor = () => {
         </TextButton>
         <TextButton
           isDisabled={isSavingDisabled}
-          onClick={saveDisplayName}
+          onClick={() => {
+            void saveDisplayName();
+          }}
           variant={isSavingDisabled ? 'disabled' : 'dark'}
         >
           {t('account.save')}

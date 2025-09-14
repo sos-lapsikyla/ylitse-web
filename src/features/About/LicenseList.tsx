@@ -7,18 +7,15 @@ import styled, { css } from 'styled-components';
 
 import { useEffect, useState } from 'react';
 
+import licensesJson from '../../../licenses.json' with { type: 'json' };
+
 type LicenseData = {
   name: string;
   licenses: string;
   repository?: string;
 };
 
-type LicensesJson = {
-  [key: string]: {
-    licenses: string;
-    repository?: string;
-  };
-};
+type LicensesJson = Record<string, { licenses: string; repository?: string }>;
 
 export const LicenseModal = () => {
   const { isMobile } = useGetLayoutMode();
@@ -28,8 +25,7 @@ export const LicenseModal = () => {
   useEffect(() => {
     const loadLicenses = () => {
       try {
-        //eslint-disable-next-line @typescript-eslint/no-var-requires
-        const licenses: LicensesJson = require('../../../licenses.json');
+        const licenses = licensesJson as unknown as LicensesJson;
         const licenseData = Object.entries(licenses).map<LicenseData>(
           ([libraryName, libraryData]) => ({
             name: libraryName,

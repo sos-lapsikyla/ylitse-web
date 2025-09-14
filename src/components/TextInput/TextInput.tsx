@@ -37,7 +37,8 @@ type TextInputProps<T extends ElementType> = {
   rightButton?: {
     variant: ButtonIcon;
     sizeInPx: number;
-  } & ComponentPropsWithoutRef<T>;
+    onClick?: React.MouseEventHandler<HTMLElement>;
+  } & Omit<ComponentPropsWithoutRef<T>, 'onClick'>;
   rows?: number;
   onBlur?: () => void;
   onChange: (value: string) => void;

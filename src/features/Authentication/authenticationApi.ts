@@ -18,10 +18,10 @@ export const authenticationApi = baseApi.injectEndpoints({
     }),
     logout: builder.mutation<unknown, void>({
       query: () => 'logout',
-      async onQueryStarted(_, { queryFulfilled }) {
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled;
-          baseApi.util.resetApiState();
+          dispatch(baseApi.util.resetApiState());
         } catch (err) {
           console.error(err);
         }

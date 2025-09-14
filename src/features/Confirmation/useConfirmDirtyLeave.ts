@@ -26,6 +26,6 @@ export const useConfirmDirtyLeave = (isDirty: boolean, config: Dialog) => {
       }
     };
 
-    if (blocker.state === 'blocked') confirmLeave();
+    if (blocker.state === 'blocked') void confirmLeave();
   }, [blocker.state]);
 };

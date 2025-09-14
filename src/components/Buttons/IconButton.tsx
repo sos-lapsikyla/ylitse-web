@@ -7,7 +7,8 @@ export type ButtonProps<T extends ElementType> = {
   isDisabled?: boolean;
   sizeInPx: number;
   variant: ButtonIcon;
-} & ComponentPropsWithoutRef<T>;
+  onClick?: React.MouseEventHandler<HTMLElement>;
+} & Omit<ComponentPropsWithoutRef<T>, 'onClick'>;
 
 const IconButton = <T extends ElementType = 'button'>({
   isDisabled = false,

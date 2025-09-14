@@ -25,10 +25,10 @@ jobs:
           cache: npm
       - name: Install deps
         run: npm ci
-      - name: Lint
-        run: npm run lint
       - name: Create licenses list
         run: npm run licensesjson:create
+      - name: Lint
+        run: npm run lint
       - name: Run unit tests
         run: npm run test:unit
       - name: Clone the back end
