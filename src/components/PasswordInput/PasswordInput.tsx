@@ -25,7 +25,7 @@ export const PasswordInput = ({
   onChange,
   tooltip,
   value,
-}: Props): JSX.Element => {
+}: Props): React.JSX.Element => {
   const { t } = useTranslation('common');
   const inputId = `password-input-${createUniqueId()}`;
 

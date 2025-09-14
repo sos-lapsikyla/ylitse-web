@@ -42,8 +42,9 @@ Cypress.Commands.add('loginUser', (username: string, password: string) => {
   cy.visit('/login/');
   cy.fillInput('username', username);
   cy.fillInput('password', password);
-  cy.get('button[id="submit"]').click();
+  cy.get('button[id="submit"]').should('be.visible').click();
 
+  cy.location('pathname').should('not.include', '/login');
   cy.getByText('Ylitse MentorApp -vertaismentoripalvelu', 'p').should(
     'be.visible',
   );

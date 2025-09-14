@@ -61,7 +61,7 @@ export const TextInput = <T extends ElementType = TextInputElement>({
   placeholder = '',
   type = 'text',
   value,
-}: TextInputProps<T>): JSX.Element => {
+}: TextInputProps<T>): React.JSX.Element => {
   const TextInputElement = variants[variant].element;
   const variantStyles = variants[variant].styles;
 

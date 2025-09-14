@@ -22,7 +22,7 @@ const TextButton = <T extends ElementType = 'button'>({
   size = 'normal',
   variant = 'dark',
   ...rest
-}: ButtonProps<T>): JSX.Element => (
+}: ButtonProps<T>): React.JSX.Element => (
   <StyledTextButton
     disabled={isDisabled}
     size={size}

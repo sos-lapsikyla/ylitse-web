@@ -33,8 +33,8 @@ const MessageList = ({ messageList, status, buddyId, isLoading }: Props) => {
 
   const dispatch = useAppDispatch();
   const oldestMessage = messageList.length > 0 ? messageList[0].id : '0';
-  const historyRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLDivElement>(null);
+  const historyRef = useRef<HTMLDivElement | null>(null);
+  const buttonRef = useRef<HTMLDivElement | null>(null);
 
   const offsets = useMemo(() => ({ bottom: 20, right: 20 }), []);
   const { isScrolled, handleBottomActionClick } = useBottomAction(

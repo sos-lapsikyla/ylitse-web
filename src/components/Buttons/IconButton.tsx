@@ -15,7 +15,7 @@ const IconButton = <T extends ElementType = 'button'>({
   sizeInPx,
   variant,
   ...rest
-}: ButtonProps<T>): JSX.Element => {
+}: ButtonProps<T>): React.JSX.Element => {
   return (
     <Container onClick={onClick}>
       <StyledIconButton

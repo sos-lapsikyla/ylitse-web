@@ -17,7 +17,7 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
 }
 
 export function renderWithProviders(
-  ui: React.ReactElement,
+  ui: React.ReactElement<unknown>,
   {
     preloadedState = {},
     // Automatically create a store instance if no store was passed in
@@ -25,7 +25,7 @@ export function renderWithProviders(
     ...renderOptions
   }: ExtendedRenderOptions = {},
 ) {
-  function Wrapper({ children }: PropsWithChildren): JSX.Element {
+  function Wrapper({ children }: PropsWithChildren): React.JSX.Element {
     return (
       <Provider store={store}>
         <BrowserRouter>{children}</BrowserRouter>
@@ -40,7 +40,7 @@ export function renderWithProviders(
 }
 
 export function renderWithStoreProvider(
-  ui: React.ReactElement,
+  ui: React.ReactElement<unknown>,
   {
     preloadedState = {},
     // Automatically create a store instance if no store was passed in
@@ -48,7 +48,7 @@ export function renderWithStoreProvider(
     ...renderOptions
   }: ExtendedRenderOptions = {},
 ) {
-  function Wrapper({ children }: PropsWithChildren): JSX.Element {
+  function Wrapper({ children }: PropsWithChildren): React.JSX.Element {
     return <Provider store={store}>{children}</Provider>;
   }
   return {

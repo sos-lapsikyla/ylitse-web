@@ -28,7 +28,7 @@ describe('mentor profile', () => {
     cy.getByText('Tilin tiedot', 'h2').should('be.visible');
     cy.getByText('Mentori', 'p').should('be.visible');
     cy.getByText(mentor.loginName, 'p').should('be.visible');
-    cy.getByText(mentor.email, 'p').should('be.visible');
+    cy.getByText(mentor.email!, 'p').should('be.visible');
 
     cy.getByText('Julkiset tiedot', 'h2').should('be.visible');
     cy.getInputByLabel('Julkinen nimimerkki *').should(

@@ -19,7 +19,7 @@ const Button = <T extends ElementType = 'button'>({
   leftIcon,
   onClick,
   ...rest
-}: ButtonProps<T>): JSX.Element => {
+}: ButtonProps<T>): React.JSX.Element => {
   return (
     <StyledButton onClick={onClick} {...rest} aria-label={variant}>
       {leftIcon && <Icon variant={leftIcon} size={sizeInPx} />}

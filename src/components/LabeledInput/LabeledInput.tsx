@@ -29,7 +29,7 @@ export const LabeledInput = ({
   type = 'text',
   value,
   variant,
-}: Props): JSX.Element => {
+}: Props): React.JSX.Element => {
   const inputId = `labeled_input_${createUniqueId()}`;
 
   return (

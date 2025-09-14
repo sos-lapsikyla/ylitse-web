@@ -21,7 +21,7 @@ export const DropdownSearch = ({
   placeholder,
   selectOption,
   setIsDropdownVisible,
-}: Props): JSX.Element => {
+}: Props): React.JSX.Element => {
   const [query, setQuery] = useState('');
 
   // Delay dropdown hide to allow click event on options

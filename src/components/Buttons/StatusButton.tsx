@@ -12,7 +12,7 @@ const StatusButton = <T extends ElementType = 'button'>({
   icon,
   text,
   ...rest
-}: ButtonProps<T>): JSX.Element => (
+}: ButtonProps<T>): React.JSX.Element => (
   <Button
     leftIcon={icon}
     sizeInPx={ICON_SIZES.SMALL}
