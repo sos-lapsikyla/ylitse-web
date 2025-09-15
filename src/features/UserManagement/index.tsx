@@ -4,12 +4,7 @@ import styled, { css } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 
-import {
-  CONTENT_WIDTH,
-  OUTER_VERTICAL_MARGIN,
-  palette,
-  spacing,
-} from '@/components/constants';
+import { OUTER_VERTICAL_MARGIN, palette } from '@/components/constants';
 import PageWithTransition from '@/components/PageWithTransition';
 import Text from '@/components/Text';
 import { useAppSelector } from '@/store';
@@ -21,7 +16,7 @@ import Spinner from '@/components/Spinner';
 
 const UsersPage = () => {
   const { t } = useTranslation('users');
-  const { isTabletNarrow } = useGetLayoutMode();
+  const { isMobile } = useGetLayoutMode();
   const managedUsers = useAppSelector(selectAllManagedUsers());
   const { isLoading } = useGetManagedUsersQuery();
   const [selectedManagedUser, setSelectedManagedUser] =
@@ -33,7 +28,7 @@ const UsersPage = () => {
     <Spinner variant="large" />
   ) : (
     <>
-      <PageHeader isMobile={isTabletNarrow}>
+      <PageHeader isMobile={isMobile}>
         <Text variant="h1">{t('title')}</Text>
       </PageHeader>
       <UserCardList
@@ -45,7 +40,7 @@ const UsersPage = () => {
 
   return (
     <PageWithTransition>
-      <Container isMobile={isTabletNarrow}>{PageContent}</Container>
+      <Container isMobile={isMobile}>{PageContent}</Container>
     </PageWithTransition>
   );
 };
@@ -54,26 +49,20 @@ const Container = styled.div<{ isMobile: boolean }>`
   display: flex;
   flex-direction: column;
   margin: ${OUTER_VERTICAL_MARGIN} auto;
-  max-width: ${CONTENT_WIDTH};
-  width: ${CONTENT_WIDTH};
+  max-width: 95rem;
+  width: 100%;
+
   ${({ isMobile }) =>
     isMobile
       ? css`
           background-color: ${palette.blueLight};
           flex: 1;
           padding-bottom: 4rem;
-          width: 100%;
         `
       : css`
           gap: 1rem;
-          margin: ${OUTER_VERTICAL_MARGIN} auto;
-          max-width: 92.5rem;
-          width: ${CONTENT_WIDTH};
+          width: 90vw;
         `}
-  @media screen and (max-width: 1500px) {
-    max-width: calc(100vw - (${spacing.layout_spacing} * 2));
-    width: 1130px;
-  }
 `;
 
 const PageHeader = styled.div<{ isMobile: boolean }>`
@@ -81,13 +70,15 @@ const PageHeader = styled.div<{ isMobile: boolean }>`
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
+  max-width: 95rem;
+  width: 100%;
+
   ${({ isMobile }) =>
     isMobile
       ? css`
           background-color: ${palette.blueLight};
           height: 6rem;
           margin-bottom: -2rem;
-          width: 100%;
         `
       : css`
           background-color: ${palette.blue2};

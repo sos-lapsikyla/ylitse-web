@@ -34,7 +34,7 @@ export const Header: React.FC<Props> = ({
 
   const headerColorMap = {
     mentor: {
-      header: palette.purpleDark,
+      header: palette.purple,
       text: 'white',
       profilePictureVariation: ProfilePicPlaceholder,
     },
@@ -44,7 +44,7 @@ export const Header: React.FC<Props> = ({
       profilePictureVariation: ProfilePicPlaceholderDark,
     },
     mentee: {
-      header: palette.blue,
+      header: palette.blue2,
       text: 'blueDark',
       profilePictureVariation: ProfilePicPlaceholderDark,
     },

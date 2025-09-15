@@ -18,7 +18,7 @@ const RoleTag: React.FC<Props> = ({ role }) => {
   const { t } = useTranslation('users');
 
   const roleMap = {
-    mentor: { text: t('role.mentor'), tagColor: palette.purplePale },
+    mentor: { text: t('role.mentor'), tagColor: palette.purpleHover },
     mentee: { text: t('role.mentee'), tagColor: palette.blueLight },
     admin: { text: t('role.admin'), tagColor: palette.orangeLight },
     vacationingMentor: { text: t('role.mentor'), tagColor: palette.blueWhite },

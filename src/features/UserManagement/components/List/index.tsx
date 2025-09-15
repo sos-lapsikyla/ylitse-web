@@ -1,7 +1,6 @@
 import type { ManagedUser } from '../../models';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 import styled, { css } from 'styled-components';
-import { CONTENT_WIDTH, spacing } from '@/components/constants';
 import UserCard from '../UserCard';
 
 type Props = {
@@ -26,33 +25,28 @@ const UserCardList: React.FC<Props> = ({ setVisibleCard, managedUsers }) => {
 };
 
 const UserCardsList = styled.div<{ isMobile: boolean }>`
-  display: flex;
-  flex: 1;
+  display: grid;
+  margin-top: 3rem;
+  width: 100%;
+
   ${({ isMobile }) =>
     isMobile
       ? css`
           gap: 1.5rem;
-          overflow: auto;
-          padding-top: 1.5rem;
+          grid-auto-columns: minmax(300px, 90%);
+          grid-auto-columns: 80%;
+          grid-auto-flow: column;
+          overflow-x: auto;
           scroll-snap-type: x mandatory;
-          white-space: nowrap;
+
           &::-webkit-scrollbar {
             display: none;
           }
         `
       : css`
-          flex-wrap: wrap;
-          height: auto;
-          justify-content: stretch;
-          margin-left: calc(${spacing.layout_spacing} * -1);
-          margin-top: ${spacing.layout_spacing};
-          width: calc(${CONTENT_WIDTH} + (${spacing.layout_spacing} * 2));
+          gap: clamp(4rem, 2vw, 1.5rem);
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         `}
-
-  @media screen and (max-width: 1500px) {
-    width: calc(1130px + (${spacing.layout_spacing} * 2));
-    max-width: 100vw;
-  }
 `;
 
 export default UserCardList;
