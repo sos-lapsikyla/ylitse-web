@@ -10,6 +10,7 @@ import Text from '@/components/Text';
 import { useAppSelector } from '@/store';
 import { selectAllManagedUsers } from '../UserManagement/selectors';
 import { useGetManagedUsersQuery } from '././userManagementApi';
+import { useGetMentorsQuery } from '../MentorPage/mentorPageApi';
 import type { ManagedUser } from '../UserManagement/models';
 import UserCardList from './components/List';
 import Spinner from '@/components/Spinner';
@@ -17,11 +18,13 @@ import Spinner from '@/components/Spinner';
 const UsersPage = () => {
   const { t } = useTranslation('users');
   const { isMobile } = useGetLayoutMode();
+  const { isLoading: isMentorsQueryLoading } = useGetMentorsQuery();
+  const { isLoading: isAccountsQueryLoading } = useGetManagedUsersQuery();
   const managedUsers = useAppSelector(selectAllManagedUsers());
-  const { isLoading } = useGetManagedUsersQuery();
   const [selectedManagedUser, setSelectedManagedUser] =
     useState<ManagedUser | null>(null);
 
+  const isLoading = isMentorsQueryLoading || isAccountsQueryLoading;
   console.log(selectedManagedUser);
 
   const PageContent = isLoading ? (

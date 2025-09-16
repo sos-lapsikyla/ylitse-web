@@ -1,5 +1,6 @@
 import { pipe } from 'fp-ts/lib/function';
 import * as D from 'io-ts/Decoder';
+import { mentorCodec } from '../MentorPage/models';
 
 export type ApiManagedUser = D.TypeOf<typeof managedUserCodec>;
 
@@ -7,26 +8,15 @@ const role = D.literal('mentee', 'mentor', 'admin');
 
 // from /accounts
 const userCodec = D.struct({
-  id: D.string,
-  displayName: D.string,
-  role: role,
-  accountId: D.string,
+  login_name: D.string,
 });
 
-// from /mentors
-const mentorCodec = D.partial({
-  birthYear: D.number,
-  languages: D.array(D.string),
-  isVacationing: D.boolean,
-  area: D.string,
-  story: D.string,
-  skills: D.array(D.string),
-});
-
+// from users
 export const managedUserMandatory = D.struct({
   id: D.string,
-  login_name: D.string,
+  display_name: D.string,
   role: role,
+  account_id: D.string,
   active: D.boolean,
   created: D.string,
   updated: D.string,
@@ -44,26 +34,36 @@ export const managedUserCodec = pipe(
   D.intersect(managedUserOptional),
 );
 
-const toManagedUser = ({
+export const toManagedUser = ({
   id,
   role,
-  login_name,
-  user,
+  display_name,
+  // user,
   created,
+  email,
   mentor,
-  email,
-}: ApiManagedUser) => ({
-  id,
-  role,
-  birthYear: mentor?.birthYear,
-  username: user?.displayName ?? login_name,
-  nickname: login_name,
-  email,
-  area: mentor?.area,
-  story: mentor?.story,
-  created: new Date(created).getTime(),
-  isVacationing: mentor?.isVacationing,
-});
+}: ApiManagedUser) => {
+  const account = {
+    id,
+    role,
+    username: display_name,
+    nickname: display_name,
+    email,
+    created: new Date(created).getTime(),
+  };
+
+  if (role === 'mentor' && mentor) {
+    return {
+      ...account,
+      mentor: {
+        ...mentor,
+        isVacationing: mentor.is_vacationing,
+        birthYear: mentor.birth_year,
+      },
+    };
+  }
+  return account;
+};
 
 export type ManagedUser = ReturnType<typeof toManagedUser>;
 

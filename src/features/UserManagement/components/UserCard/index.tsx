@@ -14,19 +14,25 @@ type Props = {
 export const UserCard: React.FC<Props> = ({ setVisibleCard, managedUser }) => {
   const { isMobile } = useGetLayoutMode();
 
+  // console.log('isit',isMentorAccount)
+  // console.log('isvacationingme', isVacationingMentor)
+  //   if (managedUser.role === "mentor" && "mentor" in managedUser && managedUser.mentor.isVacationing) {
+  //   console.log('heii',managedUser.mentor.isVacationing);
+  // }
+  // if (isMentorAccount && 'mentor' in managedUser) {
+  //   console.log('mentor vacation:', managedUser.mentor.gender);
+  // }
+  // const isVacationingMentor = managedUser.role === 'mentor' && managedUser.mentor === true;
+  const isMentorAccount =
+    managedUser.role === 'mentor' && 'mentor' in managedUser;
   const isVacationingMentor =
-    managedUser.role === 'mentor' && managedUser.isVacationing === true;
-  const isMentor = managedUser.role === 'mentor' && !managedUser.isVacationing;
+    isMentorAccount && managedUser.mentor.isVacationing;
+  const isMentor = isMentorAccount && !managedUser.mentor.isVacationing;
   const isMentee = managedUser.role === 'mentee';
   const isAdmin = managedUser.role === 'admin';
 
   console.log(setVisibleCard);
-  console.log(
-    managedUser.role,
-    managedUser.nickname,
-    managedUser.isVacationing,
-    managedUser.birthYear,
-  );
+
   return (
     <Container isMobile={isMobile}>
       <Header

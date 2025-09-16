@@ -10,7 +10,7 @@ import { baseApi } from '../../baseApi';
 export const managedUsersApi = baseApi.injectEndpoints({
   endpoints: builder => ({
     getManagedUsers: builder.query<ManagedUsers, void>({
-      query: () => 'accounts',
+      query: () => 'users',
       providesTags: ['accounts'],
       transformResponse: (response: unknown) =>
         parseAndTransformTo(
@@ -29,30 +29,6 @@ export const managedUsersApi = baseApi.injectEndpoints({
         } catch (err) {
           toast.error(t('users:notification.fetchingUsersError'), {
             id: 'users-fetch-failure',
-          });
-        }
-      },
-    }),
-    getMentors: builder.query<ManagedUsers, void>({
-      query: () => 'mentors',
-      providesTags: ['mentors'],
-      transformResponse: (response: unknown) =>
-        parseAndTransformTo(
-          response,
-          managedUserListResponseType,
-          { resources: [] },
-          toManagedUserRecord,
-          () =>
-            toast.error(t('mentors:notification.parsingMentorsError'), {
-              id: 'mentor-parse-failure',
-            }),
-        ),
-      async onQueryStarted(_, { queryFulfilled }) {
-        try {
-          await queryFulfilled;
-        } catch (err) {
-          toast.error(t('mentors:notification.fetchingMentorsError'), {
-            id: 'mentor-fetch-failure',
           });
         }
       },
