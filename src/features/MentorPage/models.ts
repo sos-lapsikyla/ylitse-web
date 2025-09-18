@@ -27,7 +27,7 @@ export type MentorsResponse = D.TypeOf<typeof mentorListResponseType>;
 
 export type Mentor = ReturnType<typeof toMentor>;
 
-const toMentor = ({
+export const toMentor = ({
   birth_year,
   communication_channels,
   created,

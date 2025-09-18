@@ -8,12 +8,13 @@ import styled from 'styled-components';
 import { Text } from '@/components/Text/Text';
 import RoleTag from './RoleTag';
 import { getRoleStatus } from '@/utils/utils';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   name: string;
-  // age: number;
-  // region: string,
-  // message: string,
+  age: number;
+  region: string;
+  message: string;
   isMentor: boolean;
   isMentee: boolean;
   isVacationingMentor: boolean;
@@ -24,16 +25,17 @@ interface ProfilePictureProps {
   variation: string;
 }
 
-export const Header: React.FC<Props> = ({
+export const MentorHeader: React.FC<Props> = ({
   name,
-  // age,
-  // region,
-  // message,
+  age,
+  region,
+  message,
   isMentor,
   isMentee,
   isAdmin,
   isVacationingMentor,
 }) => {
+  const { t } = useTranslation('users');
   const { isMobile } = useGetLayoutMode();
 
   const role = getRoleStatus(isMentor, isVacationingMentor, isMentee, isAdmin);
@@ -66,15 +68,27 @@ export const Header: React.FC<Props> = ({
     },
   } as const;
 
+  const isDividerDisplayed = Boolean(age) && Boolean(region);
+
   return (
     <Container headerColor={headerColorMap[role].header} isMobile={isMobile}>
       <RoleTag role={role} />
       <ProfilePicture
         variation={headerColorMap[role].profilePictureVariation}
       />
-      <NameText variant="h2" color={headerColorMap[role].text}>
-        {name}
-      </NameText>
+      <BasicInfo>
+        <NameText variant="h2" color={headerColorMap[role].text}>
+          {name}
+        </NameText>
+        <WrappedText color={headerColorMap[role].text}>
+          {age} {t('card.age')}
+          {isDividerDisplayed && <Divider>|</Divider>}
+          {region}
+        </WrappedText>
+        <TruncateText isMobile={isMobile} color={headerColorMap[role].text}>
+          {message}
+        </TruncateText>
+      </BasicInfo>
     </Container>
   );
 };
@@ -96,7 +110,7 @@ const Container = styled.div<{ isMobile: boolean; headerColor: string }>`
 
 const NameText = styled(Text)`
   overflow: hidden;
-  padding-left: 1rem;
+  padding-top: 1rem;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
@@ -108,4 +122,32 @@ const ProfilePicture = styled.div<ProfilePictureProps>`
   flex: 0 0 4rem;
   height: 4rem;
   width: 4rem;
+`;
+
+export const WrappedText = styled(Text)`
+  display: flex;
+  flexwrap: wrap;
+  margin: 0px;
+`;
+
+const BasicInfo = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 0 100%;
+  flex-direction: column;
+  max-width: calc(100% - 3.8rem);
+  padding-left: 1rem;
+`;
+
+const Divider = styled.span`
+  padding-left: 1rem;
+  padding-right: 1rem;
+`;
+
+const TruncateText = styled(Text)<{ isMobile: boolean }>`
+  margin: 0 0 0.5rem 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 `;

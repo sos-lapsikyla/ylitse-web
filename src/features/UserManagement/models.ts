@@ -1,6 +1,6 @@
 import { pipe } from 'fp-ts/lib/function';
 import * as D from 'io-ts/Decoder';
-import { mentorCodec } from '../MentorPage/models';
+import { mentorCodec, toMentor } from '../MentorPage/models';
 
 export type ApiManagedUser = D.TypeOf<typeof managedUserCodec>;
 
@@ -55,11 +55,7 @@ export const toManagedUser = ({
   if (role === 'mentor' && mentor) {
     return {
       ...account,
-      mentor: {
-        ...mentor,
-        isVacationing: mentor.is_vacationing,
-        birthYear: mentor.birth_year,
-      },
+      mentor: toMentor(mentor),
     };
   }
   return account;

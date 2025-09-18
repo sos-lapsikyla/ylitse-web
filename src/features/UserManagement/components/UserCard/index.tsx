@@ -5,6 +5,7 @@ import { palette } from '@/components/constants';
 import { Header } from './Header';
 import { ManagedUser } from '../../models';
 import CardContent from './CardContent';
+import { MentorHeader } from './MentorHeader';
 
 type Props = {
   setVisibleCard: (managedUser: ManagedUser) => void;
@@ -14,15 +15,6 @@ type Props = {
 export const UserCard: React.FC<Props> = ({ setVisibleCard, managedUser }) => {
   const { isMobile } = useGetLayoutMode();
 
-  // console.log('isit',isMentorAccount)
-  // console.log('isvacationingme', isVacationingMentor)
-  //   if (managedUser.role === "mentor" && "mentor" in managedUser && managedUser.mentor.isVacationing) {
-  //   console.log('heii',managedUser.mentor.isVacationing);
-  // }
-  // if (isMentorAccount && 'mentor' in managedUser) {
-  //   console.log('mentor vacation:', managedUser.mentor.gender);
-  // }
-  // const isVacationingMentor = managedUser.role === 'mentor' && managedUser.mentor === true;
   const isMentorAccount =
     managedUser.role === 'mentor' && 'mentor' in managedUser;
   const isVacationingMentor =
@@ -31,17 +23,34 @@ export const UserCard: React.FC<Props> = ({ setVisibleCard, managedUser }) => {
   const isMentee = managedUser.role === 'mentee';
   const isAdmin = managedUser.role === 'admin';
 
+  const mentorAge = isMentorAccount ? managedUser.mentor.age : 0;
+  const mentorRegion = isMentorAccount ? managedUser.mentor.region : '';
+  const mentorMessage = isMentorAccount ? managedUser.mentor.statusMessage : '';
+
   console.log(setVisibleCard);
 
   return (
     <Container isMobile={isMobile}>
-      <Header
-        isAdmin={isAdmin}
-        isMentor={isMentor}
-        isMentee={isMentee}
-        isVacationingMentor={isVacationingMentor}
-        name={managedUser.nickname}
-      />
+      {!isMentorAccount ? (
+        <Header
+          isAdmin={isAdmin}
+          isMentor={isMentor}
+          isMentee={isMentee}
+          isVacationingMentor={isVacationingMentor}
+          name={managedUser.nickname}
+        />
+      ) : (
+        <MentorHeader
+          isAdmin={isAdmin}
+          isMentor={isMentor}
+          isMentee={isMentee}
+          isVacationingMentor={isVacationingMentor}
+          name={managedUser.nickname}
+          age={mentorAge}
+          region={mentorRegion}
+          message={mentorMessage}
+        ></MentorHeader>
+      )}
       <CardContent managedUser={managedUser} />
     </Container>
   );

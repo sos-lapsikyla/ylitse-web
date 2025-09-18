@@ -13,16 +13,13 @@ export const selectAllManagedUsers = () =>
       const accounts = managedAccountsQuery.data ?? {};
       const mentors = mentorsQuery.data ?? {};
       const managedUsers = Object.values(accounts).map(account => {
-        // console.log('account',account)
         if (account.role === 'mentor') {
-          //   console.log('tätä muutetaan', mentors[account.id])
-          //  const mentor = { ...account, mentor: mentors[account.id] }
-          //    console.log('muunnettu mentor account', mentor)
+          const mentor = { ...account, mentor: mentors[account.id] };
+          console.log('muunnettu mentor account', mentor);
           return { ...account, mentor: mentors[account.id] };
         }
         return account;
       });
-      // console.log('kaikki managedUserit', managedUsers)
       return managedUsers;
     },
   );

@@ -1,6 +1,7 @@
 {
   "title": "Users",
   "card": {
+    "age": "y.",
     "created": "Created",
     "email": "Email",
     "publicName": "Public name",

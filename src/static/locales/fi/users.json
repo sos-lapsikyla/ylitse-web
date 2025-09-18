@@ -1,6 +1,7 @@
 {
   "title": "Käyttäjät",
   "card": {
+    "age": "v.",
     "created": "Luotu",
     "email": "Sähköposti",
     "publicName": "Julkinen käyttäjänimi",
