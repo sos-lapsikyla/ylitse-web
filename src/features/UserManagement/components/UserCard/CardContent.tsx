@@ -16,7 +16,7 @@ export const CardContent: React.FC<Props> = ({ managedUser }) => {
     <Card isMobile={isMobile}>
       <TextGroup>
         <Text variant="boldBaloo">{t('card.userName')}</Text>
-        <UserInfoText variant="p">{managedUser.username}</UserInfoText>
+        <UserInfoText variant="p">{managedUser.user?.loginName}</UserInfoText>
       </TextGroup>
       <TextGroup>
         <Text variant="boldBaloo">{t('card.publicName')}</Text>
@@ -24,7 +24,7 @@ export const CardContent: React.FC<Props> = ({ managedUser }) => {
       </TextGroup>
       <TextGroup>
         <Text variant="boldBaloo">{t('card.email')}</Text>
-        <UserInfoText variant="p">{managedUser.email}</UserInfoText>
+        <UserInfoText variant="p">{managedUser.user?.email}</UserInfoText>
       </TextGroup>
       <TextGroup>
         <Text variant="boldBaloo">{t('card.created')}</Text>

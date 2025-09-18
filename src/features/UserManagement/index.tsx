@@ -9,7 +9,10 @@ import PageWithTransition from '@/components/PageWithTransition';
 import Text from '@/components/Text';
 import { useAppSelector } from '@/store';
 import { selectAllManagedUsers } from '../UserManagement/selectors';
-import { useGetManagedUsersQuery } from '././userManagementApi';
+import {
+  useGetManagedAccountsQuery,
+  useGetManagedUsersQuery,
+} from '././userManagementApi';
 import { useGetMentorsQuery } from '../MentorPage/mentorPageApi';
 import type { ManagedUser } from '../UserManagement/models';
 import UserCardList from './components/List';
@@ -19,12 +22,17 @@ const UsersPage = () => {
   const { t } = useTranslation('users');
   const { isMobile } = useGetLayoutMode();
   const { isLoading: isMentorsQueryLoading } = useGetMentorsQuery();
+  const { isLoading: isManagedAccountsQueryLoading } =
+    useGetManagedAccountsQuery();
   const { isLoading: isAccountsQueryLoading } = useGetManagedUsersQuery();
   const managedUsers = useAppSelector(selectAllManagedUsers());
   const [selectedManagedUser, setSelectedManagedUser] =
     useState<ManagedUser | null>(null);
 
-  const isLoading = isMentorsQueryLoading || isAccountsQueryLoading;
+  const isLoading =
+    isMentorsQueryLoading ||
+    isAccountsQueryLoading ||
+    isManagedAccountsQueryLoading;
   console.log(selectedManagedUser);
 
   const PageContent = isLoading ? (

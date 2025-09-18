@@ -25,7 +25,10 @@ const accountOptional = D.partial({
   email: D.string,
 });
 
-const accountCodec = pipe(accountMandatory, D.intersect(accountOptional));
+export const accountCodec = pipe(
+  accountMandatory,
+  D.intersect(accountOptional),
+);
 
 const commonResponse = D.struct({
   account: accountCodec,
