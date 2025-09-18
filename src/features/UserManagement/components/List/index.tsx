@@ -1,6 +1,7 @@
-import type { ManagedUser } from '../../models';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 import styled, { css } from 'styled-components';
+import type { ManagedUser } from '../../models';
+
 import UserCard from '../UserCard';
 
 type Props = {

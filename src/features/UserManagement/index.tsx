@@ -3,10 +3,6 @@ import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
-
-import { OUTER_VERTICAL_MARGIN, palette } from '@/components/constants';
-import PageWithTransition from '@/components/PageWithTransition';
-import Text from '@/components/Text';
 import { useAppSelector } from '@/store';
 import { selectAllManagedUsers } from '../UserManagement/selectors';
 import {
@@ -14,9 +10,14 @@ import {
   useGetManagedUsersQuery,
 } from '././userManagementApi';
 import { useGetMentorsQuery } from '../MentorPage/mentorPageApi';
+
+import { OUTER_VERTICAL_MARGIN, palette } from '@/components/constants';
+import PageWithTransition from '@/components/PageWithTransition';
+import Text from '@/components/Text';
+import Spinner from '@/components/Spinner';
+
 import type { ManagedUser } from '../UserManagement/models';
 import UserCardList from './components/List';
-import Spinner from '@/components/Spinner';
 
 const UsersPage = () => {
   const { t } = useTranslation('users');

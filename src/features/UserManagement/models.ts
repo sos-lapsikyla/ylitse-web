@@ -1,7 +1,8 @@
-import { pipe } from 'fp-ts/lib/function';
 import * as D from 'io-ts/Decoder';
-import { mentorCodec, toMentor } from '../MentorPage/models';
+import { pipe } from 'fp-ts/lib/function';
+
 import { Account, accountCodec } from '../Authentication/models';
+import { mentorCodec, toMentor } from '../MentorPage/models';
 
 export type ApiManagedUser = D.TypeOf<typeof managedUserCodec>;
 
@@ -31,18 +32,18 @@ export const managedUserCodec = pipe(
 export const toManagedUser = ({
   id,
   account_id,
-  role,
-  display_name,
   created,
+  display_name,
+  role,
   mentor,
   user,
 }: ApiManagedUser) => {
   const account = {
     id,
     account_id,
-    role,
-    nickname: display_name,
     created: new Date(created).getTime(),
+    nickname: display_name,
+    role,
     user: user ? toAccount(user) : undefined,
   };
   if (role === 'mentor' && mentor) {
@@ -82,11 +83,7 @@ export const toAccount = ({ id, login_name, email }: Account) => ({
   email,
 });
 
-export type AccountsRecord = Record<string, ReturnType<typeof toAccount>>;
-
-export const toManagedAccountRecord = ({
-  resources,
-}: AccountsResponse): AccountsRecord =>
+export const toManagedAccountRecord = ({ resources }: AccountsResponse) =>
   resources.reduce((acc, apiAccount) => {
     const account = toAccount(apiAccount);
     return { ...acc, [account.id]: account };

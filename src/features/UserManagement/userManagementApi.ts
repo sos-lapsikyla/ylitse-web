@@ -40,7 +40,7 @@ export const managedUsersApi = baseApi.injectEndpoints({
     }),
     getManagedAccounts: builder.query<Accounts, void>({
       query: () => 'accounts',
-      providesTags: ['users'],
+      providesTags: ['accounts'],
       transformResponse: (response: unknown) =>
         parseAndTransformTo(
           response,

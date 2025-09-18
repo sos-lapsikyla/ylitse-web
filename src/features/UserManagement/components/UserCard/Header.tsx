@@ -6,14 +6,12 @@ import ProfilePicPlaceholderDark from '@/static/icons/chat-profilepic-dark.svg';
 import { palette } from '@/components/constants';
 import styled from 'styled-components';
 import { Text } from '@/components/Text/Text';
-import RoleTag from './RoleTag';
+
 import { getRoleStatus } from '@/utils/utils';
+import RoleTag from './RoleTag';
 
 type Props = {
   name: string;
-  // age: number;
-  // region: string,
-  // message: string,
   isMentor: boolean;
   isMentee: boolean;
   isVacationingMentor: boolean;
@@ -26,9 +24,6 @@ interface ProfilePictureProps {
 
 export const Header: React.FC<Props> = ({
   name,
-  // age,
-  // region,
-  // message,
   isMentor,
   isMentee,
   isAdmin,

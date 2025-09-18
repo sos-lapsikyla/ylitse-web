@@ -1,14 +1,14 @@
-// import { useTranslation } from 'react-i18next';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
+import { useTranslation } from 'react-i18next';
 
 import ProfilePicPlaceholder from '@/static/icons/chat-profilepic.svg';
 import ProfilePicPlaceholderDark from '@/static/icons/chat-profilepic-dark.svg';
 import { palette } from '@/components/constants';
 import styled from 'styled-components';
 import { Text } from '@/components/Text/Text';
-import RoleTag from './RoleTag';
+
 import { getRoleStatus } from '@/utils/utils';
-import { useTranslation } from 'react-i18next';
+import RoleTag from './RoleTag';
 
 type Props = {
   name: string;

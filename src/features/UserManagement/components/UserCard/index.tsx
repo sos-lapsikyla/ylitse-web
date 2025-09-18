@@ -2,9 +2,10 @@ import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 
 import styled, { css } from 'styled-components';
 import { palette } from '@/components/constants';
+
+import type { ManagedUser } from '../../models';
 import { Header } from './Header';
-import { ManagedUser } from '../../models';
-import CardContent from './CardContent';
+import { CardContent } from './CardContent';
 import { MentorHeader } from './MentorHeader';
 
 type Props = {

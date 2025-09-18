@@ -1,8 +1,10 @@
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
-import styled from 'styled-components';
-import { ManagedUser } from '../../models';
-import Text from '@/components/Text';
 import { useTranslation } from 'react-i18next';
+
+import styled from 'styled-components';
+import Text from '@/components/Text';
+
+import type { ManagedUser } from '../../models';
 
 type Props = {
   managedUser: ManagedUser;

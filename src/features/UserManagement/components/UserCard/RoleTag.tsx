@@ -1,7 +1,8 @@
-import { palette } from '@/components/constants';
 import { useTranslation } from 'react-i18next';
+
 import styled from 'styled-components';
 import { Text } from '@/components/Text/Text';
+import { palette } from '@/components/constants';
 
 export type RoleStatus =
   | 'admin'
