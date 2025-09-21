@@ -70,7 +70,7 @@ export const variants = {
       fontFamily: '"Source Sans 3"',
       fontSize: '1rem',
       fontStyle: 'normal',
-      fontWeight: 400,
+      fontWeight: 600,
       lineHeight: FOOTER_HEIGHT,
       margin: 0,
     },
