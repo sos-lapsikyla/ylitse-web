@@ -19,7 +19,7 @@ const MentorList: React.FC<Props> = ({ setVisibleCard, mentors }) => {
   return isMentorsEmpty ? (
     <EmptyMentorList />
   ) : (
-    <CardsList isMobile={isMobile} data-testid="mentor-cards-container">
+    <CardsList $isMobile={isMobile} data-testid="mentor-cards-container">
       {mentors.map(mentor => (
         <ListCard
           key={mentor.buddyId}
@@ -31,33 +31,38 @@ const MentorList: React.FC<Props> = ({ setVisibleCard, mentors }) => {
   );
 };
 
-const CardsList = styled.div<{ isMobile: boolean }>`
+const CardsList = styled.div<{ $isMobile: boolean }>`
   display: flex;
   flex: 1;
-  ${({ isMobile }) =>
-    isMobile
+  ${({ $isMobile }) =>
+    $isMobile
       ? css`
+          flex-direction: row;
+          flex-wrap: nowrap;
           gap: 1.5rem;
-          overflow: auto;
+          overflow-x: auto;
+          overflow-y: hidden;
           padding-top: 1.5rem;
+          scroll-padding-inline: 1.5rem;
           scroll-snap-type: x mandatory;
-          white-space: nowrap;
           &::-webkit-scrollbar {
             display: none;
           }
         `
       : css`
+          align-content: stretch;
+          align-items: stretch;
           flex-wrap: wrap;
           height: auto;
-          justify-content: stretch;
+          justify-content: flex-start;
           margin-left: calc(${spacing.layout_spacing} * -1);
           margin-top: ${spacing.layout_spacing};
           width: calc(${CONTENT_WIDTH} + (${spacing.layout_spacing} * 2));
         `}
 
   @media screen and (max-width: 1500px) {
-    width: calc(1130px + (${spacing.layout_spacing} * 2));
     max-width: 100vw;
+    width: calc(1130px + (${spacing.layout_spacing} * 2));
   }
 `;
 

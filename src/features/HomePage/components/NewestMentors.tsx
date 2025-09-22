@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { type Mentor } from '@/features/MentorPage/models';
@@ -22,13 +22,14 @@ const NewestMentors = ({ isMobile = false }: Props) => {
 
   const { isLoading } = useGetMentorsQuery();
   const [selectedMentor, setSelectedMentor] = useState<Mentor | null>(null);
-  const mentors = useAppSelector(selectNewestMentors(2));
+  const newestMentorsSelector = useMemo(() => selectNewestMentors(2), []);
+  const mentors = useAppSelector(newestMentorsSelector);
 
   return (
-    <Container isMobile={isMobile}>
+    <Container $isMobile={isMobile}>
       {isMobile ? (
         <>
-          <Title variant="h2" isMobile={isMobile}>
+          <Title variant="h2" $isMobile={isMobile}>
             {t('newestMentors.title')}
           </Title>
           <MentorContainer>
@@ -39,7 +40,7 @@ const NewestMentors = ({ isMobile = false }: Props) => {
               />
             )}
             {!isLoading && (
-              <MentorCards isMobile={isMobile}>
+              <MentorCards $isMobile={isMobile}>
                 {mentors.map(mentor => (
                   <ListCard
                     key={mentor.buddyId}
@@ -55,7 +56,7 @@ const NewestMentors = ({ isMobile = false }: Props) => {
       ) : (
         <>
           <LeftContainer>
-            <Title variant="h2" isMobile={isMobile}>
+            <Title variant="h2" $isMobile={isMobile}>
               {t('newestMentors.title')}
             </Title>
             <MentorContainer>
@@ -66,7 +67,7 @@ const NewestMentors = ({ isMobile = false }: Props) => {
                 />
               )}
               {!isLoading && (
-                <MentorCards isMobile={isMobile}>
+                <MentorCards $isMobile={isMobile}>
                   {mentors.map(mentor => (
                     <ListCard
                       key={mentor.buddyId}
@@ -86,18 +87,18 @@ const NewestMentors = ({ isMobile = false }: Props) => {
   );
 };
 
-const Container = styled.div<{ isMobile: boolean }>`
+const Container = styled.div<{ $isMobile: boolean }>`
   background-color: ${palette.blueWhite};
   display: flex;
-  flex-direction: ${props => (props.isMobile ? 'column' : 'row')};
-  gap: 2rem;
+  flex-direction: ${props => (props.$isMobile ? 'column' : 'row')};
+  gap: 1rem 2rem;
   justify-content: center;
-  padding: 4rem ${OUTER_HORIZONTAL_MARGIN};
+  padding: 2rem ${OUTER_HORIZONTAL_MARGIN} 4rem ${OUTER_HORIZONTAL_MARGIN};
 `;
 
-const Title = styled(Text)<{ isMobile: boolean }>`
-  ${({ isMobile }) =>
-    isMobile &&
+const Title = styled(Text)<{ $isMobile: boolean }>`
+  ${({ $isMobile }) =>
+    $isMobile &&
     css`
       align-self: center;
     `}
@@ -110,20 +111,26 @@ const MentorContainer = styled.div`
   justify-content: space-between;
 `;
 
-const MentorCards = styled.div<{ isMobile: boolean }>`
+const MentorCards = styled.div<{ $isMobile: boolean }>`
   display: flex;
   gap: 1.5rem;
 
-  ${({ isMobile }) =>
-    isMobile &&
+  ${({ $isMobile }) =>
+    $isMobile &&
     css`
-      gap: 1.5rem;
+      -webkit-overflow-scrolling: touch;
+      flex-wrap: nowrap;
       margin: auto -1rem auto -1rem;
-      overflow: auto;
+      overflow-x: auto;
+      overflow-y: hidden;
       scroll-snap-type: x mandatory;
-      white-space: nowrap;
+
       &::-webkit-scrollbar {
         display: none;
+      }
+
+      & > * {
+        scroll-snap-align: center;
       }
     `}
 `;

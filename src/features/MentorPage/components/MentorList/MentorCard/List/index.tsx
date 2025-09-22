@@ -30,7 +30,7 @@ export const ListCard: React.FC<Props> = ({
   const areLanguagesDisplayed = mentor.languages.length > 0;
 
   return (
-    <Container isHomePage={isHomePage} isMobile={isMobile}>
+    <Container $isHomePage={isHomePage} $isMobile={isMobile}>
       <Header
         name={mentor.name}
         age={mentor.age}
@@ -40,7 +40,7 @@ export const ListCard: React.FC<Props> = ({
         isNew={isLessThan90DaysOld}
         message={mentor.statusMessage}
       />
-      <CardContent isMobile={isMobile}>
+      <CardContent $isMobile={isMobile}>
         <Story story={mentor.story} />
         {areLanguagesDisplayed && <Languages languages={mentor.languages} />}
         <Skills skills={mentor.skills} />
@@ -50,20 +50,19 @@ export const ListCard: React.FC<Props> = ({
   );
 };
 
-const Container = styled.div<{ isHomePage: boolean; isMobile: boolean }>`
+const Container = styled.div<{ $isHomePage: boolean; $isMobile: boolean }>`
   background-color: ${palette.white};
   border-radius: 0.75rem;
   display: flex;
+  filter: drop-shadow(-0.5rem 0 0.5rem rgba(0, 0, 0, 0.01))
+    drop-shadow(0.5rem 0 0.5rem rgba(0, 0, 0, 0.01))
+    drop-shadow(0 0.5rem 0.5rem rgba(0, 0, 0, 0.01));
   flex-direction: column;
   max-width: 450px;
   min-width: 300px;
-  filter: drop-shadow(-0.5rem 0 0.5rem rgba(0, 0, 0, 0.01)) 
-        drop-shadow(0.5rem 0 0.5rem rgba(0, 0, 0, 0.01))
-        drop-shadow(0 0.5rem 0.5rem rgba(0, 0, 0, 0.01));
-}
 
-  ${({ isMobile }) =>
-    isMobile &&
+  ${({ $isMobile }) =>
+    $isMobile &&
     css`
       margin: 1rem 0;
       max-height: 40%;
@@ -79,19 +78,18 @@ const Container = styled.div<{ isHomePage: boolean; isMobile: boolean }>`
       }
     `}
 
-  ${({ isHomePage, isMobile }) =>
-    isHomePage &&
-    !isMobile &&
+  ${({ $isHomePage, $isMobile }) =>
+    $isHomePage &&
+    !$isMobile &&
     css`
       flex: 1;
     `}
 
-  ${({ isHomePage, isMobile }) =>
-    !isHomePage &&
-    !isMobile &&
+  ${({ $isHomePage, $isMobile }) =>
+    !$isHomePage &&
+    !$isMobile &&
     css`
       flex: 0 0 30%;
-      flex-wrap: wrap;
       margin: ${spacing.layout_spacing};
       max-width: calc(
         ((${CONTENT_WIDTH} + ${spacing.layout_spacing} * 2) / 3) -
@@ -126,13 +124,13 @@ const Container = styled.div<{ isHomePage: boolean; isMobile: boolean }>`
     `}
 `;
 
-const CardContent = styled.div<{ isMobile: boolean }>`
+const CardContent = styled.div<{ $isMobile: boolean }>`
   display: flex;
   flex: 1;
   flex-direction: column;
   gap: 1.5rem;
   justify-content: space-between;
-  padding: ${({ isMobile }) => (isMobile ? '1.5rem' : '2.5rem')};
+  padding: ${({ $isMobile }) => ($isMobile ? '1.5rem' : '2.5rem')};
 `;
 
 export default ListCard;

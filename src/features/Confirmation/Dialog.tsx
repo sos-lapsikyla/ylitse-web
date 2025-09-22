@@ -49,7 +49,7 @@ const Dialog = ({
       <Overlay />
       {isMobile ? (
         <MobileContainer>
-          <MobileHeader backgroundColor={borderColor}>
+          <MobileHeader $backgroundColor={borderColor}>
             <img src={iconMap[iconVariant]} />
             <Text variant="h3">{title}</Text>
           </MobileHeader>
@@ -67,7 +67,7 @@ const Dialog = ({
         </MobileContainer>
       ) : (
         <Container>
-          <LeftBorder backgroundColor={borderColor}>
+          <LeftBorder $backgroundColor={borderColor}>
             <Icon src={iconMap[iconVariant]} />
           </LeftBorder>
           <Content>
@@ -116,9 +116,9 @@ const MobileContainer = styled.div`
   z-index: 200;
 `;
 
-const MobileHeader = styled.div<{ backgroundColor: string }>`
+const MobileHeader = styled.div<{ $backgroundColor: string }>`
   align-items: center;
-  background-color: ${({ backgroundColor }) => backgroundColor};
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
   border-radius: 10px 10px 0 0;
   box-sizing: border-box;
   display: flex;
@@ -145,9 +145,9 @@ const Container = styled.div`
   z-index: 200;
 `;
 
-const LeftBorder = styled.div<{ backgroundColor: string }>`
+const LeftBorder = styled.div<{ $backgroundColor: string }>`
   align-items: center;
-  background-color: ${({ backgroundColor }) => backgroundColor};
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
   border-radius: 10px 0 0 10px;
   display: flex;
   justify-content: center;

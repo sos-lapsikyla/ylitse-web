@@ -70,7 +70,7 @@ export const Navbar = () => {
       ];
 
   return isTablet ? (
-    <Container isTablet={isTablet}>
+    <Container $isTablet={isTablet}>
       <LogoContainer />
       <MobileDropdown items={navigationItems} />
     </Container>
@@ -87,19 +87,20 @@ export const Navbar = () => {
   );
 };
 
-export const Container = styled.div<{ isTablet?: boolean }>`
+export const Container = styled.div<{ $isTablet?: boolean }>`
   align-items: center;
   background-color: ${palette.purple};
   display: flex;
-  flex-wrap: row;
+  flex-direction: row;
+  flex-wrap: nowrap;
   height: ${NAVIGATION_HEIGHT};
   justify-content: space-between;
   position: relative;
   width: 100%;
   z-index: 10;
 
-  ${({ isTablet }) =>
-    isTablet &&
+  ${({ $isTablet }) =>
+    $isTablet &&
     css`
       border-bottom: solid ${MOBILE_NAVIGATION_BORDER_HEIGHT} ${palette.blue2};
       padding: 0 1.5rem;

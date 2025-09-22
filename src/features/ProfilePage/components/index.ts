@@ -7,6 +7,10 @@ export const Section = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1rem 0;
+
+  &:last-child {
+    border-bottom: 0;
+  }
 `;
 
 export const ButtonRow = styled.div`

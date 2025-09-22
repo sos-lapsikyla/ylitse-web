@@ -47,10 +47,10 @@ export const AppToast = ({ toast }: Props) => {
   return (
     <Container
       role="notification"
-      isVisible={toast.visible}
-      borderColor={mainColor}
+      $isVisible={toast.visible}
+      $borderColor={mainColor}
     >
-      <IconContainer bgColor={mainColor}>{Icon}</IconContainer>
+      <IconContainer $bgColor={mainColor}>{Icon}</IconContainer>
       <MessageContainer>
         <Text>{resolveValue(toast.message, toast)}</Text>
       </MessageContainer>
@@ -65,18 +65,18 @@ export const AppToast = ({ toast }: Props) => {
   );
 };
 
-const Container = styled.div<{ isVisible: boolean; borderColor: string }>`
+const Container = styled.div<{ $isVisible: boolean; $borderColor: string }>`
   background-color: ${palette.white};
-  border: solid 2px ${({ borderColor }) => borderColor};
+  border: solid 2px ${({ $borderColor }) => $borderColor};
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
   display: flex;
-  opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
+  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
   width: 560px;
 `;
 
-const IconContainer = styled.div<{ bgColor: string }>`
+const IconContainer = styled.div<{ $bgColor: string }>`
   align-items: center;
-  background-color: ${({ bgColor }) => bgColor};
+  background-color: ${({ $bgColor }) => $bgColor};
   display: flex;
   flex: 1;
   justify-content: center;

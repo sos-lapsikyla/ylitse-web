@@ -14,37 +14,36 @@ type Props = {
   isMobile?: boolean;
 };
 
+const roleNavigation = {
+  admin:
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3000/'
+      : '/admin',
+  freshMentor: '/mentors',
+  freshMentee: '/mentors',
+  mentor: '/chat',
+  mentee: '/chat',
+};
+type Role = keyof typeof roleNavigation;
+
 const Welcome = ({ isMobile = false }: Props) => {
   const { t } = useTranslation('home');
-  const userRole = useAppSelector(selectAppRole);
-
+  const userRole = useAppSelector(selectAppRole) as Role | undefined;
   const navigate = useNavigate();
-  const navigation = {
-    admin:
-      process.env.NODE_ENV === 'development'
-        ? 'http://localhost:3000/'
-        : '/admin',
-    freshMentor: '/mentors',
-    freshMentee: '/mentors',
-    mentor: '/chat',
-    mentee: '/chat',
-  };
+
+  if (!userRole || userRole === 'freshMentor') return null;
 
   const navigateBasedOnRole = () => {
     if (userRole == 'admin') {
-      location.href = navigation[userRole];
+      location.href = roleNavigation[userRole];
       return null;
     }
 
-    userRole && navigate(navigation[userRole]);
+    userRole && navigate(roleNavigation[userRole]);
   };
 
-  if (userRole == 'freshMentor') {
-    return null;
-  }
-
   return (
-    <Container isDesktop={!isMobile}>
+    <Container $isDesktop={!isMobile}>
       <TextContainer>
         <Text variant="h2" color="white">
           {t(`welcome.${userRole}.title`)}
@@ -62,16 +61,16 @@ const Welcome = ({ isMobile = false }: Props) => {
   );
 };
 
-const Container = styled.div<{ isDesktop: boolean }>`
+const Container = styled.div<{ $isDesktop: boolean }>`
   align-items: center;
   background-color: ${palette.purple};
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: ${({ isDesktop }) => (isDesktop ? '4rem' : '3rem')};
+  padding: ${({ $isDesktop }) => ($isDesktop ? '4rem' : '3rem 2rem 4rem 2rem')};
 
-  ${({ isDesktop }) =>
-    isDesktop &&
+  ${({ $isDesktop }) =>
+    $isDesktop &&
     css`
       border-radius: 10px;
       box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);

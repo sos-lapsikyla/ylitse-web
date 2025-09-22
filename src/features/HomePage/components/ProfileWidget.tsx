@@ -18,9 +18,9 @@ const ProfileWidget: React.FC<Props> = ({
   const { t } = useTranslation('home');
 
   return (
-    <Container isDesktop={!isMobile}>
+    <Container $isDesktop={!isMobile}>
       <Text variant="h2">{t('profileWidget.title')}</Text>
-      <MiddleContainer>
+      <MiddleContainer $isDesktop={!isMobile}>
         <InfoBox>
           <InfoBoxTitle variant="boldBaloo">
             {t('profileWidget.statusMessage')}
@@ -41,9 +41,9 @@ const ProfileWidget: React.FC<Props> = ({
       <Text variant="p">
         {t('profileWidget.text')}
         <Link to="/profile">
-          <Text variant="span" color="purple">
+          <LinkText variant="span" color="purple">
             {t('profileWidget.link')}
-          </Text>
+          </LinkText>
         </Link>
       </Text>
     </Container>
@@ -67,24 +67,40 @@ const InfoBoxText = styled(Text)`
   padding: 0 1.5rem 0 1.5rem;
 `;
 
-const MiddleContainer = styled.div`
+const MiddleContainer = styled.div<{ $isDesktop: boolean }>`
   display: flex;
-  flex-direction: 'row';
+  flex-direction: row;
+  gap: 1rem;
   justify-content: space-between;
+
+  ${({ $isDesktop }) =>
+    !$isDesktop &&
+    css`
+      flex-direction: column;
+      gap: 0;
+      ${InfoBox} {
+        margin-bottom: 0;
+        width: 100%;
+      }
+    `}
 `;
 
-const Container = styled.div<{ isDesktop: boolean }>`
+const Container = styled.div<{ $isDesktop: boolean }>`
   background-color: ${palette.white};
   gap: 1rem;
-  padding: ${({ isDesktop }) => (isDesktop ? '2rem' : '3rem')};
+  padding: ${({ $isDesktop }) => ($isDesktop ? '2rem' : '3rem 2rem 2rem 2rem')};
 
-  ${({ isDesktop }) =>
-    isDesktop &&
+  ${({ $isDesktop }) =>
+    $isDesktop &&
     css`
       border-radius: 10px;
       box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
       box-sizing: border-box;
     `}
+`;
+
+const LinkText = styled(Text)`
+  white-space: nowrap;
 `;
 
 export default ProfileWidget;

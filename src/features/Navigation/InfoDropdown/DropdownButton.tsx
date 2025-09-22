@@ -25,7 +25,7 @@ export const DropdownButton: React.FC<Props> = ({
   return (
     <Button
       id={id}
-      isExpanded={isComponentVisible}
+      $isExpanded={isComponentVisible}
       onClick={() => setIsComponentVisible(!isComponentVisible)}
       ref={ref}
     >
@@ -37,7 +37,7 @@ export const DropdownButton: React.FC<Props> = ({
   );
 };
 
-const Button = styled.button<{ isExpanded?: boolean }>`
+const Button = styled.button<{ $isExpanded?: boolean }>`
   align-items: center;
   background: transparent;
   border: none;
@@ -50,8 +50,8 @@ const Button = styled.button<{ isExpanded?: boolean }>`
   position: relative;
   text-align: center;
 
-  ${({ isExpanded }) =>
-    isExpanded &&
+  ${({ $isExpanded }) =>
+    $isExpanded &&
     css`
       background-color: ${palette.white};
     `}

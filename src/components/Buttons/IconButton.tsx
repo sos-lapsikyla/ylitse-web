@@ -22,8 +22,9 @@ const IconButton = <T extends ElementType = 'button'>({
       <StyledIconButton
         aria-label={variant}
         disabled={isDisabled}
-        size={sizeInPx}
-        variant={variant}
+        $isDisabled={isDisabled}
+        $size={sizeInPx}
+        $variant={variant}
         {...rest}
       />
     </Container>
@@ -31,9 +32,9 @@ const IconButton = <T extends ElementType = 'button'>({
 };
 
 const StyledIconButton = styled.button<{
-  variant: ButtonIcon;
-  disabled: boolean;
-  size: number;
+  $variant: ButtonIcon;
+  $isDisabled: boolean;
+  $size: number;
 }>`
   appearance: none;
   background-color: transparent;
@@ -41,17 +42,18 @@ const StyledIconButton = styled.button<{
   background-size: contain;
   border: none;
   cursor: pointer;
-  ${({ size }) => css`
-    height: ${size}px;
-    width: ${size}px;
+  ${({ $size }) => css`
+    height: ${$size}px;
+    width: ${$size}px;
   `}
-  ${({ disabled }) =>
-    disabled &&
+  ${({ $isDisabled }) =>
+    $isDisabled &&
     css`
       cursor: not-allowed;
       opacity: 0.5;
     `}
-  ${({ variant }) => variant && `background-image: ${iconVariants[variant]};`}
+  ${({ $variant }) =>
+    $variant && `background-image: ${iconVariants[$variant]};`}
 `;
 
 const Container = styled.div`

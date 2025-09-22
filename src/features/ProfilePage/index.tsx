@@ -23,11 +23,11 @@ const ProfilePage = () => {
   return (
     <PageWithTransition>
       {isMentor ? (
-        <Container isMobile={isTablet}>
-          <Header isMobile={isTablet}>
+        <Container $isMobile={isTablet}>
+          <Header $isMobile={isTablet}>
             <Text variant="h1">{t('title')}</Text>
           </Header>
-          <Content isMobile={isTablet}>
+          <Content $isMobile={isTablet}>
             <AccountInfo isMobile={isTablet} />
             <PublicInfo isMobile={isTablet} />
           </Content>
@@ -39,12 +39,12 @@ const ProfilePage = () => {
   );
 };
 
-const Container = styled.div<{ isMobile: boolean }>`
+const Container = styled.div<{ $isMobile: boolean }>`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  ${({ isMobile }) =>
-    isMobile
+  ${({ $isMobile }) =>
+    $isMobile
       ? css`
           background-color: ${palette.white};
           padding-bottom: 8rem;
@@ -59,12 +59,12 @@ const Container = styled.div<{ isMobile: boolean }>`
         `}
 `;
 
-const Header = styled.div<{ isMobile: boolean }>`
+const Header = styled.div<{ $isMobile: boolean }>`
   box-sizing: border-box;
   display: flex;
   justify-content: center;
-  ${({ isMobile }) =>
-    !isMobile &&
+  ${({ $isMobile }) =>
+    !$isMobile &&
     css`
       align-items: center;
       background-color: ${palette.blue2};
@@ -74,10 +74,10 @@ const Header = styled.div<{ isMobile: boolean }>`
     `}
 `;
 
-const Content = styled.div<{ isMobile: boolean }>`
+const Content = styled.div<{ $isMobile: boolean }>`
   display: flex;
-  ${({ isMobile }) =>
-    isMobile
+  ${({ $isMobile }) =>
+    $isMobile
       ? css`
           flex-direction: column;
         `

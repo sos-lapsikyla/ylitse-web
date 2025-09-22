@@ -24,8 +24,7 @@ export const DropdownSearch = ({
 }: Props): React.JSX.Element => {
   const [query, setQuery] = useState('');
 
-  // Delay dropdown hide to allow click event on options
-  const handleBlur = () => setTimeout(() => setIsDropdownVisible(false), 200);
+  const handleBlur = () => setIsDropdownVisible(false);
   const handleFocus = () => setIsDropdownVisible(true);
 
   const filteredOptions = options.filter(
@@ -50,7 +49,13 @@ export const DropdownSearch = ({
       {shouldShowDropdown && (
         <Dropdown id="skill-dropdown">
           {filteredOptions.map((option, i) => (
-            <DropdownItem key={i} onClick={() => selectOption(option)}>
+            <DropdownItem
+              key={i}
+              onMouseDown={() => {
+                selectOption(option);
+                setIsDropdownVisible(false);
+              }}
+            >
               <Text variant="menuOption">{option}</Text>
             </DropdownItem>
           ))}
@@ -61,7 +66,7 @@ export const DropdownSearch = ({
 };
 
 const Container = styled.div`
-  margin: 1rem 0;
+  margin: 2rem 0 0 0;
   max-width: 350px;
   position: relative;
 `;
@@ -72,11 +77,13 @@ const Dropdown = styled.div`
   border-radius: 0 0 20px 20px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
+  left: 0;
   max-height: 200px;
+  min-width: 100%;
   outline: ${palette.purple} solid 2px;
   overflow-y: auto;
   position: absolute;
-  width: 100%;
+  top: calc(100% - 2px);
   z-index: 10;
 `;
 

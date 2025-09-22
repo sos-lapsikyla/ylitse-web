@@ -49,8 +49,8 @@ export const MenuItem = ({ buddy }: Props) => {
 
   return (
     <ItemRow
-      active={isActiveChat}
-      background={folderColors[activeFolder]}
+      $isActive={isActiveChat}
+      $background={folderColors[activeFolder]}
       onClick={openChat}
     >
       <ProfileIcon color={getProfileIconColor()} />
@@ -62,7 +62,7 @@ export const MenuItem = ({ buddy }: Props) => {
           )}
         </BuddyName>
         {isLoading ? (
-          <Spinner variant="tiny" isDark centered={false} />
+          <Spinner variant="tiny" isDark isInline isCentered={false} />
         ) : (
           <Message>{latest}</Message>
         )}
@@ -72,20 +72,20 @@ export const MenuItem = ({ buddy }: Props) => {
 };
 
 const ItemRow = styled(Row)<{
-  active: boolean;
-  background: { active: string; hover: string };
+  $isActive: boolean;
+  $background: { active: string; hover: string };
 }>`
   cursor: pointer;
   overflow: hidden;
 
-  ${({ active, background }) =>
-    active
+  ${({ $isActive, $background }) =>
+    $isActive
       ? css`
-          background-color: ${background.active};
+          background-color: ${$background.active};
         `
       : css`
           &:hover {
-            background-color: ${background.hover};
+            background-color: ${$background.hover};
           }
         `}
 `;

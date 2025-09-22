@@ -66,8 +66,8 @@ export const Header: React.FC<Props> = ({
 
   return (
     <Container
-      headerColor={headerColorMap[status].headerColor}
-      isMobile={isMobile}
+      $headerColor={headerColorMap[status].headerColor}
+      $isMobile={isMobile}
     >
       <Tag status={status}></Tag>
       <ProfilePicture
@@ -83,7 +83,7 @@ export const Header: React.FC<Props> = ({
           {isDividerDisplayed && <Divider>|</Divider>}
           {region}
         </WrappedText>
-        <TruncateText isMobile={isMobile} color={headerColorMap[status].text}>
+        <TruncateText color={headerColorMap[status].text}>
           {message}
         </TruncateText>
       </BasicInfo>
@@ -91,9 +91,9 @@ export const Header: React.FC<Props> = ({
   );
 };
 
-const Container = styled.div<{ headerColor: string; isMobile: boolean }>`
+const Container = styled.div<{ $headerColor: string; $isMobile: boolean }>`
   align-items: center;
-  background-color: ${({ headerColor }) => headerColor}};
+  background-color: ${({ $headerColor }) => $headerColor}};
   border-radius: 0.75rem;
   box-sizing: border-box;
   color: ${palette.white};
@@ -101,7 +101,7 @@ const Container = styled.div<{ headerColor: string; isMobile: boolean }>`
   flex: 0 0 auto;
   height: 7.5rem;
   max-height: 7.5rem;
-  padding: ${({ isMobile }) => (isMobile ? '1.5rem' : '2.5rem')};
+  padding: ${({ $isMobile }) => ($isMobile ? '1.5rem' : '2.5rem')};
   position: relative;
   width: 100%;
 `;
@@ -124,7 +124,7 @@ const NameText = styled(Text)`
 const BasicInfo = styled.div`
   box-sizing: border-box;
   display: flex;
-  flex: 0 0 100%;
+  flex: 1 1 100%;
   flex-direction: column;
   max-width: calc(100% - 3.8rem);
   padding-left: 1rem;
@@ -135,7 +135,7 @@ const Divider = styled.span`
   padding-right: 1rem;
 `;
 
-const TruncateText = styled(Text)<{ isMobile: boolean }>`
+const TruncateText = styled(Text)`
   margin: 0 0 0.5rem 0;
   overflow: hidden;
   text-overflow: ellipsis;

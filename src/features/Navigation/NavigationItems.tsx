@@ -25,7 +25,7 @@ export const Item = ({ hasNotification, text, url }: NavigationItem) => {
       {text}
       {hasNotification && (
         <UnseenDot
-          withBorder={isHovered || isCurrentLocation}
+          $withBorder={isHovered || isCurrentLocation}
           id="unseen-messages-dot-navigation"
         />
       )}
@@ -73,9 +73,10 @@ export const Link = styled(RouterNavLink)`
   }
 `;
 
-const UnseenDot = styled.div<{ withBorder: boolean }>`
+const UnseenDot = styled.div<{ $withBorder: boolean }>`
   background-color: ${palette.orange};
-  ${({ withBorder }) => withBorder && `border: 1px solid ${palette.blueDark};`}
+  ${({ $withBorder }) =>
+    $withBorder && `border: 1px solid ${palette.blueDark};`}
   border-radius: 50%;
   height: 10px;
   left: 2.3rem;

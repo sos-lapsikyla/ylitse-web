@@ -9,24 +9,39 @@ type Props = {
 };
 
 export const PageOption = ({ onClick, isSelected, size }: Props) => (
-  <Button onClick={() => onClick(size)} isSelected={isSelected}>
-    <Text color="blueDark">{size}</Text>
+  <Button
+    onClick={() => onClick(size)}
+    disabled={isSelected}
+    $isSelected={isSelected}
+  >
+    <ButtonText color={isSelected ? 'greyOverlay' : 'blueDark'}>
+      {size}
+    </ButtonText>
   </Button>
 );
 
-export const Button = styled.button<{ isSelected?: boolean }>`
+export const Button = styled.button<{ $isSelected?: boolean }>`
+  align-items: center;
   background: transparent;
-  background-color: ${palette.white};
-  border: none;
-  border-bottom: 1px solid ${palette.greyMid};
-  border-left: 2px solid ${palette.purple};
-  border-right: 2px solid ${palette.purple};
-  cursor: pointer;
+  border: 0;
+  border-bottom: 2px solid ${palette.greyMid};
+  box-sizing: border-box;
+  cursor: ${({ $isSelected }) => ($isSelected ? 'auto' : 'pointer')};
   display: flex;
-  gap: 0.5rem;
-  padding: 0.5rem;
+  padding: 0 0.5rem;
+  width: 100%;
+
+  &:last-child {
+    border-bottom: 0;
+  }
 
   &:hover {
-    background-color: ${palette.blueLight};
+    background-color: ${({ $isSelected }) =>
+      $isSelected ? 'inherit' : palette.blueLight};
   }
+`;
+
+const ButtonText = styled(Text)`
+  line-height: 1rem;
+  margin: 0.5rem 0;
 `;

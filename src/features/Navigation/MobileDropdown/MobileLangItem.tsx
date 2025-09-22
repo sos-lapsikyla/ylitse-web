@@ -10,24 +10,24 @@ export const LanguageItem: React.FC<Props> = ({
   text,
 }) => (
   <Link
-    isSelected={isSelected}
+    $isSelected={isSelected}
     onClick={isSelected ? e => e.stopPropagation() : changeLang}
   >
     <ButtonText
       color={isSelected ? 'blueDark' : 'purple'}
       variant="link"
-      isSelected={isSelected}
+      $isSelected={isSelected}
     >
       {text}
     </ButtonText>
   </Link>
 );
 
-const Link = styled.a<{ isSelected: boolean }>`
+const Link = styled.a<{ $isSelected: boolean }>`
   padding: 0 2rem;
 
-  ${({ isSelected }) =>
-    isSelected
+  ${({ $isSelected }) =>
+    $isSelected
       ? css`
           background-color: ${palette.blue2};
           cursor: default;

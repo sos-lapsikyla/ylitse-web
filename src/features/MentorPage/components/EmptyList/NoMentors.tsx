@@ -10,8 +10,8 @@ const NoMentors = () => {
   const { isMobile } = useGetLayoutMode();
 
   return (
-    <Container isMobile={isMobile}>
-      <InnerContainer isMobile={isMobile}>
+    <Container $isMobile={isMobile}>
+      <InnerContainer $isMobile={isMobile}>
         <CenteredText variant="h2">{t('empty.title')}</CenteredText>
         <CenteredText>{t('empty.description')}</CenteredText>
       </InnerContainer>
@@ -19,7 +19,7 @@ const NoMentors = () => {
   );
 };
 
-const Container = styled.div<{ isMobile: boolean }>`
+const Container = styled.div<{ $isMobile: boolean }>`
   align-items: center;
   background-color: ${palette.white};
   border-radius: 10px;
@@ -29,8 +29,8 @@ const Container = styled.div<{ isMobile: boolean }>`
   height: 10rem;
   justify-content: center;
   width: 38rem;
-  ${({ isMobile }) =>
-    isMobile
+  ${({ $isMobile }) =>
+    $isMobile
       ? css`
           margin-top: -1rem;
           width: 90vw;
@@ -44,9 +44,9 @@ const CenteredText = styled(Text)`
   text-align: center;
 `;
 
-const InnerContainer = styled.div<{ isMobile: boolean }>`
-  ${({ isMobile }) =>
-    isMobile
+const InnerContainer = styled.div<{ $isMobile: boolean }>`
+  ${({ $isMobile }) =>
+    $isMobile
       ? css`
           padding: 0 1rem 0 1rem;
         `

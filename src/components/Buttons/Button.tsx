@@ -23,7 +23,7 @@ const Button = <T extends ElementType = 'button'>({
 }: ButtonProps<T>): React.JSX.Element => {
   return (
     <StyledButton onClick={onClick} {...rest} aria-label={variant}>
-      {leftIcon && <Icon variant={leftIcon} size={sizeInPx} />}
+      {leftIcon && <Icon $variant={leftIcon} $size={sizeInPx} />}
 
       {text && (
         <Text variant={text.variant} color={text.color}>
@@ -35,17 +35,18 @@ const Button = <T extends ElementType = 'button'>({
 };
 
 const Icon = styled.span<{
-  variant: ButtonIcon;
-  size: number;
+  $variant: ButtonIcon;
+  $size: number;
 }>`
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
-  ${({ size }) => css`
-    height: ${size}px;
-    width: ${size}px;
+  ${({ $size }) => css`
+    height: ${$size}px;
+    width: ${$size}px;
   `}
-  ${({ variant }) => variant && `background-image: ${iconVariants[variant]};`}
+  ${({ $variant }) =>
+    $variant && `background-image: ${iconVariants[$variant]};`}
 `;
 
 const StyledButton = styled.button`

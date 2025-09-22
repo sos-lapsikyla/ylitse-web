@@ -25,7 +25,7 @@ const NewMessages = ({ isMobile = false }: Props) => {
   };
 
   return (
-    <Container isDesktop={!isMobile}>
+    <Container $isDesktop={!isMobile}>
       <TextContainer>
         <Text variant="h2" color="white">
           {t('newMessages.title')}
@@ -44,17 +44,20 @@ const NewMessages = ({ isMobile = false }: Props) => {
   );
 };
 
-const Container = styled.div<{ isDesktop: boolean }>`
+const Container = styled.div<{ $isDesktop: boolean }>`
   align-items: center;
   background-color: ${palette.purple};
   display: flex;
+  overflow: hidden;
+  position: relative;
 
-  ${({ isDesktop }) =>
-    isDesktop
+  ${({ $isDesktop }) =>
+    $isDesktop
       ? css`
           border-radius: 10px;
           box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
           box-sizing: border-box;
+          justify-content: center;
           min-height: 16rem;
           padding: 4rem 16rem 4rem 4rem;
           position: relative;
@@ -67,10 +70,8 @@ const Container = styled.div<{ isDesktop: boolean }>`
 
 const TextContainer = styled.div`
   align-items: center;
-  color: ${palette.white};
   display: flex;
   flex-direction: column;
-  justify-content: center;
   text-align: center;
 `;
 
@@ -82,6 +83,7 @@ const Image = styled.img`
   bottom: 0;
   position: absolute;
   right: -4rem;
+  transform: translateY(0.5px);
 `;
 
 export default NewMessages;

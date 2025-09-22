@@ -22,8 +22,8 @@ const Chip: React.FC<Props> = ({
       key={text}
       value={text}
       onClick={() => onToggle(text)}
-      isSelected={isSelected}
-      shouldShake={shouldShake}
+      $isSelected={isSelected}
+      $shouldShake={shouldShake}
       aria-pressed={isSelected}
     >
       <Text variant="chip" color={isSelected ? 'white' : 'blueDark'}>
@@ -35,7 +35,10 @@ const Chip: React.FC<Props> = ({
   );
 };
 
-const StyledChip = styled.button<{ isSelected: boolean; shouldShake: boolean }>`
+const StyledChip = styled.button<{
+  $isSelected: boolean;
+  $shouldShake: boolean;
+}>`
   align-items: center;
   appearance: none;
   border: none;
@@ -48,8 +51,8 @@ const StyledChip = styled.button<{ isSelected: boolean; shouldShake: boolean }>`
   height: 2.75rem;
   padding: 0 1rem;
 
-  ${({ isSelected }) =>
-    isSelected
+  ${({ $isSelected }) =>
+    $isSelected
       ? css`
           background-color: ${palette.purple};
           &:hover {
@@ -63,8 +66,8 @@ const StyledChip = styled.button<{ isSelected: boolean; shouldShake: boolean }>`
           }
         `}
 
-  ${({ shouldShake }) =>
-    shouldShake &&
+  ${({ $shouldShake }) =>
+    $shouldShake &&
     css`
       animation: ${animations.shake}
       backface-visibility: hidden;

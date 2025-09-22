@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
-import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
-
 import { IconButton } from '@/components/Buttons';
 import { ICON_SIZES, palette } from '@/components/constants';
 import TextInput from '@/components/TextInput';
@@ -23,7 +21,6 @@ const MessageField = ({
   onChange,
 }: Props) => {
   const { t } = useTranslation('chat');
-  const { isMobile } = useGetLayoutMode();
 
   return (
     <Container>
@@ -34,7 +31,6 @@ const MessageField = ({
         onChange={onChange}
         placeholder={t('input.placeholder')}
         value={message}
-        isMobile={isMobile}
       />
       <SendButton
         variant="send"
@@ -51,9 +47,9 @@ const Container = styled.div`
   display: flex;
 `;
 
-const Input = styled(TextInput)<{ isMobile: boolean }>`
+const Input = styled(TextInput)`
   flex: 1;
-  margin: 1rem 1rem 1rem 2rem;
+  margin: 1rem 1.25rem 1rem 2rem;
 
   &:focus {
     outline: 1px solid ${palette.purple};

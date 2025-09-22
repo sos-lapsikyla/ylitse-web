@@ -36,7 +36,7 @@ const FolderLink = ({ targetFolder }: Props) => {
         hideFolders();
       }}
     >
-      <Link isTargetActiveFolder>
+      <Link $isTargetActiveFolder>
         {isTargetActiveFolder && <BackToActiveIcon src={BackArrowIcon} />}
         <Text variant="bold" color="purple">
           {isTargetActiveFolder ? t('menu.back') : t(`menu.${targetFolder}`)}
@@ -54,16 +54,14 @@ const LinkRow = styled(Row)`
   }
 `;
 
-const Link = styled.a<{ isTargetActiveFolder: boolean }>`
-  ${({ isTargetActiveFolder }) =>
-    isTargetActiveFolder &&
+const Link = styled.a<{ $isTargetActiveFolder: boolean }>`
+  ${({ $isTargetActiveFolder }) =>
+    $isTargetActiveFolder &&
     css`
       align-items: center;
       display: flex;
       padding-right: 40px;
     `}
-
-  padding-left: 40px;
 `;
 
 const BackToActiveIcon = styled.img`

@@ -11,7 +11,7 @@ type Props = ButtonProps<'button'> & {
 const ScrollToBottomButton = React.forwardRef<HTMLDivElement, Props>(
   ({ isVisible, hasUnreadMessagesAtBottom, ...props }, ref) => {
     return (
-      <ButtonContainer ref={ref} isVisible={isVisible}>
+      <ButtonContainer ref={ref} $isVisible={isVisible}>
         <IconButton {...props} id="scroll-to-bottom-button" />
         {hasUnreadMessagesAtBottom && (
           <UnseenDot id="unseen-messages-dot-bottom-button" />
@@ -21,11 +21,11 @@ const ScrollToBottomButton = React.forwardRef<HTMLDivElement, Props>(
   },
 );
 
-const ButtonContainer = styled.div<{ isVisible: boolean }>`
+const ButtonContainer = styled.div<{ $isVisible: boolean }>`
   position: fixed;
   z-index: 10;
-  ${({ isVisible }) =>
-    isVisible &&
+  ${({ $isVisible }) =>
+    $isVisible &&
     css`
       display: none;
     `}

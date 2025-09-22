@@ -35,7 +35,7 @@ module.exports = (env, argv) => {
         directory: path.resolve(__dirname, 'src'),
       },
     },
-    devtool: isProd ? 'source-map' : 'inline-source-map',
+    devtool: isProd ? 'source-map' : 'eval-source-map',
     entry: {
       app: path.join(__dirname, 'src', 'index.tsx'),
     },

@@ -97,7 +97,7 @@ const Header = ({ chat }: Props) => {
   };
 
   return (
-    <Container tablet={isTablet}>
+    <Container $isTablet={isTablet}>
       {isReportModalOpen && (
         <ReportModal
           buddyId={chat.buddyId}
@@ -114,9 +114,7 @@ const Header = ({ chat }: Props) => {
       )}
       <IconContainer>{iconMap[chat.status]}</IconContainer>
       <DisplayName variant="h2">{chat.displayName}</DisplayName>
-      {isMentor && (
-        <MentorBio isTablet={isTablet}>{mentor?.statusMessage}</MentorBio>
-      )}
+      {isMentor && <MentorBio>{mentor?.statusMessage}</MentorBio>}
 
       <ButtonsWrapper>
         <Buttons
@@ -131,18 +129,18 @@ const Header = ({ chat }: Props) => {
   );
 };
 
-const Container = styled.div<{ tablet: boolean }>`
+const Container = styled.div<{ $isTablet: boolean }>`
   align-items: center;
   border-bottom: 1px solid ${palette.greyLight};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.03);
   box-sizing: border-box;
   display: flex;
   gap: 30px;
-  height: ${({ tablet }) => (tablet ? HIGH_ROW_HEIGHT : ROW_HEIGHT)};
+  height: ${({ $isTablet }) => ($isTablet ? HIGH_ROW_HEIGHT : ROW_HEIGHT)};
   justify-content: flex-start;
   padding: 14px 40px;
-  width: ${({ tablet }) =>
-    tablet
+  width: ${({ $isTablet }) =>
+    $isTablet
       ? '100vw'
       : `calc(${CONTENT_WIDTH}-${CHAT_MENU_WIDTH}-${CHAT_GAP_WIDTH}})`};
 `;
@@ -157,7 +155,7 @@ const DisplayName = styled(Text)`
   white-space: nowrap;
 `;
 
-const MentorBio = styled(Text)<{ isTablet: boolean }>`
+const MentorBio = styled(Text)`
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;

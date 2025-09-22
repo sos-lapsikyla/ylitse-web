@@ -16,7 +16,7 @@ const FindMentor = ({ isMobile = false }: Props) => {
   const navigateToMentors = () => navigate('/mentors');
 
   return (
-    <Container isDesktop={!isMobile}>
+    <Container $isDesktop={!isMobile}>
       <TextContainer>
         <Text variant="h2" color="white">
           {t('newestMentors.info.title')}
@@ -34,21 +34,22 @@ const FindMentor = ({ isMobile = false }: Props) => {
   );
 };
 
-const Container = styled.div<{ isDesktop: boolean }>`
+const Container = styled.div<{ $isDesktop: boolean }>`
   align-items: center;
   align-self: center;
   background-color: ${palette.purple};
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: ${({ isDesktop }) => (isDesktop ? '4rem' : '3rem')};
+  padding: ${({ $isDesktop }) => ($isDesktop ? '4rem' : '3rem 2rem 4rem 2rem')};
 
-  ${({ isDesktop }) =>
-    isDesktop &&
+  ${({ $isDesktop }) =>
+    $isDesktop &&
     css`
       border-radius: 10px;
       box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
       box-sizing: border-box;
+      margin-top: 4rem;
       max-width: 33rem;
       min-height: 26rem;
     `}

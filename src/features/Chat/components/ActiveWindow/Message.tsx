@@ -46,33 +46,28 @@ export const Message = ({ folder, buddyId, message }: Props) => {
     messageColors[folder][message.isSent ? 'sent' : 'received'];
 
   return (
-    <Container
-      isSent={message.isSent}
-      isVisible={isVisible}
-      ref={ref}
-      id="message-bubble"
-    >
-      <Bubble background={background}>
+    <Container $isSent={message.isSent} ref={ref} id="message-bubble">
+      <Bubble $background={background}>
         <Content>{message.content}</Content>
       </Bubble>
-      <Timestamp isSent={message.isSent}>
+      <Timestamp $isSent={message.isSent}>
         {toReadable(message.created)}
       </Timestamp>
     </Container>
   );
 };
 
-const Container = styled.div<{ isSent: boolean; isVisible: boolean }>`
-  align-items: ${({ isSent }) => (isSent ? 'flex-end' : 'flex-start')};
+const Container = styled.div<{ $isSent: boolean }>`
+  align-items: ${({ $isSent }) => ($isSent ? 'flex-end' : 'flex-start')};
   display: flex;
   flex-direction: column;
   margin-bottom: 8px;
 `;
 
 const Bubble = styled.div<{
-  background: string;
+  $background: string;
 }>`
-  background-color: ${({ background }) => background};
+  background-color: ${({ $background }) => $background};
   border-radius: 10px;
   box-sizing: border-box;
   max-width: 75%;
@@ -86,8 +81,8 @@ const Content = styled(Text)`
   white-space: pre-wrap;
 `;
 
-const Timestamp = styled(Text)<{ isSent: boolean }>`
+const Timestamp = styled(Text)<{ $isSent: boolean }>`
   margin: 0;
-  ${({ isSent }) => (isSent ? 'margin-right: 14px;' : 'margin-left: 14px;')}
+  ${({ $isSent }) => ($isSent ? 'margin-right: 22px;' : 'margin-left: 22px;')}
   text-align: right;
 `;

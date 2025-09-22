@@ -30,6 +30,7 @@ const HomePage = () => {
       {hasUnreadMessages ? <NewMessages isMobile /> : <Welcome isMobile />}
       <Announcements isMobile />
       <NewestMentors isMobile />
+      {mentor && <ProfileWidget mentor={mentor} isMobile />}
       <FindMentor isMobile />
       <Concepts isMobile />
     </PageWithTransition>
@@ -58,7 +59,7 @@ const HomePage = () => {
 };
 
 const TopContainer = styled.div`
-  background: url(${Background});
+  background-image: url(${Background});
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;

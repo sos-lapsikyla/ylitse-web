@@ -32,7 +32,7 @@ export const About = ({ onDismiss }: Props) => {
 
   return (
     <Container>
-      <AboutCard isMobile={isMobile}>
+      <AboutCard $isMobile={isMobile}>
         <CloseContainer>
           <IconButton
             onClick={onDismiss}
@@ -42,7 +42,7 @@ export const About = ({ onDismiss }: Props) => {
         </CloseContainer>
         <AboutCardContent>
           <Text variant="h1">{t('about.title')}</Text>
-          <Description isMobile={isMobile}>
+          <Description $isMobile={isMobile}>
             <InfoText>
               <Trans
                 t={t}
@@ -74,7 +74,7 @@ export const About = ({ onDismiss }: Props) => {
   );
 };
 
-const AboutCard = styled.div<{ isMobile: boolean }>`
+const AboutCard = styled.div<{ $isMobile: boolean }>`
   align-items: center;
   background-color: ${palette.white};
   border-radius: 10px;
@@ -88,8 +88,8 @@ const AboutCard = styled.div<{ isMobile: boolean }>`
   position: fixed;
   top: 50%;
   transform: translate(-50%, -50%);
-  ${({ isMobile }) =>
-    isMobile
+  ${({ $isMobile }) =>
+    $isMobile
       ? css`
           max-height: 90vh;
           width: 85vw;
@@ -111,10 +111,10 @@ const AboutCardContent = styled.div`
   width: 100%;
 `;
 
-const Description = styled.div<{ isMobile: boolean }>`
+const Description = styled.div<{ $isMobile: boolean }>`
   gap: 0.5rem;
-  ${({ isMobile }) =>
-    isMobile
+  ${({ $isMobile }) =>
+    $isMobile
       ? css`
           padding: 0.5rem 0.5rem 1rem 0.5rem;
         `

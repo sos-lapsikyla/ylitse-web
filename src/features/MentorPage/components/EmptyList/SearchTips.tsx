@@ -10,9 +10,9 @@ const SearchTips = () => {
   const { isMobile } = useGetLayoutMode();
 
   return (
-    <Container isMobile={isMobile}>
+    <Container $isMobile={isMobile}>
       <Text variant="h2">{t('empty.tips.title')}</Text>
-      <InnerContainer isMobile={isMobile}>
+      <InnerContainer $isMobile={isMobile}>
         <Text variant="blueBox">
           <Trans t={t} i18nKey="empty.tips.tip1" />
         </Text>
@@ -23,7 +23,7 @@ const SearchTips = () => {
   );
 };
 
-const Container = styled.div<{ isMobile: boolean }>`
+const Container = styled.div<{ $isMobile: boolean }>`
   background-color: ${palette.white};
   display: flex;
   flex-direction: column;
@@ -31,8 +31,8 @@ const Container = styled.div<{ isMobile: boolean }>`
   height: 26.5rem;
   justify-content: center;
   padding: 0 0 0 3rem;
-  ${({ isMobile }) =>
-    isMobile
+  ${({ $isMobile }) =>
+    $isMobile
       ? css`
           padding-top: 2rem;
           width: 100vw;
@@ -43,9 +43,9 @@ const Container = styled.div<{ isMobile: boolean }>`
           width: 40rem;
         `}
 `;
-const InnerContainer = styled.div<{ isMobile: boolean }>`
-  ${({ isMobile }) =>
-    isMobile
+const InnerContainer = styled.div<{ $isMobile: boolean }>`
+  ${({ $isMobile }) =>
+    $isMobile
       ? css`
           width: 88vw;
         `

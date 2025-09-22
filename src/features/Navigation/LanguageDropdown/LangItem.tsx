@@ -9,18 +9,18 @@ export type Props = {
 };
 
 export const LangItem: React.FC<Props> = ({ changeLang, isSelected, text }) => (
-  <Button isSelected={isSelected} onClick={changeLang}>
+  <Button $isSelected={isSelected} onClick={changeLang}>
     <ButtonText
       variant="link"
       color={isSelected ? 'blueDark' : 'purple'}
-      isSelected={isSelected}
+      $isSelected={isSelected}
     >
       {text}
     </ButtonText>
   </Button>
 );
 
-const Button = styled.button<{ isSelected: boolean }>`
+const Button = styled.button<{ $isSelected: boolean }>`
   background: transparent;
   background-color: ${palette.white};
   border: none;
@@ -32,8 +32,8 @@ const Button = styled.button<{ isSelected: boolean }>`
   height: ${NAVIGATION_HEIGHT};
   padding: 0 1rem;
 
-  ${({ isSelected }) =>
-    isSelected &&
+  ${({ $isSelected }) =>
+    $isSelected &&
     css`
       background: ${palette.blue2};
       pointer-events: none;
@@ -44,9 +44,9 @@ const Button = styled.button<{ isSelected: boolean }>`
   }
 `;
 
-export const ButtonText = styled(Text)<{ isSelected: boolean }>`
-  ${({ isSelected }) =>
-    isSelected &&
+export const ButtonText = styled(Text)<{ $isSelected: boolean }>`
+  ${({ $isSelected }) =>
+    $isSelected &&
     css`
       text-decoration: underline;
       text-underline-offset: 4px;
