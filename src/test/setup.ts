@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import 'whatwg-fetch';
 
 // https://react.i18next.com/misc/testing
 jest.mock('react-i18next', () => ({
