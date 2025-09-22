@@ -78,6 +78,8 @@ describe('chat', () => {
     cy.loginUser(mentor.loginName, mentor.password);
 
     cy.get('[href="/chat"]').click();
+    cy.location('pathname').should('eq', '/chat');
+
     cy.get('textarea[placeholder*="Kirjoita viestisi tähän"]')
       .click()
       .type(' ');

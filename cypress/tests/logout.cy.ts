@@ -22,8 +22,7 @@ describe('logout', () => {
     cy.getByText('Kirjaudu sisään', 'a').should('be.visible');
   });
 
-  // FIXME: re-enable when dev server issue is resolved
-  xit('logout ends session', () => {
+  it('logout ends session', () => {
     cy.clickLogout();
     cy.url().should('match', /landing/);
     cy.getByText('Kirjaudu sisään', 'a').should('be.visible');
