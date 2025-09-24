@@ -82,6 +82,7 @@ const Columns = ({
 };
 
 const Container = styled.div<{ $isMobile: boolean }>`
+  align-items: flex-start;
   display: flex;
   ${({ $isMobile }) =>
     $isMobile
