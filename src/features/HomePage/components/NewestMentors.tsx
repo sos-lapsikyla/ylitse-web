@@ -45,6 +45,7 @@ const NewestMentors = ({ isMobile = false }: Props) => {
                   <ListCard
                     key={mentor.buddyId}
                     isHomePage
+                    isForcedMobile
                     mentor={mentor}
                     setVisibleCard={() => setSelectedMentor(mentor)}
                   />
@@ -120,7 +121,7 @@ const MentorCards = styled.div<{ $isMobile: boolean }>`
     css`
       -webkit-overflow-scrolling: touch;
       flex-wrap: nowrap;
-      margin: auto -1rem auto -1rem;
+      margin: auto -1rem;
       overflow-x: auto;
       overflow-y: hidden;
       scroll-snap-type: x mandatory;

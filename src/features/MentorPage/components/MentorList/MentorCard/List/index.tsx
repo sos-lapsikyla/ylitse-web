@@ -15,16 +15,19 @@ import { spacing, palette, CONTENT_WIDTH } from '@/components/constants';
 
 type Props = {
   isHomePage?: boolean;
+  isForcedMobile?: boolean;
   setVisibleCard: (mentor: Mentor) => void;
   mentor: Mentor;
 };
 
 export const ListCard: React.FC<Props> = ({
   isHomePage = false,
+  isForcedMobile = false,
   setVisibleCard,
   mentor,
 }) => {
-  const { isMobile } = useGetLayoutMode();
+  const { isMobile: isActualMobile } = useGetLayoutMode();
+  const isMobile = isForcedMobile || isActualMobile;
   const currentUserId = useAppSelector(selectUserId);
   const isLessThan90DaysOld = getIsOlderThanDaysAgo(90, mentor.created);
   const areLanguagesDisplayed = mentor.languages.length > 0;
@@ -76,6 +79,14 @@ const Container = styled.div<{ $isHomePage: boolean; $isMobile: boolean }>`
       &:last-child {
         margin-right: 1.5rem;
       }
+    `}
+
+  ${({ $isHomePage, $isMobile }) =>
+    $isHomePage &&
+    $isMobile &&
+    css`
+      flex-basis: 300px;
+      flex-grow: 1;
     `}
 
   ${({ $isHomePage, $isMobile }) =>
