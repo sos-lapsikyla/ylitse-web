@@ -23,6 +23,14 @@ export type Mentor = {
   is_vacationing?: boolean;
 };
 
+export type Admin = {
+  loginName: string;
+  displayName: string;
+  password: string;
+  email?: string;
+  role: 'admin';
+};
+
 const mentees: Array<Mentee> = [
   {
     loginName: 'mentee',
@@ -105,4 +113,14 @@ const mentors: Array<Mentor> = [
   },
 ];
 
-export const accounts = { mentees, mentors };
+const admins: Array<Admin> = [
+  {
+    loginName: 'admin1',
+    displayName: 'admin1',
+    password: 'Adminadmin!',
+    email: 'admin@admin.admin',
+    role: 'admin',
+  },
+];
+
+export const accounts = { mentees, mentors, admins };
