@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import ProfilePicPlaceholder from '@/static/icons/chat-profilepic.svg';
 import ProfilePicPlaceholderDark from '@/static/icons/chat-profilepic-dark.svg';
+import ProfilePicPlaceholderVacation from '@/static/icons/profile-pic-vacation.svg';
 import { palette } from '@/components/constants';
 import styled from 'styled-components';
 import { Text } from '@/components/Text/Text';
@@ -64,7 +65,7 @@ export const MentorHeader: React.FC<Props> = ({
     vacationingMentor: {
       header: palette.blueGrey,
       text: 'white',
-      profilePictureVariation: ProfilePicPlaceholder,
+      profilePictureVariation: ProfilePicPlaceholderVacation,
     },
   } as const;
 

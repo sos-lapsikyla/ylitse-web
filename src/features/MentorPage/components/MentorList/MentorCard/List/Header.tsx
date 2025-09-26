@@ -6,7 +6,8 @@ import { palette } from '@/components/constants';
 import styled from 'styled-components';
 import { WrappedText } from '../Expanded/BasicInfo';
 import ProfilePicPlaceholder from '@/static/icons/chat-profilepic.svg';
-import ProfilePicPlaceholderForMe from '@/static/icons/chat-profilepic-dark.svg';
+import ProfilePicPlaceholderDark from '@/static/icons/chat-profilepic-dark.svg';
+import ProfilePicPlaceholderVacation from '@/static/icons/profile-pic-vacation.svg';
 import { Text } from '@/components/Text/Text';
 import { Tag } from './Tag';
 
@@ -19,6 +20,10 @@ type Props = {
   isNew: boolean;
   message: string;
 };
+
+interface ProfilePictureProps {
+  variation: string;
+}
 
 export const Header: React.FC<Props> = ({
   name,
@@ -34,30 +39,51 @@ export const Header: React.FC<Props> = ({
 
   const status = getStatus(isMe, isAvailable, isNew);
 
-  const statusColors = {
-    me: palette.blue,
-    unavailable: palette.blueGrey,
-    new: palette.purple,
-    empty: palette.purple,
-  };
+  const headerColorMap = {
+    me: {
+      headerColor: palette.blue,
+      text: 'blueDark',
+      profilePictureVariation: ProfilePicPlaceholderDark,
+    },
+    unavailable: {
+      headerColor: palette.blueGrey,
+      text: 'white',
+      profilePictureVariation: ProfilePicPlaceholderVacation,
+    },
+    new: {
+      headerColor: palette.purple,
+      text: 'white',
+      profilePictureVariation: ProfilePicPlaceholder,
+    },
+    empty: {
+      headerColor: palette.purple,
+      text: 'white',
+      profilePictureVariation: ProfilePicPlaceholder,
+    },
+  } as const;
 
   const isDividerDisplayed = Boolean(age) && Boolean(region);
 
   return (
-    <Container statusColor={statusColors[status]} isMobile={isMobile}>
+    <Container
+      headerColor={headerColorMap[status].headerColor}
+      isMobile={isMobile}
+    >
       <Tag status={status}></Tag>
-      <ProfilePicture isMe={isMe} />
+      <ProfilePicture
+        variation={headerColorMap[status].profilePictureVariation}
+      />
       <BasicInfo>
-        <NameText variant="h2" color={isMe ? 'blueDark' : 'white'}>
+        <NameText variant="h2" color={headerColorMap[status].text}>
           {name}
         </NameText>
-        <WrappedText color={isMe ? 'blueDark' : 'white'}>
+        <WrappedText color={headerColorMap[status].text}>
           {age}
           {t('card.age')}
           {isDividerDisplayed && <Divider>|</Divider>}
           {region}
         </WrappedText>
-        <TruncateText isMobile={isMobile} color={isMe ? 'blueDark' : 'white'}>
+        <TruncateText isMobile={isMobile} color={headerColorMap[status].text}>
           {message}
         </TruncateText>
       </BasicInfo>
@@ -65,9 +91,9 @@ export const Header: React.FC<Props> = ({
   );
 };
 
-const Container = styled.div<{ statusColor: string; isMobile: boolean }>`
+const Container = styled.div<{ headerColor: string; isMobile: boolean }>`
   align-items: center;
-  background-color: ${({ statusColor }) => statusColor}};
+  background-color: ${({ headerColor }) => headerColor}};
   border-radius: 0.75rem;
   box-sizing: border-box;
   color: ${palette.white};
@@ -80,9 +106,8 @@ const Container = styled.div<{ statusColor: string; isMobile: boolean }>`
   width: 100%;
 `;
 
-const ProfilePicture = styled.div<{ isMe: boolean }>`
-  background-image: ${({ isMe }) =>
-    `url(${isMe ? ProfilePicPlaceholderForMe : ProfilePicPlaceholder})`};
+const ProfilePicture = styled.div<ProfilePictureProps>`
+  background-image: url(${props => props.variation});
   background-repeat: no-repeat;
   background-size: contain;
   flex: 0 0 4rem;
