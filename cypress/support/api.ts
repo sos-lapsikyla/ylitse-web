@@ -348,6 +348,7 @@ export const api = {
   signUpMentor,
   deleteAccount,
   deleteAccounts,
+  getUsers,
   sendMessage,
   sendMultipleMessage,
   updateChatStatus,

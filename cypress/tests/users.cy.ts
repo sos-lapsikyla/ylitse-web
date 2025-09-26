@@ -5,6 +5,13 @@ describe('Users page', () => {
   const mentor = accounts.mentors[0];
   const mentee = accounts.mentees[0];
 
+  beforeEach(() => {
+    api.deleteAccounts().then(() => {
+      api.signUpMentor(mentor);
+      api.signUpMentee(mentee);
+    });
+  });
+
   it('Allows admin to visit users page', () => {
     api.loginAdmin();
     // Click link to users-page
