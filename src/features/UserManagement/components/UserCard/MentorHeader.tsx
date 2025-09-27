@@ -1,89 +1,92 @@
-import { getStatus } from '@/utils/utils';
-import { useTranslation } from 'react-i18next';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
+import { useTranslation } from 'react-i18next';
 
-import { palette } from '@/components/constants';
-import styled from 'styled-components';
-import { WrappedText } from '../Expanded/BasicInfo';
 import ProfilePicPlaceholder from '@/static/icons/chat-profilepic.svg';
 import ProfilePicPlaceholderDark from '@/static/icons/chat-profilepic-dark.svg';
 import ProfilePicPlaceholderVacation from '@/static/icons/profile-pic-vacation.svg';
+import { palette } from '@/components/constants';
+import styled from 'styled-components';
 import { Text } from '@/components/Text/Text';
-import { Tag } from './Tag';
+
+import { getRoleStatus } from '@/utils/utils';
+import RoleTag from './RoleTag';
 
 type Props = {
   name: string;
   age: number;
   region: string;
-  isAvailable: boolean;
-  isMe: boolean;
-  isNew: boolean;
   message: string;
+  isMentor: boolean;
+  isMentee: boolean;
+  isVacationingMentor: boolean;
+  isAdmin: boolean;
 };
 
 interface ProfilePictureProps {
   variation: string;
 }
 
-export const Header: React.FC<Props> = ({
+export const MentorHeader: React.FC<Props> = ({
   name,
   age,
   region,
-  isAvailable,
-  isMe,
-  isNew,
   message,
+  isMentor,
+  isMentee,
+  isAdmin,
+  isVacationingMentor,
 }) => {
-  const { t } = useTranslation('mentors');
+  const { t } = useTranslation('users');
   const { isMobile } = useGetLayoutMode();
 
-  const status = getStatus(isMe, isAvailable, isNew);
+  const role = getRoleStatus(isMentor, isVacationingMentor, isMentee, isAdmin);
 
   const headerColorMap = {
-    me: {
-      headerColor: palette.blue,
+    mentor: {
+      header: palette.purple,
+      text: 'white',
+      profilePictureVariation: ProfilePicPlaceholder,
+    },
+    admin: {
+      header: palette.orange,
       text: 'blueDark',
       profilePictureVariation: ProfilePicPlaceholderDark,
     },
-    unavailable: {
-      headerColor: palette.blueGrey,
+    mentee: {
+      header: palette.blue2,
+      text: 'blueDark',
+      profilePictureVariation: ProfilePicPlaceholderDark,
+    },
+    default: {
+      header: palette.orangeDark,
+      text: 'white',
+      profilePictureVariation: ProfilePicPlaceholder,
+    },
+    vacationingMentor: {
+      header: palette.blueGrey,
       text: 'white',
       profilePictureVariation: ProfilePicPlaceholderVacation,
-    },
-    new: {
-      headerColor: palette.purple,
-      text: 'white',
-      profilePictureVariation: ProfilePicPlaceholder,
-    },
-    empty: {
-      headerColor: palette.purple,
-      text: 'white',
-      profilePictureVariation: ProfilePicPlaceholder,
     },
   } as const;
 
   const isDividerDisplayed = Boolean(age) && Boolean(region);
 
   return (
-    <Container
-      headerColor={headerColorMap[status].headerColor}
-      isMobile={isMobile}
-    >
-      <Tag status={status}></Tag>
+    <Container headerColor={headerColorMap[role].header} isMobile={isMobile}>
+      <RoleTag role={role} />
       <ProfilePicture
-        variation={headerColorMap[status].profilePictureVariation}
+        variation={headerColorMap[role].profilePictureVariation}
       />
       <BasicInfo>
-        <NameText variant="h2" color={headerColorMap[status].text}>
+        <NameText variant="h2" color={headerColorMap[role].text}>
           {name}
         </NameText>
-        <WrappedText color={headerColorMap[status].text}>
-          {age}
-          {t('card.age')}
+        <WrappedText color={headerColorMap[role].text}>
+          {age} {t('card.age')}
           {isDividerDisplayed && <Divider>|</Divider>}
           {region}
         </WrappedText>
-        <TruncateText isMobile={isMobile} color={headerColorMap[status].text}>
+        <TruncateText isMobile={isMobile} color={headerColorMap[role].text}>
           {message}
         </TruncateText>
       </BasicInfo>
@@ -91,19 +94,26 @@ export const Header: React.FC<Props> = ({
   );
 };
 
-const Container = styled.div<{ headerColor: string; isMobile: boolean }>`
+const Container = styled.div<{ isMobile: boolean; headerColor: string }>`
   align-items: center;
-  background-color: ${({ headerColor }) => headerColor}};
+  background-color:  ${({ headerColor }) => headerColor}};
   border-radius: 0.75rem;
   box-sizing: border-box;
   color: ${palette.white};
   display: flex;
   flex: 0 0 auto;
-  height: 7.5rem;
-  max-height: 7.5rem;
+  height: 7rem;
+  max-height: 7rem;
   padding: ${({ isMobile }) => (isMobile ? '1.5rem' : '2.5rem')};
   position: relative;
   width: 100%;
+`;
+
+const NameText = styled(Text)`
+  overflow: hidden;
+  padding-top: 1rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const ProfilePicture = styled.div<ProfilePictureProps>`
@@ -115,10 +125,10 @@ const ProfilePicture = styled.div<ProfilePictureProps>`
   width: 4rem;
 `;
 
-const NameText = styled(Text)`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+export const WrappedText = styled(Text)`
+  display: flex;
+  flexwrap: wrap;
+  margin: 0px;
 `;
 
 const BasicInfo = styled.div`

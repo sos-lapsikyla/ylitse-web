@@ -1,0 +1,19 @@
+{
+  "title": "Users",
+  "card": {
+    "age": "y.",
+    "created": "Created",
+    "email": "Email",
+    "publicName": "Public name",
+    "userName": "Username"
+  },
+  "notification": {
+    "parsingUsersError": "Parsing failed",
+    "fetchingUsersError": "Fetching failed"
+  },
+  "role": {
+    "admin": "Admin",
+    "mentee": "Mentee",
+    "mentor": "Mentor"
+  }
+}

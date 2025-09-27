@@ -2,7 +2,7 @@ import type { Mentee, Mentor } from '../fixtures/accounts';
 import { generateToken } from 'node-2fa';
 
 const API_URL = Cypress.env('apiUrl') || 'http://127.0.0.1:8080';
-const API_USER = Cypress.env('apiUrl') || 'admin';
+const API_USER = Cypress.env('apiUser') || 'admin';
 const API_PASS = Cypress.env('apiPass') || '';
 const MFA_SECRET = Cypress.env('mfaSecret') || '';
 
@@ -36,6 +36,21 @@ const accessToken = (
     .then(response => {
       return response.body.tokens.access_token;
     });
+};
+
+const loginAdmin = () => {
+  const token = generateToken(MFA_SECRET ?? '')?.token;
+  cy.visit('/login/');
+  cy.fillInput('username', API_USER);
+  cy.fillInput('password', API_PASS);
+  cy.get('a[id="show-mfa"]').click();
+  if (token) {
+    cy.fillInput('mfa_token', token);
+    cy.get('button[id="submit"]').click();
+  }
+  cy.getByText('Ylitse MentorApp -vertaismentoripalvelu', 'p').should(
+    'be.visible',
+  );
 };
 
 /**
@@ -333,7 +348,9 @@ export const api = {
   signUpMentor,
   deleteAccount,
   deleteAccounts,
+  getUsers,
   sendMessage,
   sendMultipleMessage,
   updateChatStatus,
+  loginAdmin,
 };

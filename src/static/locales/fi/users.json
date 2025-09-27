@@ -1,0 +1,19 @@
+{
+  "title": "Käyttäjät",
+  "card": {
+    "age": "v.",
+    "created": "Luotu",
+    "email": "Sähköposti",
+    "publicName": "Julkinen käyttäjänimi",
+    "userName": "Käyttäjätunnus"
+  },
+  "notification": {
+    "parsingUsersError": "Parsing failed",
+    "fetchingUsersError": "Fetching failed"
+  },
+  "role": {
+    "admin": "Admin",
+    "mentee": "Aktori",
+    "mentor": "Mentori"
+  }
+}
