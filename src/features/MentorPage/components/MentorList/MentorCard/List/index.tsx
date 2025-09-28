@@ -20,7 +20,7 @@ type Props = {
   mentor: Mentor;
 };
 
-export const ListCard: React.FC<Props> = ({
+const ListCard: React.FC<Props> = ({
   isHomePage = false,
   isForcedMobile = false,
   setVisibleCard,

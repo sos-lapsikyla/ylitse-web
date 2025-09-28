@@ -19,10 +19,6 @@ type Props = {
   isAdmin: boolean;
 };
 
-interface ProfilePictureProps {
-  variation: string;
-}
-
 export const Header: React.FC<Props> = ({
   name,
   isMentor,
@@ -63,10 +59,10 @@ export const Header: React.FC<Props> = ({
   } as const;
 
   return (
-    <Container headerColor={headerColorMap[role].header} isMobile={isMobile}>
+    <Container $headerColor={headerColorMap[role].header} $isMobile={isMobile}>
       <RoleTag role={role} />
       <ProfilePicture
-        variation={headerColorMap[role].profilePictureVariation}
+        $variation={headerColorMap[role].profilePictureVariation}
       />
       <NameText variant="h2" color={headerColorMap[role].text}>
         {name}
@@ -75,9 +71,9 @@ export const Header: React.FC<Props> = ({
   );
 };
 
-const Container = styled.div<{ isMobile: boolean; headerColor: string }>`
+const Container = styled.div<{ $isMobile: boolean; $headerColor: string }>`
   align-items: center;
-  background-color:  ${({ headerColor }) => headerColor}};
+  background-color: ${({ $headerColor }) => $headerColor};
   border-radius: 0.75rem;
   box-sizing: border-box;
   color: ${palette.white};
@@ -85,7 +81,7 @@ const Container = styled.div<{ isMobile: boolean; headerColor: string }>`
   flex: 0 0 auto;
   height: 7rem;
   max-height: 7rem;
-  padding: ${({ isMobile }) => (isMobile ? '1.5rem' : '2.5rem')};
+  padding: ${({ $isMobile }) => ($isMobile ? '1.5rem' : '2.5rem')};
   position: relative;
   width: 100%;
 `;
@@ -97,8 +93,8 @@ const NameText = styled(Text)`
   white-space: nowrap;
 `;
 
-const ProfilePicture = styled.div<ProfilePictureProps>`
-  background-image: url(${props => props.variation});
+const ProfilePicture = styled.div<{ $variation: string }>`
+  background-image: url(${({ $variation }) => $variation});
   background-repeat: no-repeat;
   background-size: contain;
   flex: 0 0 4rem;

@@ -29,14 +29,14 @@ const RoleTag: React.FC<Props> = ({ role }) => {
   const roleTagText = roleMap[role].text;
   const roleTagColor = roleMap[role].tagColor;
 
-  return <Tag roleTagColor={roleTagColor}>{roleTagText}</Tag>;
+  return <Tag $roleTagColor={roleTagColor}>{roleTagText}</Tag>;
 };
 
-const Tag = styled(Text)<{ roleTagColor: string }>`
-  background-color: ${props => props.roleTagColor};
+const Tag = styled(Text)<{ $roleTagColor: string }>`
+  background-color: ${({ $roleTagColor }) => $roleTagColor};
   border-radius: 0.25rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
-  display: flex};
+  display: flex;
   margin: 0;
   padding: 0.25rem 1rem;
   position: absolute;

@@ -7,7 +7,7 @@ const API_USER = Cypress.env('apiUser') || 'admin';
 const API_PASS = Cypress.env('apiPass') || '';
 const MFA_SECRET = Cypress.env('mfaSecret') || '';
 
-const generateTotp = (secret: string) => {
+export const generateTotp = (secret: string) => {
   const totp = new OTPAuth.TOTP({
     secret: OTPAuth.Secret.fromBase32(secret),
     algorithm: 'SHA1',
@@ -46,21 +46,6 @@ const accessToken = (
       },
     })
     .then(response => response.body.tokens.access_token);
-};
-
-const loginAdmin = () => {
-  const token = generateToken(MFA_SECRET ?? '')?.token;
-  cy.visit('/login/');
-  cy.fillInput('username', API_USER);
-  cy.fillInput('password', API_PASS);
-  cy.get('a[id="show-mfa"]').click();
-  if (token) {
-    cy.fillInput('mfa_token', token);
-    cy.get('button[id="submit"]').click();
-  }
-  cy.getByText('Ylitse MentorApp -vertaismentoripalvelu', 'p').should(
-    'be.visible',
-  );
 };
 
 /**
@@ -362,5 +347,4 @@ export const api = {
   sendMessage,
   sendMultipleMessage,
   updateChatStatus,
-  loginAdmin,
 };

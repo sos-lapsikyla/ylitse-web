@@ -1,8 +1,16 @@
-import { api } from 'cypress/support/api';
+import { generateTotp } from 'cypress/support/api';
+
+const SUPERADMIN_USER = Cypress.env('apiUser') || 'admin';
+const SUPERADMIN_PASS = Cypress.env('apiPass') || '';
+const SUPERADMIN_MFA = Cypress.env('mfaSecret') || '';
 
 describe('Admin', () => {
   beforeEach(() => {
-    api.loginAdmin();
+    cy.loginUser(
+      SUPERADMIN_USER,
+      SUPERADMIN_PASS,
+      generateTotp(SUPERADMIN_MFA).token,
+    );
   });
 
   it('Displays right navigation items for admin', () => {

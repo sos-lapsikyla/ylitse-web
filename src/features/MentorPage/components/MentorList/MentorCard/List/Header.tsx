@@ -21,10 +21,6 @@ type Props = {
   message: string;
 };
 
-interface ProfilePictureProps {
-  variation: string;
-}
-
 export const Header: React.FC<Props> = ({
   name,
   age,
@@ -71,7 +67,7 @@ export const Header: React.FC<Props> = ({
     >
       <Tag status={status}></Tag>
       <ProfilePicture
-        variation={headerColorMap[status].profilePictureVariation}
+        $variation={headerColorMap[status].profilePictureVariation}
       />
       <BasicInfo>
         <NameText variant="h2" color={headerColorMap[status].text}>
@@ -93,7 +89,7 @@ export const Header: React.FC<Props> = ({
 
 const Container = styled.div<{ $headerColor: string; $isMobile: boolean }>`
   align-items: center;
-  background-color: ${({ $headerColor }) => $headerColor}};
+  background-color: ${({ $headerColor }) => $headerColor};
   border-radius: 0.75rem;
   box-sizing: border-box;
   color: ${palette.white};
@@ -106,8 +102,8 @@ const Container = styled.div<{ $headerColor: string; $isMobile: boolean }>`
   width: 100%;
 `;
 
-const ProfilePicture = styled.div<ProfilePictureProps>`
-  background-image: url(${props => props.variation});
+const ProfilePicture = styled.div<{ $variation: string }>`
+  background-image: url(${({ $variation }) => $variation});
   background-repeat: no-repeat;
   background-size: contain;
   flex: 0 0 4rem;
