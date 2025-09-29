@@ -63,7 +63,7 @@ const ReportModal = ({ buddyId, close }: Props) => {
   return (
     <>
       <Overlay />
-      <Container isMobile={isMobile}>
+      <Container $isMobile={isMobile}>
         <Header>
           <Text color="white" variant="h1">
             {t('dialog.report.title')}
@@ -74,7 +74,7 @@ const ReportModal = ({ buddyId, close }: Props) => {
             onClick={close}
           />
         </Header>
-        <Content isMobile={isMobile}>
+        <Content $isMobile={isMobile}>
           <Paragraph>{t('dialog.report.description1')}</Paragraph>
           <Paragraph>{t('dialog.report.description2')}</Paragraph>
           <Paragraph>{t('dialog.report.description3')}</Paragraph>
@@ -126,7 +126,7 @@ const Overlay = styled.div`
   z-index: 100;
 `;
 
-const Container = styled.div<{ isMobile: boolean }>`
+const Container = styled.div<{ $isMobile: boolean }>`
   background-color: ${palette.white};
   border-radius: 20px;
   box-sizing: border-box;
@@ -139,7 +139,7 @@ const Container = styled.div<{ isMobile: boolean }>`
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: ${({ isMobile }) => (isMobile ? '90%' : DIALOG_WIDTH)};
+  width: ${({ $isMobile }) => ($isMobile ? '90%' : DIALOG_WIDTH)};
   z-index: 200;
 `;
 
@@ -159,10 +159,10 @@ const CloseButton = styled(IconButton)`
   top: 1rem;
 `;
 
-const Content = styled.div<{ isMobile: boolean }>`
+const Content = styled.div<{ $isMobile: boolean }>`
   display: flex;
   flex-direction: column;
-  padding: ${({ isMobile }) => (isMobile ? '2rem' : '2rem 5rem')};
+  padding: ${({ $isMobile }) => ($isMobile ? '2rem' : '2rem 5rem')};
 `;
 
 const Paragraph = styled(Text)`

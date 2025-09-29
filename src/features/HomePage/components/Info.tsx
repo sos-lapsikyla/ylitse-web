@@ -50,7 +50,7 @@ const Info = ({ isMobile = false }: Props) => {
 
 const MobileContainer = styled.div`
   background-color: ${palette.white};
-  padding: 3rem;
+  padding: 3rem 2rem 4rem 2rem;
 `;
 
 const Bullets = styled.div`
@@ -67,9 +67,10 @@ const Row = styled.div`
 const Bullet = styled.div`
   background-color: ${palette.purple};
   border-radius: 50%;
+  flex: 0 0 8px;
   height: 8px;
   margin-right: 1rem;
-  min-width: 8px;
+  width: 8px;
 `;
 
 const BulletText = styled(Text)`
@@ -83,9 +84,9 @@ const BoldText = styled.span`
 const DecorativeBar = styled.div`
   background-color: ${palette.purpleDark};
   height: 4px;
-  position: relative;
-  right: 6rem;
-  top: 3rem;
+  left: -3rem;
+  position: absolute;
+  top: 8.5rem;
   width: 79px;
 `;
 

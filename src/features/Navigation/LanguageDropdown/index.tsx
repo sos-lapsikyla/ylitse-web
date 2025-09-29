@@ -16,7 +16,7 @@ const LangDropdown = () => {
     i18n.language === langCode;
 
   const changeLanguage = (langCode: LangCode): void => {
-    i18n.changeLanguage(langCode);
+    void i18n.changeLanguage(langCode);
     setIsComponentVisible(false);
   };
 

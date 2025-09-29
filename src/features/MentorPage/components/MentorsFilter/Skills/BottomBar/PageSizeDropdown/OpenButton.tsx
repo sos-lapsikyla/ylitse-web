@@ -17,7 +17,7 @@ export const OpenButton = ({
 }: Props) => (
   <SelectButton
     onClick={() => onClick(!isComponentVisible)}
-    isExpanded={isComponentVisible}
+    $isExpanded={isComponentVisible}
   >
     <Text variant="boldBaloo" color="purple">
       {selected}
@@ -30,15 +30,28 @@ export const OpenButton = ({
   </SelectButton>
 );
 
-const SelectButton = styled(Button)<{ isExpanded: boolean }>`
+const SelectButton = styled(Button)<{ $isExpanded: boolean }>`
   align-items: center;
-  border: none;
+  border: 2px solid transparent;
+  border-bottom: 2px;
+  border-radius: 8px;
+  box-sizing: border-box;
   display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  width: 100%;
 
-  ${({ isExpanded }) =>
-    isExpanded &&
-    css`
-      border: 2px solid ${palette.purple};
-      border-radius: 8px 8px 0 0;
-    `}
+  ${({ $isExpanded }) =>
+    $isExpanded
+      ? css`
+          border-bottom-color: transparent;
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+          border-color: ${palette.purple};
+        `
+      : css`
+          &:hover {
+            background-color: ${palette.white};
+          }
+        `}
 `;

@@ -1,24 +1,23 @@
 import React, { PropsWithChildren } from 'react';
 import { render } from '@testing-library/react';
 import type { RenderOptions } from '@testing-library/react';
-import type { PreloadedState } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
 import { setupStore } from '../store';
 import type { AppStore, RootState } from '../store';
 
 import userEvent from '@testing-library/user-event';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router';
 
 // This type interface extends the default options for render from RTL, as well
 // as allows the user to specify other things such as initialState, store.
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
-  preloadedState?: PreloadedState<RootState>;
+  preloadedState?: Partial<RootState>;
   store?: AppStore;
 }
 
 export function renderWithProviders(
-  ui: React.ReactElement,
+  ui: React.ReactElement<unknown>,
   {
     preloadedState = {},
     // Automatically create a store instance if no store was passed in
@@ -26,7 +25,7 @@ export function renderWithProviders(
     ...renderOptions
   }: ExtendedRenderOptions = {},
 ) {
-  function Wrapper({ children }: PropsWithChildren): JSX.Element {
+  function Wrapper({ children }: PropsWithChildren): React.JSX.Element {
     return (
       <Provider store={store}>
         <BrowserRouter>{children}</BrowserRouter>
@@ -41,7 +40,7 @@ export function renderWithProviders(
 }
 
 export function renderWithStoreProvider(
-  ui: React.ReactElement,
+  ui: React.ReactElement<unknown>,
   {
     preloadedState = {},
     // Automatically create a store instance if no store was passed in
@@ -49,7 +48,7 @@ export function renderWithStoreProvider(
     ...renderOptions
   }: ExtendedRenderOptions = {},
 ) {
-  function Wrapper({ children }: PropsWithChildren): JSX.Element {
+  function Wrapper({ children }: PropsWithChildren): React.JSX.Element {
     return <Provider store={store}>{children}</Provider>;
   }
   return {

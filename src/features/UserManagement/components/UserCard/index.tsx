@@ -31,7 +31,7 @@ export const UserCard: React.FC<Props> = ({ setVisibleCard, managedUser }) => {
   console.log(setVisibleCard);
 
   return (
-    <Container isMobile={isMobile}>
+    <Container $isMobile={isMobile}>
       {!isMentorAccount ? (
         <Header
           isAdmin={isAdmin}
@@ -57,7 +57,7 @@ export const UserCard: React.FC<Props> = ({ setVisibleCard, managedUser }) => {
   );
 };
 
-const Container = styled.div<{ isMobile: boolean }>`
+const Container = styled.div<{ $isMobile: boolean }>`
   background-color: ${palette.white};
   border-radius: 0.75rem;
   display: flex;
@@ -66,8 +66,8 @@ const Container = styled.div<{ isMobile: boolean }>`
     drop-shadow(0 0.5rem 0.5rem rgba(0, 0, 0, 0.02));
   flex-direction: column;
 
-  ${({ isMobile }) =>
-    isMobile &&
+  ${({ $isMobile }) =>
+    $isMobile &&
     css`
       margin: 1rem 0;
       scroll-behavior: smooth;

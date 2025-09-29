@@ -52,26 +52,34 @@ const PageSizeDropdown = ({ skillsInPage, setSkillsInPage }: Props) => {
 };
 
 const Anchor = styled.div`
-  overflow: hidden;
+  align-items: stretch;
+  display: inline-flex;
+  overflow: visible;
+  position: relative;
 `;
 
 const Menu = styled.div`
   animation: ${animations.growDown};
+  background: ${palette.white};
+  border: 2px solid ${palette.purple};
+  border-radius: 0 0 8px 8px;
   display: flex;
   flex-direction: column;
+  left: 0;
+  min-width: calc(100% - 4px);
   position: absolute;
+  top: calc(100% - 2px);
   transform-origin: top center;
-  width: 62px;
   z-index: 10;
 
   button:last-of-type {
-    border-bottom: 2px solid ${palette.purple};
+    border-bottom: none;
     border-radius: 0 0 8px 8px;
   }
 `;
 
 const Container = styled.div`
-  align-items: baseline;
+  align-items: center;
   display: flex;
   gap: 1rem;
 `;

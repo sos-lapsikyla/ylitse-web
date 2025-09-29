@@ -33,7 +33,7 @@ const Columns = ({
   const { t } = useTranslation('profile');
 
   return (
-    <Container isMobile={isMobile}>
+    <Container $isMobile={isMobile}>
       <Column>
         <LabeledInput
           error={displayNameError}
@@ -81,10 +81,11 @@ const Columns = ({
   );
 };
 
-const Container = styled.div<{ isMobile: boolean }>`
+const Container = styled.div<{ $isMobile: boolean }>`
+  align-items: flex-start;
   display: flex;
-  ${({ isMobile }) =>
-    isMobile
+  ${({ $isMobile }) =>
+    $isMobile
       ? css`
           flex-direction: column;
         `

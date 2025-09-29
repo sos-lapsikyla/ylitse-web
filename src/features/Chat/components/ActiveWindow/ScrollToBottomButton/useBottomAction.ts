@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
 export const useBottomAction = (
-  parentRef: React.RefObject<HTMLDivElement>,
-  childRef: React.RefObject<HTMLDivElement>,
+  parentRef: React.RefObject<HTMLDivElement | null>,
+  childRef: React.RefObject<HTMLDivElement | null>,
   offsets = { bottom: 20, right: 20 },
 ) => {
   const [isScrolled, setIsScrolled] = useState(false);

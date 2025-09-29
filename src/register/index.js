@@ -191,8 +191,6 @@ const validateInput = input => {
   }
 };
 
-// This function is used in the register/index.html file. The probelm will disappear when we rewrite this in React.
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const checkInput = async id => {
   const input = document.getElementById(id);
   if (input.id === 'username') {
@@ -227,3 +225,5 @@ const checkInput = async id => {
       validatePasswordConfirmation();
   }
 };
+
+window.checkInput = checkInput;

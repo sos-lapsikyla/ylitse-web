@@ -7,7 +7,8 @@ export type ButtonProps<T extends ElementType> = {
   isDisabled?: boolean;
   sizeInPx: number;
   variant: ButtonIcon;
-} & ComponentPropsWithoutRef<T>;
+  onClick?: React.MouseEventHandler<HTMLElement>;
+} & Omit<ComponentPropsWithoutRef<T>, 'onClick'>;
 
 const IconButton = <T extends ElementType = 'button'>({
   isDisabled = false,
@@ -15,14 +16,15 @@ const IconButton = <T extends ElementType = 'button'>({
   sizeInPx,
   variant,
   ...rest
-}: ButtonProps<T>): JSX.Element => {
+}: ButtonProps<T>): React.JSX.Element => {
   return (
     <Container onClick={onClick}>
       <StyledIconButton
         aria-label={variant}
         disabled={isDisabled}
-        size={sizeInPx}
-        variant={variant}
+        $isDisabled={isDisabled}
+        $size={sizeInPx}
+        $variant={variant}
         {...rest}
       />
     </Container>
@@ -30,9 +32,9 @@ const IconButton = <T extends ElementType = 'button'>({
 };
 
 const StyledIconButton = styled.button<{
-  variant: ButtonIcon;
-  disabled: boolean;
-  size: number;
+  $variant: ButtonIcon;
+  $isDisabled: boolean;
+  $size: number;
 }>`
   appearance: none;
   background-color: transparent;
@@ -40,17 +42,18 @@ const StyledIconButton = styled.button<{
   background-size: contain;
   border: none;
   cursor: pointer;
-  ${({ size }) => css`
-    height: ${size}px;
-    width: ${size}px;
+  ${({ $size }) => css`
+    height: ${$size}px;
+    width: ${$size}px;
   `}
-  ${({ disabled }) =>
-    disabled &&
+  ${({ $isDisabled }) =>
+    $isDisabled &&
     css`
       cursor: not-allowed;
       opacity: 0.5;
     `}
-  ${({ variant }) => variant && `background-image: ${iconVariants[variant]};`}
+  ${({ $variant }) =>
+    $variant && `background-image: ${iconVariants[$variant]};`}
 `;
 
 const Container = styled.div`

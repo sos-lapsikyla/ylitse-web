@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <Container>
       <Link url={links.sosLapsikylaUrl}>
-        <Text variant="footer">{t('footer')}</Text>
+        <FooterText variant="footer">{t('footer')}</FooterText>
         <FooterImage src={FooterLogo} />
       </Link>
     </Container>
@@ -21,13 +21,22 @@ const Footer = () => {
 };
 
 const Container = styled.footer`
+  align-items: center;
   background-color: ${palette.blue};
+  display: inline-flex;
   height: ${FOOTER_HEIGHT};
+  justify-content: center;
+  width: 100%;
+`;
+
+const FooterText = styled(Text)`
+  margin-right: 1rem;
 `;
 
 const FooterImage = styled.img`
-  height: ${FOOTER_HEIGHT};
-  width: 9rem;
+  margin-left: 1rem;
+  transform: translateX(0.5px);
+  width: 7.25rem;
 `;
 
 export default Footer;

@@ -43,7 +43,9 @@ export const profileApi = baseApi.injectEndpoints({
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled;
-          dispatch(authenticationApi.endpoints.logout.initiate());
+          await dispatch(
+            authenticationApi.endpoints.logout.initiate(),
+          ).unwrap();
         } catch (err) {
           toast.error(t('profile:notification.failure.delete'), {
             id: 'delete-failure',

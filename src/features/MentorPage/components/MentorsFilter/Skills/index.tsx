@@ -96,7 +96,6 @@ const Container = styled.div`
   gap: 1rem;
   height: fit-content;
   justify-content: center;
-  overflow: hidden;
   padding-left: 6%;
   padding-right: 6%;
 `;

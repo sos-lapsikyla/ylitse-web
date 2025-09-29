@@ -1,5 +1,5 @@
 // Libraries
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import styled, { css } from 'styled-components';
 
@@ -21,13 +21,13 @@ const WelcomeWindow = () => {
   return (
     <Container>
       <UpperPart>
-        <WelcomeText isHeader variant="h2">
+        <WelcomeText $isHeader variant="h2">
           {t('welcome.upper.title')}
         </WelcomeText>
         <WelcomeText>{t('welcome.upper.description')}</WelcomeText>
       </UpperPart>
       <LowerPart>
-        <WelcomeText isHeader variant="h2">
+        <WelcomeText $isHeader variant="h2">
           {t('welcome.lower.title')}
         </WelcomeText>
         <WelcomeText>{t('welcome.lower.description')}</WelcomeText>
@@ -64,9 +64,9 @@ const LowerPart = styled.div`
   justify-content: center;
 `;
 
-const WelcomeText = styled(Text)<{ isHeader?: boolean }>`
-  ${({ isHeader }) =>
-    isHeader &&
+const WelcomeText = styled(Text)<{ $isHeader?: boolean }>`
+  ${({ $isHeader }) =>
+    $isHeader &&
     css`
       padding-bottom: 1rem;
       white-space: nowrap;

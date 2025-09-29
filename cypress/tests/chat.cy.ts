@@ -38,6 +38,7 @@ describe('chat', () => {
 
     // go to mentors page
     cy.get('[href="/mentors"]').click();
+    cy.location('pathname').should('eq', '/mentors');
     cy.getByText(mentor.displayName, 'h2').should('be.visible');
 
     cy.getByText('Avaa kortti', 'button').scrollIntoView().click();
@@ -51,6 +52,7 @@ describe('chat', () => {
 
     // go to mentors page
     cy.get('[href="/mentors"]').click();
+    cy.location('pathname').should('eq', '/mentors');
     cy.getByText(mentor.displayName, 'h2').should('be.visible');
 
     // send message
@@ -68,6 +70,7 @@ describe('chat', () => {
 
     // message came
     cy.get('[href="/chat"]').click();
+    cy.location('pathname').should('eq', '/chat');
     cy.getByText('Hello there', 'p').should('be.visible');
   });
 
@@ -78,6 +81,8 @@ describe('chat', () => {
     cy.loginUser(mentor.loginName, mentor.password);
 
     cy.get('[href="/chat"]').click();
+    cy.location('pathname').should('eq', '/chat');
+
     cy.get('textarea[placeholder*="Kirjoita viestisi tähän"]')
       .click()
       .type(' ');
@@ -93,6 +98,7 @@ describe('chat', () => {
 
     // go to chat-page
     cy.get('[href="/chat"]').click();
+    cy.location('pathname').should('eq', '/chat');
     cy.getByText(message, 'p').should('be.visible');
 
     // send message
@@ -107,6 +113,7 @@ describe('chat', () => {
 
     // message came
     cy.get('[href="/chat"]').click();
+    cy.location('pathname').should('eq', '/chat');
     cy.getByText(answer, 'p').should('be.visible');
   });
 
@@ -145,6 +152,7 @@ describe('chat', () => {
     // open chat with mentor
     cy.loginUser(mentee.loginName, mentee.password);
     cy.get('[href="/chat"]').click();
+    cy.location('pathname').should('eq', '/chat');
     cy.getByText(mentor.displayName, 'p').should('be.visible').click();
     cy.getByText(mentor.displayName, 'h2').should('be.visible');
 
@@ -170,15 +178,20 @@ describe('chat', () => {
 
     cy.loginUser(mentor.loginName, mentor.password);
 
-    // see unseen-message-ball
+    // Unseen ball is visible
     cy.get('div[id="unseen-messages-dot-navigation"]').should('be.visible');
-    // go to chat-page and mark message unseen
-    cy.get('[href="/chat"]').click();
-    cy.getByText(message, 'p').should('be.visible');
-    cy.wait(1000);
-    cy.get('[href="/mentors"]').click();
 
-    // unseen-message-ball-disappears
+    // Go to chat page and mark message unseen
+    cy.get('[href="/chat"]').click();
+    cy.location('pathname').should('eq', '/chat');
+    cy.getByText(message, 'p').should('be.visible');
+
+    // Unseen ball should disappear before navigating away
+    cy.get('div[id="unseen-messages-dot-navigation"]').should('not.exist');
+
+    cy.get('[href="/mentors"]').click();
+    cy.location('pathname').should('eq', '/mentors');
+    // Unseen ball still gone
     cy.get('div[id="unseen-messages-dot-navigation"]').should('not.exist');
   });
 
@@ -206,11 +219,13 @@ describe('chat', () => {
 
     // go to chat-page
     cy.get('[href="/chat"]').click();
+    cy.location('pathname').should('eq', '/chat');
 
     // should scroll to last message
     cy.getByText(`${message} ${numberOfMessages}!`, 'p').should('be.visible');
     cy.wait(1000);
     cy.get('[href="/mentors"]').click();
+    cy.location('pathname').should('eq', '/mentors');
 
     // see unseen-message-ball still
     cy.get('div[id="unseen-messages-dot-navigation"]').should('be.visible');
@@ -240,6 +255,7 @@ describe('chat', () => {
 
     // go to chat-page
     cy.get('[href="/chat"]').click();
+    cy.location('pathname').should('eq', '/chat');
 
     // should scroll to last message
     cy.getByText(`${message} ${numberOfMessages}!`, 'p').should('be.visible');
@@ -256,6 +272,7 @@ describe('chat', () => {
 
     // go to chat-page
     cy.get('[href="/chat"]').click();
+    cy.location('pathname').should('eq', '/chat');
     cy.getByText(message, 'p').should('be.visible');
 
     // archive the chat
@@ -343,6 +360,7 @@ describe('chat', () => {
 
     // go to archived conversations
     cy.get('[href="/chat"]').click();
+    cy.location('pathname').should('eq', '/chat');
     cy.get('button[aria-label="menuLines"]').click();
     cy.getByText('Arkistoidut keskustelut', 'a');
     cy.get('div[id="unseen-messages-dot-navigation"]').should('not.exist');
@@ -356,6 +374,7 @@ describe('chat', () => {
 
     // go to chat-page
     cy.get('[href="/chat"]').click();
+    cy.location('pathname').should('eq', '/chat');
     cy.getByText(message, 'p').should('be.visible');
 
     // block the chat
@@ -442,6 +461,7 @@ describe('chat', () => {
 
     // go to blocked conversations
     cy.get('[href="/chat"]').click();
+    cy.location('pathname').should('eq', '/chat');
     cy.get('button[aria-label="menuLines"]').click();
     cy.getByText('Estetyt keskustelut', 'a').click();
     cy.get('div[id="unseen-messages-dot-navigation"]').should('not.exist');
@@ -469,6 +489,7 @@ describe('chat', () => {
     // go to chat page
     cy.loginUser(mentor.loginName, mentor.password);
     cy.get('[href="/chat"]').click();
+    cy.location('pathname').should('eq', '/chat');
 
     // initially we should see this message
     // newest message is `Huzzah 20`, but its also shown on the

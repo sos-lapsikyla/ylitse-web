@@ -33,8 +33,8 @@ const MessageList = ({ messageList, status, buddyId, isLoading }: Props) => {
 
   const dispatch = useAppDispatch();
   const oldestMessage = messageList.length > 0 ? messageList[0].id : '0';
-  const historyRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLDivElement>(null);
+  const historyRef = useRef<HTMLDivElement | null>(null);
+  const buttonRef = useRef<HTMLDivElement | null>(null);
 
   const offsets = useMemo(() => ({ bottom: 20, right: 20 }), []);
   const { isScrolled, handleBottomActionClick } = useBottomAction(
@@ -58,10 +58,14 @@ const MessageList = ({ messageList, status, buddyId, isLoading }: Props) => {
 
   return (
     <ChatHistory ref={historyRef} id="chat-history">
-      {isLoading && <Spinner variant="small" isDark />}
+      {isLoading && (
+        <SpinnerContainer>
+          <Spinner variant="small" isDark isInline />
+        </SpinnerContainer>
+      )}
       {Object.keys(groupedMessages).map(date => (
         <Fragment key={date}>
-          <DateDivider isTablet={isTablet}>{date}</DateDivider>
+          <DateDivider $isTablet={isTablet}>{date}</DateDivider>
           <Messages>
             {groupedMessages[date].map(message => (
               <Message
@@ -94,11 +98,15 @@ const ChatHistory = styled.div`
   position: relative;
 `;
 
-const DateDivider = styled(Text)<{ isTablet: boolean }>`
+const SpinnerContainer = styled.div`
+  padding-top: 1rem;
+`;
+
+const DateDivider = styled(Text)<{ $isTablet: boolean }>`
   position: relative;
   text-align: center;
-  ${({ isTablet }) =>
-    !isTablet &&
+  ${({ $isTablet }) =>
+    !$isTablet &&
     css`
       margin-left: 40px;
       margin-right: 40px;
@@ -109,7 +117,7 @@ const DateDivider = styled(Text)<{ isTablet: boolean }>`
     content: '';
     position: absolute;
     top: 50%;
-    width: ${({ isTablet }) => (isTablet ? '30%' : '40%')};
+    width: ${({ $isTablet }) => ($isTablet ? '30%' : '40%')};
     height: 1px;
     background-color: ${palette.purple}};
   }

@@ -91,7 +91,9 @@ const PasswordEditor = () => {
         </TextButton>
         <TextButton
           isDisabled={isSavingDisabled}
-          onClick={savePassword}
+          onClick={() => {
+            void savePassword();
+          }}
           variant={isSavingDisabled ? 'disabled' : 'dark'}
         >
           {t('account.save')}

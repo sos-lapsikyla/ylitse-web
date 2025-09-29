@@ -39,11 +39,11 @@ export const Header = ({
   };
 
   return isTabletNarrow ? (
-    <Container statusColor={statusColors[status]} isTabletNarrow>
+    <Container $statusColor={statusColors[status]} $isTabletNarrow>
       <SpacedRow>
         <Column>
           <Tag status={status} />
-          <ProfilePicture isMe={isMe} isTabletNarrow />
+          <ProfilePicture $isMe={isMe} $isTabletNarrow />
         </Column>
         <BasicInfo isMe={isMe} mentor={mentor} />
         <CloseButton
@@ -54,28 +54,32 @@ export const Header = ({
       </SpacedRow>
     </Container>
   ) : (
-    <Container statusColor={statusColors[status]} isTabletNarrow={false}>
+    <Container $statusColor={statusColors[status]} $isTabletNarrow={false}>
       <Tag status={status} />
-      <ProfilePicture isMe={isMe} isTabletNarrow={false} />
+      <ProfilePicture $isMe={isMe} $isTabletNarrow={false} />
       <BasicInfo isMe={isMe} mentor={mentor} />
     </Container>
   );
 };
 
-const Container = styled.div<{ statusColor: string; isTabletNarrow: boolean }>`
-  background-color: ${({ statusColor }) => statusColor}};
-  border-radius: 0.75rem;
-  box-sizing: border-box;
+const Container = styled.div<{
+  $statusColor: string;
+  $isTabletNarrow: boolean;
+}>`
+  background-color: ${({ $statusColor }) => $statusColor};
   border-radius: 10px;
-  display: ${({ isTabletNarrow }) => (isTabletNarrow ? 'flex' : '')}
-  flex: 0 0 21vw;
+  box-sizing: border-box;
   min-height: 7.5rem;
-  ${({ isTabletNarrow }) => !isTabletNarrow && css`padding: 2rem;'`}
+  ${({ $isTabletNarrow }) =>
+    !$isTabletNarrow &&
+    css`
+      padding: 2rem;
+    `}
 `;
 
-const ProfilePicture = styled.div<{ isMe: boolean; isTabletNarrow: boolean }>`
-  background-image: ${({ isMe }) =>
-    `url(${isMe ? ProfilePicPlaceholderForMe : ProfilePicPlaceholder})`};
+const ProfilePicture = styled.div<{ $isMe: boolean; $isTabletNarrow: boolean }>`
+  background-image: ${({ $isMe }) =>
+    `url(${$isMe ? ProfilePicPlaceholderForMe : ProfilePicPlaceholder})`};
   background-repeat: no-repeat;
   background-size: contain;
   flex: 0 2 10vw;
@@ -84,7 +88,7 @@ const ProfilePicture = styled.div<{ isMe: boolean; isTabletNarrow: boolean }>`
   width: 10vw;
   @media screen and (max-width: ${breakpoints.mobile}) {
     flex: 0 0 4rem;
-    margin: 2rem 2rem 1rem 1rem;
+    margin: 2rem 2rem 1rem 1.5rem;
     height: 5rem;
     width: 5rem;
   }

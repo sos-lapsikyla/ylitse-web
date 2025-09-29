@@ -7,18 +7,15 @@ import styled, { css } from 'styled-components';
 
 import { useEffect, useState } from 'react';
 
+import licensesJson from '../../../licenses.json' with { type: 'json' };
+
 type LicenseData = {
   name: string;
   licenses: string;
   repository?: string;
 };
 
-type LicensesJson = {
-  [key: string]: {
-    licenses: string;
-    repository?: string;
-  };
-};
+type LicensesJson = Record<string, { licenses: string; repository?: string }>;
 
 export const LicenseModal = () => {
   const { isMobile } = useGetLayoutMode();
@@ -28,8 +25,7 @@ export const LicenseModal = () => {
   useEffect(() => {
     const loadLicenses = () => {
       try {
-        //eslint-disable-next-line @typescript-eslint/no-var-requires
-        const licenses: LicensesJson = require('../../../licenses.json');
+        const licenses = licensesJson as unknown as LicensesJson;
         const licenseData = Object.entries(licenses).map<LicenseData>(
           ([libraryName, libraryData]) => ({
             name: libraryName,
@@ -47,10 +43,10 @@ export const LicenseModal = () => {
   }, []);
 
   return (
-    <Container isMobile={isMobile}>
+    <Container $isMobile={isMobile}>
       {licenseMap.length > 0 ? (
         licenseMap.map(license => (
-          <LicenseRow isMobile={isMobile} key={license.name}>
+          <LicenseRow $isMobile={isMobile} key={license.name}>
             <LicenseInfo variant="p">{license.name}</LicenseInfo>
             {license.repository && (
               <LicenseInfo variant="p">
@@ -66,15 +62,15 @@ export const LicenseModal = () => {
   );
 };
 
-const LicenseRow = styled.div<{ isMobile: boolean }>`
+const LicenseRow = styled.div<{ $isMobile: boolean }>`
   align-items: left;
   display: flex;
   flex-direction: row;
   flexwrap: wrap;
   justify-content: space-between;
   margin: 0px;
-  ${({ isMobile }) =>
-    isMobile
+  ${({ $isMobile }) =>
+    $isMobile
       ? css`
           padding: 0 0.5rem 0.5rem 0.5rem;
         `
@@ -89,7 +85,7 @@ const LicenseInfo = styled(Text)`
   margin: 0px;
 `;
 
-const Container = styled.div<{ isMobile: boolean }>`
+const Container = styled.div<{ $isMobile: boolean }>`
   background-color: ${palette.white};
   border-radius: 10px;
   display: flex;
@@ -102,8 +98,8 @@ const Container = styled.div<{ isMobile: boolean }>`
   padding: 1rem 0 2rem 0;
   scroll-snap-type: x mandatory;
 
-  ${({ isMobile }) =>
-    isMobile
+  ${({ $isMobile }) =>
+    $isMobile
       ? css`
           max-width: 80vw;
           min-height: 10rem;

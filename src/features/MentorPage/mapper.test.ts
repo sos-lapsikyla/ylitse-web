@@ -1,10 +1,12 @@
 import { mapSkills } from './selectors';
+import { type Mentors } from '@/features/MentorPage/models';
 
-const mentors = {
+const mentors: Mentors = {
   user_id_1: {
     age: 21,
     buddyId: '',
     communicationChannels: [],
+    created: 0,
     gender: '',
     isVacationing: true,
     languages: [],
@@ -19,6 +21,7 @@ const mentors = {
     age: 21,
     buddyId: '',
     communicationChannels: [],
+    created: 0,
     gender: '',
     isVacationing: true,
     languages: [],
@@ -33,6 +36,7 @@ const mentors = {
     age: 21,
     buddyId: '',
     communicationChannels: [],
+    created: 0,
     gender: '',
     isVacationing: true,
     languages: [],
@@ -47,6 +51,7 @@ const mentors = {
     age: 21,
     buddyId: '',
     communicationChannels: [],
+    created: 0,
     gender: '',
     isVacationing: true,
     languages: [],

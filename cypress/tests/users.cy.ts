@@ -1,5 +1,9 @@
 import { accounts } from 'cypress/fixtures/accounts';
-import { api } from 'cypress/support/api';
+import { api, generateTotp } from 'cypress/support/api';
+
+const SUPERADMIN_USER = Cypress.env('apiUser') || 'admin';
+const SUPERADMIN_PASS = Cypress.env('apiPass') || '';
+const SUPERADMIN_MFA = Cypress.env('mfaSecret') || '';
 
 describe('Users page', () => {
   const mentor = accounts.mentors[0];
@@ -13,7 +17,11 @@ describe('Users page', () => {
   });
 
   it('Allows admin to visit users page', () => {
-    api.loginAdmin();
+    cy.loginUser(
+      SUPERADMIN_USER,
+      SUPERADMIN_PASS,
+      generateTotp(SUPERADMIN_MFA).token,
+    );
     // Click link to users-page
     cy.get('[href="/users"]').click();
     // Assert URL and content
@@ -35,7 +43,11 @@ describe('Users page', () => {
   });
 
   it('Displays cards for all users', () => {
-    api.loginAdmin();
+    cy.loginUser(
+      SUPERADMIN_USER,
+      SUPERADMIN_PASS,
+      generateTotp(SUPERADMIN_MFA).token,
+    );
     cy.get('[href="/users"]').click();
     cy.location('pathname').should('eq', '/users');
     cy.contains('Käyttäjät').should('be.visible');

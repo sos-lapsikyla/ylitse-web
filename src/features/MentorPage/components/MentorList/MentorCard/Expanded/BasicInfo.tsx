@@ -23,14 +23,14 @@ export const BasicInfo = ({
   const isDividerDisplayed = Boolean(age) && Boolean(region);
 
   return (
-    <Container isTabletNarrow={isTabletNarrow}>
+    <Container $isTabletNarrow={isTabletNarrow}>
       <NameText
         variant={isTabletNarrow ? 'h2' : 'h3'}
         color={isMe ? 'blueDark' : 'white'}
       >
         {name}
       </NameText>
-      {!isTabletNarrow && <NameDivider isMe={isMe} />}
+      {!isTabletNarrow && <NameDivider $isMe={isMe} />}
       <WrappedText color={isMe ? 'blueDark' : 'white'}>
         {age}
         {t('card.age')}
@@ -38,7 +38,7 @@ export const BasicInfo = ({
         {region}
       </WrappedText>
       <TruncateText
-        isTabletNarrow={isTabletNarrow}
+        $isTabletNarrow={isTabletNarrow}
         color={isMe ? 'blueDark' : 'white'}
       >
         {statusMessage}
@@ -54,21 +54,22 @@ export const BasicInfo = ({
   );
 };
 
-const Container = styled.div<{ isTabletNarrow: boolean }>`
+const Container = styled.div<{ $isTabletNarrow: boolean }>`
   align-items: center;
   box-sizing: border-box;
   display: flex;
   flex: 1;
   flex-direction: column;
-  margin: ${({ isTabletNarrow }) =>
-    isTabletNarrow ? '1.5rem auto 0.5rem auto' : ' 0 auto'};
+  margin: ${({ $isTabletNarrow }) =>
+    $isTabletNarrow ? '1.5rem auto 0.5rem auto' : ' 0 auto'};
   max-width: 70%;
-  padding-bottom: ${({ isTabletNarrow }) => (isTabletNarrow ? '0' : '5rem')};
+  min-width: 0;
+  padding-bottom: ${({ $isTabletNarrow }) => ($isTabletNarrow ? '0' : '5rem')};
 
   @media screen and (max-width: ${breakpoints.tabletNarrow}) {
     align-items: flex-start;
     justify-content: center;
-    margin-left: -2rem;
+    margin-left: -3.25rem;
   }
 `;
 
@@ -76,8 +77,9 @@ const NameText = styled(Text)`
   overflow-wrap: anywhere;
 `;
 
-const NameDivider = styled.div<{ isMe: boolean }>`
-  border-bottom: 1px solid ${({ isMe }) => (isMe ? palette.blueDark : 'white')};
+const NameDivider = styled.div<{ $isMe: boolean }>`
+  border-bottom: 1px solid
+    ${({ $isMe }) => ($isMe ? palette.blueDark : 'white')};
   height: 2px;
   margin-bottom: 0.5rem;
   margin-top: 0.25rem;
@@ -91,15 +93,15 @@ const Divider = styled.span`
 
 export const WrappedText = styled(Text)`
   display: flex;
-  flexwrap: wrap;
+  flex-wrap: wrap;
   margin: 0px;
 `;
 
-export const TruncateText = styled(Text)<{ isTabletNarrow: boolean }>`
-  ${({ isTabletNarrow }) => `
-    margin: ${isTabletNarrow ? '0.25rem 0 0.5rem 0' : '1rem 0 3rem 0'};
-    max-width: ${isTabletNarrow ? '100%' : '25vw'};
-    text-align: ${isTabletNarrow ? 'left' : 'center'};
+export const TruncateText = styled(Text)<{ $isTabletNarrow: boolean }>`
+  ${({ $isTabletNarrow }) => `
+    margin: ${$isTabletNarrow ? '0.25rem 0 0.5rem 0' : '1rem 0 3rem 0'};
+    max-width: ${$isTabletNarrow ? '100%' : '25vw'};
+    text-align: ${$isTabletNarrow ? 'left' : 'center'};
   `}
   overflow: hidden;
 `;

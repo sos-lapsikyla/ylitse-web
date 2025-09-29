@@ -1,4 +1,4 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, { css, type RuleSet } from 'styled-components';
 import { palette } from '../constants';
 import SearchIconImg from '@/static/icons/search.svg';
 
@@ -16,12 +16,12 @@ type SearchProps = {
   variant: Variant;
 };
 
-const sizingMap: Record<Variant, FlattenSimpleInterpolation> = {
+const sizingMap: Record<Variant, RuleSet> = {
   normal: css`
     padding: 0.75rem 4.5rem;
   `,
   small: css`
-    padding: 0.75rem 2rem 0.75rem 4rem;
+    padding: 0.75rem 2rem 0.75rem 3.5rem;
   `,
 };
 
@@ -39,24 +39,24 @@ const SearchBar: React.FC<SearchProps> = ({
     <SearchIcon />
     <SearchInput
       disabled={isDisabled}
-      hasOpenDropdown={hasOpenDropdown}
+      $hasOpenDropdown={hasOpenDropdown}
       onBlur={onBlur}
       onChange={e => onChange(e.target.value)}
       onFocus={onFocus}
       type="text"
-      variant={variant}
+      $variant={variant}
       {...props}
     ></SearchInput>
   </SearchBox>
 );
 
 const SearchInput = styled.input<{
-  hasOpenDropdown: boolean;
-  variant: Variant;
+  $hasOpenDropdown: boolean;
+  $variant: Variant;
 }>`
   border: 1px solid ${palette.purple};
-  border-radius: ${({ hasOpenDropdown }) =>
-    hasOpenDropdown ? '20px 20px 0 0' : '20px'};
+  border-radius: ${({ $hasOpenDropdown }) =>
+    $hasOpenDropdown ? '20px 20px 0 0' : '20px'};
   box-sizing: border-box;
   display: flex;
   flex: 1;
@@ -67,7 +67,7 @@ const SearchInput = styled.input<{
   padding: 1rem 4.5rem;
   width: 100%;
 
-  ${({ variant }) => sizingMap[variant]}
+  ${({ $variant }) => sizingMap[$variant]}
 
   &:focus {
     outline: ${palette.purple} solid 2px;
@@ -89,7 +89,7 @@ const SearchIcon = styled.div`
   display: flex;
   flex: 0 0 auto;
   height: 1.5rem;
-  left: 1.5rem;
+  left: 1.25rem;
   position: absolute;
   width: 1.5rem;
 `;

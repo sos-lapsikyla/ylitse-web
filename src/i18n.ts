@@ -35,7 +35,7 @@ export const resources = {
   },
 } as const;
 
-i18n.use(initReactI18next).init({
+export const i18nInit = i18n.use(initReactI18next).init({
   debug: true,
   defaultNS,
   fallbackLng: 'fi',

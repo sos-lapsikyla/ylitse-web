@@ -26,7 +26,7 @@ export const MentorCard = ({ mentor, onDismiss }: Props) => {
 
   return (
     <Container>
-      <Card isTabletNarrow={isTabletNarrow}>
+      <Card $isTabletNarrow={isTabletNarrow}>
         <Header
           mentor={mentor}
           isAvailable={!mentor.isVacationing}
@@ -44,14 +44,14 @@ export const MentorCard = ({ mentor, onDismiss }: Props) => {
   );
 };
 
-const Card = styled.div<{ isTabletNarrow: boolean }>`
+const Card = styled.div<{ $isTabletNarrow: boolean }>`
   background-color: ${palette.white};
   border-radius: 10px;
   opacity: 1;
   z-index: 100;
 
-  ${({ isTabletNarrow }) =>
-    isTabletNarrow
+  ${({ $isTabletNarrow }) =>
+    $isTabletNarrow
       ? css`
           display: flex;
           flex: 1;

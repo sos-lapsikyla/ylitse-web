@@ -41,7 +41,7 @@ const AccountInfo = ({ isMobile = false }: Props) => {
       title: t('account.delete.title'),
     });
     if (isConfirmed) {
-      deleteAccount(id);
+      void deleteAccount(id);
     }
   };
 
@@ -52,7 +52,7 @@ const AccountInfo = ({ isMobile = false }: Props) => {
   };
 
   return (
-    <Container isMentor={isMentor} isMobile={isMobile}>
+    <Container $isMentor={isMentor} $isMobile={isMobile}>
       {!isMentor && (
         <MenteeHeader>
           <Text variant="h1">{t('title')}</Text>
@@ -89,21 +89,21 @@ const AccountInfo = ({ isMobile = false }: Props) => {
   );
 };
 
-const Container = styled.div<{ isMentor: boolean; isMobile: boolean }>`
+const Container = styled.div<{ $isMentor: boolean; $isMobile: boolean }>`
   background-color: ${palette.white};
   box-sizing: border-box;
   display: flex;
   flex: 1;
   flex-direction: column;
   height: fit-content;
-  padding: 2rem 3rem;
+  padding: 2rem 3rem 2.5rem 3rem;
 
-  ${({ isMentor, isMobile }) =>
-    !isMobile &&
+  ${({ $isMentor, $isMobile }) =>
+    !$isMobile &&
     css`
       border-radius: 10px;
       box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
-      ${!isMentor &&
+      ${!$isMentor &&
       `
       align-content: center;
       margin: ${OUTER_VERTICAL_MARGIN} auto;
@@ -124,13 +124,14 @@ const Role = styled.div`
   margin-top: 0.5rem;
 `;
 
-const Public = styled.div`
-  margin-top: 2rem;
+const Public = styled(Section)`
+  margin-top: 1rem;
+  padding: 1rem 0 0 0;
 `;
 
 const DeleteButton = styled(TextButton)`
   align-self: center;
-  margin-top: 2rem;
+  margin-top: 2.5rem;
 `;
 
 export default AccountInfo;

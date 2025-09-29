@@ -25,17 +25,17 @@ export const Tag: React.FC<Props> = ({ status }) => {
   const shouldTagShow = status !== 'empty';
 
   return (
-    <MentorTag variant="bold" isShowing={shouldTagShow} tagColor={tagColor}>
+    <MentorTag variant="bold" $isShowing={shouldTagShow} $tagColor={tagColor}>
       {tagMessage}
     </MentorTag>
   );
 };
 
-const MentorTag = styled(Text)<{ isShowing: boolean; tagColor: string }>`
-  background-color: ${props => props.tagColor};
+const MentorTag = styled(Text)<{ $isShowing: boolean; $tagColor: string }>`
+  background-color: ${({ $tagColor }) => $tagColor};
   border-radius: 0.25rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
-  display: ${props => (props.isShowing ? `flex` : `none`)};
+  display: ${({ $isShowing }) => ($isShowing ? `flex` : `none`)};
   padding: 0.25rem 1rem;  
   margin: -1rem auto;
   position: relative;
@@ -50,6 +50,4 @@ const MentorTag = styled(Text)<{ isShowing: boolean; tagColor: string }>`
     position: absolute;
     top: 3.25rem;
     left: 50%;
-    
-
 `;

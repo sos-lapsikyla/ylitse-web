@@ -53,7 +53,9 @@ const EmailEditor = () => {
         </TextButton>
         <TextButton
           isDisabled={isSavingDisabled}
-          onClick={saveEmail}
+          onClick={() => {
+            void saveEmail();
+          }}
           variant={isSavingDisabled ? 'disabled' : 'dark'}
         >
           {t('account.save')}

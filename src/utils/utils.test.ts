@@ -23,6 +23,7 @@ describe('getIsOlderThanDaysAgo-function', () => {
   });
 
   it('Does not crash when given unvalid parameters', () => {
+    // @ts-expect-error TS2345
     const lessThan90DaysOld = getIsOlderThanDaysAgo(30, 'not date');
     expect(lessThan90DaysOld).toBe(false);
   });

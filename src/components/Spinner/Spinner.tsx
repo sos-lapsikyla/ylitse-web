@@ -6,24 +6,44 @@ type Variant = 'large' | 'medium' | 'small' | 'tiny';
 type Props = {
   variant: Variant;
   isDark?: boolean;
-  centered?: boolean;
+  isInline?: boolean;
+  isCentered?: boolean;
 };
 
 export const Spinner: React.FC<Props> = ({
   variant,
   isDark = false,
-  centered = true,
+  isInline = false,
+  isCentered = true,
 }) => {
   return (
-    <LoadingCircle
-      id="loading"
-      role="progressbar"
-      variant={variant}
-      isDark={isDark}
-      centered={centered}
-    />
+    <Container $isInline={isInline} $isCentered={isCentered}>
+      <LoadingCircle
+        id="loading"
+        role="progressbar"
+        $variant={variant}
+        $isDark={isDark}
+        $isCentered={isCentered}
+      />
+    </Container>
   );
 };
+
+const Container = styled.div<{ $isInline: boolean; $isCentered: boolean }>`
+  ${({ $isCentered }) =>
+    $isCentered &&
+    css`
+      /* Center vertically */
+      display: grid;
+      place-items: center;
+    `}
+
+  ${({ $isInline }) =>
+    !$isInline &&
+    css`
+      min-height: 100vh;
+    `}
+`;
 
 const sizes: Record<Variant, number> = {
   large: 9.7,
@@ -33,15 +53,15 @@ const sizes: Record<Variant, number> = {
 };
 
 const LoadingCircle = styled.div<{
-  variant: Variant;
-  isDark: boolean;
-  centered: boolean;
+  $variant: Variant;
+  $isDark: boolean;
+  $isCentered: boolean;
 }>`
-  ${({ variant, isDark }) => {
-    const diameter = sizes[variant];
+  ${({ $variant, $isDark }) => {
+    const diameter = sizes[$variant];
     const borderWidth = diameter * 0.2;
     const border = `${borderWidth}rem solid ${
-      isDark ? palette.blue : palette.white
+      $isDark ? palette.blue : palette.white
     }`;
     return css`
       border: ${border};
@@ -51,8 +71,8 @@ const LoadingCircle = styled.div<{
       width: ${diameter}rem;
     `;
   }}
-  ${({ isDark }) => {
-    const borderColor = isDark ? palette.greyLight : palette.whiteOpacity;
+  ${({ $isDark }) => {
+    const borderColor = $isDark ? palette.greyLight : palette.whiteOpacity;
     return css`
       border-bottom-color: ${borderColor};
       border-left-color: ${borderColor};
@@ -60,13 +80,16 @@ const LoadingCircle = styled.div<{
     `;
   }}
 
-  ${({ centered }) =>
-    centered &&
+  ${({ $isCentered }) =>
+    $isCentered &&
     css`
-      margin-left: auto;
-      margin-right: auto;
+      /* Center horizontally */
+      display: block;
+      margin-block: 0;
+      margin-inline: auto;
     `}
 
   animation: ${animations.spin}
   border-radius: 50%;
+  margin: 0;
 `;

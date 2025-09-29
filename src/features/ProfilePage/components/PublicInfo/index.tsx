@@ -123,8 +123,8 @@ const PublicInfo = ({ isMobile = false }: Props) => {
     isLoading;
 
   return (
-    <Container isMobile={isMobile}>
-      <Header isMobile={isMobile} variant="h2">
+    <Container $isMobile={isMobile}>
+      <Header $isMobile={isMobile} variant="h2">
         {t('public.title')}
       </Header>
       <Buttons>
@@ -137,7 +137,9 @@ const PublicInfo = ({ isMobile = false }: Props) => {
         </TextButton>
         <TextButton
           isDisabled={isSavingDisabled}
-          onClick={saveMentorData}
+          onClick={() => {
+            void saveMentorData();
+          }}
           variant={isSavingDisabled ? 'disabled' : 'dark'}
         >
           {t('public.mentor.save')}
@@ -171,14 +173,15 @@ const PublicInfo = ({ isMobile = false }: Props) => {
   );
 };
 
-const Container = styled.div<{ isMobile: boolean }>`
-  ${({ isMobile }) =>
-    isMobile
+const Container = styled.div<{ $isMobile: boolean }>`
+  ${({ $isMobile }) =>
+    $isMobile
       ? css`
           box-sizing: border-box;
           display: flex;
           flex: 2;
           flex-direction: column;
+          margin-bottom: 1rem;
         `
       : css`
           background-color: ${palette.white};
@@ -188,12 +191,13 @@ const Container = styled.div<{ isMobile: boolean }>`
           display: flex;
           flex: 2;
           flex-direction: column;
+          margin-bottom: 2rem;
           padding: 2rem 0 4rem;
         `}
 `;
 
-const Header = styled(Text)<{ isMobile: boolean }>`
-  align-self: ${({ isMobile }) => (isMobile ? 'flex-start' : 'center')};
+const Header = styled(Text)<{ $isMobile: boolean }>`
+  align-self: ${({ $isMobile }) => ($isMobile ? 'flex-start' : 'center')};
   padding: 0 3rem;
 `;
 

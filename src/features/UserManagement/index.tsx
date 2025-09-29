@@ -40,7 +40,7 @@ const UsersPage = () => {
     <Spinner variant="large" />
   ) : (
     <>
-      <PageHeader isMobile={isMobile}>
+      <PageHeader $isMobile={isMobile}>
         <Text variant="h1">{t('title')}</Text>
       </PageHeader>
       <UserCardList
@@ -52,20 +52,20 @@ const UsersPage = () => {
 
   return (
     <PageWithTransition>
-      <Container isMobile={isMobile}>{PageContent}</Container>
+      <Container $isMobile={isMobile}>{PageContent}</Container>
     </PageWithTransition>
   );
 };
 
-const Container = styled.div<{ isMobile: boolean }>`
+const Container = styled.div<{ $isMobile: boolean }>`
   display: flex;
   flex-direction: column;
   margin: ${OUTER_VERTICAL_MARGIN} auto;
   max-width: 95rem;
   width: 100%;
 
-  ${({ isMobile }) =>
-    isMobile
+  ${({ $isMobile }) =>
+    $isMobile
       ? css`
           background-color: ${palette.blueLight};
           flex: 1;
@@ -77,7 +77,7 @@ const Container = styled.div<{ isMobile: boolean }>`
         `}
 `;
 
-const PageHeader = styled.div<{ isMobile: boolean }>`
+const PageHeader = styled.div<{ $isMobile: boolean }>`
   align-items: center;
   display: flex;
   justify-content: center;
@@ -85,8 +85,8 @@ const PageHeader = styled.div<{ isMobile: boolean }>`
   max-width: 95rem;
   width: 100%;
 
-  ${({ isMobile }) =>
-    isMobile
+  ${({ $isMobile }) =>
+    $isMobile
       ? css`
           background-color: ${palette.blueLight};
           height: 6rem;

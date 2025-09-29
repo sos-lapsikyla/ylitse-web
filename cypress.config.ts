@@ -3,8 +3,6 @@ import 'dotenv/config';
 
 export default defineConfig({
   defaultCommandTimeout: 10000,
-  video: false,
-  screenshotOnRunFailure: false,
   e2e: {
     baseUrl: 'http://localhost:8082',
     specPattern: 'cypress/tests/**/*.cy.{js,jsx,ts,tsx}',
@@ -23,5 +21,11 @@ export default defineConfig({
       return config;
     },
   },
+  retries: {
+    runMode: 1,
+    openMode: 0,
+  },
+  screenshotOnRunFailure: false,
+  video: false,
   viewportWidth: 1600,
 });

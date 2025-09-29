@@ -37,7 +37,8 @@ type TextInputProps<T extends ElementType> = {
   rightButton?: {
     variant: ButtonIcon;
     sizeInPx: number;
-  } & ComponentPropsWithoutRef<T>;
+    onClick?: React.MouseEventHandler<HTMLElement>;
+  } & Omit<ComponentPropsWithoutRef<T>, 'onClick'>;
   rows?: number;
   onBlur?: () => void;
   onChange: (value: string) => void;
@@ -61,7 +62,7 @@ export const TextInput = <T extends ElementType = TextInputElement>({
   placeholder = '',
   type = 'text',
   value,
-}: TextInputProps<T>): JSX.Element => {
+}: TextInputProps<T>): React.JSX.Element => {
   const TextInputElement = variants[variant].element;
   const variantStyles = variants[variant].styles;
 

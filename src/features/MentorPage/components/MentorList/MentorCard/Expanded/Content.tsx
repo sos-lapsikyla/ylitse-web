@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
 import type { Mentor } from '@/features/MentorPage/models';
@@ -42,7 +42,7 @@ export const Content = ({
   const isStartingConversationDisabled = isMe || isVacationing;
 
   return (
-    <Container isTabletNarrow={isTabletNarrow}>
+    <Container $isTabletNarrow={isTabletNarrow}>
       {!isTabletNarrow && (
         <CloseButton
           onClick={onDismiss}
@@ -74,14 +74,14 @@ export const Content = ({
   );
 };
 
-const Container = styled.div<{ isTabletNarrow: boolean }>`
+const Container = styled.div<{ $isTabletNarrow: boolean }>`
   display: flex;
   flex: 1;
   flex-direction: column;
   gap: 1.5rem;
   overflow-y: auto;
-  padding: ${({ isTabletNarrow }) =>
-    isTabletNarrow ? '1rem 1.25rem' : '4rem 5rem'};
+  padding: ${({ $isTabletNarrow }) =>
+    $isTabletNarrow ? '1rem 1.5rem 2rem 1.5rem' : '4rem 5rem'};
 `;
 
 const CloseButton = styled(IconButton)`

@@ -38,16 +38,26 @@ Cypress.Commands.add('registerUser', (username: string, password: string) => {
   );
 });
 
-Cypress.Commands.add('loginUser', (username: string, password: string) => {
-  cy.visit('/login/');
-  cy.fillInput('username', username);
-  cy.fillInput('password', password);
-  cy.get('button[id="submit"]').click();
+Cypress.Commands.add(
+  'loginUser',
+  (username: string, password: string, otp?: string) => {
+    cy.visit('/login/');
+    cy.fillInput('username', username);
+    cy.fillInput('password', password);
 
-  cy.getByText('Ylitse MentorApp -vertaismentoripalvelu', 'p').should(
-    'be.visible',
-  );
-});
+    if (otp) {
+      cy.get('a[id="show-mfa"]').click();
+      cy.fillInput('mfa_token', otp);
+    }
+
+    cy.get('button[id="submit"]').should('be.visible').click();
+
+    cy.location('pathname').should('not.include', '/login');
+    cy.getByText('Ylitse MentorApp -vertaismentoripalvelu', 'p').should(
+      'be.visible',
+    );
+  },
+);
 
 Cypress.Commands.add('clickLogout', () => {
   cy.get('a[href="/logout"]').click();
@@ -94,7 +104,11 @@ declare namespace Cypress {
     switchLanguageBeforeLogin(language: LangCode): Chainable<void>;
     switchLanguageAfterLogin(language: LangCode): Chainable<void>;
     registerUser(username: string, password: string): Chainable<void>;
-    loginUser(username: string, password: string): Chainable<void>;
+    loginUser(
+      username: string,
+      password: string,
+      otp?: string,
+    ): Chainable<void>;
     clickLogout(): Chainable<void>;
     fillInput(id: string, value: string): Chainable<void>;
     getByText(text: string, selector?: string): Chainable<JQuery<HTMLElement>>;

@@ -72,7 +72,7 @@ const ActiveWindow = () => {
 
   return (
     activeChat && (
-      <Container isTablet={isTablet}>
+      <Container $isTablet={isTablet}>
         <Header chat={activeChat} />
         <MessageList
           messageList={activeChat.messages}
@@ -82,7 +82,9 @@ const ActiveWindow = () => {
         />
         {activeChat.status === 'ok' && (
           <MessageField
-            handleSend={handleMessageSend}
+            handleSend={() => {
+              void handleMessageSend();
+            }}
             isInputDisabled={isLoadingSentMessage}
             isSendDisabled={isSendingDisabled}
             message={message}
@@ -94,17 +96,17 @@ const ActiveWindow = () => {
   );
 };
 
-const Container = styled.div<{ isTablet: boolean }>`
+const Container = styled.div<{ $isTablet: boolean }>`
   background-color: ${palette.white};
   border-radius: 10px;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  height: ${({ isTablet }) =>
-    isTablet ? MOBILE_AND_TABLET_CONTENT_HEIGHT : DESKTOP_CONTENT_HEIGHT};
+  height: ${({ $isTablet }) =>
+    $isTablet ? MOBILE_AND_TABLET_CONTENT_HEIGHT : DESKTOP_CONTENT_HEIGHT};
   min-height: ${CHAT_MIN_HEIGHT};
-  ${({ isTablet }) =>
-    !isTablet &&
+  ${({ $isTablet }) =>
+    !$isTablet &&
     css`
       min-width: ${CHAT_WINDOW_MIN_WIDTH};
     `};

@@ -1,4 +1,4 @@
-import { useBlocker } from 'react-router-dom';
+import { useBlocker } from 'react-router';
 import { useEffect } from 'react';
 
 import { useConfirm } from '@/features/Confirmation/useConfirm';
@@ -26,6 +26,6 @@ export const useConfirmDirtyLeave = (isDirty: boolean, config: Dialog) => {
       }
     };
 
-    if (blocker.state === 'blocked') confirmLeave();
+    if (blocker.state === 'blocked') void confirmLeave();
   }, [blocker.state]);
 };

@@ -19,21 +19,21 @@ export const PageButton = ({ isSelected, onClick, page }: Props) => {
 
   return (
     <PageNumber
-      isSelected={isSelected}
+      $isSelected={isSelected}
       onClick={handleOnClick}
-      isClickable={page !== THREE_DOTS}
+      $isClickable={page !== THREE_DOTS}
     >
       <Text variant="bold">{page}</Text>
     </PageNumber>
   );
 };
 
-const PageNumber = styled.span<{ isSelected: boolean; isClickable: boolean }>`
+const PageNumber = styled.span<{ $isSelected: boolean; $isClickable: boolean }>`
   border-radius: 16%;
-  padding: 0.2rem 1rem;
+  padding: 0.2rem 0.8rem;
 
-  ${({ isSelected }) =>
-    isSelected
+  ${({ $isSelected }) =>
+    $isSelected
       ? css`
           background-color: ${palette.blue2};
         `
@@ -41,8 +41,8 @@ const PageNumber = styled.span<{ isSelected: boolean; isClickable: boolean }>`
           color: ${palette.purpleDark};
         `}
 
-  ${({ isClickable }) =>
-    isClickable &&
+  ${({ $isClickable }) =>
+    $isClickable &&
     css`
       cursor: pointer;
       &:hover {

@@ -46,8 +46,10 @@ const Menu = () => {
       {showFolders && <FolderLink targetFolder="banned" />}
       {showChatList && (
         <ChatList
-          folderLinkOnTopOfMenu={['archived', 'banned'].includes(activeFolder)}
-          isTablet={isTablet}
+          $isFolderLinkOnTopOfMenu={['archived', 'banned'].includes(
+            activeFolder,
+          )}
+          $isTablet={isTablet}
         >
           {chats.map(buddy => {
             return <MenuItem buddy={buddy} key={buddy.buddyId} />;
@@ -89,17 +91,17 @@ const Container = styled(BaseContainer)`
 `;
 
 const ChatList = styled.div<{
-  folderLinkOnTopOfMenu: boolean;
-  isTablet: boolean;
+  $isFolderLinkOnTopOfMenu: boolean;
+  $isTablet: boolean;
 }>`
-  ${({ folderLinkOnTopOfMenu, isTablet }) =>
-    isTablet
+  ${({ $isFolderLinkOnTopOfMenu, $isTablet }) =>
+    $isTablet
       ? css`
           height: calc(
             100vh -
               (
                 ${NAVIGATION_HEIGHT} + ${FOOTER_HEIGHT} +
-                  ${folderLinkOnTopOfMenu ? 2 : 1} * ${ROW_HEIGHT}
+                  ${$isFolderLinkOnTopOfMenu ? 2 : 1} * ${ROW_HEIGHT}
               )
           );
         `

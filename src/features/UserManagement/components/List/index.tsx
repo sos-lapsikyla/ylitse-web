@@ -13,7 +13,7 @@ const UserCardList: React.FC<Props> = ({ setVisibleCard, managedUsers }) => {
   const { isMobile } = useGetLayoutMode();
 
   return (
-    <UserCardsList isMobile={isMobile} data-testid="user-cards-container">
+    <UserCardsList $isMobile={isMobile} data-testid="user-cards-container">
       {managedUsers.map(managedUser => (
         <UserCard
           key={managedUser.id}
@@ -25,13 +25,13 @@ const UserCardList: React.FC<Props> = ({ setVisibleCard, managedUsers }) => {
   );
 };
 
-const UserCardsList = styled.div<{ isMobile: boolean }>`
+const UserCardsList = styled.div<{ $isMobile: boolean }>`
   display: grid;
   margin-top: 3rem;
   width: 100%;
 
-  ${({ isMobile }) =>
-    isMobile
+  ${({ $isMobile }) =>
+    $isMobile
       ? css`
           gap: 1.5rem;
           grid-auto-columns: minmax(300px, 90%);

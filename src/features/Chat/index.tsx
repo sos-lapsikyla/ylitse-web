@@ -25,7 +25,7 @@ const Chat = () => {
           {isActiveChatExisting ? <ActiveWindow /> : <Menu />}
         </PageContainer>
       ) : (
-        <PageContainer isDesktop>
+        <PageContainer $isDesktop>
           <Menu />
           {isDesktopChatOpen ? <ActiveWindow /> : <WelcomeWindow />}
         </PageContainer>
@@ -34,10 +34,10 @@ const Chat = () => {
   );
 };
 
-const PageContainer = styled.div<{ isDesktop?: boolean }>`
+const PageContainer = styled.div<{ $isDesktop?: boolean }>`
   display: flex;
-  ${({ isDesktop }) =>
-    isDesktop &&
+  ${({ $isDesktop }) =>
+    $isDesktop &&
     css`
       gap: ${CHAT_GAP_WIDTH};
       justify-content: center;

@@ -1,8 +1,4 @@
-import {
-  configureStore,
-  combineReducers,
-  PreloadedState,
-} from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 
 import { baseApi } from './baseApi';
@@ -17,7 +13,7 @@ const rootReducer = combineReducers({
   [baseApi.reducerPath]: baseApi.reducer,
 });
 
-export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
+export const setupStore = (preloadedState?: Partial<RootState>) => {
   return configureStore({
     middleware: getDefaultMiddleware =>
       getDefaultMiddleware({ immutableCheck: true }).concat(baseApi.middleware),
@@ -29,6 +25,7 @@ export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppStore = ReturnType<typeof setupStore>;
 export type AppDispatch = AppStore['dispatch'];
+
 export const useAppDispatch: () => AppDispatch = useDispatch; // Export a hook that can be reused to resolve types
 
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
