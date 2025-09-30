@@ -26,19 +26,19 @@ const Footer: React.FC<Props> = ({ managedUser }) => {
         <IconButton
           variant="chatWithBackground"
           sizeInPx={ICON_SIZES.LARGE}
-          onClick={() => console.log('hello world')}
+          onClick={() => console.log('TODO')}
         />
         <IconButton
           variant="edit"
           sizeInPx={ICON_SIZES.LARGE}
-          onClick={() => console.log('hello world')}
+          onClick={() => console.log('TODO')}
         />
         <IconButton
           variant="deleteWithBackground"
           sizeInPx={ICON_SIZES.LARGE}
           onClick={() => {
             if (id === currentUserId) {
-              toast.error('You cannot delete your own account!', {
+              toast.error(t('notification.failure.deleteSelf'), {
                 id: 'self-delete-block',
               });
               return;

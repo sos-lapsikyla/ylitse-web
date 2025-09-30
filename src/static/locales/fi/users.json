@@ -20,7 +20,8 @@
       "delete": "Käyttäjän poistaminen onnistui."
     },
     "failure": {
-      "delete": "Käyttäjän poistaminen epäonnistui."
+      "delete": "Käyttäjän poistaminen epäonnistui.",
+      "deleteSelf": "Et voi poistaa omaa käyttäjääsi käyttäjänhallinta sivulla."
     }
   },
 

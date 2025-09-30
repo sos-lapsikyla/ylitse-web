@@ -66,4 +66,45 @@ describe('Users page', () => {
     cy.getByText('Sähköposti').should('be.visible');
     cy.getByText('Luotu').should('be.visible');
   });
+
+  it('deletes account after confirmation', () => {
+    cy.loginUser(
+      SUPERADMIN_USER,
+      SUPERADMIN_PASS,
+      generateTotp(SUPERADMIN_MFA).token,
+    );
+    cy.get('[href="/users"]').click();
+    cy.location('pathname').should('eq', '/users');
+    cy.contains('Käyttäjät').should('be.visible');
+    cy.contains(mentor.displayName).should('be.visible');
+    cy.get('button[aria-label="deleteWithBackground"]')
+      .eq(1)
+      .click({ force: true });
+    cy.contains(
+      'Käyttäjän poistamista ei voi tämän jälkeen perua. Kaikki tämän käyttäjän käymät keskustelut poistetaan.',
+    ).should('be.visible');
+    cy.getByText('Poista', 'button').click();
+    cy.contains('Käyttäjän poistaminen onnistui').should('be.visible');
+    // assure deleted account is not displayed in userlisting
+    cy.getByText(mentor.displayName, 'h2').should('not.exist');
+  });
+  it('does not let delete current account', () => {
+    cy.loginUser(
+      SUPERADMIN_USER,
+      SUPERADMIN_PASS,
+      generateTotp(SUPERADMIN_MFA).token,
+    );
+    cy.get('[href="/users"]').click();
+    cy.location('pathname').should('eq', '/users');
+    cy.contains('Käyttäjät').should('be.visible');
+    // try to delete current user
+    cy.get('button[aria-label="deleteWithBackground"]')
+      .eq(0)
+      .click({ force: true });
+    cy.contains(
+      'Et voi poistaa omaa käyttäjääsi käyttäjänhallinta sivulla.',
+    ).should('be.visible');
+    // assure account is still listed
+    cy.contains(SUPERADMIN_USER).should('be.visible');
+  });
 });
