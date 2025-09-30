@@ -62,8 +62,30 @@ export const managedUsersApi = baseApi.injectEndpoints({
         }
       },
     }),
+    deleteManagedUser: builder.mutation<unknown, string>({
+      query: accountId => ({
+        url: `accounts/${accountId}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['users'],
+      async onQueryStarted(_, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          toast.success(t('users:notification.success.delete'), {
+            id: 'user-delete-success',
+          });
+        } catch (err) {
+          toast.error(t('users:notification.failure.delete'), {
+            id: 'user-delete-failure',
+          });
+        }
+      },
+    }),
   }),
 });
 
-export const { useGetManagedUsersQuery, useGetManagedAccountsQuery } =
-  managedUsersApi;
+export const {
+  useGetManagedUsersQuery,
+  useGetManagedAccountsQuery,
+  useDeleteManagedUserMutation,
+} = managedUsersApi;

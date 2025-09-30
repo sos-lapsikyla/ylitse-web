@@ -7,6 +7,7 @@ import type { ManagedUser } from '../../models';
 import { Header } from './Header';
 import { CardContent } from './CardContent';
 import { MentorHeader } from './MentorHeader';
+import Footer from './Footer';
 
 type Props = {
   setVisibleCard: (managedUser: ManagedUser) => void;
@@ -53,6 +54,9 @@ export const UserCard: React.FC<Props> = ({ setVisibleCard, managedUser }) => {
         ></MentorHeader>
       )}
       <CardContent managedUser={managedUser} />
+      <FooterWrapper>
+        <Footer managedUser={managedUser} />
+      </FooterWrapper>
     </Container>
   );
 };
@@ -80,6 +84,16 @@ const Container = styled.div<{ $isMobile: boolean }>`
         margin-right: 1.5rem;
       }
     `}
+`;
+
+const FooterWrapper = styled.div`
+  opacity: 0;
+  visibility: hidden;
+
+  ${Container}:hover & {
+    opacity: 1;
+    visibility: visible;
+  }
 `;
 
 export default UserCard;

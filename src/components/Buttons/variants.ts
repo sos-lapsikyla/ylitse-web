@@ -4,10 +4,12 @@ import ArchiveIcon from '@/static/icons/archive.svg';
 import BackIcon from '@/static/icons/back.svg';
 import BlockIcon from '@/static/icons/block.svg';
 import BlockedChatsIcon from '@/static/icons/blocked-chats.svg';
+import ChatWithBackground from '@/static/icons/chat-with-background.svg';
 import CloseIcon from '@/static/icons/close.svg';
 import CloseWithBackgroundIcon from '@/static/icons/close-with-background.svg';
 import DangerIcon from '@/static/icons/danger.svg';
 import DeleteIcon from '@/static/icons/delete.svg';
+import DeleteWithBackground from '@/static/icons/delete-with-background.svg';
 import DownIcon from '@/static/icons/down.svg';
 import EditIcon from '@/static/icons/edit.svg';
 import FilterIcon from '@/static/icons/filter.svg';
@@ -134,8 +136,10 @@ export const iconVariants = {
   blockedChats: `url(${BlockedChatsIcon})`,
   close: `url(${CloseIcon})`,
   closeWithBackground: `url(${CloseWithBackgroundIcon})`,
+  chatWithBackground: `url(${ChatWithBackground})`,
   danger: `url(${DangerIcon})`,
   delete: `url(${DeleteIcon})`,
+  deleteWithBackground: `url(${DeleteWithBackground})`,
   down: `url(${DownIcon})`,
   edit: `url(${EditIcon})`,
   filter: `url(${FilterIcon})`,
