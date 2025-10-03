@@ -13,6 +13,25 @@
     "description": "Käyttäjän poistamista ei voi tämän jälkeen perua. Kaikki tämän käyttäjän käymät keskustelut poistetaan.",
     "confirm": "Poista"
   },
+  "newUser": {
+    "title": "Uusi käyttäjä",
+    "h2": "Tilin tiedot",
+    "caption": "Tähdellä * merkityt kentät tulee täyttää.",
+    "accountType": "Käyttäjätilin tyyppi *",
+    "userName": "Käyttäjätunnus *",
+    "email": "Sähköpostiosoite",
+    "visibility": "Näkyvyys",
+    "hide": "Piilota mentori muilta käyttäjiltä",
+    "publicInfo": "Julkiset tiedot",
+    "displayName": "Julkinen käyttäjänimi *",
+    "birthYear": "Syntymävuosi",
+    "area": "Alue",
+    "story": "Tarinani",
+    "skills": "Aiheet",
+    "newSkill": "Lisää uusi aihe",
+    "cancel": "Peruuta",
+    "createNewUser": "Luo uusi käyttäjä"
+  },
   "notification": {
     "parsingUsersError": "Parsing failed",
     "fetchingUsersError": "Fetching failed",
