@@ -13,6 +13,25 @@
     "description": "The deletion of the user cannot be undone. All conversations this user has participated in will be deleted.",
     "confirm": "Delete"
   },
+  "newUser": {
+    "title": "New User",
+    "h2": "Account info",
+    "caption": "Fields marked with star * are mandatory.",
+    "accountType": "Account type *",
+    "userName": "Username",
+    "email": "Email",
+    "visibility": "Visibility",
+    "hide": "Hide mentor from other users",
+    "publicInfo": "Public Info",
+    "displayName": "Public displayname",
+    "birthYear": "Birth year",
+    "area": "Area",
+    "story": "Story",
+    "skills": "Skills",
+    "newSkill": "Add new skill",
+    "cancel": "Cancel",
+    "createNewUser": "Create new user"
+  },
   "notification": {
     "parsingUsersError": "Parsing failed",
     "fetchingUsersError": "Fetching failed",

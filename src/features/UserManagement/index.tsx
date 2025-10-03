@@ -15,15 +15,20 @@ import Text from '@/components/Text';
 import Spinner from '@/components/Spinner';
 
 import UserCardList from './components/List';
+import { TextButton } from '@/components/Buttons';
+import NewUser from './components/NewUser';
+import { useState } from 'react';
 
 const UsersPage = () => {
   const { t } = useTranslation('users');
   const { isMobile } = useGetLayoutMode();
+
   const { isLoading: isMentorsQueryLoading } = useGetMentorsQuery();
   const { isLoading: isManagedAccountsQueryLoading } =
     useGetManagedAccountsQuery();
   const { isLoading: isAccountsQueryLoading } = useGetManagedUsersQuery();
   const managedUsers = useAppSelector(selectAllManagedUsers());
+  const [isNewUserModalVisible, setIsNewUserModalVisible] = useState(false);
 
   const isLoading =
     isMentorsQueryLoading ||
@@ -35,8 +40,18 @@ const UsersPage = () => {
   ) : (
     <>
       <PageHeader $isMobile={isMobile}>
-        <Text variant="h1">{t('title')}</Text>
+        <Text variant="h1">{t('newUser.title')}</Text>
       </PageHeader>
+      <TextButton
+        leftIcon="next"
+        size="normal"
+        onClick={() => setIsNewUserModalVisible(true)}
+      >
+        Uusi käyttäjä
+      </TextButton>
+      {isNewUserModalVisible && (
+        <NewUser onDismiss={() => setIsNewUserModalVisible(false)}></NewUser>
+      )}
       <UserCardList managedUsers={managedUsers}></UserCardList>
     </>
   );
