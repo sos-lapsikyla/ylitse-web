@@ -6,20 +6,15 @@ import UserCard from '../UserCard';
 
 type Props = {
   managedUsers: Array<ManagedUser>;
-  setVisibleCard: (managedUser: ManagedUser) => void;
 };
 
-const UserCardList: React.FC<Props> = ({ setVisibleCard, managedUsers }) => {
+const UserCardList: React.FC<Props> = ({ managedUsers }) => {
   const { isMobile } = useGetLayoutMode();
 
   return (
     <UserCardsList $isMobile={isMobile} data-testid="user-cards-container">
       {managedUsers.map(managedUser => (
-        <UserCard
-          key={managedUser.id}
-          managedUser={managedUser}
-          setVisibleCard={setVisibleCard}
-        />
+        <UserCard key={managedUser.id} managedUser={managedUser} />
       ))}
     </UserCardsList>
   );

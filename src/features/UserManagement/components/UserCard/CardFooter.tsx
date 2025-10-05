@@ -13,7 +13,7 @@ type Props = {
   managedUser: ManagedUser;
 };
 
-const Footer: React.FC<Props> = ({ managedUser }) => {
+const CardFooter: React.FC<Props> = ({ managedUser }) => {
   const { t } = useTranslation('users');
   const [deleteManagedUser] = useDeleteManagedUserMutation();
   const confirmDelete = useConfirmDelete();
@@ -63,8 +63,9 @@ const Footer: React.FC<Props> = ({ managedUser }) => {
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 3rem;
-  padding: 0 2rem;
+  justify-content: space-between;
+  padding: 2rem;
+  width: 100%;
 `;
 
 const Container = styled.div`
@@ -77,4 +78,4 @@ const Container = styled.div`
   width: 100%;
 `;
 
-export default Footer;
+export default CardFooter;

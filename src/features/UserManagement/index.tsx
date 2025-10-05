@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import styled, { css } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
@@ -16,7 +14,6 @@ import PageWithTransition from '@/components/PageWithTransition';
 import Text from '@/components/Text';
 import Spinner from '@/components/Spinner';
 
-import type { ManagedUser } from '../UserManagement/models';
 import UserCardList from './components/List';
 
 const UsersPage = () => {
@@ -27,14 +24,11 @@ const UsersPage = () => {
     useGetManagedAccountsQuery();
   const { isLoading: isAccountsQueryLoading } = useGetManagedUsersQuery();
   const managedUsers = useAppSelector(selectAllManagedUsers());
-  const [selectedManagedUser, setSelectedManagedUser] =
-    useState<ManagedUser | null>(null);
 
   const isLoading =
     isMentorsQueryLoading ||
     isAccountsQueryLoading ||
     isManagedAccountsQueryLoading;
-  console.log(selectedManagedUser);
 
   const PageContent = isLoading ? (
     <Spinner variant="large" />
@@ -43,10 +37,7 @@ const UsersPage = () => {
       <PageHeader $isMobile={isMobile}>
         <Text variant="h1">{t('title')}</Text>
       </PageHeader>
-      <UserCardList
-        managedUsers={managedUsers}
-        setVisibleCard={setSelectedManagedUser}
-      ></UserCardList>
+      <UserCardList managedUsers={managedUsers}></UserCardList>
     </>
   );
 
