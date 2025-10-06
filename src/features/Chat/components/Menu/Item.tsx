@@ -75,8 +75,8 @@ const ItemRow = styled(Row)<{
   $isActive: boolean;
   $background: { active: string; hover: string };
 }>`
-  cursor: pointer;
   overflow: hidden;
+  cursor: pointer;
 
   ${({ $isActive, $background }) =>
     $isActive
@@ -91,11 +91,11 @@ const ItemRow = styled(Row)<{
 `;
 
 const MentorInfo = styled.div`
-  color: ${palette.blueDark};
-  margin-left: 20px;
-  padding-bottom: 15px;
-  padding-top: 15px;
   width: 240px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-left: 20px;
+  color: ${palette.blueDark};
 `;
 
 const BuddyName = styled.div`
@@ -111,16 +111,16 @@ const Message = styled(Text)`
 `;
 
 const UnseenDot = styled.div`
+  display: flex;
   align-items: center;
+  justify-content: center;
+  width: 27px;
+  height: 27px;
+  margin-left: 10px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: ${palette.blueDark};
   background-color: ${palette.blue2};
   border-radius: 50%;
-  color: ${palette.blueDark};
-  display: flex;
-  font-family: 'Source Sans 3';
-  font-size: '1rem',
-  font-weight: 600;
-  height: 27px;
-  justify-content: center;
-  margin-left: 10px;
-  width: 27px;
 `;

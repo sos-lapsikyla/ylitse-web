@@ -109,15 +109,15 @@ const ButtonContainer = styled.div`
 `;
 
 const Container = styled.div`
-  align-items: center;
   display: flex;
   flex: 1;
   flex-direction: column;
   gap: 0.7rem;
+  align-items: center;
   justify-content: center;
-  padding-bottom: 2rem;
-  padding-top: 0.5rem;
   width: 100%;
+  padding-top: 0.5rem;
+  padding-bottom: 2rem;
 `;
 
 const PaginationContainer = styled.div`

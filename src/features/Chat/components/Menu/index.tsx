@@ -74,20 +74,20 @@ const BaseContainer = styled.div`
 `;
 
 const TabletContainer = styled(BaseContainer)`
-  left: 0;
   position: absolute;
   right: 0;
+  left: 0;
 `;
 
 const Container = styled(BaseContainer)`
-  border-radius: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.03);
   display: flex;
   flex-direction: column;
+  width: ${CHAT_MENU_WIDTH};
+  min-width: ${CHAT_MENU_WIDTH};
   height: ${DESKTOP_CONTENT_HEIGHT};
   min-height: ${CHAT_MIN_HEIGHT};
-  min-width: ${CHAT_MENU_WIDTH};
-  width: ${CHAT_MENU_WIDTH};
+  border-radius: 10px;
+  box-shadow: 0 4px 4px rgb(0 0 0 / 3%);
 `;
 
 const ChatList = styled.div<{
@@ -112,8 +112,8 @@ const ChatList = styled.div<{
 `;
 
 const EmptyText = styled(Text)`
-  margin: 0;
   padding: 1.25rem 2rem;
+  margin: 0;
 `;
 
 export default Menu;

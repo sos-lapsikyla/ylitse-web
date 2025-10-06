@@ -130,19 +130,19 @@ const Header = ({ chat }: Props) => {
 };
 
 const Container = styled.div<{ $isTablet: boolean }>`
-  align-items: center;
-  border-bottom: 1px solid ${palette.greyLight};
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.03);
   box-sizing: border-box;
   display: flex;
   gap: 30px;
-  height: ${({ $isTablet }) => ($isTablet ? HIGH_ROW_HEIGHT : ROW_HEIGHT)};
+  align-items: center;
   justify-content: flex-start;
-  padding: 14px 40px;
   width: ${({ $isTablet }) =>
     $isTablet
       ? '100vw'
       : `calc(${CONTENT_WIDTH}-${CHAT_MENU_WIDTH}-${CHAT_GAP_WIDTH}})`};
+  height: ${({ $isTablet }) => ($isTablet ? HIGH_ROW_HEIGHT : ROW_HEIGHT)};
+  padding: 14px 40px;
+  border-bottom: 1px solid ${palette.greyLight};
+  box-shadow: 0 4px 4px rgb(0 0 0 / 3%);
 `;
 
 const IconContainer = styled.div`

@@ -41,9 +41,9 @@ const PageContainer = styled.div<{ $isDesktop?: boolean }>`
     css`
       gap: ${CHAT_GAP_WIDTH};
       justify-content: center;
-      margin: ${OUTER_VERTICAL_MARGIN} auto;
-      max-width: ${CONTENT_WIDTH};
       width: ${CONTENT_WIDTH};
+      max-width: ${CONTENT_WIDTH};
+      margin: ${OUTER_VERTICAL_MARGIN} auto;
     `}
 `;
 

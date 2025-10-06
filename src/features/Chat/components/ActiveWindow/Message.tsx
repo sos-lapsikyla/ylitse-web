@@ -58,22 +58,22 @@ export const Message = ({ folder, buddyId, message }: Props) => {
 };
 
 const Container = styled.div<{ $isSent: boolean }>`
-  align-items: ${({ $isSent }) => ($isSent ? 'flex-end' : 'flex-start')};
   display: flex;
   flex-direction: column;
+  align-items: ${({ $isSent }) => ($isSent ? 'flex-end' : 'flex-start')};
   margin-bottom: 8px;
 `;
 
 const Bubble = styled.div<{
   $background: string;
 }>`
-  background-color: ${({ $background }) => $background};
-  border-radius: 10px;
   box-sizing: border-box;
   max-width: 75%;
   padding: 14px 22px;
   text-align: left;
-  word-break: break-word;
+  overflow-wrap: anywhere;
+  background-color: ${({ $background }) => $background};
+  border-radius: 10px;
 `;
 
 const Content = styled(Text)`

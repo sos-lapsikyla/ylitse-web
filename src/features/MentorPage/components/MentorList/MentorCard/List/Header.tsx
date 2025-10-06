@@ -88,27 +88,27 @@ export const Header: React.FC<Props> = ({
 };
 
 const Container = styled.div<{ $headerColor: string; $isMobile: boolean }>`
-  align-items: center;
-  background-color: ${({ $headerColor }) => $headerColor};
-  border-radius: 0.75rem;
+  position: relative;
   box-sizing: border-box;
-  color: ${palette.white};
   display: flex;
   flex: 0 0 auto;
+  align-items: center;
+  width: 100%;
   height: 7.5rem;
   max-height: 7.5rem;
   padding: ${({ $isMobile }) => ($isMobile ? '1.5rem' : '2.5rem')};
-  position: relative;
-  width: 100%;
+  color: ${palette.white};
+  background-color: ${({ $headerColor }) => $headerColor};
+  border-radius: 0.75rem;
 `;
 
 const ProfilePicture = styled.div<{ $variation: string }>`
+  flex: 0 0 4rem;
+  width: 4rem;
+  height: 4rem;
   background-image: url(${({ $variation }) => $variation});
   background-repeat: no-repeat;
   background-size: contain;
-  flex: 0 0 4rem;
-  height: 4rem;
-  width: 4rem;
 `;
 
 const NameText = styled(Text)`
@@ -127,14 +127,14 @@ const BasicInfo = styled.div`
 `;
 
 const Divider = styled.span`
-  padding-left: 1rem;
   padding-right: 1rem;
+  padding-left: 1rem;
 `;
 
 const TruncateText = styled(Text)`
-  margin: 0 0 0.5rem 0;
+  width: 100%;
+  margin: 0 0 0.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 100%;
 `;

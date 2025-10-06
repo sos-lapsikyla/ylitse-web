@@ -62,29 +62,29 @@ const Welcome = ({ isMobile = false }: Props) => {
 };
 
 const Container = styled.div<{ $isDesktop: boolean }>`
-  align-items: center;
-  background-color: ${palette.purple};
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   padding: ${({ $isDesktop }) => ($isDesktop ? '4rem' : '3rem 2rem 4rem 2rem')};
+  background-color: ${palette.purple};
 
   ${({ $isDesktop }) =>
     $isDesktop &&
     css`
-      border-radius: 10px;
-      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
       box-sizing: border-box;
       min-height: 16rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px 0 rgb(0 0 0 / 20%);
     `}
 `;
 
 const TextContainer = styled.div`
-  align-items: center;
-  color: ${palette.white};
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
+  color: ${palette.white};
   text-align: center;
 `;
 

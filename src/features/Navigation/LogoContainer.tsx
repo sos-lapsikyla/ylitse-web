@@ -14,23 +14,23 @@ export const LogoContainer = () => {
 };
 
 const Logo = styled.div`
+  width: 143px;
+  height: 37px;
   background-color: transparent;
   background-image: url(${SvgLogo});
   background-repeat: no-repeat;
   background-size: contain;
-  height: 37px;
-  width: 143px;
 `;
 
 const Container = styled.div`
-  color: white;
   display: flex;
-  gap: 0.5rem
+  gap: 0.5rem;
+  max-width: fit-content;
   height: 50px;
   margin-left: 10%;
-  max-width: fit-content;
+  color: white;
 
-  @media screen and (max-width: 830px) {
+  @media screen and (width <= 830px) {
     margin-left: 4%;
   }
 

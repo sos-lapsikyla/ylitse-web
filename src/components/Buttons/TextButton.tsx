@@ -37,22 +37,23 @@ const StyledTextButton = styled.button<{
   $size: Size;
   $variant: ButtonVariant;
 }>`
-  border: none;
-  border-radius: 50px;
   bottom: ${spacing.layout_spacing};
-  cursor: pointer;
-  font-family: 'Baloo 2';
+  width: fit-content;
+  padding: ${({ $size }) =>
+    $size === 'large' ? '0.58rem 2rem' : '0.5rem 2rem'};
+  font-family: '2 Baloo', sans-serif;
   font-size: ${({ $size }) => ($size === 'large' ? '1.2rem' : '1rem')};
   font-style: normal;
   font-weight: 700;
   line-height: 1.5rem;
-  padding: ${({ $size }) =>
-    $size === 'large' ? '0.58rem 2rem' : '0.5rem 2rem'};
-  width: fit-content;
+  cursor: pointer;
+  border: none;
+  border-radius: 50px;
 
   &:hover {
     opacity: 0.7;
   }
+
   ${({ $variant }) => variants[$variant]}
 `;
 

@@ -94,10 +94,10 @@ const Container = styled.div`
   flex: 0 0 auto;
   flex-wrap: wrap;
   gap: 1rem;
-  height: fit-content;
   justify-content: center;
-  padding-left: 6%;
+  height: fit-content;
   padding-right: 6%;
+  padding-left: 6%;
 `;
 
 const DesktopHeader = styled(Text)`
@@ -111,9 +111,9 @@ const Skills = styled.div`
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
-  overflow: hidden;
-  padding: 1rem;
   width: 100%;
+  padding: 1rem;
+  overflow: hidden;
 `;
 
 export default SkillChips;

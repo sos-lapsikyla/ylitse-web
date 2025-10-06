@@ -70,15 +70,9 @@ export const spacing = {
 };
 
 const growDown = keyframes`
-    0% {
-        transform: scaleY(0)
-    }
-    80% {
-        transform: scaleY(1.1)
-    }
-    100% {
-        transform: scaleY(1)
-    }
+  0% { transform: scaleY(0) }
+  80% { transform: scaleY(1.1) }
+  100% { transform: scaleY(1) }
 `;
 
 const shake = keyframes`
@@ -89,19 +83,18 @@ const shake = keyframes`
 `;
 
 const spin = keyframes`
-from { transform: rotate(0deg); }
-to { transform: rotate(360deg); }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 `;
 
 export const animations = {
   growDown: css`
-    ${growDown} 400ms ease-in-out forwards;
+    animation: ${growDown} 400ms ease-in-out forwards;
   `,
   shake: css`
-    ${shake} 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97)
-        both;
+    animation: ${shake} 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   `,
   spin: css`
-    ${spin} 1.5s linear infinite;
+    animation: ${spin} 1.5s linear infinite;
   `,
-};
+} as const;

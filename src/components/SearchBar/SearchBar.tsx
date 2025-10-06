@@ -54,44 +54,44 @@ const SearchInput = styled.input<{
   $hasOpenDropdown: boolean;
   $variant: Variant;
 }>`
-  border: 1px solid ${palette.purple};
-  border-radius: ${({ $hasOpenDropdown }) =>
-    $hasOpenDropdown ? '20px 20px 0 0' : '20px'};
   box-sizing: border-box;
   display: flex;
   flex: 1;
-  font-family: 'Source Sans 3';
+  width: 100%;
+  padding: 1rem 4.5rem;
+  font-family: 'Source Sans 3', sans-serif;
   font-size: 1.1rem;
   font-style: normal;
   font-weight: 400;
-  padding: 1rem 4.5rem;
-  width: 100%;
-
-  ${({ $variant }) => sizingMap[$variant]}
+  border: 1px solid ${palette.purple};
+  border-radius: ${({ $hasOpenDropdown }) =>
+    $hasOpenDropdown ? '20px 20px 0 0' : '20px'};
 
   &:focus {
     outline: ${palette.purple} solid 2px;
   }
+
+  ${({ $variant }) => sizingMap[$variant]}
 `;
 
 const SearchBox = styled.div`
-  align-items: center;
+  position: relative;
   display: flex;
   flex: 0 0 auto;
+  align-items: center;
   justify-content: center;
-  position: relative;
 `;
 
 const SearchIcon = styled.div`
+  position: absolute;
+  left: 1.25rem;
+  display: flex;
+  flex: 0 0 auto;
+  width: 1.5rem;
+  height: 1.5rem;
   background-image: url(${SearchIconImg});
   background-repeat: no-repeat;
   background-size: contain;
-  display: flex;
-  flex: 0 0 auto;
-  height: 1.5rem;
-  left: 1.25rem;
-  position: absolute;
-  width: 1.5rem;
 `;
 
 export default SearchBar;

@@ -21,15 +21,15 @@ export const PageOption = ({ onClick, isSelected, size }: Props) => (
 );
 
 export const Button = styled.button<{ $isSelected?: boolean }>`
+  box-sizing: border-box;
+  display: flex;
   align-items: center;
+  width: 100%;
+  padding: 0 0.5rem;
+  cursor: ${({ $isSelected }) => ($isSelected ? 'auto' : 'pointer')};
   background: transparent;
   border: 0;
   border-bottom: 2px solid ${palette.greyMid};
-  box-sizing: border-box;
-  cursor: ${({ $isSelected }) => ($isSelected ? 'auto' : 'pointer')};
-  display: flex;
-  padding: 0 0.5rem;
-  width: 100%;
 
   &:last-child {
     border-bottom: 0;
@@ -42,6 +42,6 @@ export const Button = styled.button<{ $isSelected?: boolean }>`
 `;
 
 const ButtonText = styled(Text)`
-  line-height: 1rem;
   margin: 0.5rem 0;
+  line-height: 1rem;
 `;

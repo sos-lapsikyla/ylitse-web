@@ -37,32 +37,30 @@ const CardsList = styled.div<{ $isMobile: boolean }>`
   ${({ $isMobile }) =>
     $isMobile
       ? css`
-          flex-direction: row;
-          flex-wrap: nowrap;
+          flex-flow: row nowrap;
           gap: 1.5rem;
-          overflow-x: auto;
-          overflow-y: hidden;
           padding-top: 1.5rem;
-          scroll-padding-inline: 1.5rem;
+          overflow: auto hidden;
           scroll-snap-type: x mandatory;
+          scroll-padding-inline: 1.5rem;
+
           &::-webkit-scrollbar {
             display: none;
           }
         `
       : css`
-          align-content: stretch;
-          align-items: stretch;
           flex-wrap: wrap;
-          height: auto;
-          justify-content: flex-start;
-          margin-left: calc(${spacing.layout_spacing} * -1);
-          margin-top: ${spacing.layout_spacing};
+          place-content: stretch flex-start;
+          align-items: stretch;
           width: calc(${CONTENT_WIDTH} + (${spacing.layout_spacing} * 2));
+          height: auto;
+          margin-top: ${spacing.layout_spacing};
+          margin-left: calc(${spacing.layout_spacing} * -1);
         `}
 
-  @media screen and (max-width: 1500px) {
-    max-width: 100vw;
+  @media screen and (width <= 1500px) {
     width: calc(1130px + (${spacing.layout_spacing} * 2));
+    max-width: 100vw;
   }
 `;
 

@@ -40,46 +40,47 @@ const WelcomeWindow = () => {
 };
 
 const Container = styled.div`
+  min-width: ${CHAT_WINDOW_MIN_WIDTH};
   height: ${DESKTOP_CONTENT_HEIGHT};
   min-height: ${CHAT_MIN_HEIGHT};
-  min-width: ${CHAT_WINDOW_MIN_WIDTH};
 `;
 
 const UpperPart = styled.div`
-  background-color: ${palette.white};
-  border-radius: 10px 10px 0 0;
   display: flex;
   flex-direction: column;
-  height: 50%;
   justify-content: center;
+  height: 50%;
+  background-color: ${palette.white};
+  border-radius: 10px 10px 0 0;
 `;
 
 const LowerPart = styled.div`
-  background-color: ${palette.blue2};
-  border-radius: 0 0 10px 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.03);
   display: flex;
   flex-direction: column;
-  height: 50%;
   justify-content: center;
+  height: 50%;
+  background-color: ${palette.blue2};
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 4px 4px rgb(0 0 0 / 3%);
 `;
 
 const WelcomeText = styled(Text)<{ $isHeader?: boolean }>`
+  padding-right: 10%;
+  padding-left: 10%;
+
   ${({ $isHeader }) =>
     $isHeader &&
     css`
       padding-bottom: 1rem;
       white-space: nowrap;
     `}
-  padding-left: 10%;
-  padding-right: 10%;
 `;
 
 const SearchButton = styled(TextButton)`
   align-self: center;
+  width: 272px;
   height: 48px;
   margin-top: 2rem;
-  width: 272px;
 `;
 
 export default WelcomeWindow;

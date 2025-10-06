@@ -91,11 +91,11 @@ const MessageList = ({ messageList, status, buddyId, isLoading }: Props) => {
 };
 
 const ChatHistory = styled.div`
-  border-bottom: 1px solid ${palette.greyLight};
-  flex: 1;
-  overflow: auto;
-  padding-bottom: 10px;
   position: relative;
+  flex: 1;
+  padding-bottom: 10px;
+  overflow: auto;
+  border-bottom: 1px solid ${palette.greyLight};
 `;
 
 const SpinnerContainer = styled.div`
@@ -108,32 +108,32 @@ const DateDivider = styled(Text)<{ $isTablet: boolean }>`
   ${({ $isTablet }) =>
     !$isTablet &&
     css`
-      margin-left: 40px;
       margin-right: 40px;
+      margin-left: 40px;
     `}
 
-  &:before,
-  &:after {
-    content: '';
+  &::before,
+  &::after {
     position: absolute;
     top: 50%;
     width: ${({ $isTablet }) => ($isTablet ? '30%' : '40%')};
     height: 1px;
-    background-color: ${palette.purple}};
+    content: '';
+    background-color: ${palette.purple};
   }
 
-  &:before {
+  &::before {
     left: 0;
   }
 
-  &:after {
+  &::after {
     right: 0;
   }
 `;
 
 const Messages = styled.div`
-  padding-left: 40px;
   padding-right: 40px;
+  padding-left: 40px;
 `;
 
 export default MessageList;

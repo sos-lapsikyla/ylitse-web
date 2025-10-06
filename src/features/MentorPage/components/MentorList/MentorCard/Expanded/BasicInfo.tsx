@@ -55,16 +55,16 @@ export const BasicInfo = ({
 };
 
 const Container = styled.div<{ $isTabletNarrow: boolean }>`
-  align-items: center;
   box-sizing: border-box;
   display: flex;
   flex: 1;
   flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  max-width: 70%;
+  padding-bottom: ${({ $isTabletNarrow }) => ($isTabletNarrow ? '0' : '5rem')};
   margin: ${({ $isTabletNarrow }) =>
     $isTabletNarrow ? '1.5rem auto 0.5rem auto' : ' 0 auto'};
-  max-width: 70%;
-  min-width: 0;
-  padding-bottom: ${({ $isTabletNarrow }) => ($isTabletNarrow ? '0' : '5rem')};
 
   @media screen and (max-width: ${breakpoints.tabletNarrow}) {
     align-items: flex-start;
@@ -78,23 +78,23 @@ const NameText = styled(Text)`
 `;
 
 const NameDivider = styled.div<{ $isMe: boolean }>`
+  width: 16vw;
+  height: 2px;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
   border-bottom: 1px solid
     ${({ $isMe }) => ($isMe ? palette.blueDark : 'white')};
-  height: 2px;
-  margin-bottom: 0.5rem;
-  margin-top: 0.25rem;
-  width: 16vw;
 `;
 
 const Divider = styled.span`
-  padding-left: 0.5rem;
   padding-right: 0.5rem;
+  padding-left: 0.5rem;
 `;
 
 export const WrappedText = styled(Text)`
   display: flex;
   flex-wrap: wrap;
-  margin: 0px;
+  margin: 0;
 `;
 
 export const TruncateText = styled(Text)<{ $isTabletNarrow: boolean }>`

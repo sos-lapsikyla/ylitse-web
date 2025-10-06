@@ -126,27 +126,27 @@ const Buttons = ({ chat, confirmStatusChange, openReportModal }: Props) => {
 };
 
 const Container = styled.div`
-  align-items: center;
   display: flex;
   gap: 30px;
+  align-items: center;
 `;
 
 const Dropdown = styled.div`
-  background-color: ${palette.white};
-  border-radius: 0px 0px 4px 4px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   position: absolute;
-  right: 40px;
   top: ${HIGH_ROW_HEIGHT};
+  right: 40px;
   z-index: 5;
+  background-color: ${palette.white};
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 4px 4px rgb(0 0 0 / 15%);
 `;
 
 const TabletStatusButton = styled(StatusButton)`
-  padding: 10px 40px 0px;
+  padding: 10px 40px 0;
 `;
 
 const ReportButton = styled(Button)`
-  padding: 10px 40px 10px;
+  padding: 10px 40px;
 `;
 
 export default Buttons;

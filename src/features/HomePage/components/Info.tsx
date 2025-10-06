@@ -49,8 +49,8 @@ const Info = ({ isMobile = false }: Props) => {
 };
 
 const MobileContainer = styled.div`
+  padding: 3rem 2rem 4rem;
   background-color: ${palette.white};
-  padding: 3rem 2rem 4rem 2rem;
 `;
 
 const Bullets = styled.div`
@@ -60,17 +60,17 @@ const Bullets = styled.div`
 `;
 
 const Row = styled.div`
-  align-items: center;
   display: flex;
+  align-items: center;
 `;
 
 const Bullet = styled.div`
-  background-color: ${palette.purple};
-  border-radius: 50%;
   flex: 0 0 8px;
+  width: 8px;
   height: 8px;
   margin-right: 1rem;
-  width: 8px;
+  background-color: ${palette.purple};
+  border-radius: 50%;
 `;
 
 const BulletText = styled(Text)`
@@ -82,27 +82,27 @@ const BoldText = styled.span`
 `;
 
 const DecorativeBar = styled.div`
-  background-color: ${palette.purpleDark};
-  height: 4px;
-  left: -3rem;
   position: absolute;
   top: 8.5rem;
+  left: -3rem;
   width: 79px;
+  height: 4px;
+  background-color: ${palette.purpleDark};
 `;
 
 const Container = styled.div`
-  background-color: ${palette.blue2};
-  border-bottom-right-radius: 333px;
-  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
-  height: calc(37rem - ${NAVIGATION_HEIGHT} - 2rem);
-  justify-content: center;
-  left: 6rem;
-  max-width: 26rem;
-  padding: 6rem 3rem 0 3.5rem;
   position: absolute;
   top: 3rem;
+  left: 6rem;
+  justify-content: center;
+  max-width: 26rem;
+  height: calc(37rem - ${NAVIGATION_HEIGHT} - 2rem);
+  padding: 6rem 3rem 0 3.5rem;
+  background-color: ${palette.blue2};
+  border-bottom-right-radius: 333px;
+  box-shadow: 0 0 15px 0 rgb(0 0 0 / 20%);
 
-  @media only screen and (max-width: 1920px) {
+  @media only screen and (width <= 1920px) {
     left: 6vw;
   }
 `;

@@ -59,22 +59,22 @@ const HomePage = () => {
 };
 
 const TopContainer = styled.div`
-  background-image: url(${Background});
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
-  height: 39rem;
-  margin: 0 auto;
-  max-width: 110rem;
   position: relative;
   width: 100%;
+  max-width: 110rem;
+  height: 39rem;
+  margin: 0 auto;
+  background-image: url(${Background});
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  box-shadow: 0 0 15px 0 rgb(0 0 0 / 20%);
 `;
 
 const MiddleContainer = styled.div`
-  align-self: center;
   display: flex;
   gap: 2rem;
+  align-self: center;
   max-width: 95rem;
   padding: 6rem ${OUTER_HORIZONTAL_MARGIN};
 `;

@@ -19,39 +19,40 @@ const LoadingPage = () => {
 };
 
 const Page = styled.div`
-  align-items: center;
-  background:
-    linear-gradient(0deg, rgba(74, 54, 201, 0.87), rgba(74, 54, 201, 0.87)),
-    url(${Background});
-  background-position: center;
+  z-index: 10;
   display: flex;
   flex-wrap: wrap;
-  height: 100%;
+  align-items: center;
   justify-content: center;
-  min-height: 100vh;
   width: 100%;
-  z-index: 10;
+  height: 100%;
+  min-height: 100vh;
+  background:
+    linear-gradient(0deg, rgb(74 54 201 / 87%), rgb(74 54 201 / 87%)),
+    url(${Background});
+  background-position: center;
 `;
 
 const Wrapper = styled.div`
-  align-items: center;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
 `;
 
 const Loader = styled.div`
-  animation: ${animations.spin};
-  border: 10px solid rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-  border-top: 10px solid white;
-  height: 55px;
   width: 55px;
+  height: 55px;
+  border: 10px solid rgb(255 255 255 / 50%);
+  border-top: 10px solid white;
+  border-radius: 50%;
+
+  ${animations.spin}
 `;
 
 const LoadingText = styled(Text)`
-  text-align: center;
   width: 100%;
+  text-align: center;
 `;
 
 export default LoadingPage;

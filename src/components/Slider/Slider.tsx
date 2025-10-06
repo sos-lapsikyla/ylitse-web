@@ -34,10 +34,10 @@ const SwitchContainer = styled.div`
 `;
 
 const Switch = styled.label`
-  cursor: pointer;
-  height: 29px;
   position: relative;
   width: 59px;
+  height: 29px;
+  cursor: pointer;
 
   input:checked + span {
     &::before {
@@ -47,32 +47,29 @@ const Switch = styled.label`
 `;
 
 const Input = styled.input`
+  width: 0;
   height: 0;
   opacity: 0;
-  width: 0;
 `;
 
 const Thumb = styled.span<{ checked: boolean }>`
+  position: absolute;
+  inset: 0;
   border: 2px solid
     ${({ checked }) => (checked ? palette.purple : palette.greyFaded)};
   border-radius: 19px;
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
   transition: 0.4s;
 
   &::before {
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    width: 21px;
+    height: 21px;
+    content: '';
     background-color: ${({ checked }) =>
       checked ? palette.purple : palette.greyFaded};
     border-radius: 50%;
-    content: '';
-    height: 21px;
-    left: 3px;
-    position: absolute;
-    top: 2px;
     transition: 0.4s;
-    width: 21px;
   }
 `;

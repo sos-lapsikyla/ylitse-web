@@ -11,9 +11,9 @@ const Link = ({ url, children }: Props) => {
 };
 
 const Container = styled.a`
-  align-items: center;
   display: flex;
   gap: 0.5rem;
+  align-items: center;
   justify-content: center;
   text-decoration: none;
 `;

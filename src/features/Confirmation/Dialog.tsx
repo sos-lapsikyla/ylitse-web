@@ -94,36 +94,33 @@ const Dialog = ({
 };
 
 const Overlay = styled.div`
-  background: var(--greyscale-overlay, rgba(57, 57, 57, 0.75));
-  bottom: 0;
-  left: 0;
   position: fixed;
-  right: 0;
-  top: 0;
+  inset: 0;
   z-index: 100;
+  background: var(--greyscale-overlay, rgb(57 57 57 / 75%));
 `;
 
 const MobileContainer = styled.div`
-  background-color: ${palette.white};
-  border-radius: 10px;
-  box-sizing: border-box;
-  height: fit-content;
-  left: 50%;
   position: absolute;
   top: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
+  left: 50%;
   z-index: 200;
+  box-sizing: border-box;
+  width: 90%;
+  height: fit-content;
+  background-color: ${palette.white};
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
 `;
 
 const MobileHeader = styled.div<{ $backgroundColor: string }>`
-  align-items: center;
-  background-color: ${({ $backgroundColor }) => $backgroundColor};
-  border-radius: 10px 10px 0 0;
   box-sizing: border-box;
   display: flex;
   gap: 1rem;
+  align-items: center;
   padding: 1rem 2rem;
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
+  border-radius: 10px 10px 0 0;
 `;
 
 const MobileContent = styled.div`
@@ -131,27 +128,27 @@ const MobileContent = styled.div`
 `;
 
 const Container = styled.div`
-  background-color: ${palette.white};
-  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 200;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  height: auto;
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
   width: ${DIALOG_WIDTH};
-  z-index: 200;
+  height: auto;
+  background-color: ${palette.white};
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
 `;
 
 const LeftBorder = styled.div<{ $backgroundColor: string }>`
-  align-items: center;
-  background-color: ${({ $backgroundColor }) => $backgroundColor};
-  border-radius: 10px 0 0 10px;
   display: flex;
+  align-items: center;
   justify-content: center;
   min-width: 110px;
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
+  border-radius: 10px 0 0 10px;
 `;
 
 const Icon = styled.img`
@@ -161,14 +158,14 @@ const Icon = styled.img`
 `;
 
 const Content = styled.div`
-  padding: 2rem 3rem;
   width: 100%;
+  padding: 2rem 3rem;
 `;
 
 const CloseButton = styled(IconButton)`
   position: absolute;
-  right: 1rem;
   top: 1rem;
+  right: 1rem;
 `;
 
 export default Dialog;

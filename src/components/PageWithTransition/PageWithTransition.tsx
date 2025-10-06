@@ -43,18 +43,18 @@ const PageWithTransition: React.FC<Props> = ({ children }) => {
 };
 
 const Container = styled.div<{ $isTablet: boolean }>`
-  background-color: ${palette.blueLight};
+  position: relative;
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
+  width: 100vw;
   height: auto;
-  left: 0;
   min-height: ${({ $isTablet }) =>
     $isTablet
       ? MOBILE_AND_TABLET_CONTENT_HEIGHT
       : `calc(100vh - ${NAVIGATION_HEIGHT} - ${FOOTER_HEIGHT})`};
-  position: relative;
-  top: 0;
-  width: 100vw;
+  background-color: ${palette.blueLight};
 `;
 
 const sweep = keyframes`
@@ -70,15 +70,15 @@ const Layer = styled.div<{
   $color: Color;
   $delay: number;
 }>`
+  position: absolute;
+  inset: 0;
+  z-index: 1000;
+  overflow: hidden;
+  pointer-events: none;
+  background: ${({ $color }) => palette[$color]};
   animation: ${sweep} ${TRANSITION_LENGTH}s cubic-bezier(0.645, 0.045, 0.355, 1)
     both;
   animation-delay: ${({ $delay }) => $delay}s;
-  background: ${({ $color }) => palette[$color]};
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  position: absolute;
-  z-index: 1000;
 `;
 
 export default PageWithTransition;

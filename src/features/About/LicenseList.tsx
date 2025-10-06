@@ -63,40 +63,40 @@ export const LicenseModal = () => {
 };
 
 const LicenseRow = styled.div<{ $isMobile: boolean }>`
-  align-items: left;
   display: flex;
-  flex-direction: row;
-  flexwrap: wrap;
+  flex-flow: row wrap;
+  align-items: start;
   justify-content: space-between;
-  margin: 0px;
+  margin: 0;
+
   ${({ $isMobile }) =>
     $isMobile
       ? css`
-          padding: 0 0.5rem 0.5rem 0.5rem;
+          padding: 0 0.5rem 0.5rem;
         `
       : css`
-          padding: 0 1.5rem 0 1.5rem;
+          padding: 0 1.5rem;
         `}
 `;
 
 const LicenseInfo = styled(Text)`
   display: flex;
-  flexwrap: wrap;
-  margin: 0px;
+  flex-wrap: wrap;
+  margin: 0;
 `;
 
 const Container = styled.div<{ $isMobile: boolean }>`
-  background-color: ${palette.white};
-  border-radius: 10px;
+  left: 50%;
   display: flex;
   flex-direction: column;
-  left: 50%;
+  padding: 1rem 0 2rem;
   margin: 1rem;
-  opacity: 1;
   overflow: auto;
-  overflow-x: hidden
-  padding: 1rem 0 2rem 0;
+  overflow-x: hidden;
   scroll-snap-type: x mandatory;
+  background-color: ${palette.white};
+  border-radius: 10px;
+  opacity: 1;
 
   ${({ $isMobile }) =>
     $isMobile

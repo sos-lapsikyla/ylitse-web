@@ -20,20 +20,21 @@ const NoMentors = () => {
 };
 
 const Container = styled.div<{ $isMobile: boolean }>`
-  align-items: center;
-  background-color: ${palette.white};
-  border-radius: 10px;
-  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  height: 10rem;
+  align-items: center;
   justify-content: center;
   width: 38rem;
+  height: 10rem;
+  background-color: ${palette.white};
+  border-radius: 10px;
+  box-shadow: 0 2px 8px 0 rgb(0 0 0 / 20%);
+
   ${({ $isMobile }) =>
     $isMobile
       ? css`
-          margin-top: -1rem;
           width: 90vw;
+          margin-top: -1rem;
         `
       : css`
           width: 38rem;
@@ -48,7 +49,7 @@ const InnerContainer = styled.div<{ $isMobile: boolean }>`
   ${({ $isMobile }) =>
     $isMobile
       ? css`
-          padding: 0 1rem 0 1rem;
+          padding: 0 1rem;
         `
       : css`
           padding: 0;

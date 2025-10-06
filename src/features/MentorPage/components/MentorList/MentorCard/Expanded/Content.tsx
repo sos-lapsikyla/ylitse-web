@@ -79,20 +79,20 @@ const Container = styled.div<{ $isTabletNarrow: boolean }>`
   flex: 1;
   flex-direction: column;
   gap: 1.5rem;
-  overflow-y: auto;
   padding: ${({ $isTabletNarrow }) =>
     $isTabletNarrow ? '1rem 1.5rem 2rem 1.5rem' : '4rem 5rem'};
+  overflow-y: auto;
 `;
 
 const CloseButton = styled(IconButton)`
   position: absolute;
-  right: 1rem;
   top: 1rem;
+  right: 1rem;
 `;
 
 const OpenConversationButton = styled(TextButton)`
-  align-self: center;
   bottom: 0;
+  align-self: center;
   margin-top: auto;
 
   @media screen and (max-width: ${breakpoints.tabletNarrow}) {

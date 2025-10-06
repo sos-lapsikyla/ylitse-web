@@ -43,8 +43,8 @@ const MessageField = ({
 };
 
 const Container = styled.div`
-  align-items: center;
   display: flex;
+  align-items: center;
 `;
 
 const Input = styled(TextInput)`

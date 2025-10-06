@@ -23,16 +23,16 @@ export const InfoItem = ({ text, url }: NavigationItem) => (
 );
 
 export const Container = styled.button`
-  background: transparent;
-  background-color: ${palette.white};
-  border: none;
-  border-left: 2px solid ${palette.purple};
-  border-right: 2px solid ${palette.purple};
-  cursor: pointer;
   display: flex;
   gap: 0.5rem;
   height: ${NAVIGATION_HEIGHT};
   padding-left: 1rem;
+  cursor: pointer;
+  background: transparent;
+  background-color: ${palette.white};
+  border: none;
+  border-right: 2px solid ${palette.purple};
+  border-left: 2px solid ${palette.purple};
 
   &:hover {
     background-color: ${palette.blueLight};
@@ -40,14 +40,13 @@ export const Container = styled.button`
 `;
 
 const OutsideLinkLogo = styled.span`
-  align-self: center;
+  flex: 0 0 auto;
+  place-self: center flex-start;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 1rem;
   background-color: transparent;
   background-image: url(${Outsidelink});
   background-repeat: no-repeat;
   background-size: contain;
-  flex: 0 0 auto;
-  height: 1rem;
-  justify-self: flex-start;
-  margin-right: 1rem;
-  width: 1rem;
 `;

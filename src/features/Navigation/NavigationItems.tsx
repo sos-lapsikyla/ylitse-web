@@ -51,21 +51,21 @@ export const Items = ({ items }: { items: Array<NavigationItem> }) => {
 };
 
 export const Link = styled(RouterNavLink)`
-  color: ${palette.white};
-  font-family: 'Baloo 2';
+  height: ${NAVIGATION_HEIGHT};
+  padding: 0 1rem;
+  font-family: 'Baloo 2', sans-serif;
   font-style: normal;
   font-weight: 700;
-  height: ${NAVIGATION_HEIGHT};
   line-height: ${NAVIGATION_HEIGHT};
-  padding: 0 1rem;
+  color: ${palette.white};
   text-decoration: none;
 
   &.active,
   &:hover {
-    background-color: ${palette.blue};
     color: ${palette.blueDark};
     text-decoration: underline;
     text-underline-offset: 4px;
+    background-color: ${palette.blue};
   }
 
   &.active {
@@ -74,13 +74,14 @@ export const Link = styled(RouterNavLink)`
 `;
 
 const UnseenDot = styled.div<{ $withBorder: boolean }>`
-  background-color: ${palette.orange};
-  ${({ $withBorder }) =>
-    $withBorder && `border: 1px solid ${palette.blueDark};`}
-  border-radius: 50%;
-  height: 10px;
-  left: 2.3rem;
   position: relative;
   top: -2rem;
+  left: 2.3rem;
   width: 10px;
+  height: 10px;
+  background-color: ${palette.orange};
+  border-radius: 50%;
+
+  ${({ $withBorder }) =>
+    $withBorder && `border: 1px solid ${palette.blueDark};`}
 `;

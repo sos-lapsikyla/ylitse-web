@@ -75,67 +75,69 @@ export const About = ({ onDismiss }: Props) => {
 };
 
 const AboutCard = styled.div<{ $isMobile: boolean }>`
-  align-items: center;
-  background-color: ${palette.white};
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  left: 50%;
-  margin: auto;
-  opacity: 1;
-  padding: 1rem 1rem 2rem 1rem;
   position: fixed;
   top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1rem 2rem;
+  margin: auto;
+  background-color: ${palette.white};
+  border-radius: 10px;
+  opacity: 1;
   transform: translate(-50%, -50%);
+
   ${({ $isMobile }) =>
     $isMobile
       ? css`
-          max-height: 90vh;
           width: 85vw;
+          max-height: 90vh;
         `
       : css`
+          width: 35vw;
           height: fit-content;
           max-height: 90vh;
-          width: 35vw;
         `}
 `;
 
 const AboutCardContent = styled.div`
-  align-items: center;
   display: flex;
   flex-direction: column;
-  max-height: calc(100% - 2rem);
-  overflow-y: auto;
-  padding: 0 2rem 1rem 2rem;
+  align-items: center;
   width: 100%;
+  max-height: calc(100% - 2rem);
+  padding: 0 2rem 1rem;
+  overflow-y: auto;
 `;
 
 const Description = styled.div<{ $isMobile: boolean }>`
   gap: 0.5rem;
+
   ${({ $isMobile }) =>
     $isMobile
       ? css`
-          padding: 0.5rem 0.5rem 1rem 0.5rem;
+          padding: 0.5rem 0.5rem 1rem;
         `
       : css`
-          padding: 0.5rem 1.5rem 1rem 1.5rem;
+          padding: 0.5rem 1.5rem 1rem;
         `}
 `;
 
 const Container = styled.div`
-  background-color: ${palette.greyOverlay};
-  height: 100vh;
-  left: 0;
   position: fixed;
   top: 0;
-  width: 100vw;
+  left: 0;
   z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  background-color: ${palette.greyOverlay};
 
   @media screen and (max-width: ${breakpoints.mobile}) {
-    display: flex;
     top: 0;
     left: 0;
+    display: flex;
     width: 100%;
     height: 100%;
   }
@@ -146,13 +148,13 @@ const CloseContainer = styled.div`
 `;
 
 const LicensesButton = styled(TextButton)`
+  width: fit-content;
   height: 48px;
   margin: 1rem;
-  width: fit-content;
 `;
 
 const InfoText = styled(Text)`
-  padding: 0 1rem 0 1rem;
+  padding: 0 1rem;
 `;
 
 export default About;

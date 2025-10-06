@@ -21,12 +21,12 @@ const Footer = () => {
 };
 
 const Container = styled.footer`
-  align-items: center;
-  background-color: ${palette.blue};
   display: inline-flex;
-  height: ${FOOTER_HEIGHT};
+  align-items: center;
   justify-content: center;
   width: 100%;
+  height: ${FOOTER_HEIGHT};
+  background-color: ${palette.blue};
 `;
 
 const FooterText = styled(Text)`
@@ -34,9 +34,9 @@ const FooterText = styled(Text)`
 `;
 
 const FooterImage = styled.img`
+  width: 7.25rem;
   margin-left: 1rem;
   transform: translateX(0.5px);
-  width: 7.25rem;
 `;
 
 export default Footer;

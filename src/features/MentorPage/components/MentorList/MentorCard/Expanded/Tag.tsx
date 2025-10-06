@@ -32,22 +32,23 @@ export const Tag: React.FC<Props> = ({ status }) => {
 };
 
 const MentorTag = styled(Text)<{ $isShowing: boolean; $tagColor: string }>`
+  position: relative;
+  top: -6%;
+  left: 50%;
+  display: ${({ $isShowing }) => ($isShowing ? `flex` : `none`)};
+  width: fit-content;
+  padding: 0.25rem 1rem;
+  margin: -1rem auto;
   background-color: ${({ $tagColor }) => $tagColor};
   border-radius: 0.25rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
-  display: ${({ $isShowing }) => ($isShowing ? `flex` : `none`)};
-  padding: 0.25rem 1rem;  
-  margin: -1rem auto;
-  position: relative;
-  left: 50%;
-  top: -6%;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 30%);
   transform: translate(-50%, -50%);
-  width: fit-content;
-  
+
   @media screen and (max-width: ${breakpoints.tabletNarrow}) {
-    margin: -1rem 1rem;
-    transform: translateX(-50%);
     position: absolute;
     top: 3.25rem;
     left: 50%;
+    margin: -1rem 1rem;
+    transform: translateX(-50%);
+  }
 `;

@@ -46,16 +46,16 @@ const Container = styled.div<{ $isMobile: boolean }>`
   ${({ $isMobile }) =>
     $isMobile
       ? css`
-          background-color: ${palette.white};
-          padding-bottom: 8rem;
-          padding-top: 3rem;
           width: 100%;
+          padding-top: 3rem;
+          padding-bottom: 8rem;
+          background-color: ${palette.white};
         `
       : css`
           gap: 1rem;
-          margin: ${OUTER_VERTICAL_MARGIN} auto;
-          max-width: ${CONTENT_WIDTH};
           width: ${CONTENT_WIDTH};
+          max-width: ${CONTENT_WIDTH};
+          margin: ${OUTER_VERTICAL_MARGIN} auto;
         `}
 `;
 
@@ -67,10 +67,10 @@ const Header = styled.div<{ $isMobile: boolean }>`
     !$isMobile &&
     css`
       align-items: center;
+      height: 4rem;
       background-color: ${palette.blue2};
       border-radius: 10px;
-      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
-      height: 4rem;
+      box-shadow: 0 0 15px 0 rgb(0 0 0 / 20%);
     `}
 `;
 

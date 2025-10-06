@@ -14,16 +14,16 @@ export const Story = ({ story }: { story: string }) => {
 };
 
 const TruncatedMultiline = styled(Text)`
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
+  position: relative;
   display: -webkit-box;
+  width: 100%;
   height: 6rem;
   margin: 0;
   overflow: hidden;
-  position: relative;
   text-overflow: ellipsis;
+  -webkit-line-clamp: 4;
   white-space: break-spaces;
-  width: 100%;
+  -webkit-box-orient: vertical;
 `;
 
 export default Story;

@@ -27,17 +27,17 @@ const Container = styled.div`
 `;
 
 const Chips = styled.div`
+  position: relative;
   display: flex;
   flex: 0 0 auto;
   flex-wrap: wrap;
   gap: 0.5rem;
-  height: fit-content;
   justify-content: flex-start;
-  margin-bottom: 5vw;
-  margin-top: 1em;
-  overflow: hidden;
-  position: relative;
   width: 100%;
+  height: fit-content;
+  margin-top: 1em;
+  margin-bottom: 5vw;
+  overflow: hidden;
 `;
 
 const Header = styled(Text)`

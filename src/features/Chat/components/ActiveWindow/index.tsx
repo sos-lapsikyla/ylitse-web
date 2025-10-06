@@ -97,14 +97,15 @@ const ActiveWindow = () => {
 };
 
 const Container = styled.div<{ $isTablet: boolean }>`
-  background-color: ${palette.white};
-  border-radius: 10px;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
   height: ${({ $isTablet }) =>
     $isTablet ? MOBILE_AND_TABLET_CONTENT_HEIGHT : DESKTOP_CONTENT_HEIGHT};
   min-height: ${CHAT_MIN_HEIGHT};
+  background-color: ${palette.white};
+  border-radius: 10px;
+
   ${({ $isTablet }) =>
     !$isTablet &&
     css`

@@ -18,8 +18,8 @@ export const Tooltip = ({ text }: Props) => {
 };
 
 const Container = styled.div`
-  display: inline-block;
   position: relative;
+  display: inline-block;
 `;
 
 const Icon = styled.img`
@@ -29,25 +29,25 @@ const Icon = styled.img`
 `;
 
 const Info = styled(Text)`
+  position: absolute;
+  top: -102px;
+  right: -130px;
+  z-index: 1;
+  display: none;
+  width: 268px;
+  padding: 0.5rem 1rem;
+  white-space: wrap;
   background-color: ${palette.orange};
   border-radius: 10px;
-  display: none;
-  padding: 0.5rem 1rem;
-  position: absolute;
-  right: -130px;
-  top: -102px;
-  white-space: wrap;
-  width: 268px;
-  z-index: 1;
 
-  :after {
+  ::after {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    content: '';
     border-color: ${palette.orange} transparent transparent transparent;
     border-style: solid;
     border-width: 0.5rem;
-    content: '';
-    left: 50%;
-    position: absolute;
-    top: 100%;
   }
 
   ${Container}:hover & {
