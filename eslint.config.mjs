@@ -18,7 +18,6 @@ import jsoncParser from 'jsonc-eslint-parser';
 
 import prettierConfig from 'eslint-config-prettier';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
-import betterStyled from 'eslint-plugin-better-styled-components';
 
 export default defineConfig([
   {
@@ -113,7 +112,6 @@ export default defineConfig([
     plugins: {
       react,
       'react-hooks': reactHooks,
-      'better-styled-components': betterStyled,
     },
     rules: {
       ...react.configs.recommended.rules,
@@ -121,7 +119,6 @@ export default defineConfig([
       'react-hooks/exhaustive-deps': 'off',
       'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off',
-      'better-styled-components/sort-declarations-alphabetically': 'error',
     },
     settings: { react: { version: 'detect' } },
   },

@@ -35,7 +35,7 @@ export const user = createSlice({
         (_, { payload }) => payload,
       )
       .addMatcher(authenticationApi.endpoints.logout.matchFulfilled, () => {
-        window.location.href = '/';
+        window.location.replace('/');
         return initialState;
       });
   },
