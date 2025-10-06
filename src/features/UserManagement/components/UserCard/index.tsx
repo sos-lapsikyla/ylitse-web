@@ -36,7 +36,7 @@ export const UserCard: React.FC<Props> = ({ managedUser }) => {
           isMentor={isMentor}
           isMentee={isMentee}
           isVacationingMentor={isVacationingMentor}
-          name={managedUser.nickname}
+          managedUser={managedUser}
         />
       ) : (
         <MentorHeader

@@ -28,5 +28,6 @@
     "admin": "Admin",
     "mentee": "Mentee",
     "mentor": "Mentor"
-  }
+  },
+  "myUser": "Me"
 }
