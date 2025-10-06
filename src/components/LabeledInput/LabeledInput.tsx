@@ -62,8 +62,8 @@ const Container = styled.div`
 `;
 
 const LabelRow = styled.div`
-  align-items: center;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding-right: 0.5rem;
 `;

@@ -45,22 +45,22 @@ const NewMessages = ({ isMobile = false }: Props) => {
 };
 
 const Container = styled.div<{ $isDesktop: boolean }>`
-  align-items: center;
-  background-color: ${palette.purple};
-  display: flex;
-  overflow: hidden;
   position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: ${palette.purple};
 
   ${({ $isDesktop }) =>
     $isDesktop
       ? css`
-          border-radius: 10px;
-          box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+          position: relative;
           box-sizing: border-box;
           justify-content: center;
           min-height: 16rem;
           padding: 4rem 16rem 4rem 4rem;
-          position: relative;
+          border-radius: 10px;
+          box-shadow: 0 0 15px 0 rgb(0 0 0 / 20%);
         `
       : css`
           justify-content: center;
@@ -69,9 +69,9 @@ const Container = styled.div<{ $isDesktop: boolean }>`
 `;
 
 const TextContainer = styled.div`
-  align-items: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
   text-align: center;
 `;
 
@@ -80,9 +80,9 @@ const Button = styled(TextButton)`
 `;
 
 const Image = styled.img`
-  bottom: 0;
   position: absolute;
   right: -4rem;
+  bottom: 0;
   transform: translateY(0.5px);
 `;
 

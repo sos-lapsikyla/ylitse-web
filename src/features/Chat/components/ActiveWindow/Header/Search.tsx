@@ -39,17 +39,18 @@ const Search = ({ hideSearch }: Props) => {
 };
 
 const SearchBar = styled.div`
-  align-items: center;
   display: flex;
   flex: 1;
+  align-items: center;
   justify-content: flex-end;
-  margin-left: -${ICON_SIZES.SMALL}px;
   margin-right: -${closeInputIconSize}px;
+  margin-left: -${ICON_SIZES.SMALL}px;
 `;
 
 const SearchInput = styled(TextInput)`
   flex: 1;
   max-width: 400px;
+
   &:focus {
     outline: 1px solid ${palette.purple};
   }

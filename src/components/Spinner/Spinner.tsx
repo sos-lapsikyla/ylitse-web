@@ -57,6 +57,11 @@ const LoadingCircle = styled.div<{
   $isDark: boolean;
   $isCentered: boolean;
 }>`
+  margin: 0;
+  border-radius: 50%;
+
+  ${animations.spin}
+
   ${({ $variant, $isDark }) => {
     const diameter = sizes[$variant];
     const borderWidth = diameter * 0.2;
@@ -64,19 +69,20 @@ const LoadingCircle = styled.div<{
       $isDark ? palette.blue : palette.white
     }`;
     return css`
-      border: ${border};
-      height: ${diameter}rem;
-      margin-bottom: ${diameter / 2}rem;
-      margin-top: ${diameter / 2}rem;
       width: ${diameter}rem;
+      height: ${diameter}rem;
+      margin-top: ${diameter / 2}rem;
+      margin-bottom: ${diameter / 2}rem;
+      border: ${border};
     `;
   }}
+
   ${({ $isDark }) => {
     const borderColor = $isDark ? palette.greyLight : palette.whiteOpacity;
     return css`
+      border-right-color: ${borderColor};
       border-bottom-color: ${borderColor};
       border-left-color: ${borderColor};
-      border-right-color: ${borderColor};
     `;
   }}
 
@@ -88,8 +94,4 @@ const LoadingCircle = styled.div<{
       margin-block: 0;
       margin-inline: auto;
     `}
-
-  animation: ${animations.spin}
-  border-radius: 50%;
-  margin: 0;
 `;

@@ -60,16 +60,16 @@ const UsersPage = () => {
 const Container = styled.div<{ $isMobile: boolean }>`
   display: flex;
   flex-direction: column;
-  margin: ${OUTER_VERTICAL_MARGIN} auto;
-  max-width: 95rem;
   width: 100%;
+  max-width: 95rem;
+  margin: ${OUTER_VERTICAL_MARGIN} auto;
 
   ${({ $isMobile }) =>
     $isMobile
       ? css`
-          background-color: ${palette.blueLight};
           flex: 1;
           padding-bottom: 4rem;
+          background-color: ${palette.blueLight};
         `
       : css`
           gap: 1rem;
@@ -78,25 +78,25 @@ const Container = styled.div<{ $isMobile: boolean }>`
 `;
 
 const PageHeader = styled.div<{ $isMobile: boolean }>`
-  align-items: center;
   display: flex;
+  align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
-  max-width: 95rem;
   width: 100%;
+  max-width: 95rem;
+  margin-bottom: 1rem;
 
   ${({ $isMobile }) =>
     $isMobile
       ? css`
-          background-color: ${palette.blueLight};
           height: 6rem;
           margin-bottom: -2rem;
+          background-color: ${palette.blueLight};
         `
       : css`
-          background-color: ${palette.blue2};
-          border-radius: 10px;
           height: 80px;
           max-height: 80px;
+          background-color: ${palette.blue2};
+          border-radius: 10px;
         `}
 `;
 

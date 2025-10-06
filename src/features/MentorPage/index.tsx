@@ -50,14 +50,15 @@ const MentorPage = () => {
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: ${OUTER_VERTICAL_MARGIN} auto;
-  max-width: ${CONTENT_WIDTH};
   width: ${CONTENT_WIDTH};
+  max-width: ${CONTENT_WIDTH};
+  margin: ${OUTER_VERTICAL_MARGIN} auto;
 
-  @media screen and (max-width: 1500px) {
-    max-width: calc(100vw - (${spacing.layout_spacing} * 2));
+  @media screen and (width <= 1500px) {
     width: 1130px;
+    max-width: calc(100vw - (${spacing.layout_spacing} * 2));
   }
+
   @media screen and (max-width: ${breakpoints.mobile}) {
     flex: 1;
   }

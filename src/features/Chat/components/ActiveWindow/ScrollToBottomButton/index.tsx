@@ -32,14 +32,14 @@ const ButtonContainer = styled.div<{ $isVisible: boolean }>`
 `;
 
 const UnseenDot = styled.div`
+  position: relative;
+  top: -2rem;
+  left: 1.15rem;
+  width: 10px;
+  height: 10px;
   background-color: ${palette.orange};
   border: 1px solid ${palette.blueDark};
   border-radius: 50%;
-  height: 10px;
-  left: 1.15rem;
-  position: relative;
-  top: -2rem;
-  width: 10px;
 `;
 
 // forward-ref thing

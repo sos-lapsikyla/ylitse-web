@@ -38,27 +38,27 @@ const Icon = styled.span<{
   $variant: ButtonIcon;
   $size: number;
 }>`
+  cursor: pointer;
   background-repeat: no-repeat;
   background-size: contain;
-  cursor: pointer;
   ${({ $size }) => css`
-    height: ${$size}px;
     width: ${$size}px;
+    height: ${$size}px;
   `}
   ${({ $variant }) =>
     $variant && `background-image: ${iconVariants[$variant]};`}
 `;
 
 const StyledButton = styled.button`
-  align-items: center;
-  appearance: none;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
   display: flex;
   gap: 0.5rem;
+  align-items: center;
   padding: 0;
   white-space: nowrap;
+  appearance: none;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
 
   &:hover {
     opacity: 0.7;

@@ -21,22 +21,22 @@ export const LangItem: React.FC<Props> = ({ changeLang, isSelected, text }) => (
 );
 
 const Button = styled.button<{ $isSelected: boolean }>`
-  background: transparent;
-  background-color: ${palette.white};
-  border: none;
-  border-left: 2px solid ${palette.purple};
-  border-right: 2px solid ${palette.purple};
-  cursor: pointer;
   display: flex;
   gap: 0.5rem;
   height: ${NAVIGATION_HEIGHT};
   padding: 0 1rem;
+  cursor: pointer;
+  background: transparent;
+  background-color: ${palette.white};
+  border: none;
+  border-right: 2px solid ${palette.purple};
+  border-left: 2px solid ${palette.purple};
 
   ${({ $isSelected }) =>
     $isSelected &&
     css`
-      background: ${palette.blue2};
       pointer-events: none;
+      background: ${palette.blue2};
     `}
 
   &:hover {

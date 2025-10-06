@@ -96,12 +96,12 @@ export const BottomBar = ({
 };
 
 const Container = styled.div`
-  align-items: center;
   display: flex;
   flex: 1;
+  align-items: center;
   justify-content: space-between;
-  padding-top: 0.5rem;
   width: 100%;
+  padding-top: 0.5rem;
 `;
 
 const PaginationContainer = styled.div`

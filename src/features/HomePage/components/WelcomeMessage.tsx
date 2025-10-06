@@ -38,18 +38,18 @@ const WelcomeMessage = () => {
 };
 
 const Container = styled.div`
-  align-items: center;
-  background-color: ${palette.blue2};
-  border-bottom-left-radius: 15px;
-  border-top-left-radius: 15px;
-  display: flex;
-  opacity: 0.9;
-  padding: 1.5rem 10rem 1.5rem 1.5rem;
   position: absolute;
-  right: 0;
   top: 50%;
-  transform: translateY(-50%);
+  right: 0;
+  display: flex;
+  align-items: center;
   width: max-content;
+  padding: 1.5rem 10rem 1.5rem 1.5rem;
+  background-color: ${palette.blue2};
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  opacity: 0.9;
+  transform: translateY(-50%);
 `;
 
 export default WelcomeMessage;

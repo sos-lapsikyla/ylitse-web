@@ -29,8 +29,8 @@ export const PageButton = ({ isSelected, onClick, page }: Props) => {
 };
 
 const PageNumber = styled.span<{ $isSelected: boolean; $isClickable: boolean }>`
-  border-radius: 16%;
   padding: 0.2rem 0.8rem;
+  border-radius: 16%;
 
   ${({ $isSelected }) =>
     $isSelected
@@ -45,6 +45,7 @@ const PageNumber = styled.span<{ $isSelected: boolean; $isClickable: boolean }>`
     $isClickable &&
     css`
       cursor: pointer;
+
       &:hover {
         opacity: 0.7;
       }

@@ -72,32 +72,32 @@ export const Header: React.FC<Props> = ({
 };
 
 const Container = styled.div<{ $isMobile: boolean; $headerColor: string }>`
-  align-items: center;
-  background-color: ${({ $headerColor }) => $headerColor};
-  border-radius: 0.75rem;
+  position: relative;
   box-sizing: border-box;
-  color: ${palette.white};
   display: flex;
   flex: 0 0 auto;
+  align-items: center;
+  width: 100%;
   height: 7rem;
   max-height: 7rem;
   padding: ${({ $isMobile }) => ($isMobile ? '1.5rem' : '2.5rem')};
-  position: relative;
-  width: 100%;
+  color: ${palette.white};
+  background-color: ${({ $headerColor }) => $headerColor};
+  border-radius: 0.75rem;
 `;
 
 const NameText = styled(Text)`
-  overflow: hidden;
   padding-left: 1rem;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
 
 const ProfilePicture = styled.div<{ $variation: string }>`
+  flex: 0 0 4rem;
+  width: 4rem;
+  height: 4rem;
   background-image: url(${({ $variation }) => $variation});
   background-repeat: no-repeat;
   background-size: contain;
-  flex: 0 0 4rem;
-  height: 4rem;
-  width: 4rem;
 `;

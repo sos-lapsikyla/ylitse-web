@@ -93,10 +93,10 @@ const SearchHeader = styled(Text)`
 `;
 
 const Instructions = styled.div`
-  margin: auto;
-  max-width: 58%;
-  text-align: center;
   width: 58%;
+  max-width: 58%;
+  margin: auto;
+  text-align: center;
 `;
 
 const Container = styled.div`
@@ -104,46 +104,46 @@ const Container = styled.div`
   flex-wrap: wrap;
   gap: 2rem;
   justify-content: center;
-  margin: auto;
-  max-width: 90%;
   width: 90%;
+  max-width: 90%;
+  margin: auto;
 `;
 
 const Anchor = styled.div`
-  align-items: center;
+  position: relative;
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  position: relative;
+  align-items: center;
 `;
 
 const Ball = styled.div`
+  display: flex;
   align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0.2rem;
+  margin-bottom: 5px;
   background: ${palette.blue2};
   border-radius: 50%;
-  display: flex;
-  height: 20px;
-  justify-content: center;
-  margin-bottom: 5px;
-  padding: 0.2rem;
-  width: 20px;
 `;
 
 const SearchBarContainer = styled.div`
-  align-items: center;
   display: flex;
-  padding-left: 12%;
+  align-items: center;
   width: 44%;
+  padding-left: 12%;
 `;
 
 const NarrowSearchBar = styled(SearchBar)`
-  flex: 1;
   z-index: 1;
+  flex: 1;
 `;
 
 const ResetSearch = styled.div`
-  margin-left: -2.5rem;
   z-index: 2;
+  margin-left: -2.5rem;
 `;
 
 export default MentorSearch;

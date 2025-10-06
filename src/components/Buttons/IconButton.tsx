@@ -37,14 +37,14 @@ const StyledIconButton = styled.button<{
   $size: number;
 }>`
   appearance: none;
+  cursor: pointer;
   background-color: transparent;
   background-repeat: no-repeat;
   background-size: contain;
   border: none;
-  cursor: pointer;
   ${({ $size }) => css`
-    height: ${$size}px;
     width: ${$size}px;
+    height: ${$size}px;
   `}
   ${({ $isDisabled }) =>
     $isDisabled &&
@@ -57,10 +57,10 @@ const StyledIconButton = styled.button<{
 `;
 
 const Container = styled.div`
-  align-items: center;
-  cursor: pointer;
   display: flex;
   gap: 0.5rem;
+  align-items: center;
+  cursor: pointer;
 
   &:hover {
     opacity: 0.7;

@@ -88,22 +88,21 @@ export const Navbar = () => {
 };
 
 export const Container = styled.div<{ $isTablet?: boolean }>`
-  align-items: center;
-  background-color: ${palette.purple};
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  height: ${NAVIGATION_HEIGHT};
-  justify-content: space-between;
   position: relative;
-  width: 100%;
   z-index: 10;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: ${NAVIGATION_HEIGHT};
+  background-color: ${palette.purple};
 
   ${({ $isTablet }) =>
     $isTablet &&
     css`
-      border-bottom: solid ${MOBILE_NAVIGATION_BORDER_HEIGHT} ${palette.blue2};
       padding: 0 1.5rem;
+      border-bottom: solid ${MOBILE_NAVIGATION_BORDER_HEIGHT} ${palette.blue2};
     `}
 `;
 
@@ -111,11 +110,11 @@ export const RightContainer = styled.div`
   display: flex;
   margin-right: 10%;
 
-  @media screen and (max-width: 830px) {
+  @media screen and (width <= 830px) {
     margin-right: 0;
   }
 
-  @media screen and (max-width: 650px) {
+  @media screen and (width <= 650px) {
     margin-right: 4%;
   }
 `;

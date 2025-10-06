@@ -29,8 +29,8 @@ const Link = styled.a<{ $isSelected: boolean }>`
   ${({ $isSelected }) =>
     $isSelected
       ? css`
-          background-color: ${palette.blue2};
           cursor: default;
+          background-color: ${palette.blue2};
         `
       : css`
           cursor: pointer;

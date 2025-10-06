@@ -52,36 +52,37 @@ const PageSizeDropdown = ({ skillsInPage, setSkillsInPage }: Props) => {
 };
 
 const Anchor = styled.div`
-  align-items: stretch;
-  display: inline-flex;
-  overflow: visible;
   position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  overflow: visible;
 `;
 
 const Menu = styled.div`
-  animation: ${animations.growDown};
+  position: absolute;
+  top: calc(100% - 2px);
+  left: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  min-width: calc(100% - 4px);
   background: ${palette.white};
   border: 2px solid ${palette.purple};
   border-radius: 0 0 8px 8px;
-  display: flex;
-  flex-direction: column;
-  left: 0;
-  min-width: calc(100% - 4px);
-  position: absolute;
-  top: calc(100% - 2px);
   transform-origin: top center;
-  z-index: 10;
 
   button:last-of-type {
     border-bottom: none;
     border-radius: 0 0 8px 8px;
   }
+
+  ${animations.growDown}
 `;
 
 const Container = styled.div`
-  align-items: center;
   display: flex;
   gap: 1rem;
+  align-items: center;
 `;
 
 export default PageSizeDropdown;

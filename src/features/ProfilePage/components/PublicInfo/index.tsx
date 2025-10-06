@@ -184,15 +184,15 @@ const Container = styled.div<{ $isMobile: boolean }>`
           margin-bottom: 1rem;
         `
       : css`
-          background-color: ${palette.white};
-          border-radius: 10px;
-          box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
           box-sizing: border-box;
           display: flex;
           flex: 2;
           flex-direction: column;
-          margin-bottom: 2rem;
           padding: 2rem 0 4rem;
+          margin-bottom: 2rem;
+          background-color: ${palette.white};
+          border-radius: 10px;
+          box-shadow: 0 0 15px 0 rgb(0 0 0 / 20%);
         `}
 `;
 
@@ -202,9 +202,9 @@ const Header = styled(Text)<{ $isMobile: boolean }>`
 `;
 
 const Buttons = styled(ButtonRow)`
-  background-color: ${palette.blue3};
-  margin-top: 1rem;
   padding: 1.5rem;
+  margin-top: 1rem;
+  background-color: ${palette.blue3};
 `;
 
 const Form = styled.div`

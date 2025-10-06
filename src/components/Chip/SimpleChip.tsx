@@ -20,14 +20,14 @@ const SimpleChip: React.FC<Props> = ({ text }) => {
 };
 
 const StyledSimpleChip = styled.button`
+  flex: 0 0 auto;
+  height: 2rem;
+  padding: 0.5rem 1rem;
+  line-height: 1rem;
   appearance: none;
   background-color: ${palette.blueLight};
   border: none;
   border-radius: 1.75rem;
-  flex: 0 0 auto;
-  height: 2rem;
-  line-height: 1rem;
-  padding: 0.5rem 1rem;
 `;
 
 export default SimpleChip;

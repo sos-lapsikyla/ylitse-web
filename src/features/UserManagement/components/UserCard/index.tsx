@@ -58,13 +58,13 @@ export const UserCard: React.FC<Props> = ({ setVisibleCard, managedUser }) => {
 };
 
 const Container = styled.div<{ $isMobile: boolean }>`
+  display: flex;
+  flex-direction: column;
   background-color: ${palette.white};
   border-radius: 0.75rem;
-  display: flex;
-  filter: drop-shadow(-0.5rem 0 0.5rem rgba(0, 0, 0, 0.02))
-    drop-shadow(0.5rem 0 0.5rem rgba(0, 0, 0, 0.02))
-    drop-shadow(0 0.5rem 0.5rem rgba(0, 0, 0, 0.02));
-  flex-direction: column;
+  filter: drop-shadow(-0.5rem 0 0.5rem rgb(0 0 0 / 2%))
+    drop-shadow(0.5rem 0 0.5rem rgb(0 0 0 / 2%))
+    drop-shadow(0 0.5rem 0.5rem rgb(0 0 0 / 2%));
 
   ${({ $isMobile }) =>
     $isMobile &&
@@ -76,6 +76,7 @@ const Container = styled.div<{ $isMobile: boolean }>`
       &:first-child {
         margin-left: 1.5rem;
       }
+
       &:last-child {
         margin-right: 1.5rem;
       }

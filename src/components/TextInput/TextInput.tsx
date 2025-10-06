@@ -12,12 +12,12 @@ import type { TextInputVariant } from './variants';
 const NumberInputStyles = createGlobalStyle`
   input[type='number']::-webkit-outer-spin-button,
   input[type='number']::-webkit-inner-spin-button {
-    -webkit-appearance: none;
     margin: 0;
+    appearance: none;
   }
 
   input[type='number'] {
-    -moz-appearance: textfield;
+    appearance: textfield;
   }
 `;
 
@@ -114,14 +114,14 @@ const LeftIcon = styled.div<{
   variant: ButtonIcon;
   sizeInPx: number;
 }>`
+  position: relative;
   background-repeat: no-repeat;
   background-size: contain;
-  position: relative;
   ${({ variant }) => variant && `background-image: ${iconVariants[variant]};`}
   ${({ sizeInPx }) => css`
+    width: ${sizeInPx}px;
     height: ${sizeInPx}px;
     transform: translate(${sizeInPx + 22}px);
-    width: ${sizeInPx}px;
   `}
 `;
 

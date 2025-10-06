@@ -89,12 +89,12 @@ const NewestMentors = ({ isMobile = false }: Props) => {
 };
 
 const Container = styled.div<{ $isMobile: boolean }>`
-  background-color: ${palette.blueWhite};
   display: flex;
   flex-direction: ${props => (props.$isMobile ? 'column' : 'row')};
   gap: 1rem 2rem;
   justify-content: center;
   padding: 2rem ${OUTER_HORIZONTAL_MARGIN} 4rem ${OUTER_HORIZONTAL_MARGIN};
+  background-color: ${palette.blueWhite};
 `;
 
 const Title = styled(Text)<{ $isMobile: boolean }>`
@@ -106,9 +106,9 @@ const Title = styled(Text)<{ $isMobile: boolean }>`
 `;
 
 const MentorContainer = styled.div`
-  align-items: center;
   display: flex;
   gap: 2rem;
+  align-items: center;
   justify-content: space-between;
 `;
 
@@ -122,8 +122,7 @@ const MentorCards = styled.div<{ $isMobile: boolean }>`
       -webkit-overflow-scrolling: touch;
       flex-wrap: nowrap;
       margin: auto -1rem;
-      overflow-x: auto;
-      overflow-y: hidden;
+      overflow: auto hidden;
       scroll-snap-type: x mandatory;
 
       &::-webkit-scrollbar {
@@ -137,10 +136,10 @@ const MentorCards = styled.div<{ $isMobile: boolean }>`
 `;
 
 const LeftContainer = styled.div`
-  align-items: center;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  align-items: center;
 `;
 
 export default NewestMentors;

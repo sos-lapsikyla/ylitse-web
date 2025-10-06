@@ -31,23 +31,23 @@ export const OpenButton = ({
 );
 
 const SelectButton = styled(Button)<{ $isExpanded: boolean }>`
-  align-items: center;
-  border: 2px solid transparent;
-  border-bottom: 2px;
-  border-radius: 8px;
   box-sizing: border-box;
   display: flex;
   gap: 0.5rem;
-  padding: 0.5rem;
+  align-items: center;
   width: 100%;
+  padding: 0.5rem;
+  border: 2px solid transparent;
+  border-bottom: 2px;
+  border-radius: 8px;
 
   ${({ $isExpanded }) =>
     $isExpanded
       ? css`
-          border-bottom-color: transparent;
-          border-bottom-left-radius: 0;
-          border-bottom-right-radius: 0;
           border-color: ${palette.purple};
+          border-bottom-color: transparent;
+          border-bottom-right-radius: 0;
+          border-bottom-left-radius: 0;
         `
       : css`
           &:hover {

@@ -66,30 +66,30 @@ export const DropdownSearch = ({
 };
 
 const Container = styled.div`
-  margin: 2rem 0 0 0;
-  max-width: 350px;
   position: relative;
+  max-width: 350px;
+  margin: 2rem 0 0;
 `;
 
 const Dropdown = styled.div`
+  position: absolute;
+  top: calc(100% - 2px);
+  left: 0;
+  z-index: 10;
+  box-sizing: border-box;
+  min-width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  outline: ${palette.purple} solid 2px;
   background-color: white;
   border: 1px solid ${palette.purple};
   border-radius: 0 0 20px 20px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
-  left: 0;
-  max-height: 200px;
-  min-width: 100%;
-  outline: ${palette.purple} solid 2px;
-  overflow-y: auto;
-  position: absolute;
-  top: calc(100% - 2px);
-  z-index: 10;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
 `;
 
 const DropdownItem = styled.div`
-  cursor: pointer;
   padding: 0.5rem 1rem;
+  cursor: pointer;
 
   &:hover {
     background-color: ${palette.blueLight};

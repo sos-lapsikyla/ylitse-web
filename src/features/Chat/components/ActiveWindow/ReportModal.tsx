@@ -117,46 +117,43 @@ const ReportModal = ({ buddyId, close }: Props) => {
 };
 
 const Overlay = styled.div`
-  background: var(--greyscale-overlay, rgba(57, 57, 57, 0.75));
-  bottom: 0;
-  left: 0;
   position: fixed;
-  right: 0;
-  top: 0;
+  inset: 0;
   z-index: 100;
+  background: var(--greyscale-overlay, rgb(57 57 57 / 75%));
 `;
 
 const Container = styled.div<{ $isMobile: boolean }>`
-  background-color: ${palette.white};
-  border-radius: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 200;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  width: ${({ $isMobile }) => ($isMobile ? '90%' : DIALOG_WIDTH)};
   height: fit-content;
-  left: 50%;
   max-height: 80vh;
   overflow-y: auto;
-  position: absolute;
-  top: 50%;
+  background-color: ${palette.white};
+  border-radius: 20px;
   transform: translate(-50%, -50%);
-  width: ${({ $isMobile }) => ($isMobile ? '90%' : DIALOG_WIDTH)};
-  z-index: 200;
 `;
 
 const Header = styled.div`
-  align-items: center;
-  background-color: ${palette.purple};
+  position: relative;
   display: flex;
+  align-items: center;
   justify-content: center;
   max-height: 140px;
   padding: 2rem;
-  position: relative;
+  background-color: ${palette.purple};
 `;
 
 const CloseButton = styled(IconButton)`
   position: absolute;
-  right: 1rem;
   top: 1rem;
+  right: 1rem;
 `;
 
 const Content = styled.div<{ $isMobile: boolean }>`
@@ -166,8 +163,8 @@ const Content = styled.div<{ $isMobile: boolean }>`
 `;
 
 const Paragraph = styled(Text)`
-  margin-bottom: 1rem;
   margin-top: 0;
+  margin-bottom: 1rem;
 `;
 
 const Buttons = styled.div`

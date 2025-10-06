@@ -90,19 +90,19 @@ const AccountInfo = ({ isMobile = false }: Props) => {
 };
 
 const Container = styled.div<{ $isMentor: boolean; $isMobile: boolean }>`
-  background-color: ${palette.white};
   box-sizing: border-box;
   display: flex;
   flex: 1;
   flex-direction: column;
   height: fit-content;
-  padding: 2rem 3rem 2.5rem 3rem;
+  padding: 2rem 3rem 2.5rem;
+  background-color: ${palette.white};
 
   ${({ $isMentor, $isMobile }) =>
     !$isMobile &&
     css`
       border-radius: 10px;
-      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 15px 0 rgb(0 0 0 / 20%);
       ${!$isMentor &&
       `
       align-content: center;
@@ -118,15 +118,15 @@ const MenteeHeader = styled.div`
 `;
 
 const Role = styled.div`
-  align-items: center;
   display: flex;
   gap: 0.5rem;
+  align-items: center;
   margin-top: 0.5rem;
 `;
 
 const Public = styled(Section)`
+  padding: 1rem 0 0;
   margin-top: 1rem;
-  padding: 1rem 0 0 0;
 `;
 
 const DeleteButton = styled(TextButton)`

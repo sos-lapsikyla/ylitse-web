@@ -27,16 +27,16 @@ const UserCardList: React.FC<Props> = ({ setVisibleCard, managedUsers }) => {
 
 const UserCardsList = styled.div<{ $isMobile: boolean }>`
   display: grid;
-  margin-top: 3rem;
   width: 100%;
+  margin-top: 3rem;
 
   ${({ $isMobile }) =>
     $isMobile
       ? css`
-          gap: 1.5rem;
           grid-auto-columns: minmax(300px, 90%);
           grid-auto-columns: 80%;
           grid-auto-flow: column;
+          gap: 1.5rem;
           overflow-x: auto;
           scroll-snap-type: x mandatory;
 
@@ -45,8 +45,8 @@ const UserCardsList = styled.div<{ $isMobile: boolean }>`
           }
         `
       : css`
-          gap: clamp(4rem, 2vw, 1.5rem);
           grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+          gap: clamp(4rem, 2vw, 1.5rem);
         `}
 `;
 

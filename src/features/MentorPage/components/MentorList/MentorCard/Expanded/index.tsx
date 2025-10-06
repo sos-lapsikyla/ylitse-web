@@ -45,10 +45,10 @@ export const MentorCard = ({ mentor, onDismiss }: Props) => {
 };
 
 const Card = styled.div<{ $isTabletNarrow: boolean }>`
+  z-index: 100;
   background-color: ${palette.white};
   border-radius: 10px;
   opacity: 1;
-  z-index: 100;
 
   ${({ $isTabletNarrow }) =>
     $isTabletNarrow
@@ -56,41 +56,41 @@ const Card = styled.div<{ $isTabletNarrow: boolean }>`
           display: flex;
           flex: 1;
           flex-direction: column;
+          max-width: 35rem;
+          max-height: 50rem;
           margin: 1rem;
           margin-top: 4rem;
-          max-height: 50rem;
-          max-width: 35rem;
         `
       : css`
-          display: flex;
-          height: fit-content;
-          left: 50%;
-          margin: auto;
-          max-height: 80vh;
-          min-height: 57vh;
           position: fixed;
           top: 50%;
-          transform: translate(-50%, -50%);
+          left: 50%;
+          display: flex;
           width: 65vw;
+          height: fit-content;
+          min-height: 57vh;
+          max-height: 80vh;
+          margin: auto;
+          transform: translate(-50%, -50%);
         `}
 `;
 
 const Container = styled.div`
-  background-color: ${palette.greyOverlay};
-  height: 100vh;
-  left: 0;
   position: fixed;
   top: 0;
-  width: 100vw;
+  left: 0;
   z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  background-color: ${palette.greyOverlay};
 
   @media screen and (max-width: ${breakpoints.tabletNarrow}) {
-    display: flex;
     top: 0;
     left: 0;
+    display: flex;
+    justify-content: center;
     width: 100%;
     height: 100%;
-    justify-content: center;
   }
 `;
 

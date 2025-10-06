@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const Column = styled.div`
-  align-content: flex-start;
   display: flex;
   flex: 1;
   flex-direction: column;
+  align-content: flex-start;
 `;
 
 export const SpacedRow = styled.div`

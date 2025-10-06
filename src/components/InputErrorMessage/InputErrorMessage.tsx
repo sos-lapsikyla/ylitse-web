@@ -17,8 +17,8 @@ export const InputErrorMessage = ({ text }: Props) => (
 );
 
 const Container = styled.div`
-  align-items: center;
   display: flex;
   gap: 0.5rem;
+  align-items: center;
   margin-top: 0.5rem;
 `;

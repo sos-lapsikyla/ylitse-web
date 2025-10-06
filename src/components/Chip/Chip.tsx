@@ -39,28 +39,30 @@ const StyledChip = styled.button<{
   $isSelected: boolean;
   $shouldShake: boolean;
 }>`
-  align-items: center;
-  appearance: none;
-  border: none;
-  border-radius: 2rem;
-  box-shadow: 0 2px 8px 0 rgba(118, 117, 117, 0.2);
-  cursor: pointer;
   display: flex;
   flex: 0 0 auto;
   gap: 0.5rem;
+  align-items: center;
   height: 2.75rem;
   padding: 0 1rem;
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 2rem;
+  box-shadow: 0 2px 8px 0 rgb(118 117 117 / 20%);
 
   ${({ $isSelected }) =>
     $isSelected
       ? css`
           background-color: ${palette.purple};
+
           &:hover {
             background-color: ${palette.purple};
           }
         `
       : css`
           background-color: ${palette.purplePale};
+
           &:hover {
             background-color: ${palette.purpleHover};
           }
@@ -69,10 +71,11 @@ const StyledChip = styled.button<{
   ${({ $shouldShake }) =>
     $shouldShake &&
     css`
-      animation: ${animations.shake}
-      backface-visibility: hidden;
-      perspective: 1000px;
       transform: translate3d(0, 0, 0);
+      perspective: 1000px;
+      backface-visibility: hidden;
+
+      ${animations.shake}
     `}
 
   &:hover {
@@ -81,14 +84,14 @@ const StyledChip = styled.button<{
 `;
 
 const Close = styled.span`
+  z-index: 10;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
   background-color: transparent;
   background-image: url(${CloseIcon});
   background-repeat: no-repeat;
   background-size: contain;
-  cursor: pointer;
-  height: 20px;
-  width: 20px;
-  z-index: 10;
 `;
 
 export default Chip;

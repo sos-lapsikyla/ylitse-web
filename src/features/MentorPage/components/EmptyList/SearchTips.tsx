@@ -24,23 +24,24 @@ const SearchTips = () => {
 };
 
 const Container = styled.div<{ $isMobile: boolean }>`
-  background-color: ${palette.white};
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  height: 26.5rem;
   justify-content: center;
+  height: 26.5rem;
   padding: 0 0 0 3rem;
+  background-color: ${palette.white};
+
   ${({ $isMobile }) =>
     $isMobile
       ? css`
-          padding-top: 2rem;
           width: 100vw;
+          padding-top: 2rem;
         `
       : css`
-          border-radius: 10px;
-          box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
           width: 40rem;
+          border-radius: 10px;
+          box-shadow: 0 2px 8px 0 rgb(0 0 0 / 20%);
         `}
 `;
 const InnerContainer = styled.div<{ $isMobile: boolean }>`

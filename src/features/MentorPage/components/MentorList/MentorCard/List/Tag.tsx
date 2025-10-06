@@ -32,14 +32,14 @@ export const Tag: React.FC<Props> = ({ status }) => {
 };
 
 const MentorTag = styled(Text)<{ isShowing: boolean; tagColor: string }>`
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: ${props => (props.isShowing ? 'flex' : 'none')};
+  padding: 0.25rem 1rem;
+  margin: 0;
   background-color: ${props => props.tagColor};
   border-radius: 0.25rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
-  display: ${props => (props.isShowing ? 'flex' : 'none')};
-  margin: 0;
-  padding: 0.25rem 1rem;
-  position: absolute;
-  right: 0;
-  top: 0;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 30%);
   transform: translate(-1rem, -50%);
 `;

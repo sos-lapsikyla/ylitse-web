@@ -66,34 +66,34 @@ export const AppToast = ({ toast }: Props) => {
 };
 
 const Container = styled.div<{ $isVisible: boolean; $borderColor: string }>`
+  display: flex;
+  width: 560px;
   background-color: ${palette.white};
   border: solid 2px ${({ $borderColor }) => $borderColor};
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
-  display: flex;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 15%);
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
-  width: 560px;
 `;
 
 const IconContainer = styled.div<{ $bgColor: string }>`
-  align-items: center;
-  background-color: ${({ $bgColor }) => $bgColor};
   display: flex;
   flex: 1;
+  align-items: center;
   justify-content: center;
+  background-color: ${({ $bgColor }) => $bgColor};
 `;
 
 const ButtonContainer = styled.div`
-  align-items: center;
   display: flex;
   flex: 1;
+  align-items: center;
   justify-content: center;
   padding: 1rem;
 `;
 
 const MessageContainer = styled.div`
-  align-items: center;
-  background-color: ${palette.white};
   display: flex;
   flex: 10;
+  align-items: center;
   padding-left: 1rem;
+  background-color: ${palette.white};
 `;

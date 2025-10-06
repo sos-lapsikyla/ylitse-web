@@ -38,28 +38,28 @@ export const DropdownButton: React.FC<Props> = ({
 };
 
 const Button = styled.button<{ $isExpanded?: boolean }>`
-  align-items: center;
-  background: transparent;
-  border: none;
-  cursor: pointer;
+  position: relative;
   display: flex;
   gap: 4px;
-  height: ${NAVIGATION_HEIGHT};
+  align-items: center;
   justify-content: center;
+  height: ${NAVIGATION_HEIGHT};
   padding: 0 1rem;
-  position: relative;
   text-align: center;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    background-color: ${palette.blue2};
+    border-bottom: 2px solid ${palette.blue2};
+  }
 
   ${({ $isExpanded }) =>
     $isExpanded &&
     css`
       background-color: ${palette.white};
     `}
-
-  &:hover {
-    background-color: ${palette.blue2};
-    border-bottom: 2px solid ${palette.blue2};
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
 `;

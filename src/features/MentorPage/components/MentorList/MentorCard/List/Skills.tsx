@@ -28,22 +28,23 @@ const Container = styled.div`
 `;
 
 const Chips = styled.div`
+  position: relative;
   display: flex;
   flex: 0 0 auto;
   flex-wrap: wrap;
   gap: 0.5rem;
-  height: 6rem;
   justify-content: flex-start;
-  overflow: hidden;
-  position: relative;
   width: 100%;
-  &:after {
-    background: linear-gradient(transparent, ${palette.white});
-    content: '';
-    display: block;
-    height: 2.5rem;
+  height: 6rem;
+  overflow: hidden;
+
+  &::after {
     position: absolute;
     top: 3.5rem;
+    display: block;
     width: 100%;
+    height: 2.5rem;
+    content: '';
+    background: linear-gradient(transparent, ${palette.white});
   }
 `;

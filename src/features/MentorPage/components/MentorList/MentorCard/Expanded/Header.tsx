@@ -66,10 +66,10 @@ const Container = styled.div<{
   $statusColor: string;
   $isTabletNarrow: boolean;
 }>`
-  background-color: ${({ $statusColor }) => $statusColor};
-  border-radius: 10px;
   box-sizing: border-box;
   min-height: 7.5rem;
+  background-color: ${({ $statusColor }) => $statusColor};
+  border-radius: 10px;
   ${({ $isTabletNarrow }) =>
     !$isTabletNarrow &&
     css`
@@ -78,19 +78,20 @@ const Container = styled.div<{
 `;
 
 const ProfilePicture = styled.div<{ $isMe: boolean; $isTabletNarrow: boolean }>`
+  flex: 0 2 10vw;
+  width: 10vw;
+  height: 10vw;
+  margin: 2rem auto;
   background-image: ${({ $isMe }) =>
     `url(${$isMe ? ProfilePicPlaceholderForMe : ProfilePicPlaceholder})`};
   background-repeat: no-repeat;
   background-size: contain;
-  flex: 0 2 10vw;
-  height: 10vw;
-  margin: 2rem auto;
-  width: 10vw;
+
   @media screen and (max-width: ${breakpoints.mobile}) {
     flex: 0 0 4rem;
-    margin: 2rem 2rem 1rem 1.5rem;
-    height: 5rem;
     width: 5rem;
+    height: 5rem;
+    margin: 2rem 2rem 1rem 1.5rem;
   }
 `;
 

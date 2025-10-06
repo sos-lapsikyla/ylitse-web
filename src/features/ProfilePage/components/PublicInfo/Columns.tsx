@@ -82,8 +82,8 @@ const Columns = ({
 };
 
 const Container = styled.div<{ $isMobile: boolean }>`
-  align-items: flex-start;
   display: flex;
+  align-items: flex-start;
   ${({ $isMobile }) =>
     $isMobile
       ? css`

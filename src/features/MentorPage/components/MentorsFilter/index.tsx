@@ -68,52 +68,52 @@ const MentorsFilter = () => {
 };
 
 const Filters = styled.div`
-  background-color: ${palette.white};
-  border-radius: 10px;
+  position: relative;
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
   gap: 1rem 2.5rem;
-  height: auto;
-  margin: 0;
-  padding: 2.5rem 0;
-  position: relative;
   width: 100%;
+  height: auto;
+  padding: 2.5rem 0;
+  margin: 0;
+  background-color: ${palette.white};
+  border-radius: 10px;
 `;
 
 const MobileFilters = styled.div`
-  background-color: ${palette.white};
-  border-radius: 10px;
+  position: relative;
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
   gap: 1rem 2.5rem;
-  height: auto;
-  margin: 0;
-  padding: 0 0;
-  position: relative;
   width: 100%;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  background-color: ${palette.white};
+  border-radius: 10px;
 `;
 
 const MobileDivider = styled.div`
+  margin: -2rem 0 1rem;
   border-bottom: solid 1px ${palette.purplePale};
-  margin: -2rem 0 1rem 0;
 `;
 
 const Divider = styled.div`
+  margin: 1rem 6% 0;
   border-bottom: solid 1px ${palette.purplePale};
-  margin: 1rem 6% 0 6%;
 `;
 
 const PageHeader = styled.div`
+  display: flex;
   align-items: center;
+  justify-content: center;
+  height: 80px;
+  max-height: 80px;
+  margin-bottom: 1rem;
   background-color: ${palette.blue2};
   border-radius: 10px;
-  display: flex;
-  height: 80px;
-  justify-content: center;
-  margin-bottom: 1rem;
-  max-height: 80px;
 `;
 
 export default MentorsFilter;

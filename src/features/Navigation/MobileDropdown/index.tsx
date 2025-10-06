@@ -130,49 +130,50 @@ const MobileDropdown: React.FC<Props> = ({ items }) => {
 };
 
 const Dropdown = styled.button`
-  align-items: center;
   all: unset;
-  cursor: pointer;
   display: flex;
   gap: 4px;
+  align-items: center;
   justify-content: center;
   padding: 0 3rem;
   text-align: center;
+  cursor: pointer;
 `;
 
 const Row = styled.div`
-  align-items: center;
   display: flex;
   gap: 6px;
+  align-items: center;
   margin-left: -2rem;
 `;
 
 const Menu = styled.div`
-  animation: ${animations.growDown};
+  position: absolute;
+  top: ${NAVIGATION_HEIGHT};
+  right: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  margin-top: ${MOBILE_NAVIGATION_BORDER_HEIGHT};
+  text-align: left;
   background-color: ${palette.white};
   border-radius: 0 0 10px 10px;
   box-shadow: 1px 0.5px 15px ${palette.greyMid};
-  display: flex;
-  flex-direction: column;
-  left: 0;
-  margin-top: ${MOBILE_NAVIGATION_BORDER_HEIGHT};
-  position: absolute;
-  right: 0;
-  text-align: left;
-  top: ${NAVIGATION_HEIGHT};
   transform-origin: top center;
-  width: 100vw;
+
+  ${animations.growDown}
 `;
 
 const MobileContainer = styled.button`
-  background: transparent;
-  background-color: ${palette.white};
-  border: none;
-  cursor: pointer;
   display: flex;
   gap: 0.5rem;
   height: ${NAVIGATION_HEIGHT};
   padding: 0 2rem;
+  cursor: pointer;
+  background: transparent;
+  background-color: ${palette.white};
+  border: none;
 `;
 
 const UnstyledLink = styled.a`
@@ -182,8 +183,8 @@ const UnstyledLink = styled.a`
 `;
 
 const Divider = styled.div`
-  border-bottom: 1px solid ${palette.blue2};
   margin: 0.5rem 0;
+  border-bottom: 1px solid ${palette.blue2};
 `;
 
 export default MobileDropdown;

@@ -61,13 +61,14 @@ const LinkText = styled(Text)<{ $isCurrentLocation: boolean }>`
 `;
 
 const UnseenDot = styled.div<{ $withBorder: boolean }>`
-  background-color: ${palette.orange};
-  ${({ $withBorder }) =>
-    $withBorder && `border: 1px solid ${palette.blueDark};`}
-  border-radius: 50%;
-  height: 10px;
-  left: 2.4rem;
   position: relative;
   top: -2.2rem;
+  left: 2.4rem;
   width: 10px;
+  height: 10px;
+  background-color: ${palette.orange};
+  border-radius: 50%;
+
+  ${({ $withBorder }) =>
+    $withBorder && `border: 1px solid ${palette.blueDark};`}
 `;

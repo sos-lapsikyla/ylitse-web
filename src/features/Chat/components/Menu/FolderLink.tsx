@@ -58,8 +58,8 @@ const Link = styled.a<{ $isTargetActiveFolder: boolean }>`
   ${({ $isTargetActiveFolder }) =>
     $isTargetActiveFolder &&
     css`
-      align-items: center;
       display: flex;
+      align-items: center;
       padding-right: 40px;
     `}
 `;

@@ -51,12 +51,12 @@ const ProfileWidget: React.FC<Props> = ({
 };
 
 const InfoBox = styled.div`
-  background-color: ${palette.blueWhite};
   display: flex;
   flex-direction: column;
-  margin: 1rem 0 1rem 0;
-  padding: 0 0 1rem 0;
   width: 49%;
+  padding: 0 0 1rem;
+  margin: 1rem 0;
+  background-color: ${palette.blueWhite};
 `;
 
 const InfoBoxTitle = styled(Text)`
@@ -64,7 +64,7 @@ const InfoBoxTitle = styled(Text)`
 `;
 
 const InfoBoxText = styled(Text)`
-  padding: 0 1.5rem 0 1.5rem;
+  padding: 0 1.5rem;
 `;
 
 const MiddleContainer = styled.div<{ $isDesktop: boolean }>`
@@ -79,23 +79,23 @@ const MiddleContainer = styled.div<{ $isDesktop: boolean }>`
       flex-direction: column;
       gap: 0;
       ${InfoBox} {
-        margin-bottom: 0;
         width: 100%;
+        margin-bottom: 0;
       }
     `}
 `;
 
 const Container = styled.div<{ $isDesktop: boolean }>`
-  background-color: ${palette.white};
   gap: 1rem;
   padding: ${({ $isDesktop }) => ($isDesktop ? '2rem' : '3rem 2rem 2rem 2rem')};
+  background-color: ${palette.white};
 
   ${({ $isDesktop }) =>
     $isDesktop &&
     css`
-      border-radius: 10px;
-      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
       box-sizing: border-box;
+      border-radius: 10px;
+      box-shadow: 0 0 15px 0 rgb(0 0 0 / 20%);
     `}
 `;
 

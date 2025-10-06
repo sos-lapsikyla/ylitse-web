@@ -56,19 +56,20 @@ export const Anchor = styled.div`
 `;
 
 export const Menu = styled.div`
-  animation: ${animations.growDown};
-  display: flex;
-  flex-direction: column;
-  left: -2px;
   position: absolute;
   top: ${NAVIGATION_HEIGHT};
-  transform-origin: top center;
+  left: -2px;
+  display: flex;
+  flex-direction: column;
   width: max-content;
+  transform-origin: top center;
 
   button:last-of-type {
     border-bottom: 2px solid ${palette.purple};
     border-radius: 0 0 16px 16px;
   }
+
+  ${animations.growDown}
 `;
 
 export default InfoDropdown;
