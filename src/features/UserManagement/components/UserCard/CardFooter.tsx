@@ -77,7 +77,7 @@ const Container = styled.div`
   background-color: ${palette.purple};
   border-radius: 0 0 0.75rem 0.75rem;
   display: flex;
-  height: 5rem;
+  height: 3.75rem;
   justify-content: center;
   width: 100%;
 `;
