@@ -9,6 +9,7 @@ import CloseIcon from '@/static/icons/close.svg';
 import CloseWithBackgroundIcon from '@/static/icons/close-with-background.svg';
 import DangerIcon from '@/static/icons/danger.svg';
 import DeleteIcon from '@/static/icons/delete.svg';
+import DeleteDisabled from '@/static/icons/delete-disabled.svg';
 import DeleteWithBackground from '@/static/icons/delete-with-background.svg';
 import DownIcon from '@/static/icons/down.svg';
 import EditIcon from '@/static/icons/edit.svg';
@@ -139,6 +140,7 @@ export const iconVariants = {
   chatWithBackground: `url(${ChatWithBackground})`,
   danger: `url(${DangerIcon})`,
   delete: `url(${DeleteIcon})`,
+  deleteDisabled: `url(${DeleteDisabled})`,
   deleteWithBackground: `url(${DeleteWithBackground})`,
   down: `url(${DownIcon})`,
   edit: `url(${EditIcon})`,

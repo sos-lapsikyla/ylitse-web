@@ -20,8 +20,7 @@
       "delete": "Deleting account was successful"
     },
     "failure": {
-      "delete": "Deleting account failed",
-      "deleteSelf": "You can't delete your account from Users page. If you need to delete your own account, delete via Profilepage."
+      "delete": "Deleting account failed"
     }
   },
   "role": {

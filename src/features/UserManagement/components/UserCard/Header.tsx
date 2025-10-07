@@ -1,6 +1,7 @@
 // import { useTranslation } from 'react-i18next';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 
+import ProfilePicPlaceholderAdmin from '@/static/icons/admin-blueDark.svg';
 import ProfilePicPlaceholder from '@/static/icons/chat-profilepic.svg';
 import ProfilePicPlaceholderDark from '@/static/icons/chat-profilepic-dark.svg';
 import ProfilePicPlaceholderVacation from '@/static/icons/profile-pic-vacation.svg';
@@ -10,8 +11,9 @@ import { Text } from '@/components/Text/Text';
 
 import { getRoleStatus } from '@/utils/utils';
 import RoleTag from './RoleTag';
-import { authenticationApi } from '@/features/Authentication/authenticationApi';
 import { ManagedUser } from '../../models';
+import { useAppSelector } from '@/store';
+import { selectAccount } from '@/features/Authentication/selectors';
 
 type Props = {
   managedUser: ManagedUser;
@@ -29,8 +31,8 @@ export const Header: React.FC<Props> = ({
   isVacationingMentor,
 }) => {
   const { isMobile } = useGetLayoutMode();
-  const { data: me } = authenticationApi.useGetMeQuery();
-  const isMe = me?.user.account_id === managedUser.account_id;
+  const { id: currentUserId } = useAppSelector(selectAccount);
+  const isMe = currentUserId === managedUser.account_id;
 
   const role = getRoleStatus(isMentor, isVacationingMentor, isMentee, isAdmin);
 
@@ -43,7 +45,7 @@ export const Header: React.FC<Props> = ({
     admin: {
       header: palette.orange,
       text: 'blueDark',
-      profilePictureVariation: ProfilePicPlaceholderDark,
+      profilePictureVariation: ProfilePicPlaceholderAdmin,
     },
     mentee: {
       header: palette.blue2,
