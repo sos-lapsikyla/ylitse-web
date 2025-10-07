@@ -78,7 +78,7 @@ describe('Users page', () => {
     cy.contains('Käyttäjät').should('be.visible');
     cy.contains(mentor.displayName).should('be.visible');
     cy.get('button[aria-label="deleteWithBackground"]')
-      .eq(1)
+      .eq(0)
       .click({ force: true });
     cy.contains(
       'Käyttäjän poistamista ei voi tämän jälkeen perua. Kaikki tämän käyttäjän käymät keskustelut poistetaan.',
