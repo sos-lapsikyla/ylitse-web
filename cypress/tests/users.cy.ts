@@ -98,12 +98,7 @@ describe('Users page', () => {
     cy.location('pathname').should('eq', '/users');
     cy.contains('Käyttäjät').should('be.visible');
     // try to delete current user
-    cy.get('button[aria-label="deleteWithBackground"]')
-      .eq(0)
-      .click({ force: true });
-    cy.contains(
-      'Et voi poistaa omaa käyttäjääsi käyttäjänhallinta sivulla.',
-    ).should('be.visible');
+    cy.get('button[aria-label="deleteDisabled"]').eq(0).click({ force: true });
     // assure account is still listed
     cy.contains(SUPERADMIN_USER).should('be.visible');
   });
