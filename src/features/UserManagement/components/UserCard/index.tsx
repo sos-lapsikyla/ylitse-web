@@ -7,13 +7,13 @@ import type { ManagedUser } from '../../models';
 import { Header } from './Header';
 import { CardContent } from './CardContent';
 import { MentorHeader } from './MentorHeader';
+import CardFooter from './CardFooter';
 
 type Props = {
-  setVisibleCard: (managedUser: ManagedUser) => void;
   managedUser: ManagedUser;
 };
 
-export const UserCard: React.FC<Props> = ({ setVisibleCard, managedUser }) => {
+export const UserCard: React.FC<Props> = ({ managedUser }) => {
   const { isMobile } = useGetLayoutMode();
 
   const isMentorAccount =
@@ -28,8 +28,6 @@ export const UserCard: React.FC<Props> = ({ setVisibleCard, managedUser }) => {
   const mentorRegion = isMentorAccount ? managedUser.mentor.region : '';
   const mentorMessage = isMentorAccount ? managedUser.mentor.statusMessage : '';
 
-  console.log(setVisibleCard);
-
   return (
     <Container $isMobile={isMobile}>
       {!isMentorAccount ? (
@@ -38,7 +36,7 @@ export const UserCard: React.FC<Props> = ({ setVisibleCard, managedUser }) => {
           isMentor={isMentor}
           isMentee={isMentee}
           isVacationingMentor={isVacationingMentor}
-          name={managedUser.nickname}
+          managedUser={managedUser}
         />
       ) : (
         <MentorHeader
@@ -53,6 +51,9 @@ export const UserCard: React.FC<Props> = ({ setVisibleCard, managedUser }) => {
         ></MentorHeader>
       )}
       <CardContent managedUser={managedUser} />
+      <FooterWrapper>
+        <CardFooter managedUser={managedUser} />
+      </FooterWrapper>
     </Container>
   );
 };
@@ -80,6 +81,20 @@ const Container = styled.div<{ $isMobile: boolean }>`
         margin-right: 1.5rem;
       }
     `}
+`;
+
+const FooterWrapper = styled.div`
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    visibility 0s linear 0.3s;
+  visibility: hidden;
+
+  ${Container}:hover & {
+    opacity: 1;
+    transition-delay: 0s;
+    visibility: visible;
+  }
 `;
 
 export default UserCard;

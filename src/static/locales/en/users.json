@@ -7,13 +7,26 @@
     "publicName": "Public name",
     "userName": "Username"
   },
+  "delete": {
+    "title": "Delete account",
+    "cancel": "Cancel",
+    "description": "The deletion of the user cannot be undone. All conversations this user has participated in will be deleted.",
+    "confirm": "Delete"
+  },
   "notification": {
     "parsingUsersError": "Parsing failed",
-    "fetchingUsersError": "Fetching failed"
+    "fetchingUsersError": "Fetching failed",
+    "success": {
+      "delete": "Deleting account was successful"
+    },
+    "failure": {
+      "delete": "Deleting account failed"
+    }
   },
   "role": {
     "admin": "Admin",
     "mentee": "Mentee",
     "mentor": "Mentor"
-  }
+  },
+  "myUser": "Me"
 }

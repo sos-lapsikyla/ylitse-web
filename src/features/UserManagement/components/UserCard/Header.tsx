@@ -1,6 +1,7 @@
 // import { useTranslation } from 'react-i18next';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 
+import ProfilePicPlaceholderAdmin from '@/static/icons/admin-blueDark.svg';
 import ProfilePicPlaceholder from '@/static/icons/chat-profilepic.svg';
 import ProfilePicPlaceholderDark from '@/static/icons/chat-profilepic-dark.svg';
 import ProfilePicPlaceholderVacation from '@/static/icons/profile-pic-vacation.svg';
@@ -10,9 +11,12 @@ import { Text } from '@/components/Text/Text';
 
 import { getRoleStatus } from '@/utils/utils';
 import RoleTag from './RoleTag';
+import { ManagedUser } from '../../models';
+import { useAppSelector } from '@/store';
+import { selectAccount } from '@/features/Authentication/selectors';
 
 type Props = {
-  name: string;
+  managedUser: ManagedUser;
   isMentor: boolean;
   isMentee: boolean;
   isVacationingMentor: boolean;
@@ -20,13 +24,15 @@ type Props = {
 };
 
 export const Header: React.FC<Props> = ({
-  name,
+  managedUser,
   isMentor,
   isMentee,
   isAdmin,
   isVacationingMentor,
 }) => {
   const { isMobile } = useGetLayoutMode();
+  const { id: currentUserId } = useAppSelector(selectAccount);
+  const isMe = currentUserId === managedUser.account_id;
 
   const role = getRoleStatus(isMentor, isVacationingMentor, isMentee, isAdmin);
 
@@ -39,7 +45,7 @@ export const Header: React.FC<Props> = ({
     admin: {
       header: palette.orange,
       text: 'blueDark',
-      profilePictureVariation: ProfilePicPlaceholderDark,
+      profilePictureVariation: ProfilePicPlaceholderAdmin,
     },
     mentee: {
       header: palette.blue2,
@@ -60,12 +66,15 @@ export const Header: React.FC<Props> = ({
 
   return (
     <Container $headerColor={headerColorMap[role].header} $isMobile={isMobile}>
-      <RoleTag role={role} />
+      <TagContainer>
+        {isMe && <MeTag>Sinä</MeTag>}
+        <RoleTag role={role} />
+      </TagContainer>
       <ProfilePicture
         $variation={headerColorMap[role].profilePictureVariation}
       />
       <NameText variant="h2" color={headerColorMap[role].text}>
-        {name}
+        {managedUser.nickname}
       </NameText>
     </Container>
   );
@@ -100,4 +109,22 @@ const ProfilePicture = styled.div<{ $variation: string }>`
   flex: 0 0 4rem;
   height: 4rem;
   width: 4rem;
+`;
+
+const TagContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(-1rem, -50%);
+`;
+
+const MeTag = styled(Text)`
+  background-color: ${palette.blueLight};
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+  display: flex;
+  margin: 0;
+  padding: 0.25rem 1rem;
 `;

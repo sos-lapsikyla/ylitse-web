@@ -52,7 +52,7 @@ const Card = styled.div<{ $isMobile: boolean }>`
   justify-content: space-between;
   max-height: 32.5rem;
   padding: ${({ $isMobile }) => ($isMobile ? '1.5rem' : '2.5rem')};
-  padding-bottom: 6rem;
+  padding-bottom: 2rem;
 `;
 
 const UserInfoText = styled(Text)`

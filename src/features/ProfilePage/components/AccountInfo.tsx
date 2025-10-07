@@ -6,8 +6,9 @@ import {
   selectIsMentor,
 } from '@/features/Authentication/selectors';
 import { useAppSelector } from '@/store';
-import { useConfirm } from '@/features/Confirmation/useConfirm';
+//import { useConfirm } from '@/features/Confirmation/useConfirm';
 import { useDeleteAccountMutation } from '@/features/ProfilePage/profileApi';
+import { useConfirmDelete } from '@/hooks/useConfirmDelete';
 
 import AdminIcon from '@/static/icons/admin.svg';
 import DisplayNameEditor from './DisplayNameEditor';
@@ -26,24 +27,10 @@ type Props = {
 
 const AccountInfo = ({ isMobile = false }: Props) => {
   const { t } = useTranslation('profile');
-  const { getConfirmation } = useConfirm();
   const { id, login_name: loginName, role } = useAppSelector(selectAccount);
   const isMentor = useAppSelector(selectIsMentor);
   const [deleteAccount] = useDeleteAccountMutation();
-
-  const confirmDelete = async () => {
-    const isConfirmed = await getConfirmation({
-      borderColor: palette.redSalmon,
-      closeText: t('account.delete.cancel'),
-      confirmId: 'confirm-delete',
-      confirmText: t('account.delete.confirm'),
-      description: t('account.delete.description'),
-      title: t('account.delete.title'),
-    });
-    if (isConfirmed) {
-      void deleteAccount(id);
-    }
-  };
+  const confirmDelete = useConfirmDelete();
 
   const userRoleIcons = {
     admin: <img src={AdminIcon} />,
@@ -80,7 +67,21 @@ const AccountInfo = ({ isMobile = false }: Props) => {
             <Text variant="h2">{t('public.title')}</Text>
             <DisplayNameEditor />
           </Public>
-          <DeleteButton variant="danger" onClick={confirmDelete}>
+          <DeleteButton
+            variant="danger"
+            onClick={() =>
+              confirmDelete({
+                id,
+                onDelete: deleteAccount,
+                title: t('account.delete.title'),
+                description: t('account.delete.description'),
+                confirmId: 'confirm-delete',
+                borderColor: palette.redSalmon,
+                closeText: t('account.delete.cancel'),
+                confirmText: t('account.delete.confirm'),
+              })
+            }
+          >
             {t('account.delete.title')}
           </DeleteButton>
         </>

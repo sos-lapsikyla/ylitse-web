@@ -7,13 +7,27 @@
     "publicName": "Julkinen käyttäjänimi",
     "userName": "Käyttäjätunnus"
   },
+  "delete": {
+    "title": "Poista käyttäjä",
+    "cancel": "Peruuta",
+    "description": "Käyttäjän poistamista ei voi tämän jälkeen perua. Kaikki tämän käyttäjän käymät keskustelut poistetaan.",
+    "confirm": "Poista"
+  },
   "notification": {
     "parsingUsersError": "Parsing failed",
-    "fetchingUsersError": "Fetching failed"
+    "fetchingUsersError": "Fetching failed",
+    "success": {
+      "delete": "Käyttäjän poistaminen onnistui."
+    },
+    "failure": {
+      "delete": "Käyttäjän poistaminen epäonnistui."
+    }
   },
+
   "role": {
     "admin": "Admin",
     "mentee": "Aktori",
     "mentor": "Mentori"
-  }
+  },
+  "myUser": "Sinä"
 }

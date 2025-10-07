@@ -69,7 +69,9 @@ export const MentorHeader: React.FC<Props> = ({
 
   return (
     <Container $headerColor={headerColorMap[role].header} $isMobile={isMobile}>
-      <RoleTag role={role} />
+      <TagContainer>
+        <RoleTag role={role} />
+      </TagContainer>
       <ProfilePicture
         $variation={headerColorMap[role].profilePictureVariation}
       />
@@ -117,6 +119,15 @@ const ProfilePicture = styled.div<{ $variation: string }>`
   flex: 0 0 4rem;
   height: 4rem;
   width: 4rem;
+`;
+
+const TagContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(-1rem, -50%);
 `;
 
 export const WrappedText = styled(Text)`

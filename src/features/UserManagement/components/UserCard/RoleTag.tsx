@@ -39,10 +39,6 @@ const Tag = styled(Text)<{ $roleTagColor: string }>`
   display: flex;
   margin: 0;
   padding: 0.25rem 1rem;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transform: translate(-1rem, -50%);
 `;
 
 export default RoleTag;
