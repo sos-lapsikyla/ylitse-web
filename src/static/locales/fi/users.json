@@ -17,7 +17,7 @@
     "title": "Uusi käyttäjä",
     "h2": "Tilin tiedot",
     "caption": "Tähdellä * merkityt kentät tulee täyttää.",
-    "accountType": "Käyttjätilin tyyppi *",
+    "accountType": "Käyttäjätilin tyyppi *",
     "userName": "Käyttäjätunnus *",
     "email": "Sähköpostiosoite",
     "visibility": "Näkyvyys",

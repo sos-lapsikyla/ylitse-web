@@ -40,15 +40,19 @@ const UsersPage = () => {
   ) : (
     <>
       <PageHeader $isMobile={isMobile}>
-        <Text variant="h1">{t('newUser.title')}</Text>
+        <TitleWrapper $isMobile={isMobile}>
+          <Text variant="h1">{t('title')}</Text>
+        </TitleWrapper>
+        <ButtonWrapper $isMobile={isMobile}>
+          <TextButton
+            leftIcon="add"
+            size="normal"
+            onClick={() => setIsNewUserModalVisible(true)}
+          >
+            {t('newUser.title')}
+          </TextButton>
+        </ButtonWrapper>
       </PageHeader>
-      <TextButton
-        leftIcon="next"
-        size="normal"
-        onClick={() => setIsNewUserModalVisible(true)}
-      >
-        Uusi käyttäjä
-      </TextButton>
       {isNewUserModalVisible && (
         <NewUser onDismiss={() => setIsNewUserModalVisible(false)}></NewUser>
       )}
@@ -89,12 +93,15 @@ const PageHeader = styled.div<{ $isMobile: boolean }>`
   justify-content: center;
   margin-bottom: 1rem;
   max-width: 95rem;
+  position: relative;
   width: 100%;
 
   ${({ $isMobile }) =>
     $isMobile
       ? css`
-          background-color: ${palette.blueLight};
+          background-color: ${palette.white};
+          flex-direction: column;
+          gap: 2rem;
           height: 6rem;
           margin-bottom: -2rem;
         `
@@ -104,6 +111,29 @@ const PageHeader = styled.div<{ $isMobile: boolean }>`
           height: 80px;
           max-height: 80px;
         `}
+`;
+const TitleWrapper = styled.div<{ $isMobile: boolean }>`
+  ${({ $isMobile }) =>
+    !$isMobile &&
+    css`
+      left: 50%;
+      position: absolute;
+      transform: translateX(-50%);
+    `}
+`;
+
+const ButtonWrapper = styled.div<{ $isMobile: boolean }>`
+  ${({ $isMobile }) =>
+    !$isMobile &&
+    css`
+      margin-left: auto;
+      padding-right: 2rem;
+    `}
+  ${({ $isMobile }) =>
+    $isMobile &&
+    css`
+      margin: 0; /* reset margin for column layout */
+    `}
 `;
 
 export default UsersPage;

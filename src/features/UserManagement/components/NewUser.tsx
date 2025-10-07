@@ -5,6 +5,7 @@ import Text from '@/components/Text';
 import { useTranslation } from 'react-i18next';
 import LabeledInput from '@/components/LabeledInput';
 import SkillsEditor from '@/features/ProfilePage/components/SkillsEditor';
+import { DropdownMenu } from '@/components/Dropdown';
 
 type Props = {
   onDismiss: () => void;
@@ -14,16 +15,20 @@ const NewUser: React.FC<Props> = ({ onDismiss }) => {
   const { t } = useTranslation('users');
 
   useEscape(() => onDismiss());
+
+  const options = ['admin', 'mentee', 'mentor'];
+
   return (
     <Modal>
       <ModalCard title={t('newUser.title')} onDismiss={onDismiss}>
         <Text variant="h2">{t('newUser.h2')}</Text>
         <Text variant="p">{t('newUser.caption')}</Text>
-        <LabeledInput
+        <DropdownMenu
+          options={options}
+          placeholder={'Valitse rooli'}
+          selectOption={() => console.log('todo')}
           label={t('newUser.accountType')}
-          onChange={() => console.log('todo')}
-          value={''}
-        />
+        ></DropdownMenu>
         <LabeledInput
           label={t('newUser.email')}
           onChange={() => console.log('todo')}

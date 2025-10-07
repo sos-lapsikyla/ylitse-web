@@ -1,10 +1,12 @@
 import { palette } from '../constants';
+import AddIcon from '@/static/icons/add.svg';
 import ArchivedChatsIcon from '@/static/icons/archived-chats.svg';
 import ArchiveIcon from '@/static/icons/archive.svg';
 import BackIcon from '@/static/icons/back.svg';
 import BlockIcon from '@/static/icons/block.svg';
 import BlockedChatsIcon from '@/static/icons/blocked-chats.svg';
 import ChatWithBackground from '@/static/icons/chat-with-background.svg';
+import Chevron from '@/static/icons/chevron.svg';
 import CloseIcon from '@/static/icons/close.svg';
 import CloseWithBackgroundIcon from '@/static/icons/close-with-background.svg';
 import DangerIcon from '@/static/icons/danger.svg';
@@ -130,6 +132,7 @@ export const variants = {
 };
 
 export const iconVariants = {
+  add: `url(${AddIcon})`,
   archive: `url(${ArchiveIcon})`,
   archivedChats: `url(${ArchivedChatsIcon})`,
   back: `url(${BackIcon})`,
@@ -138,6 +141,7 @@ export const iconVariants = {
   close: `url(${CloseIcon})`,
   closeWithBackground: `url(${CloseWithBackgroundIcon})`,
   chatWithBackground: `url(${ChatWithBackground})`,
+  chevron: `url(${Chevron})`,
   danger: `url(${DangerIcon})`,
   delete: `url(${DeleteIcon})`,
   deleteDisabled: `url(${DeleteDisabled})`,

@@ -37,8 +37,8 @@ const TextButton = <T extends ElementType = 'button'>({
 );
 
 const iconSizes: Record<Size, string> = {
-  normal: '24px',
-  large: '28px',
+  normal: '18px',
+  large: '24px',
 };
 
 const Icon = styled.span<{
