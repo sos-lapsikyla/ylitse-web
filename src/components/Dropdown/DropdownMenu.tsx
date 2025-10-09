@@ -23,6 +23,8 @@ export const DropdownMenu = ({
   const [selectedOption, setSelectedOption] = useState('');
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const shouldShowDropdown = isDropdownVisible;
+
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -44,55 +46,64 @@ export const DropdownMenu = ({
   };
 
   return (
-    <Container ref={containerRef}>
-      <LabelRow>
-        <Text variant="label">{label}</Text>
-      </LabelRow>
-      <DropdownTrigger
-        $isDisabled={isDisabled}
-        onClick={() => {
-          if (!isDisabled) setIsDropdownVisible(prev => !prev);
-        }}
-      >
-        <Text variant="menuOption">{selectedOption || placeholder}</Text>
+    <Container>
+      <DropdownContainer ref={containerRef}>
+        <LabelRow>
+          <Text variant="label">{label}</Text>
+        </LabelRow>
+        <DropdownTrigger
+          $hasOpenDropdown={shouldShowDropdown}
+          $isDisabled={isDisabled}
+          onClick={() => {
+            if (!isDisabled) setIsDropdownVisible(prev => !prev);
+          }}
+        >
+          <Text variant="menuOption">{selectedOption || placeholder}</Text>
 
-        <RightIconWrapper $isOpen={isDropdownVisible}>
-          <IconButton
-            variant="chevron"
-            sizeInPx={18}
-            onClick={() => {
-              if (!isDisabled) setIsDropdownVisible(prev => !prev);
-            }}
-          />
-        </RightIconWrapper>
-      </DropdownTrigger>
+          <RightIconWrapper $isOpen={isDropdownVisible}>
+            <IconButton
+              variant="chevron"
+              sizeInPx={18}
+              onClick={() => {
+                if (!isDisabled) setIsDropdownVisible(prev => !prev);
+              }}
+            />
+          </RightIconWrapper>
+        </DropdownTrigger>
 
-      {isDropdownVisible && (
-        <Dropdown id="dropdown-menu">
-          {options.map((option, i) => (
-            <DropdownItem key={i} onMouseDown={() => handleSelect(option)}>
-              <Text variant="menuOption">{option}</Text>
-            </DropdownItem>
-          ))}
-        </Dropdown>
-      )}
+        {isDropdownVisible && (
+          <Dropdown id="dropdown-menu">
+            {options.map((option, i) => (
+              <DropdownItem key={i} onMouseDown={() => handleSelect(option)}>
+                <Text variant="menuOption">{option}</Text>
+              </DropdownItem>
+            ))}
+          </Dropdown>
+        )}
+      </DropdownContainer>
     </Container>
   );
 };
 
 const Container = styled.div`
-  margin: 2rem 0 0 0;
-  max-width: 350px;
   padding: 1.5rem 0;
+`;
+
+const DropdownContainer = styled.div`
+  margin: 0;
+  max-width: 350px;
   position: relative;
 `;
 
-const DropdownTrigger = styled.button<{ $isDisabled: boolean }>`
+const DropdownTrigger = styled.button<{
+  $isDisabled: boolean;
+  $hasOpenDropdown: boolean;
+}>`
   align-items: center;
   background-color: white;
   border: 1px solid ${palette.purple};
-  border-radius: 10px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: ${({ $hasOpenDropdown }) =>
+    $hasOpenDropdown ? '10px 10px 0 0' : '10px'};
   color: ${palette.blueDark};
   cursor: ${({ $isDisabled }) => ($isDisabled ? 'not-allowed' : 'pointer')};
   display: flex;
@@ -101,6 +112,10 @@ const DropdownTrigger = styled.button<{ $isDisabled: boolean }>`
   padding: 0.75rem 1rem;
   text-align: left;
   width: 100%;
+
+  &:focus {
+    outline: ${palette.purple} solid 2px;
+  }
 
   &:hover {
     background-color: ${({ $isDisabled }) =>
