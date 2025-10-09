@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import LabeledInput from '@/components/LabeledInput';
 import SkillsEditor from '@/features/ProfilePage/components/SkillsEditor';
 import { DropdownMenu } from '@/components/Dropdown';
+import styled from 'styled-components';
 
 type Props = {
   onDismiss: () => void;
@@ -21,61 +22,89 @@ const NewUser: React.FC<Props> = ({ onDismiss }) => {
   return (
     <Modal>
       <ModalCard title={t('newUser.title')} onDismiss={onDismiss}>
-        <Text variant="h2">{t('newUser.h2')}</Text>
-        <Text variant="p">{t('newUser.caption')}</Text>
-        <DropdownMenu
-          options={options}
-          placeholder={'Valitse rooli'}
-          selectOption={() => console.log('todo')}
-          label={t('newUser.accountType')}
-        ></DropdownMenu>
-        <LabeledInput
-          label={t('newUser.email')}
-          onChange={() => console.log('todo')}
-          value={''}
-        />
-        <Text variant="label">{t('newUser.visibility')}</Text>
-        <Text variant="label">{t('newUser.hide')}</Text>
-        <Text variant="h2">{t('newUser.publicInfo')}</Text>
-        <LabeledInput
-          label={t('newUser.displayName')}
-          onChange={() => console.log('todo')}
-          value={''}
-        />
-        <LabeledInput
-          label={t('newUser.birthYear')}
-          onChange={() => console.log('todo')}
-          value={''}
-        />
-        <LabeledInput
-          label={t('newUser.area')}
-          onChange={() => console.log('todo')}
-          value={''}
-        />
-        <LabeledInput
-          label={t('newUser.story')}
-          onChange={() => console.log('todo')}
-          variant="textarea"
-          rows={3}
-          value={''}
-        />
-
-        <SkillsEditor
-          updateSkills={() => console.log('')}
-          skills={[]}
-        ></SkillsEditor>
+        <AccountInfo>
+          <TextGroup>
+            <Text variant="h2">{t('newUser.accountInfo.title')}</Text>
+            <CaptionText variant="p">
+              {t('newUser.accountInfo.caption')}
+            </CaptionText>
+          </TextGroup>
+          <DropdownMenu
+            options={options}
+            placeholder={'Valitse rooli'}
+            selectOption={() => console.log('todo')}
+            label={t('newUser.accountInfo.accountType')}
+          ></DropdownMenu>
+          <LabeledInput
+            label={t('newUser.accountInfo.username')}
+            onChange={() => console.log('todo')}
+            value={''}
+          />
+          <LabeledInput
+            label={t('newUser.accountInfo.password')}
+            onChange={() => console.log('todo')}
+            value={''}
+          />
+          <LabeledInput
+            label={t('newUser.accountInfo.passwordAgain')}
+            onChange={() => console.log('todo')}
+            value={''}
+          />
+          <LabeledInput
+            label={t('newUser.accountInfo.email')}
+            onChange={() => console.log('todo')}
+            value={''}
+          />
+        </AccountInfo>
+        <PublicInfo>
+          <Text variant="h2">{t('newUser.publicInfo.title')}</Text>
+          <LabeledInput
+            label={t('newUser.publicInfo.displayName')}
+            onChange={() => console.log('todo')}
+            value={''}
+          />
+          <LabeledInput
+            label={t('newUser.publicInfo.birthYear')}
+            onChange={() => console.log('todo')}
+            value={''}
+          />
+          <LabeledInput
+            label={t('newUser.publicInfo.area')}
+            onChange={() => console.log('todo')}
+            value={''}
+          />
+          <LabeledInput
+            label={t('newUser.publicInfo.story')}
+            onChange={() => console.log('todo')}
+            variant="textarea"
+            rows={3}
+            value={''}
+          />
+          <SkillsEditor
+            updateSkills={() => console.log('')}
+            skills={[]}
+          ></SkillsEditor>
+        </PublicInfo>
       </ModalCard>
     </Modal>
   );
 };
 
-// const ModalText = styled(Text)`
-//   margin: 0;
-// `;
+const AccountInfo = styled.div`
+  padding: 1rem 0;
+`;
 
-// const TextGroup = styled.div`
-//   display: flex;
-//   flex-direction: column;
-// `;
+const PublicInfo = styled.div`
+  padding: 2rem 0;
+`;
+
+const CaptionText = styled(Text)`
+  margin: 0;
+`;
+
+const TextGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 export default NewUser;

@@ -56,7 +56,7 @@ const Card = styled.div<{ $isMobile: boolean }>`
         `
       : css`
           max-height: 90vh;
-          width: 40vw;
+          width: 30vw;
         `}
 `;
 
