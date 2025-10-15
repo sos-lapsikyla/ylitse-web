@@ -20,8 +20,8 @@
       "caption": "Tähdellä * merkityt kentät tulee täyttää.",
       "accountType": "Käyttäjätilin tyyppi *",
       "username": "Käyttäjätunnus *",
-      "password": "Salasana",
-      "passwordAgain": "Kirjoita salasana uudelleen",
+      "password": "Salasana *",
+      "passwordAgain": "Kirjoita salasana uudelleen *",
       "email": "Sähköpostiosoite",
       "visibility": "Näkyvyys",
       "hide": "Piilota mentori muilta käyttäjiltä"
@@ -42,10 +42,14 @@
     "parsingUsersError": "Parsing failed",
     "fetchingUsersError": "Fetching failed",
     "success": {
-      "delete": "Käyttäjän poistaminen onnistui."
+      "delete": "Käyttäjän poistaminen onnistui.",
+      "accountCreate": "Tilin luominen onnistui.",
+      "userCreate": "Käyttäjän luominen onnistui."
     },
     "failure": {
-      "delete": "Käyttäjän poistaminen epäonnistui."
+      "delete": "Käyttäjän poistaminen epäonnistui.",
+      "accountCreate": "Tilin luominen epäonnistui.",
+      "userCreate": "Käyttäjän luominen epäonnistui."
     }
   },
 

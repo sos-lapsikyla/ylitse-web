@@ -16,10 +16,10 @@ const SkillsEditor = ({ updateSkills, skills }: Props) => {
 
   return (
     <MultiSelectWithChips
-      label={t('newUser.skills')}
+      label={t('newUser.publicInfo.skills')}
       selected={skills}
       options={allSkills}
-      placeholder={t('newUser.newSkill')}
+      placeholder={t('newUser.publicInfo.skills')}
       isDisabled={isLoading}
       onChange={updateSkills}
     />

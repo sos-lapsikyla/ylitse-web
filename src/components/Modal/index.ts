@@ -1,4 +1,4 @@
+import ModalBackground from './ModalBackground';
 import Modal from './Modal';
-import ModalCard from './ModalCard';
 
-export { Modal, ModalCard };
+export { Modal, ModalBackground };

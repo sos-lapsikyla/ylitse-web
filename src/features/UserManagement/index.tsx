@@ -16,7 +16,7 @@ import Spinner from '@/components/Spinner';
 
 import UserCardList from './components/List';
 import { TextButton } from '@/components/Buttons';
-import NewUser from './components/NewUser';
+import NewUserModal from './components/NewUserModal';
 import { useState } from 'react';
 
 const UsersPage = () => {
@@ -54,7 +54,9 @@ const UsersPage = () => {
         </ButtonWrapper>
       </PageHeader>
       {isNewUserModalVisible && (
-        <NewUser onDismiss={() => setIsNewUserModalVisible(false)}></NewUser>
+        <NewUserModal
+          onDismiss={() => setIsNewUserModalVisible(false)}
+        ></NewUserModal>
       )}
       <UserCardList managedUsers={managedUsers}></UserCardList>
     </>

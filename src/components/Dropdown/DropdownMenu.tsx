@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { useState, useRef, useEffect } from 'react';
 import Text from '../Text';
 import { palette } from '../constants';
-import { IconButton } from '../Buttons'; // using your existing IconButton system
 
 type Props = {
   isDisabled?: boolean;
@@ -61,13 +60,7 @@ export const DropdownMenu = ({
           <Text variant="menuOption">{selectedOption || placeholder}</Text>
 
           <RightIconWrapper $isOpen={isDropdownVisible}>
-            <IconButton
-              variant="chevron"
-              sizeInPx={18}
-              onClick={() => {
-                if (!isDisabled) setIsDropdownVisible(prev => !prev);
-              }}
-            />
+            {/* Lisää chevron */}
           </RightIconWrapper>
         </DropdownTrigger>
 

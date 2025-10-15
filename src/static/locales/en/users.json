@@ -20,8 +20,8 @@
       "caption": "Fields marked with star * are mandatory.",
       "accountType": "Account type *",
       "username": "Username",
-      "password": "Password",
-      "passwordAgain": "Repeat password",
+      "password": "Password *",
+      "passwordAgain": "Repeat password *",
       "email": "Email",
       "visibility": "Visibility",
       "hide": "Hide mentor from other users"
@@ -42,10 +42,14 @@
     "parsingUsersError": "Parsing failed",
     "fetchingUsersError": "Fetching failed",
     "success": {
-      "delete": "Deleting account was successful"
+      "delete": "Deleting account was successful",
+      "accountCreate": "Creating account was successful",
+      "userCreate": "Creating user was successful"
     },
     "failure": {
-      "delete": "Deleting account failed"
+      "delete": "Deleting account failed",
+      "accountCreate": "Creating account failed",
+      "userCreate": "Creating user failed"
     }
   },
   "role": {
