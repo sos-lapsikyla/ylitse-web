@@ -46,7 +46,7 @@ const Dialog = ({
 
   return (
     <>
-      <Overlay />
+      <Overlay onClick={onClose} />
       {isMobile ? (
         <MobileContainer>
           <MobileHeader $backgroundColor={borderColor}>
@@ -109,7 +109,7 @@ const MobileContainer = styled.div`
   box-sizing: border-box;
   height: fit-content;
   left: 50%;
-  position: absolute;
+  position: fixed;
   top: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
@@ -138,7 +138,7 @@ const Container = styled.div`
   flex-direction: row;
   height: auto;
   left: 50%;
-  position: absolute;
+  position: fixed;
   top: 50%;
   transform: translate(-50%, -50%);
   width: ${DIALOG_WIDTH};

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useState, useRef, useEffect } from 'react';
 import Text from '../Text';
 import { palette } from '../constants';
+import { Chevron } from '../Icons/Chevron';
 
 type Props = {
   isDisabled?: boolean;
@@ -22,8 +23,6 @@ export const DropdownMenu = ({
   const [selectedOption, setSelectedOption] = useState('');
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const shouldShowDropdown = isDropdownVisible;
-
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -39,9 +38,24 @@ export const DropdownMenu = ({
   }, []);
 
   const handleSelect = (option: string) => {
-    setSelectedOption(option);
-    selectOption(option);
+    if (isDisabled) return;
+
+    // clear selection by clicking same option again
+    if (option === selectedOption) {
+      setSelectedOption('');
+      selectOption('');
+    } else {
+      setSelectedOption(option);
+      selectOption(option);
+    }
+
     setIsDropdownVisible(false);
+  };
+
+  const handleToggleDropdown = () => {
+    if (!isDisabled) {
+      setIsDropdownVisible(prev => !prev);
+    }
   };
 
   return (
@@ -50,21 +64,29 @@ export const DropdownMenu = ({
         <LabelRow>
           <Text variant="label">{label}</Text>
         </LabelRow>
+
         <DropdownTrigger
-          $hasOpenDropdown={shouldShowDropdown}
+          $hasOpenDropdown={isDropdownVisible}
           $isDisabled={isDisabled}
-          onClick={() => {
-            if (!isDisabled) setIsDropdownVisible(prev => !prev);
-          }}
+          onClick={handleToggleDropdown}
+          disabled={isDisabled}
         >
-          <Text variant="menuOption">{selectedOption || placeholder}</Text>
+          <Text
+            variant="menuOption"
+            color={isDisabled ? 'greyFaded' : 'blueDark'}
+          >
+            {selectedOption || placeholder}
+          </Text>
 
           <RightIconWrapper $isOpen={isDropdownVisible}>
-            {/* Lisää chevron */}
+            <Chevron
+              variant="down"
+              color={isDisabled ? 'greyFaded' : 'purple'}
+            />
           </RightIconWrapper>
         </DropdownTrigger>
 
-        {isDropdownVisible && (
+        {!isDisabled && isDropdownVisible && (
           <Dropdown id="dropdown-menu">
             {options.map((option, i) => (
               <DropdownItem key={i} onMouseDown={() => handleSelect(option)}>
@@ -77,6 +99,8 @@ export const DropdownMenu = ({
     </Container>
   );
 };
+
+// ---------------- Styled Components ----------------
 
 const Container = styled.div`
   padding: 1.5rem 0;
@@ -93,26 +117,29 @@ const DropdownTrigger = styled.button<{
   $hasOpenDropdown: boolean;
 }>`
   align-items: center;
-  background-color: white;
+  background-color: ${({ $isDisabled }) => ($isDisabled ? '#f8f8f8' : 'white')};
   border: 1px solid ${palette.purple};
   border-radius: ${({ $hasOpenDropdown }) =>
     $hasOpenDropdown ? '10px 10px 0 0' : '10px'};
   color: ${palette.blueDark};
-  cursor: ${({ $isDisabled }) => ($isDisabled ? 'not-allowed' : 'pointer')};
   display: flex;
   font-size: 1rem;
   justify-content: space-between;
   padding: 0.75rem 1rem;
   text-align: left;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
   width: 100%;
 
   &:focus {
-    outline: ${palette.purple} solid 2px;
+    outline: ${({ $isDisabled }) =>
+      $isDisabled ? 'none' : `${palette.purple} solid 2px`};
   }
 
   &:hover {
     background-color: ${({ $isDisabled }) =>
-      $isDisabled ? 'white' : palette.blueLight};
+      $isDisabled ? '#f8f8f8' : palette.blueLight};
   }
 `;
 

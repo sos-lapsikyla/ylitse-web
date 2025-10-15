@@ -1,10 +1,8 @@
-import { Modal, ModalBackground } from '@/components/Modal';
-import { TextButton } from '@/components/Buttons';
-import { useEscape } from '@/hooks/useEscape';
-import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import React from 'react';
 
+import { useEscape } from '@/hooks/useEscape';
+import { useTranslation } from 'react-i18next';
 import {
   useAddManagedAccountMutation,
   useAddManagedUserMutation,
@@ -12,7 +10,10 @@ import {
 } from '../userManagementApi';
 import UserForm from './UserForm';
 import { useUserForm } from './useUserForm';
+
 import styled from 'styled-components';
+import { TextButton } from '@/components/Buttons';
+import { Modal, ModalBackground } from '@/components/Modal';
 
 type Props = {
   onDismiss: () => void;
@@ -28,16 +29,14 @@ const NewUserModal: React.FC<Props> = ({ onDismiss }) => {
   const [addUser] = useAddManagedUserMutation();
   const [addMentor] = useAddMentorMutation();
 
-  const handleSubmit = async () => {
-    if (!formData.username || !formData.password || !formData.role) {
-      toast.error('Täytä kaikki pakolliset kentät');
-      return;
-    }
-    if (formData.password !== formData.passwordAgain) {
-      toast.error('Salasanat eivät täsmää');
-      return;
-    }
+  const isCreateButtonDisabled =
+    !formData.username ||
+    !formData.password ||
+    !formData.passwordAgain ||
+    !formData.role ||
+    (formData.role === 'mentor' && (!formData.birthYear || !formData.gender));
 
+  const handleSubmit = async () => {
     try {
       // Create account
       const accountPayload = {
@@ -75,11 +74,10 @@ const NewUserModal: React.FC<Props> = ({ onDismiss }) => {
           skills: formData.skills.length ? formData.skills : [],
           languages: [],
           communication_channels: [],
-          gender: 'male',
+          gender: formData.gender,
         };
         await addMentor(mentorPayload).unwrap();
       }
-
       reset();
       onDismiss();
     } catch (err) {
@@ -99,7 +97,8 @@ const NewUserModal: React.FC<Props> = ({ onDismiss }) => {
           <TextButton
             size="normal"
             onClick={() => void handleSubmit()}
-            variant="dark"
+            variant={isCreateButtonDisabled ? 'disabled' : 'dark'}
+            isDisabled={isCreateButtonDisabled}
           >
             {t('newUser.createNewUser')}
           </TextButton>
@@ -112,6 +111,7 @@ const NewUserModal: React.FC<Props> = ({ onDismiss }) => {
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
+  gap: 1rem;
   justify-content: space-between;
 `;
 

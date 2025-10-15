@@ -140,9 +140,9 @@ export const managedUsersApi = baseApi.injectEndpoints({
       async onQueryStarted(_, { queryFulfilled }) {
         try {
           await queryFulfilled;
-          toast.success('Mentor tiedot lisätty');
+          toast.success(t('users:notification.success.mentorCreate'));
         } catch (err) {
-          toast.error('ei toimi');
+          toast.error(t('users:notification.failure.mentorCreate'));
         }
       },
       invalidatesTags: ['mentors'],

@@ -31,7 +31,7 @@ const Modal: React.FC<ModalProps> = ({
           />
         </CloseContainer>
       </Header>
-      <CardContent>{children}</CardContent>
+      <CardContent $isMobile={isMobile}>{children}</CardContent>
     </Card>
   );
 };
@@ -52,18 +52,26 @@ const Card = styled.div<{ $isMobile: boolean }>`
     $isMobile
       ? css`
           max-height: 90vh;
-          width: 85vw;
+          width: 90vw;
         `
       : css`
           max-height: 90vh;
-          width: 30vw;
+          max-width: 667px;
+          width: 90vw;
         `}
 `;
 
-const CardContent = styled.div`
+const CardContent = styled.div<{ $isMobile: boolean }>`
   flex: 1;
   overflow-y: auto;
-  padding: 2rem 4rem;
+  ${({ $isMobile }) =>
+    $isMobile
+      ? css`
+          padding: 1rem 2rem;
+        `
+      : css`
+          padding: 2rem 4rem;
+        `}
 `;
 
 const CloseContainer = styled.div`

@@ -19,14 +19,19 @@ export const UserCard: React.FC<Props> = ({ managedUser }) => {
   const isMentorAccount =
     managedUser.role === 'mentor' && 'mentor' in managedUser;
   const isVacationingMentor =
-    isMentorAccount && managedUser.mentor.isVacationing;
-  const isMentor = isMentorAccount && !managedUser.mentor.isVacationing;
+    isMentorAccount && (managedUser.mentor?.isVacationing ?? false);
+  const isMentor =
+    isMentorAccount && !(managedUser.mentor?.isVacationing ?? false);
   const isMentee = managedUser.role === 'mentee';
   const isAdmin = managedUser.role === 'admin';
 
-  const mentorAge = isMentorAccount ? managedUser.mentor.age : 0;
-  const mentorRegion = isMentorAccount ? managedUser.mentor.region : '';
-  const mentorMessage = isMentorAccount ? managedUser.mentor.statusMessage : '';
+  const mentorAge = isMentorAccount ? (managedUser.mentor?.age ?? 0) : 0;
+  const mentorRegion = isMentorAccount
+    ? (managedUser.mentor?.region ?? '')
+    : '';
+  const mentorMessage = isMentorAccount
+    ? (managedUser.mentor?.statusMessage ?? '')
+    : '';
 
   return (
     <Container $isMobile={isMobile}>

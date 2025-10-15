@@ -1,5 +1,14 @@
 import { accounts } from 'cypress/fixtures/accounts';
 import { api, generateTotp } from 'cypress/support/api';
+import {
+  NEW_BIRTH_YEAR,
+  NEW_LOGIN_NAME,
+  NEW_DISPLAY_NAME,
+  NEW_PASSWORD,
+  NEW_AREA,
+  NEW_EMAIL,
+  NEW_STORY,
+} from 'cypress/fixtures/inputs';
 
 const SUPERADMIN_USER = Cypress.env('apiUser') || 'admin';
 const SUPERADMIN_PASS = Cypress.env('apiPass') || '';
@@ -101,5 +110,68 @@ describe('Users page', () => {
     cy.get('button[aria-label="deleteDisabled"]').eq(0).click({ force: true });
     // assure account is still listed
     cy.contains(SUPERADMIN_USER).should('be.visible');
+  });
+
+  it('can create a new mentee', () => {
+    cy.loginUser(
+      SUPERADMIN_USER,
+      SUPERADMIN_PASS,
+      generateTotp(SUPERADMIN_MFA).token,
+    );
+    cy.get('[href="/users"]').click();
+    cy.location('pathname').should('eq', '/users');
+    cy.contains('Käyttäjät').should('be.visible');
+
+    cy.getByText('Uusi käyttäjä', 'button').click();
+    cy.getByText('Uusi käyttäjä', 'h2').should('be.visible');
+
+    cy.contains('div', 'Käyttäjätilin tyyppi *')
+      .parent()
+      .find('button')
+      .click();
+    cy.contains('div', 'Aktori').click();
+
+    cy.fillInputByLabel('Käyttäjätunnus *', NEW_LOGIN_NAME);
+    cy.fillInputByLabel('Salasana *', NEW_PASSWORD);
+    cy.fillInputByLabel('Toista salasana *', NEW_PASSWORD);
+    cy.fillInputByLabel('Julkinen käyttäjänimi *', NEW_DISPLAY_NAME);
+    cy.getByText('Luo uusi käyttäjä', 'button').click();
+    cy.location('pathname').should('eq', '/users');
+    cy.getByText(NEW_DISPLAY_NAME, 'h2').should('be.visible');
+  });
+
+  it('can create a new mentor', () => {
+    cy.loginUser(
+      SUPERADMIN_USER,
+      SUPERADMIN_PASS,
+      generateTotp(SUPERADMIN_MFA).token,
+    );
+    cy.get('[href="/users"]').click();
+    cy.location('pathname').should('eq', '/users');
+    cy.contains('Käyttäjät').should('be.visible');
+    cy.getByText('Uusi käyttäjä', 'button').click();
+    cy.getByText('Uusi käyttäjä', 'h2').should('be.visible');
+
+    cy.contains('div', 'Käyttäjätilin tyyppi *')
+      .parent()
+      .find('button')
+      .click();
+    cy.contains('div', 'Mentori').click();
+
+    cy.fillInputByLabel('Käyttäjätunnus *', NEW_LOGIN_NAME);
+    cy.fillInputByLabel('Salasana *', NEW_PASSWORD);
+    cy.fillInputByLabel('Toista salasana *', NEW_PASSWORD);
+    cy.fillInputByLabel('Julkinen käyttäjänimi *', NEW_DISPLAY_NAME);
+    cy.fillInputByLabel('Sähköposti', NEW_EMAIL);
+    cy.fillNumberInputByLabel('Syntymävuosi *', NEW_BIRTH_YEAR);
+    //choose gender
+    cy.fillInputByLabel('Alue', NEW_AREA);
+    cy.fillInputByLabel('Tarinani', NEW_STORY);
+    // choose skills
+
+    cy.getByText('Luo uusi käyttäjä', 'button').click();
+
+    cy.location('pathname').should('eq', '/users');
+    cy.getByText(NEW_DISPLAY_NAME, 'h2').should('be.visible');
   });
 });

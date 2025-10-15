@@ -38,7 +38,7 @@ const Info = styled(Text)`
   top: -102px;
   white-space: wrap;
   width: 268px;
-  z-index: 1;
+  z-index: 10;
 
   :after {
     border-color: ${palette.orange} transparent transparent transparent;

@@ -104,8 +104,8 @@ const PageHeader = styled.div<{ $isMobile: boolean }>`
           background-color: ${palette.white};
           flex-direction: column;
           gap: 2rem;
-          height: 6rem;
-          margin-bottom: -2rem;
+          margin-top: -3rem;
+          padding: 2rem 0;
         `
       : css`
           background-color: ${palette.blue2};
@@ -116,12 +116,15 @@ const PageHeader = styled.div<{ $isMobile: boolean }>`
 `;
 const TitleWrapper = styled.div<{ $isMobile: boolean }>`
   ${({ $isMobile }) =>
-    !$isMobile &&
-    css`
-      left: 50%;
-      position: absolute;
-      transform: translateX(-50%);
-    `}
+    !$isMobile
+      ? css`
+          left: 50%;
+          position: absolute;
+          transform: translateX(-50%);
+        `
+      : css`
+          left: 0;
+        `};
 `;
 
 const ButtonWrapper = styled.div<{ $isMobile: boolean }>`

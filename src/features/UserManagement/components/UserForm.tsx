@@ -1,10 +1,19 @@
 import Text from '@/components/Text';
 import LabeledInput from '@/components/LabeledInput';
-import SkillsEditor from '@/features/ProfilePage/components/SkillsEditor';
+import SkillsEditor from './SkillsEditor';
 import { DropdownMenu } from '@/components/Dropdown';
 import styled from 'styled-components';
 import { UserFormData } from './useUserForm';
 import { useTranslation } from 'react-i18next';
+import {
+  isDisplayNameTooLong,
+  isDisplayNameTooShort,
+  isPasswordTooShort,
+  isRegionTooLong,
+  isStoryTooLong,
+  validateBirthYear,
+  validateEmail,
+} from '@/features/ProfilePage/validators';
 
 type Props = {
   formData: UserFormData;
@@ -16,7 +25,92 @@ type Props = {
 
 const UserForm: React.FC<Props> = ({ formData, updateField }) => {
   const { t } = useTranslation('users');
-  const roleOptions = ['admin', 'mentee', 'mentor'];
+  const roleOptions = [
+    { text: t('newUser.accountInfo.role.roleOptions.admin'), value: 'admin' },
+    { text: t('newUser.accountInfo.role.roleOptions.mentee'), value: 'mentee' },
+    { text: t('newUser.accountInfo.role.roleOptions.mentor'), value: 'mentor' },
+  ];
+  const genderOptions = [
+    { text: t('newUser.publicInfo.gender.options.female'), value: 'female' },
+    { text: t('newUser.publicInfo.gender.options.male'), value: 'male' },
+    { text: t('newUser.publicInfo.gender.options.other'), value: 'other' },
+  ];
+
+  const shouldFieldBeDisabled = formData.role !== 'mentor';
+
+  // validate form
+
+  const getLoginNameError = (): string | null => {
+    const name = formData.username?.trim();
+    if (!name) return null;
+    if (isDisplayNameTooLong(name)) {
+      return t('newUser.accountInfo.username.tooLongError');
+    }
+    if (isDisplayNameTooShort(name)) {
+      return t('newUser.accountInfo.username.tooShortError');
+    }
+    return null;
+  };
+
+  const getPasswordError = (): string | null => {
+    const password = formData.password?.trim();
+    if (!password) return null;
+    if (isPasswordTooShort(password, true)) {
+      return t('newUser.accountInfo.password.tooShortError');
+    }
+    return null;
+  };
+
+  const getDifferentPasswordsError = (): string | null => {
+    const passwordAgain = formData.passwordAgain?.trim();
+    if (!passwordAgain) return null;
+    if (formData.password !== formData.passwordAgain) {
+      return t('newUser.accountInfo.password.differentPasswords');
+    }
+    return null;
+  };
+
+  const getEmailError = (): string | null => {
+    const email = formData.email?.trim();
+    if (!email) return null;
+    return validateEmail(email) ? null : t('newUser.accountInfo.invalidEmail');
+  };
+
+  const getDisplayNameError = (): string | null => {
+    const name = formData.displayName?.trim();
+    if (!name) return null;
+    if (isDisplayNameTooLong(name)) {
+      return t('newUser.publicInfo.displayName.tooLongError');
+    }
+    if (isDisplayNameTooShort(name)) {
+      return t('newUser.publicInfo.displayName.tooShortError');
+    }
+    return null;
+  };
+
+  const getBirthYearError = (): string | null => {
+    const year = formData.birthYear;
+    if (!year) return null;
+    return validateBirthYear(Number(year))
+      ? null
+      : t('newUser.publicInfo.birthYear.invalidError');
+  };
+
+  const getRegionError = (): string | null => {
+    const region = formData.area?.trim();
+    if (!region) return null;
+    return isRegionTooLong(region)
+      ? t('newUser.publicInfo.area.tooLongError')
+      : null;
+  };
+
+  const getStoryError = (): string | null => {
+    const story = formData.story?.trim();
+    if (!story) return null;
+    return isStoryTooLong(story)
+      ? t('newUser.publicInfo.story.tooLongError')
+      : null;
+  };
 
   return (
     <>
@@ -29,31 +123,43 @@ const UserForm: React.FC<Props> = ({ formData, updateField }) => {
         </TextGroup>
 
         <DropdownMenu
-          options={roleOptions}
-          placeholder={t('newUser.accountInfo.accountType')}
-          selectOption={role => updateField('role', role)}
-          label={t('newUser.accountInfo.accountType')}
+          options={roleOptions.map(o => o.text)}
+          placeholder={t('newUser.accountInfo.role.choose')}
+          selectOption={(selectedText: string) => {
+            const selectedOption = roleOptions.find(
+              o => o.text === selectedText,
+            );
+            if (selectedOption) {
+              updateField('role', selectedOption.value);
+            }
+          }}
+          label={t('newUser.accountInfo.role.title')}
         />
 
         <LabeledInput
-          label={t('newUser.accountInfo.username')}
+          error={getLoginNameError()}
+          label={t('newUser.accountInfo.username.label')}
           value={formData.username}
           onChange={value => updateField('username', value)}
         />
 
         <LabeledInput
-          label={t('newUser.accountInfo.password')}
+          error={getPasswordError()}
+          label={t('newUser.accountInfo.password.label')}
           type="password"
           value={formData.password}
           onChange={value => updateField('password', value)}
+          tooltip={t('newUser.accountInfo.password.passwordTooltip')}
         />
         <LabeledInput
-          label={t('newUser.accountInfo.passwordAgain')}
+          error={getDifferentPasswordsError()}
+          label={t('newUser.accountInfo.password.passwordRepeat')}
           type="password"
           value={formData.passwordAgain}
           onChange={value => updateField('passwordAgain', value)}
         />
         <LabeledInput
+          error={getEmailError()}
           label={t('newUser.accountInfo.email')}
           value={formData.email}
           onChange={value => updateField('email', value)}
@@ -64,22 +170,50 @@ const UserForm: React.FC<Props> = ({ formData, updateField }) => {
         <Text variant="h2">{t('newUser.publicInfo.title')}</Text>
 
         <LabeledInput
-          label={t('newUser.publicInfo.displayName')}
+          error={getDisplayNameError()}
+          label={t('newUser.publicInfo.displayName.label')}
           value={formData.displayName}
           onChange={value => updateField('displayName', value)}
         />
         <LabeledInput
-          label={t('newUser.publicInfo.birthYear')}
-          value={formData.birthYear}
+          error={getBirthYearError()}
+          label={
+            formData.role === 'mentor'
+              ? t('newUser.publicInfo.birthYear.labelMentor')
+              : t('newUser.publicInfo.birthYear.label')
+          }
+          value={String(formData.birthYear)}
           onChange={value => updateField('birthYear', value)}
         />
+        <DropdownMenu
+          isDisabled={shouldFieldBeDisabled}
+          options={genderOptions.map(o => o.text)}
+          placeholder={t('newUser.publicInfo.gender.choose')}
+          selectOption={(selectedText: string) => {
+            const selectedOption = genderOptions.find(
+              o => o.text === selectedText,
+            );
+            if (selectedOption) {
+              updateField('gender', selectedOption.value);
+            }
+          }}
+          label={
+            formData.role === 'mentor'
+              ? t('newUser.publicInfo.gender.labelMentor')
+              : t('newUser.publicInfo.gender.label')
+          }
+        />
         <LabeledInput
-          label={t('newUser.publicInfo.area')}
+          disabled={shouldFieldBeDisabled}
+          error={getRegionError()}
+          label={t('newUser.publicInfo.area.label')}
           value={formData.area}
           onChange={value => updateField('area', value)}
         />
         <LabeledInput
-          label={t('newUser.publicInfo.story')}
+          disabled={shouldFieldBeDisabled}
+          error={getStoryError()}
+          label={t('newUser.publicInfo.story.label')}
           variant="textarea"
           rows={3}
           value={formData.story}
@@ -87,6 +221,7 @@ const UserForm: React.FC<Props> = ({ formData, updateField }) => {
         />
         <SkillsEditor
           updateSkills={skills => updateField('skills', skills)}
+          isDisabled={shouldFieldBeDisabled}
           skills={formData.skills}
         />
       </PublicInfo>

@@ -8,6 +8,7 @@ export type UserFormData = {
   email: string;
   displayName: string;
   birthYear: string;
+  gender: string;
   area: string;
   story: string;
   skills: string[];
@@ -22,6 +23,7 @@ export const useUserForm = (initial?: Partial<UserFormData>) => {
     email: '',
     displayName: '',
     birthYear: '',
+    gender: '',
     area: '',
     story: '',
     skills: [],
@@ -44,6 +46,7 @@ export const useUserForm = (initial?: Partial<UserFormData>) => {
       email: '',
       displayName: '',
       birthYear: '',
+      gender: '',
       area: '',
       story: '',
       skills: [],
