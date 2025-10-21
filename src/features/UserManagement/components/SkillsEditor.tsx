@@ -13,10 +13,9 @@ import Text from '@/components/Text';
 type Props = {
   updateSkills: (skills: string[]) => void;
   skills: string[];
-  isDisabled: boolean;
 };
 
-const SkillsEditor = ({ updateSkills, skills, isDisabled }: Props) => {
+const SkillsEditor = ({ updateSkills, skills }: Props) => {
   const { t } = useTranslation('users');
 
   const allSkills = useAppSelector(selectAllSkillOptions());
@@ -43,7 +42,6 @@ const SkillsEditor = ({ updateSkills, skills, isDisabled }: Props) => {
         ))}
       </Skills>
       <DropdownSearch
-        isDisabled={isDisabled}
         isDropdownVisible={isDropdownVisible}
         options={skillOptions}
         placeholder={t('newUser.publicInfo.newSkill')}

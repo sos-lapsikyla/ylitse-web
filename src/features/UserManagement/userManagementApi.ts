@@ -8,7 +8,6 @@ import {
   toManagedUserRecord,
   NewAccountPayload,
   MentorPayload,
-  ManagedUser,
 } from './models';
 
 import type {
@@ -75,7 +74,7 @@ export const managedUsersApi = baseApi.injectEndpoints({
         url: `accounts/${accountId}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['users'],
+      invalidatesTags: ['users', 'accounts'],
       async onQueryStarted(_, { queryFulfilled }) {
         try {
           await queryFulfilled;
@@ -138,53 +137,13 @@ export const managedUsersApi = baseApi.injectEndpoints({
         method: 'PUT',
         body: payload,
       }),
+      invalidatesTags: ['mentors'],
       async onQueryStarted(_, { queryFulfilled }) {
         try {
           await queryFulfilled;
           toast.success(t('users:notification.success.mentorCreate'));
         } catch (err) {
           toast.error(t('users:notification.failure.mentorCreate'));
-        }
-      },
-      invalidatesTags: ['mentors'],
-    }),
-    updateAccount: builder.mutation<unknown, ManagedUser>({
-      query: account => ({
-        url: `accounts/${account.id}`,
-        method: 'PUT',
-        body: account,
-      }),
-      invalidatesTags: ['accounts', 'users'],
-      async onQueryStarted(_, { queryFulfilled }) {
-        try {
-          await queryFulfilled;
-          toast.success(t('profile:notification.success.update'), {
-            id: 'update-success',
-          });
-        } catch (err) {
-          toast.error(t('profile:notification.failure.update'), {
-            id: 'update-failure',
-          });
-        }
-      },
-    }),
-    updateUser: builder.mutation<unknown, ManagedUser>({
-      query: user => ({
-        url: `users/${user.id}`,
-        method: 'PUT',
-        body: user,
-      }),
-      invalidatesTags: ['users', 'accounts'],
-      async onQueryStarted(_, { queryFulfilled }) {
-        try {
-          await queryFulfilled;
-          toast.success(t('profile:notification.success.update'), {
-            id: 'update-success',
-          });
-        } catch (err) {
-          toast.error(t('profile:notification.failure.update'), {
-            id: 'update-failure',
-          });
         }
       },
     }),

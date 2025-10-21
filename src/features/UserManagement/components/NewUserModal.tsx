@@ -67,7 +67,7 @@ const NewUserModal: React.FC<Props> = ({ onDismiss }) => {
           id: mentorId,
           account_id: accountId,
           user_id: userId,
-          display_name: accountResponse.user.display_name,
+          display_name: formData.displayName,
           birth_year: Number(formData.birthYear),
           region: formData.area || '',
           story: formData.story || '',

@@ -36,7 +36,7 @@ const UserForm: React.FC<Props> = ({ formData, updateField }) => {
     { text: t('newUser.publicInfo.gender.options.other'), value: 'other' },
   ];
 
-  const shouldFieldBeDisabled = formData.role !== 'mentor';
+  const shouldFieldsBeHidden = formData.role !== 'mentor';
 
   // validate form
 
@@ -188,52 +188,55 @@ const UserForm: React.FC<Props> = ({ formData, updateField }) => {
           value={String(formData.birthYear)}
           onChange={value => updateField('birthYear', value)}
         />
-        <DropdownMenu
-          isDisabled={shouldFieldBeDisabled}
-          options={genderOptions.map(o => o.text)}
-          placeholder={t('newUser.publicInfo.gender.choose')}
-          selectOption={(selectedText: string) => {
-            const selectedOption = genderOptions.find(
-              o => o.text === selectedText,
-            );
-            if (selectedOption) {
-              updateField('gender', selectedOption.value);
-            }
-          }}
-          label={
-            formData.role === 'mentor'
-              ? t('newUser.publicInfo.gender.labelMentor')
-              : t('newUser.publicInfo.gender.label')
-          }
-        />
-        <LabeledInput
-          disabled={shouldFieldBeDisabled}
-          error={getRegionError()}
-          label={t('newUser.publicInfo.area.label')}
-          value={formData.area}
-          onChange={value => updateField('area', value)}
-        />
-        <LabeledInput
-          disabled={shouldFieldBeDisabled}
-          error={getStoryError()}
-          label={t('newUser.publicInfo.story.label')}
-          variant="textarea"
-          rows={3}
-          value={formData.story}
-          onChange={value => updateField('story', value)}
-        />
-        <SkillsEditor
-          updateSkills={skills => updateField('skills', skills)}
-          isDisabled={shouldFieldBeDisabled}
-          skills={formData.skills}
-        />
+        {!shouldFieldsBeHidden && (
+          <>
+            <DropdownMenu
+              options={genderOptions.map(o => o.text)}
+              placeholder={t('newUser.publicInfo.gender.choose')}
+              selectOption={(selectedText: string) => {
+                const selectedOption = genderOptions.find(
+                  o => o.text === selectedText,
+                );
+                if (selectedOption) {
+                  updateField('gender', selectedOption.value);
+                }
+              }}
+              label={
+                formData.role === 'mentor'
+                  ? t('newUser.publicInfo.gender.labelMentor')
+                  : t('newUser.publicInfo.gender.label')
+              }
+            />
+
+            <LabeledInput
+              error={getRegionError()}
+              label={t('newUser.publicInfo.area.label')}
+              value={formData.area}
+              onChange={value => updateField('area', value)}
+            />
+
+            <LabeledInput
+              error={getStoryError()}
+              label={t('newUser.publicInfo.story.label')}
+              variant="textarea"
+              rows={3}
+              value={formData.story}
+              onChange={value => updateField('story', value)}
+            />
+
+            <SkillsEditor
+              updateSkills={skills => updateField('skills', skills)}
+              skills={formData.skills}
+            />
+          </>
+        )}
       </PublicInfo>
     </>
   );
 };
 
 const AccountInfo = styled.div`
-  padding: 1rem 0;
+  padding: 0 0 1rem 0;
 `;
 const CaptionText = styled(Text)`
   margin: -1rem 0 1rem 0;

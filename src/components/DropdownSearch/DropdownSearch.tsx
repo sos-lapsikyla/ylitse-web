@@ -6,7 +6,7 @@ import SearchBar from '../SearchBar';
 import Text from '../Text';
 
 type Props = {
-  isDisabled: boolean;
+  isDisabled?: boolean;
   isDropdownVisible: boolean;
   options: string[];
   placeholder: string;
