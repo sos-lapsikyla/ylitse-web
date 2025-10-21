@@ -116,7 +116,9 @@ const UserForm: React.FC<Props> = ({ formData, updateField }) => {
     <>
       <AccountInfo>
         <TextGroup>
-          <Text variant="h2">{t('newUser.accountInfo.title')}</Text>
+          <TitleText>
+            <Text variant="h2">{t('newUser.accountInfo.title')}</Text>
+          </TitleText>
           <CaptionText variant="p">
             {t('newUser.accountInfo.caption')}
           </CaptionText>
@@ -167,8 +169,9 @@ const UserForm: React.FC<Props> = ({ formData, updateField }) => {
       </AccountInfo>
 
       <PublicInfo>
-        <Text variant="h2">{t('newUser.publicInfo.title')}</Text>
-
+        <TitleText>
+          <Text variant="h2">{t('newUser.publicInfo.title')}</Text>
+        </TitleText>
         <LabeledInput
           error={getDisplayNameError()}
           label={t('newUser.publicInfo.displayName.label')}
@@ -229,15 +232,17 @@ const UserForm: React.FC<Props> = ({ formData, updateField }) => {
   );
 };
 
-// Styled components
 const AccountInfo = styled.div`
   padding: 1rem 0;
 `;
-const PublicInfo = styled.div`
-  padding: 2rem 0;
-`;
 const CaptionText = styled(Text)`
-  margin: 0;
+  margin: -1rem 0 1rem 0;
+`;
+const PublicInfo = styled.div`
+  padding: 0 0 6rem 0;
+`;
+const TitleText = styled(Text)`
+  margin: 1rem 0;
 `;
 const TextGroup = styled.div`
   display: flex;

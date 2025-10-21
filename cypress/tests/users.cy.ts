@@ -6,7 +6,6 @@ import {
   NEW_DISPLAY_NAME,
   NEW_PASSWORD,
   NEW_AREA,
-  NEW_EMAIL,
   NEW_STORY,
 } from 'cypress/fixtures/inputs';
 
@@ -125,12 +124,15 @@ describe('Users page', () => {
     cy.getByText('Uusi käyttäjä', 'button').click();
     cy.getByText('Uusi käyttäjä', 'h2').should('be.visible');
 
+    // Open dropdown
     cy.contains('div', 'Käyttäjätilin tyyppi *')
       .parent()
       .find('button')
       .click();
-    cy.contains('div', 'Aktori').click();
 
+    // Select mentee from the dropdown
+    cy.get('#dropdown-menu').contains('Aktori').should('be.visible').click();
+    // Fill mentee fields
     cy.fillInputByLabel('Käyttäjätunnus *', NEW_LOGIN_NAME);
     cy.fillInputByLabel('Salasana *', NEW_PASSWORD);
     cy.fillInputByLabel('Toista salasana *', NEW_PASSWORD);
@@ -146,31 +148,47 @@ describe('Users page', () => {
       SUPERADMIN_PASS,
       generateTotp(SUPERADMIN_MFA).token,
     );
+
+    // Go to users page
     cy.get('[href="/users"]').click();
     cy.location('pathname').should('eq', '/users');
     cy.contains('Käyttäjät').should('be.visible');
-    cy.getByText('Uusi käyttäjä', 'button').click();
-    cy.getByText('Uusi käyttäjä', 'h2').should('be.visible');
 
+    // Open new user form
+    cy.getByText('Uusi käyttäjä', 'button').click();
+    cy.contains('h2', /^Uusi käyttäjä$/);
     cy.contains('div', 'Käyttäjätilin tyyppi *')
       .parent()
       .find('button')
       .click();
-    cy.contains('div', 'Mentori').click();
-
+    cy.get('#dropdown-menu').contains('Mentori').click();
+    cy.contains('label', 'Käyttäjätunnus *')
+      .scrollIntoView()
+      .should('be.visible');
     cy.fillInputByLabel('Käyttäjätunnus *', NEW_LOGIN_NAME);
     cy.fillInputByLabel('Salasana *', NEW_PASSWORD);
     cy.fillInputByLabel('Toista salasana *', NEW_PASSWORD);
     cy.fillInputByLabel('Julkinen käyttäjänimi *', NEW_DISPLAY_NAME);
-    cy.fillInputByLabel('Sähköposti', NEW_EMAIL);
-    cy.fillNumberInputByLabel('Syntymävuosi *', NEW_BIRTH_YEAR);
-    //choose gender
+
+    // Wait until "Syntymävuosi *" appears
+    cy.contains('label', 'Syntymävuosi *').should('exist').should('be.visible');
+    cy.fillInputByLabel('Syntymävuosi *', NEW_BIRTH_YEAR);
+
+    // Select gender
+    cy.contains('div', 'Sukupuoli *').parent().find('button').click();
+    cy.get('#dropdown-menu').contains('Muu').click();
+
+    // Button should now be enabled
+    cy.getByText('Luo uusi käyttäjä', 'button').should('not.be.disabled');
+
+    // Fill optional mentor fields
+    cy.contains('label', 'Alue').scrollIntoView().should('be.visible');
     cy.fillInputByLabel('Alue', NEW_AREA);
-    cy.fillInputByLabel('Tarinani', NEW_STORY);
-    // choose skills
+    cy.fillInputByLabel('Tarina', NEW_STORY);
 
     cy.getByText('Luo uusi käyttäjä', 'button').click();
 
+    // Verify success and navigation
     cy.location('pathname').should('eq', '/users');
     cy.getByText(NEW_DISPLAY_NAME, 'h2').should('be.visible');
   });

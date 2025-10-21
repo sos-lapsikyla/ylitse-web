@@ -100,14 +100,12 @@ export const DropdownMenu = ({
   );
 };
 
-// ---------------- Styled Components ----------------
-
 const Container = styled.div`
-  padding: 1.5rem 0;
+  padding: 0 0 1rem 0;
 `;
 
 const DropdownContainer = styled.div`
-  margin: 0;
+  margin-top: 0.5rem;
   max-width: 350px;
   position: relative;
 `;
@@ -177,6 +175,7 @@ const LabelRow = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 0.5rem;
   padding-right: 0.5rem;
 `;
 
