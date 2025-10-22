@@ -127,6 +127,7 @@ const UserForm: React.FC<Props> = ({ formData, updateField }) => {
         <DropdownMenu
           options={roleOptions.map(o => o.text)}
           placeholder={t('newUser.accountInfo.role.choose')}
+          defaultOption={t('newUser.accountInfo.role.roleOptions.mentor')}
           selectOption={(selectedText: string) => {
             const selectedOption = roleOptions.find(
               o => o.text === selectedText,

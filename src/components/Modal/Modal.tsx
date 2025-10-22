@@ -70,7 +70,7 @@ const CardContent = styled.div<{ $isMobile: boolean }>`
           padding: 1rem 2rem;
         `
       : css`
-          padding: 1rem 4rem;
+          padding: 1rem 5rem;
         `}
 `;
 

@@ -70,29 +70,25 @@ const UsersPage = () => {
 };
 
 const Container = styled.div<{ $isMobile: boolean }>`
+  align-items: center;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   margin: ${OUTER_VERTICAL_MARGIN} auto;
   max-width: 95rem;
-  width: 100%;
-
   ${({ $isMobile }) =>
     $isMobile
       ? css`
-          background-color: ${palette.blueLight};
-          flex: 1;
-          padding-bottom: 4rem;
+          width: 100%;
         `
       : css`
-          gap: 1rem;
-          width: 90vw;
+          width: 90%;
         `}
 `;
 
 const PageHeader = styled.div<{ $isMobile: boolean }>`
-  align-items: center;
   display: flex;
-  justify-content: center;
   margin-bottom: 1rem;
   max-width: 95rem;
   position: relative;
@@ -105,12 +101,14 @@ const PageHeader = styled.div<{ $isMobile: boolean }>`
           flex-direction: column;
           gap: 2rem;
           margin-top: -3rem;
-          padding: 2rem 0;
+          padding: 2rem 6rem;
         `
       : css`
+          align-items: center;
           background-color: ${palette.blue2};
           border-radius: 10px;
           height: 80px;
+          justify-content: center;
           max-height: 80px;
         `}
 `;
@@ -123,7 +121,7 @@ const TitleWrapper = styled.div<{ $isMobile: boolean }>`
           transform: translateX(-50%);
         `
       : css`
-          left: 0;
+          padding-left: 2rem;
         `};
 `;
 
@@ -137,7 +135,7 @@ const ButtonWrapper = styled.div<{ $isMobile: boolean }>`
   ${({ $isMobile }) =>
     $isMobile &&
     css`
-      margin: 0; /* reset margin for column layout */
+      margin: 0 auto;
     `}
 `;
 

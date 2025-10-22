@@ -67,7 +67,7 @@ export const DropdownSearch = ({
 
 const Container = styled.div`
   margin: 1rem 0 0 0;
-  max-width: 350px;
+  max-width: 100%;
   position: relative;
 `;
 

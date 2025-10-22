@@ -10,6 +10,7 @@ type Props = {
   placeholder: string;
   selectOption: (option: string) => void;
   label: string;
+  defaultOption?: string;
 };
 
 export const DropdownMenu = ({
@@ -18,6 +19,7 @@ export const DropdownMenu = ({
   placeholder,
   selectOption,
   label,
+  defaultOption,
 }: Props): React.JSX.Element => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
@@ -37,10 +39,16 @@ export const DropdownMenu = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    if (defaultOption) {
+      setSelectedOption(defaultOption);
+      selectOption(defaultOption);
+    }
+  }, [defaultOption]);
+
   const handleSelect = (option: string) => {
     if (isDisabled) return;
 
-    // clear selection by clicking same option again
     if (option === selectedOption) {
       setSelectedOption('');
       selectOption('');
@@ -48,7 +56,6 @@ export const DropdownMenu = ({
       setSelectedOption(option);
       selectOption(option);
     }
-
     setIsDropdownVisible(false);
   };
 
@@ -106,7 +113,7 @@ const Container = styled.div`
 
 const DropdownContainer = styled.div`
   margin-top: 0.5rem;
-  max-width: 350px;
+  max-width: 250px;
   position: relative;
 `;
 
@@ -123,7 +130,7 @@ const DropdownTrigger = styled.button<{
   display: flex;
   font-size: 1rem;
   justify-content: space-between;
-  padding: 0.75rem 1rem;
+  padding: 0.6rem 1rem 0.4rem 1rem;
   text-align: left;
   transition:
     background-color 0.2s ease,

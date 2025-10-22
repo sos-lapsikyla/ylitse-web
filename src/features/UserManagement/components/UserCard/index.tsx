@@ -66,25 +66,21 @@ export const UserCard: React.FC<Props> = ({ managedUser }) => {
 const Container = styled.div<{ $isMobile: boolean }>`
   background-color: ${palette.white};
   border-radius: 0.75rem;
+  box-sizing: border-box;
   display: flex;
   filter: drop-shadow(-0.5rem 0 0.5rem rgba(0, 0, 0, 0.02))
     drop-shadow(0.5rem 0 0.5rem rgba(0, 0, 0, 0.02))
     drop-shadow(0 0.5rem 0.5rem rgba(0, 0, 0, 0.02));
   flex-direction: column;
+  max-width: 440px;
+  width: 100%;
 
   ${({ $isMobile }) =>
     $isMobile &&
     css`
-      margin: 1rem 0;
-      scroll-behavior: smooth;
-      scroll-snap-align: center;
-
-      &:first-child {
-        margin-left: 1.5rem;
-      }
-      &:last-child {
-        margin-right: 1.5rem;
-      }
+      margin: 0 auto;
+      max-width: 350px;
+      width: 100%;
     `}
 `;
 
