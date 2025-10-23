@@ -13,7 +13,7 @@ type Props = {
   languages: string[];
 };
 
-const SkillsEditor = ({
+const LanguageEditor = ({
   updateLanguages: updateLanguages,
   languages: languages,
 }: Props) => {
@@ -38,12 +38,14 @@ const SkillsEditor = ({
 
   return (
     <Column>
-      <Text variant="label">{t('newUser.publicInfo.languages')}</Text>
-      <Skills>
-        {languages.map(language => (
-          <Chip key={language} text={language} onToggle={removeLanguage} />
-        ))}
-      </Skills>
+      <LabelText variant="label">{t('newUser.publicInfo.languages')}</LabelText>
+      {languages.length > 0 && (
+        <Skills>
+          {languages.map(language => (
+            <Chip key={language} text={language} onToggle={removeLanguage} />
+          ))}
+        </Skills>
+      )}
       <DropdownSearch
         isDropdownVisible={isDropdownVisible}
         options={languageOptions}
@@ -55,11 +57,15 @@ const SkillsEditor = ({
   );
 };
 
+const LabelText = styled(Text)`
+  margin: 0 0 -0.6rem 0;
+`;
+
 const Skills = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 `;
 
-export default SkillsEditor;
+export default LanguageEditor;

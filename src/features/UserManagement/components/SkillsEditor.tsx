@@ -35,12 +35,14 @@ const SkillsEditor = ({ updateSkills, skills }: Props) => {
 
   return (
     <Column>
-      <Text variant="label">{t('newUser.publicInfo.skills')}</Text>
-      <Skills>
-        {skills.map(skill => (
-          <Chip key={skill} text={skill} onToggle={removeSkill} />
-        ))}
-      </Skills>
+      <LabelText variant="label">{t('newUser.publicInfo.skills')}</LabelText>
+      {skills.length > 0 && (
+        <Skills>
+          {skills.map(skill => (
+            <Chip key={skill} text={skill} onToggle={removeSkill} />
+          ))}
+        </Skills>
+      )}
       <DropdownSearch
         isDropdownVisible={isDropdownVisible}
         options={skillOptions}
@@ -52,11 +54,15 @@ const SkillsEditor = ({ updateSkills, skills }: Props) => {
   );
 };
 
+const LabelText = styled(Text)`
+  margin: 0 0 -0.6rem 0;
+`;
+
 const Skills = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 `;
 
 export default SkillsEditor;
