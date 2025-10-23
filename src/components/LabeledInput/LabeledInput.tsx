@@ -68,7 +68,6 @@ const LabelRow = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding-right: 0.5rem;
 `;
 
 const Input = styled(TextInput)`
