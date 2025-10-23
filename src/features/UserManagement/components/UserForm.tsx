@@ -14,7 +14,7 @@ import {
   validateBirthYear,
   validateEmail,
 } from '@/features/ProfilePage/validators';
-import LanguagesEditor from './UserCard/LanguagesEditor';
+import LanguagesEditor from './LanguagesEditor';
 
 type Props = {
   formData: UserFormData;

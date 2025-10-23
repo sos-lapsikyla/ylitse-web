@@ -61,7 +61,7 @@ const Container = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 `;
 
 const LabelRow = styled.div`

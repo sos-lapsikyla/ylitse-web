@@ -149,7 +149,10 @@ const DropdownTrigger = styled.button<{
 `;
 
 const RightIconWrapper = styled.div<{ $isOpen: boolean }>`
-  transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
+  transform: ${({ $isOpen }) =>
+    $isOpen
+      ? 'rotate(180deg) translateY(3.1px)'
+      : 'rotate(0deg) translateY(0)'};
   transition: transform 0.2s ease;
 `;
 
