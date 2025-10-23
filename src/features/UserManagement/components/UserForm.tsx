@@ -14,6 +14,7 @@ import {
   validateBirthYear,
   validateEmail,
 } from '@/features/ProfilePage/validators';
+import LanguagesEditor from './UserCard/LanguagesEditor';
 
 type Props = {
   formData: UserFormData;
@@ -224,7 +225,10 @@ const UserForm: React.FC<Props> = ({ formData, updateField }) => {
               value={formData.story}
               onChange={value => updateField('story', value)}
             />
-
+            <LanguagesEditor
+              updateLanguages={languages => updateField('languages', languages)}
+              languages={formData.languages}
+            />
             <SkillsEditor
               updateSkills={skills => updateField('skills', skills)}
               skills={formData.skills}

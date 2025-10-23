@@ -66,7 +66,7 @@ export const DropdownSearch = ({
 };
 
 const Container = styled.div`
-  margin: 1rem 0 0 0;
+  margin: 1rem 0 1.5rem 0;
   max-width: 100%;
   position: relative;
 `;
@@ -84,7 +84,7 @@ const Dropdown = styled.div`
   overflow-y: auto;
   position: absolute;
   top: calc(100% - 2px);
-  z-index: 10;
+  z-index: 20;
 `;
 
 const DropdownItem = styled.div`

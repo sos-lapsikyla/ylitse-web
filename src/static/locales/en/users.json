@@ -75,6 +75,8 @@
         "label": "Story",
         "tooLongError": "Story is too long"
       },
+      "languages": "Languages",
+      "newLanguage": "Add language",
       "skills": "Skills",
       "newSkill": "Add new skill"
     },

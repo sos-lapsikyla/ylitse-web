@@ -72,7 +72,7 @@ const NewUserModal: React.FC<Props> = ({ onDismiss }) => {
           region: formData.area || '',
           story: formData.story || '',
           skills: formData.skills.length ? formData.skills : [],
-          languages: [],
+          languages: formData.languages.length ? formData.languages : [],
           communication_channels: [],
           gender: formData.gender,
         };

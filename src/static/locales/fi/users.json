@@ -75,6 +75,8 @@
         "label": "Tarina",
         "tooLongError": "Tarina on liian pitkä."
       },
+      "languages": "Kielet",
+      "newLanguage": "Lisää kieli",
       "skills": "Aiheet",
       "newSkill": "Lisää uusi aihe"
     },

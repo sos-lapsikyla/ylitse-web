@@ -11,6 +11,7 @@ export type UserFormData = {
   gender: string;
   area: string;
   story: string;
+  languages: string[];
   skills: string[];
 };
 
@@ -26,6 +27,7 @@ export const useUserForm = (initial?: Partial<UserFormData>) => {
     gender: '',
     area: '',
     story: '',
+    languages: [],
     skills: [],
     ...initial,
   });
@@ -49,6 +51,7 @@ export const useUserForm = (initial?: Partial<UserFormData>) => {
       gender: '',
       area: '',
       story: '',
+      languages: [],
       skills: [],
     });
 
