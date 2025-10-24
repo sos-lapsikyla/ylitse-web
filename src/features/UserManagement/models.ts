@@ -88,3 +88,72 @@ export const toManagedAccountRecord = ({ resources }: AccountsResponse) =>
     const account = toAccount(apiAccount);
     return { ...acc, [account.id]: account };
   }, {});
+
+export type CreatedAccountResponse = {
+  account: {
+    id: string;
+    login_name: string;
+    role: string;
+    email?: string;
+    active: boolean;
+    created: string;
+    updated: string;
+  };
+  user: {
+    account_id: string;
+    display_name: string;
+    active: boolean;
+    id: string;
+    role: string;
+    created: string;
+    updated: string;
+  };
+  mentor?: {
+    id: string;
+    account_id: string;
+    active: boolean;
+    birth_year: string;
+    communication_channels: string[];
+    created: string;
+    display_name: string;
+    gender: string;
+    is_vacationing: boolean;
+    languages: string[];
+    region: string;
+    skills: string[];
+    status_message: string;
+    story: string;
+    updated: string;
+    user_id: string;
+  };
+};
+
+export type NewAccountPayload = {
+  account: {
+    login_name: string;
+    role: string;
+    email?: string;
+  };
+  password: string;
+};
+
+export type NewUserPayload = {
+  id: string;
+  account_id: string;
+  display_name: string;
+  role: string;
+};
+
+export type MentorPayload = {
+  id: string;
+  user_id: string;
+  account_id: string;
+  birth_year: number;
+  display_name: string;
+  region: string;
+  story: string;
+  skills: string[];
+  languages: string[];
+  communication_channels: string[];
+  gender: string;
+};

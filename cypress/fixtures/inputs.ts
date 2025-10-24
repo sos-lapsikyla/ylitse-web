@@ -26,10 +26,13 @@ export const INVALID_EMAILS = [
 ];
 
 export const NEW_BIRTH_YEAR = '2000';
+export const NEW_LOGIN_NAME = 'newLoginName';
 export const NEW_DISPLAY_NAME = 'newDisplayName';
 export const NEW_EMAIL = 'new.email@domain.com';
 export const NEW_PASSWORD = 'newPassword';
 export const NEW_STATUS_MESSAGE = 'This is a new status message.';
+export const NEW_STORY = 'This is a new story.';
+export const NEW_AREA = 'Area 1';
 export const TOO_SHORT_DISPLAY_NAME = 'a';
 export const TOO_SHORT_PASSWORD = 'short';
 export const WRONG_PASSWORD = 'wrongPassword';

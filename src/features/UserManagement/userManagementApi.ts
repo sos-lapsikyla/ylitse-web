@@ -6,9 +6,16 @@ import {
   managedUserListResponseType,
   toManagedAccountRecord,
   toManagedUserRecord,
+  NewAccountPayload,
+  MentorPayload,
 } from './models';
 
-import type { Accounts, ManagedUsers } from './models';
+import type {
+  Accounts,
+  CreatedAccountResponse,
+  ManagedUsers,
+  NewUserPayload,
+} from './models';
 
 import { baseApi } from '../../baseApi';
 
@@ -67,7 +74,7 @@ export const managedUsersApi = baseApi.injectEndpoints({
         url: `accounts/${accountId}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['users'],
+      invalidatesTags: ['users', 'accounts'],
       async onQueryStarted(_, { queryFulfilled }) {
         try {
           await queryFulfilled;
@@ -81,6 +88,65 @@ export const managedUsersApi = baseApi.injectEndpoints({
         }
       },
     }),
+    addManagedAccount: builder.mutation<
+      CreatedAccountResponse,
+      NewAccountPayload
+    >({
+      query: body => ({
+        url: 'accounts',
+        method: 'POST',
+        body: body,
+      }),
+      invalidatesTags: ['accounts', 'users', 'mentors'],
+      async onQueryStarted(_, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          toast.success(t('users:notification.success.accountCreate'), {
+            id: 'account-create-success',
+          });
+        } catch (err) {
+          toast.error(t('users:notification.failure.accountCreate'), {
+            id: 'account-create-failure',
+          });
+        }
+      },
+    }),
+    addManagedUser: builder.mutation<unknown, NewUserPayload>({
+      query: payload => ({
+        url: `users/${payload.id}`,
+        method: 'PUT',
+        body: payload,
+      }),
+      invalidatesTags: ['users', 'accounts', 'mentors'],
+      async onQueryStarted(_, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          toast.success(t('users:notification.success.userCreate'), {
+            id: 'user-create-success',
+          });
+        } catch {
+          toast.error(t('users:notification.failure.userCreate'), {
+            id: 'user-create-failure',
+          });
+        }
+      },
+    }),
+    addMentor: builder.mutation<unknown, MentorPayload>({
+      query: payload => ({
+        url: `mentors/${payload.id}`,
+        method: 'PUT',
+        body: payload,
+      }),
+      invalidatesTags: ['mentors'],
+      async onQueryStarted(_, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          toast.success(t('users:notification.success.mentorCreate'));
+        } catch (err) {
+          toast.error(t('users:notification.failure.mentorCreate'));
+        }
+      },
+    }),
   }),
 });
 
@@ -88,4 +154,7 @@ export const {
   useGetManagedUsersQuery,
   useGetManagedAccountsQuery,
   useDeleteManagedUserMutation,
+  useAddManagedAccountMutation,
+  useAddManagedUserMutation,
+  useAddMentorMutation,
 } = managedUsersApi;

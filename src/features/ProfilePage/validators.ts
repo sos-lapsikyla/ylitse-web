@@ -29,7 +29,10 @@ export const isStatusMessageTooLong = (statusMessage: string) =>
 export const isStoryTooLong = (story: string) =>
   story.length > STORY_MAX_LENGTH;
 
-export const validateBirthYear = (birthYear: number) => {
+export const validateBirthYear = (birthYear: unknown) => {
+  if (typeof birthYear !== 'number' || Number.isNaN(birthYear)) {
+    return false;
+  }
   if (birthYear < MIN_BIRTH_YEAR) return false;
   if (birthYear > MAX_BIRTH_YEAR) return false;
   return true;

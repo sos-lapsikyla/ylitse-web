@@ -32,13 +32,14 @@ const Info = styled(Text)`
   background-color: ${palette.orange};
   border-radius: 10px;
   display: none;
+  overflow: visible;
   padding: 0.5rem 1rem;
   position: absolute;
-  right: -130px;
-  top: -102px;
-  white-space: wrap;
-  width: 268px;
-  z-index: 1;
+  right: -70px;
+  top: -130px;
+  white-space: normal;
+  width: 140px;
+  z-index: 50;
 
   :after {
     border-color: ${palette.orange} transparent transparent transparent;

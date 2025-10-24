@@ -18,6 +18,7 @@ type Props = {
   type?: InputType;
   value: string;
   variant?: TextInputVariant;
+  disabled?: boolean;
 };
 
 export const LabeledInput = ({
@@ -29,6 +30,7 @@ export const LabeledInput = ({
   type = 'text',
   value,
   variant,
+  disabled = false,
 }: Props): React.JSX.Element => {
   const inputId = `labeled_input_${createUniqueId()}`;
 
@@ -48,6 +50,7 @@ export const LabeledInput = ({
         type={type}
         value={value}
         variant={variant}
+        isDisabled={disabled}
       />
       {!!error && <InputErrorMessage text={error} />}
     </Container>
@@ -58,14 +61,13 @@ const Container = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 `;
 
 const LabelRow = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding-right: 0.5rem;
 `;
 
 const Input = styled(TextInput)`

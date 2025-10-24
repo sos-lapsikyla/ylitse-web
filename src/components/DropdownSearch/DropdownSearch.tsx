@@ -6,7 +6,7 @@ import SearchBar from '../SearchBar';
 import Text from '../Text';
 
 type Props = {
-  isDisabled: boolean;
+  isDisabled?: boolean;
   isDropdownVisible: boolean;
   options: string[];
   placeholder: string;
@@ -66,8 +66,8 @@ export const DropdownSearch = ({
 };
 
 const Container = styled.div`
-  margin: 2rem 0 0 0;
-  max-width: 350px;
+  margin: 1rem 0 1.5rem 0;
+  max-width: 100%;
   position: relative;
 `;
 
@@ -84,7 +84,7 @@ const Dropdown = styled.div`
   overflow-y: auto;
   position: absolute;
   top: calc(100% - 2px);
-  z-index: 10;
+  z-index: 20;
 `;
 
 const DropdownItem = styled.div`
