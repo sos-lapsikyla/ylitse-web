@@ -59,7 +59,7 @@ export const profileApi = baseApi.injectEndpoints({
         method: 'put',
         body: account,
       }),
-      invalidatesTags: ['myuser'],
+      invalidatesTags: ['myuser', 'users', 'accounts'],
       async onQueryStarted(_, { queryFulfilled }) {
         try {
           await queryFulfilled;
@@ -79,7 +79,7 @@ export const profileApi = baseApi.injectEndpoints({
         method: 'put',
         body: user,
       }),
-      invalidatesTags: ['myuser'],
+      invalidatesTags: ['myuser', 'users', 'accounts'],
       async onQueryStarted(_, { queryFulfilled }) {
         try {
           await queryFulfilled;

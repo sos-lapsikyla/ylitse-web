@@ -89,7 +89,7 @@ const NewUserModal: React.FC<Props> = ({ onDismiss }) => {
   return (
     <ModalBackground>
       <Modal title={t('newUser.title')} onDismiss={onDismiss}>
-        <UserForm formData={formData} updateField={updateField} />
+        <UserForm formData={formData} updateField={updateField} mode="create" />
         <ButtonContainer>
           <TextButton size="normal" onClick={onDismiss} variant="light">
             {t('newUser.cancel')}

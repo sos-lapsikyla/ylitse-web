@@ -13,6 +13,76 @@
     "description": "Käyttäjän poistamista ei voi tämän jälkeen perua. Kaikki tämän käyttäjän käymät keskustelut poistetaan.",
     "confirm": "Poista"
   },
+  "editUser": {
+    "title": "Muokkaa käyttäjää",
+    "accountInfo": {
+      "title": "Tilin tiedot",
+      "caption": "Tähdellä * merkityt kentät tulee täyttää.",
+      "role": {
+        "title": "Käyttäjätilin tyyppi *",
+        "choose": "Valitse",
+        "roleOptions": {
+          "admin": "Admin",
+          "mentee": "Aktori",
+          "mentor": "Mentori"
+        }
+      },
+      "username": {
+        "label": "Käyttäjätunnus *",
+        "tooShortError": "Käyttäjätunnus on liian lyhyt",
+        "tooLongError": "Käyttäjätunnus on liian pitkä"
+      },
+      "password": {
+        "label": "Salasana *",
+        "passwordRepeat": "Toista salasana *",
+        "passwordTooltip": "Salasanan tulee olla vähintään 8 merkkiä pitkä",
+        "tooShortError": "Salasana on liian lyhyt",
+        "differentPasswords": "Salasanat eivät täsmää"
+      },
+      "email": "Sähköpostiosoite",
+      "invalidEmail": "Sähköpostiosoite on virheellinen",
+      "visibility": "Näkyvyys",
+      "hide": "Piilota mentori muilta käyttäjiltä"
+    },
+    "publicInfo": {
+      "title": "Julkiset tiedot",
+      "displayName": {
+        "label": "Julkinen käyttäjänimi *",
+        "tooLongError": "Käyttäjänimi on liian pitkä",
+        "tooltip": "Käyttäjänimen tulee olla vähintään kahden merkin pituinen",
+        "tooShortError": "Käyttäjänimi on liian lyhyt"
+      },
+      "gender": {
+        "label": "Sukupuoli",
+        "labelMentor": "Sukupuoli *",
+        "choose": "Valitse",
+        "options": {
+          "female": "Nainen",
+          "male": "Mies",
+          "other": "Muu"
+        }
+      },
+      "birthYear": {
+        "invalidError": "Syntymävuosi on virheellinen",
+        "labelMentor": "Syntymävuosi *",
+        "label": "Syntymävuosi"
+      },
+      "area": {
+        "label": "Alue",
+        "tooLongError": "Alueen nimi on liian pitkä"
+      },
+      "story": {
+        "label": "Tarina",
+        "tooLongError": "Tarina on liian pitkä."
+      },
+      "languages": "Kielet",
+      "newLanguage": "Lisää kieli",
+      "skills": "Aiheet",
+      "newSkill": "Lisää uusi aihe"
+    },
+    "cancel": "Peruuta",
+    "save": "Tallenna"
+  },
   "newUser": {
     "title": "Uusi käyttäjä",
     "accountInfo": {

@@ -11,9 +11,10 @@ import CardFooter from './CardFooter';
 
 type Props = {
   managedUser: ManagedUser;
+  onOpenEditModal: (user: ManagedUser) => void;
 };
 
-export const UserCard: React.FC<Props> = ({ managedUser }) => {
+export const UserCard: React.FC<Props> = ({ managedUser, onOpenEditModal }) => {
   const { isMobile } = useGetLayoutMode();
 
   const isMentorAccount =
@@ -57,7 +58,10 @@ export const UserCard: React.FC<Props> = ({ managedUser }) => {
       )}
       <CardContent managedUser={managedUser} />
       <FooterWrapper>
-        <CardFooter managedUser={managedUser} />
+        <CardFooter
+          managedUser={managedUser}
+          onOpenEditModal={onOpenEditModal}
+        />
       </FooterWrapper>
     </Container>
   );

@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components';
 import type { ManagedUser } from '../../models';
 
 import UserCard from '../UserCard';
+import { useState } from 'react';
+import EditUserModal from '../EditUserModal';
 
 type Props = {
   managedUsers: Array<ManagedUser>;
@@ -11,11 +13,30 @@ type Props = {
 const UserCardList: React.FC<Props> = ({ managedUsers }) => {
   const { isMobile } = useGetLayoutMode();
 
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [selectedManagedUser, setSelectedManagedUser] =
+    useState<ManagedUser | null>(null);
+  console.log(selectedManagedUser);
+
+  // Function passed down through props
+  const openEditModal = (managedUser: ManagedUser) => {
+    setSelectedManagedUser(managedUser);
+    setIsEditModalOpen(true);
+  };
+  const closeModal = () => setIsEditModalOpen(false);
+
   return (
     <UserCardsList $isMobile={isMobile} data-testid="user-cards-container">
       {managedUsers.map(managedUser => (
-        <UserCard key={managedUser.id} managedUser={managedUser} />
+        <UserCard
+          key={managedUser.id}
+          managedUser={managedUser}
+          onOpenEditModal={openEditModal}
+        />
       ))}
+      {isEditModalOpen && (
+        <EditUserModal onDismiss={closeModal}></EditUserModal>
+      )}
     </UserCardsList>
   );
 };
