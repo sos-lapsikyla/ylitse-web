@@ -1,6 +1,5 @@
 import Text from '@/components/Text';
 import LabeledInput from '@/components/LabeledInput';
-import SkillsEditor from './SkillsEditor';
 import { DropdownMenu } from '@/components/Dropdown';
 import styled from 'styled-components';
 import { UserFormData } from './useUserForm';
@@ -14,7 +13,10 @@ import {
   validateBirthYear,
   validateEmail,
 } from '@/features/ProfilePage/validators';
-import LanguagesEditor from './LanguagesEditor';
+import ChipsEditor from '@/components/ChipsEditor';
+import { Languages } from '@/components/constants';
+import { useAppSelector } from '@/store';
+import { selectAllSkillOptions } from '@/features/MentorPage/selectors';
 
 type Props = {
   formData: UserFormData;
@@ -37,6 +39,8 @@ const UserForm: React.FC<Props> = ({ formData, updateField, mode }) => {
     { text: t('newUser.publicInfo.gender.options.male'), value: 'male' },
     { text: t('newUser.publicInfo.gender.options.other'), value: 'other' },
   ];
+  const allLanguages = Languages.map(lang => lang.name);
+  const allSkills = useAppSelector(selectAllSkillOptions());
 
   const shouldFieldsBeHidden = formData.role !== 'mentor';
 
@@ -242,14 +246,20 @@ const UserForm: React.FC<Props> = ({ formData, updateField, mode }) => {
               value={formData.story}
               onChange={value => updateField('story', value)}
             />
-            <LanguagesEditor
-              updateLanguages={languages => updateField('languages', languages)}
-              languages={formData.languages}
-            />
-            <SkillsEditor
-              updateSkills={skills => updateField('skills', skills)}
-              skills={formData.skills}
-            />
+            <ChipsEditor
+              updateChips={skills => updateField('skills', skills)}
+              chips={formData.skills}
+              allChips={allSkills}
+              placeholder={t('newUser.publicInfo.newSkill')}
+              label={t('newUser.publicInfo.skills')}
+            ></ChipsEditor>
+            <ChipsEditor
+              updateChips={languages => updateField('languages', languages)}
+              chips={formData.languages}
+              allChips={allLanguages}
+              placeholder={t('newUser.publicInfo.newLanguage')}
+              label={t('newUser.publicInfo.languages')}
+            ></ChipsEditor>
           </>
         )}
       </PublicInfo>
@@ -267,7 +277,6 @@ const PublicInfo = styled.div`
   padding: 0 0 6rem 0;
 `;
 const StaticField = styled.div`
-  background-color: red;
   margin: 2rem 0;
 `;
 const FieldText = styled(Text)`

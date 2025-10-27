@@ -22,9 +22,10 @@ import { palette } from '@/components/constants';
 import { ButtonRow } from '..';
 import Columns from './Columns';
 import LabeledInput from '@/components/LabeledInput';
-import SkillsEditor from '../SkillsEditor';
 import Text from '@/components/Text';
 import { TextButton } from '@/components/Buttons';
+import { selectAllSkillOptions } from '@/features/MentorPage/selectors';
+import ChipsEditor from '@/components/ChipsEditor';
 
 type Props = {
   isMobile?: boolean;
@@ -37,6 +38,7 @@ const PublicInfo = ({ isMobile = false }: Props) => {
   const [updateMentor, { isLoading: isLoadingMentor }] =
     useUpdateMentorMutation();
   const [updateUser, { isLoading: isLoadingUser }] = useUpdateUserMutation();
+  const allSkills = useAppSelector(selectAllSkillOptions());
 
   const [localData, setLocalData] = useState<ApiMentor>(mentor);
   const [isDirty, setIsDirty] = useState(false);
@@ -164,9 +166,12 @@ const PublicInfo = ({ isMobile = false }: Props) => {
           value={localData.story}
           variant="textarea"
         />
-        <SkillsEditor
-          updateSkills={skills => updateMentorData('skills', skills)}
-          skills={localData.skills}
+        <ChipsEditor
+          updateChips={skills => updateMentorData('skills', skills)}
+          chips={localData.skills}
+          allChips={allSkills}
+          placeholder={t('public.mentor.addSkill')}
+          label={t('public.mentor.skills')}
         />
       </Form>
     </Container>

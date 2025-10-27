@@ -18,7 +18,6 @@ const UserCardList: React.FC<Props> = ({ managedUsers }) => {
     useState<ManagedUser | null>(null);
   console.log(selectedManagedUser);
 
-  // Function passed down through props
   const openEditModal = (managedUser: ManagedUser) => {
     setSelectedManagedUser(managedUser);
     setIsEditModalOpen(true);
