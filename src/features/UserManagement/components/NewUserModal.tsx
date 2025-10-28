@@ -8,7 +8,7 @@ import {
   useAddManagedUserMutation,
   useAddMentorMutation,
 } from '../userManagementApi';
-import UserForm from './UserForm';
+import UserForm from './CreateUserForm';
 import { useUserForm } from './useUserForm';
 
 import styled from 'styled-components';
@@ -89,7 +89,7 @@ const NewUserModal: React.FC<Props> = ({ onDismiss }) => {
   return (
     <ModalBackground>
       <Modal title={t('newUser.title')} onDismiss={onDismiss}>
-        <UserForm formData={formData} updateField={updateField} mode="create" />
+        <UserForm formData={formData} updateField={updateField} />
         <ButtonContainer>
           <TextButton size="normal" onClick={onDismiss} variant="light">
             {t('newUser.cancel')}

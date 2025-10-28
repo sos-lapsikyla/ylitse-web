@@ -16,13 +16,15 @@ const UserCardList: React.FC<Props> = ({ managedUsers }) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedManagedUser, setSelectedManagedUser] =
     useState<ManagedUser | null>(null);
-  console.log(selectedManagedUser);
 
   const openEditModal = (managedUser: ManagedUser) => {
     setSelectedManagedUser(managedUser);
     setIsEditModalOpen(true);
   };
-  const closeModal = () => setIsEditModalOpen(false);
+  const closeModal = () => {
+    setIsEditModalOpen(false);
+    setSelectedManagedUser(null);
+  };
 
   return (
     <UserCardsList $isMobile={isMobile} data-testid="user-cards-container">
@@ -33,8 +35,11 @@ const UserCardList: React.FC<Props> = ({ managedUsers }) => {
           onOpenEditModal={openEditModal}
         />
       ))}
-      {isEditModalOpen && (
-        <EditUserModal onDismiss={closeModal}></EditUserModal>
+      {isEditModalOpen && selectedManagedUser && (
+        <EditUserModal
+          onDismiss={closeModal}
+          managedUser={selectedManagedUser}
+        />
       )}
     </UserCardsList>
   );

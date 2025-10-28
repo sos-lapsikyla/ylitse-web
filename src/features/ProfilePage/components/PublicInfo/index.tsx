@@ -169,7 +169,7 @@ const PublicInfo = ({ isMobile = false }: Props) => {
         <ChipsEditor
           updateChips={skills => updateMentorData('skills', skills)}
           chips={localData.skills}
-          allChips={allSkills}
+          allOptions={allSkills}
           placeholder={t('public.mentor.addSkill')}
           label={t('public.mentor.skills')}
         />

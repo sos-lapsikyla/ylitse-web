@@ -8,12 +8,13 @@ import { useTranslation } from 'react-i18next';
 //   useAddManagedUserMutation,
 //   useAddMentorMutation,
 // } from '../userManagementApi';
-import UserForm from './UserForm';
 import { useUserForm } from './useUserForm';
 
 import styled from 'styled-components';
 import { TextButton } from '@/components/Buttons';
 import { Modal, ModalBackground } from '@/components/Modal';
+import { ManagedUser } from '../models';
+import EditUserForm from './EditUserForm';
 // import {
 //   useUpdateAccountMutation,
 //   useUpdateUserMutation,
@@ -21,10 +22,11 @@ import { Modal, ModalBackground } from '@/components/Modal';
 // import { useUpdateMentorMutation } from '@/features/MentorPage/mentorPageApi';
 
 type Props = {
+  managedUser: ManagedUser;
   onDismiss: () => void;
 };
 
-const EditUserModal: React.FC<Props> = ({ onDismiss }) => {
+const EditUserModal: React.FC<Props> = ({ onDismiss, managedUser }) => {
   const { t } = useTranslation('users');
   useEscape(() => onDismiss());
 
@@ -39,7 +41,11 @@ const EditUserModal: React.FC<Props> = ({ onDismiss }) => {
   return (
     <ModalBackground>
       <Modal title={t('editUser.title')} onDismiss={onDismiss}>
-        <UserForm formData={formData} updateField={updateField} mode="edit" />
+        <EditUserForm
+          formData={formData}
+          updateField={updateField}
+          managedUser={managedUser}
+        />
         <ButtonContainer>
           <TextButton size="normal" onClick={onDismiss} variant="light">
             {t('editUser.cancel')}

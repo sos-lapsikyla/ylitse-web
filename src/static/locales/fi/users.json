@@ -14,7 +14,7 @@
     "confirm": "Poista"
   },
   "editUser": {
-    "title": "Muokkaa käyttäjää",
+    "title": "Muokkaa käyttäjätiliä",
     "accountInfo": {
       "title": "Tilin tiedot",
       "caption": "Tähdellä * merkityt kentät tulee täyttää.",

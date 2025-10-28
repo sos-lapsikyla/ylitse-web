@@ -8,7 +8,7 @@ import { DropdownSearch } from '../DropdownSearch';
 type EditorProps = {
   updateChips: (chips: string[]) => void;
   chips: string[];
-  allChips: string[];
+  allOptions: string[];
   placeholder: string;
   label: string;
 };
@@ -16,7 +16,7 @@ type EditorProps = {
 const ChipsEditor = ({
   updateChips,
   chips,
-  allChips,
+  allOptions: allChips,
   placeholder,
   label,
 }: EditorProps) => {

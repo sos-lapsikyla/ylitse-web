@@ -13,10 +13,10 @@ import {
   validateBirthYear,
   validateEmail,
 } from '@/features/ProfilePage/validators';
-import ChipsEditor from '@/components/ChipsEditor';
 import { Languages } from '@/components/constants';
 import { useAppSelector } from '@/store';
 import { selectAllSkillOptions } from '@/features/MentorPage/selectors';
+import ChipsEditor from '@/components/ChipsEditor';
 
 type Props = {
   formData: UserFormData;
@@ -24,10 +24,9 @@ type Props = {
     key: K,
     value: UserFormData[K],
   ) => void;
-  mode?: 'create' | 'edit';
 };
 
-const UserForm: React.FC<Props> = ({ formData, updateField, mode }) => {
+const UserForm: React.FC<Props> = ({ formData, updateField }) => {
   const { t } = useTranslation('users');
   const roleOptions = [
     { text: t('newUser.accountInfo.role.roleOptions.admin'), value: 'admin' },
@@ -39,12 +38,14 @@ const UserForm: React.FC<Props> = ({ formData, updateField, mode }) => {
     { text: t('newUser.publicInfo.gender.options.male'), value: 'male' },
     { text: t('newUser.publicInfo.gender.options.other'), value: 'other' },
   ];
+
   const allLanguages = Languages.map(lang => lang.name);
   const allSkills = useAppSelector(selectAllSkillOptions());
 
-  const shouldFieldsBeHidden = formData.role !== 'mentor';
+  const shouldShowMentorFields = formData.role !== 'mentor';
 
   // validate form
+
   const getLoginNameError = (): string | null => {
     const name = formData.username?.trim();
     if (!name) return null;
@@ -121,70 +122,51 @@ const UserForm: React.FC<Props> = ({ formData, updateField, mode }) => {
     <>
       <AccountInfo>
         <TextGroup>
-          <TitleText variant="h2">{t('newUser.accountInfo.title')}</TitleText>
+          <TitleText>
+            <Text variant="h2">{t('newUser.accountInfo.title')}</Text>
+          </TitleText>
           <CaptionText variant="p">
             {t('newUser.accountInfo.caption')}
           </CaptionText>
         </TextGroup>
-        {mode === 'edit' ? (
-          <StaticField>
-            <Text variant="bold"> {t('editUser.accountInfo.role.title')}</Text>
-            <FieldText variant="p">Display Role Here</FieldText>
-          </StaticField>
-        ) : (
-          <DropdownMenu
-            options={roleOptions.map(o => o.text)}
-            placeholder={t('newUser.accountInfo.role.choose')}
-            defaultOption={t('newUser.accountInfo.role.roleOptions.mentor')}
-            selectOption={(selectedText: string) => {
-              const selectedOption = roleOptions.find(
-                o => o.text === selectedText,
-              );
-              if (selectedOption) {
-                updateField('role', selectedOption.value);
-              }
-            }}
-            label={t('newUser.accountInfo.role.title')}
-          />
-        )}
-        {mode === 'edit' ? (
-          <StaticField>
-            <Text variant="bold">
-              {' '}
-              {t('editUser.accountInfo.username.label')}
-            </Text>
-            <FieldText variant="p">show username here</FieldText>
-          </StaticField>
-        ) : (
-          <LabeledInput
-            error={getLoginNameError()}
-            label={t('newUser.accountInfo.username.label')}
-            value={formData.username}
-            onChange={value => updateField('username', value)}
-          />
-        )}
 
-        {mode === 'edit' ? (
-          <StaticField></StaticField>
-        ) : (
-          <StaticField>
-            <LabeledInput
-              error={getPasswordError()}
-              label={t('newUser.accountInfo.password.label')}
-              type="password"
-              value={formData.password}
-              onChange={value => updateField('password', value)}
-              tooltip={t('newUser.accountInfo.password.passwordTooltip')}
-            />
-            <LabeledInput
-              error={getDifferentPasswordsError()}
-              label={t('newUser.accountInfo.password.passwordRepeat')}
-              type="password"
-              value={formData.passwordAgain}
-              onChange={value => updateField('passwordAgain', value)}
-            />
-          </StaticField>
-        )}
+        <DropdownMenu
+          options={roleOptions.map(o => o.text)}
+          placeholder={t('newUser.accountInfo.role.choose')}
+          defaultOption={t('newUser.accountInfo.role.roleOptions.mentor')}
+          selectOption={(selectedText: string) => {
+            const selectedOption = roleOptions.find(
+              o => o.text === selectedText,
+            );
+            if (selectedOption) {
+              updateField('role', selectedOption.value);
+            }
+          }}
+          label={t('newUser.accountInfo.role.title')}
+        />
+
+        <LabeledInput
+          error={getLoginNameError()}
+          label={t('newUser.accountInfo.username.label')}
+          value={formData.username}
+          onChange={value => updateField('username', value)}
+        />
+
+        <LabeledInput
+          error={getPasswordError()}
+          label={t('newUser.accountInfo.password.label')}
+          type="password"
+          value={formData.password}
+          onChange={value => updateField('password', value)}
+          tooltip={t('newUser.accountInfo.password.passwordTooltip')}
+        />
+        <LabeledInput
+          error={getDifferentPasswordsError()}
+          label={t('newUser.accountInfo.password.passwordRepeat')}
+          type="password"
+          value={formData.passwordAgain}
+          onChange={value => updateField('passwordAgain', value)}
+        />
         <LabeledInput
           error={getEmailError()}
           label={t('newUser.accountInfo.email')}
@@ -194,7 +176,9 @@ const UserForm: React.FC<Props> = ({ formData, updateField, mode }) => {
       </AccountInfo>
 
       <PublicInfo>
-        <TitleText variant="h2">{t('newUser.publicInfo.title')}</TitleText>
+        <TitleText>
+          <Text variant="h2">{t('newUser.publicInfo.title')}</Text>
+        </TitleText>
         <LabeledInput
           error={getDisplayNameError()}
           label={t('newUser.publicInfo.displayName.label')}
@@ -211,7 +195,7 @@ const UserForm: React.FC<Props> = ({ formData, updateField, mode }) => {
           value={String(formData.birthYear)}
           onChange={value => updateField('birthYear', value)}
         />
-        {!shouldFieldsBeHidden && (
+        {!shouldShowMentorFields && (
           <>
             <DropdownMenu
               options={genderOptions.map(o => o.text)}
@@ -249,14 +233,14 @@ const UserForm: React.FC<Props> = ({ formData, updateField, mode }) => {
             <ChipsEditor
               updateChips={skills => updateField('skills', skills)}
               chips={formData.skills}
-              allChips={allSkills}
+              allOptions={allSkills}
               placeholder={t('newUser.publicInfo.newSkill')}
               label={t('newUser.publicInfo.skills')}
             ></ChipsEditor>
             <ChipsEditor
               updateChips={languages => updateField('languages', languages)}
               chips={formData.languages}
-              allChips={allLanguages}
+              allOptions={allLanguages}
               placeholder={t('newUser.publicInfo.newLanguage')}
               label={t('newUser.publicInfo.languages')}
             ></ChipsEditor>
@@ -276,15 +260,8 @@ const CaptionText = styled(Text)`
 const PublicInfo = styled.div`
   padding: 0 0 6rem 0;
 `;
-const StaticField = styled.div`
-  margin: 2rem 0;
-`;
-const FieldText = styled(Text)`
-  margin: 0.5rem 0 1rem 0;
-`;
 const TitleText = styled(Text)`
   margin: 1rem 0;
-  padding: 1rem 0 1rem 0;
 `;
 const TextGroup = styled.div`
   display: flex;
