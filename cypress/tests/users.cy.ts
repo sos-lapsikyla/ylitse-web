@@ -7,6 +7,7 @@ import {
   NEW_PASSWORD,
   NEW_AREA,
   NEW_STORY,
+  NEW_EMAIL,
 } from 'cypress/fixtures/inputs';
 
 const SUPERADMIN_USER = Cypress.env('apiUser') || 'admin';
@@ -188,6 +189,31 @@ describe('Users page', () => {
 
     cy.getByText('Luo uusi käyttäjä', 'button').click();
 
+    // Verify success and navigation
+    cy.location('pathname').should('eq', '/users');
+    cy.getByText(NEW_DISPLAY_NAME, 'h2').should('be.visible');
+  });
+
+  it('can edit mentee', () => {
+    cy.loginUser(
+      SUPERADMIN_USER,
+      SUPERADMIN_PASS,
+      generateTotp(SUPERADMIN_MFA).token,
+    );
+
+    // Go to users page
+    cy.get('[href="/users"]').click();
+    cy.location('pathname').should('eq', '/users');
+    cy.contains('Käyttäjät').should('be.visible');
+
+    // Open edit user form
+    cy.get('button[aria-label="edit"]').eq(2).click({ force: true });
+    cy.contains('h2', /^Muokkaa käyttäjätiliä$/);
+
+    cy.fillInputByLabel('Julkinen käyttäjänimi *', NEW_DISPLAY_NAME);
+    cy.fillInputByLabel('Sähköpostiosoite', NEW_EMAIL);
+    // Button should now be enabled
+    cy.getByText('Tallenna', 'button').should('not.be.disabled');
     // Verify success and navigation
     cy.location('pathname').should('eq', '/users');
     cy.getByText(NEW_DISPLAY_NAME, 'h2').should('be.visible');

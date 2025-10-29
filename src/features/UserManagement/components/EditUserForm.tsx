@@ -230,7 +230,7 @@ const CaptionText = styled(Text)`
   margin: -1rem 0 0.5rem 0;
 `;
 const PublicInfo = styled.div`
-  margin: -1rem 0 0 0;
+  margin: -1rem 0 4rem 0;
 `;
 const StaticField = styled.div`
   margin: 1rem 0;

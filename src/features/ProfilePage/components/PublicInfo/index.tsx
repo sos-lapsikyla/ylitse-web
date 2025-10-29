@@ -14,7 +14,10 @@ import {
 import { selectMentor, selectUser } from '@/features/Authentication/selectors';
 import { useAppSelector } from '@/store';
 import { useConfirmDirtyLeave } from '@/features/Confirmation/useConfirmDirtyLeave';
-import { useUpdateMentorMutation } from '@/features/MentorPage/mentorPageApi';
+import {
+  useGetMentorsQuery,
+  useUpdateMentorMutation,
+} from '@/features/MentorPage/mentorPageApi';
 import { useUpdateUserMutation } from '@/features/ProfilePage/profileApi';
 
 import styled, { css } from 'styled-components';
@@ -38,6 +41,7 @@ const PublicInfo = ({ isMobile = false }: Props) => {
   const [updateMentor, { isLoading: isLoadingMentor }] =
     useUpdateMentorMutation();
   const [updateUser, { isLoading: isLoadingUser }] = useUpdateUserMutation();
+  useGetMentorsQuery();
   const allSkills = useAppSelector(selectAllSkillOptions());
 
   const [localData, setLocalData] = useState<ApiMentor>(mentor);
@@ -65,6 +69,7 @@ const PublicInfo = ({ isMobile = false }: Props) => {
           display_name: localData.display_name,
         }).unwrap();
       }
+      console.log('localData näyttää tälät: ', localData);
       await updateMentor(localData).unwrap();
       setIsDirty(false);
     } catch (err) {

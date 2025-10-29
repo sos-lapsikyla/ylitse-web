@@ -54,7 +54,7 @@ const EditUserModal: React.FC<Props> = ({ onDismiss, managedUser }) => {
       user_id: managedUser.mentor.buddyId,
     };
     setEditableMentorData(editableMentor);
-    console.log(editableMentor);
+    console.log('set editable mentor data', editableMentor);
   }, [managedUser]);
 
   useEffect(() => {
@@ -77,7 +77,7 @@ const EditUserModal: React.FC<Props> = ({ onDismiss, managedUser }) => {
         : undefined,
     };
     setEditableUserData(editable);
-    console.log(editable);
+    console.log('set editable user', editable);
   }, [managedUser]);
 
   const [updateAccount] = useUpdateAccountMutation();
@@ -101,10 +101,10 @@ const EditUserModal: React.FC<Props> = ({ onDismiss, managedUser }) => {
         active: true,
       }).unwrap();
       if (editableMentorData && isMentorAccount) {
-        const mentorPayload: ApiMentor = {
+        const mentorPayload = {
+          ...editableMentorData,
           id: managedUser.mentor.mentorId,
-          account_id: managedUser.account_id,
-          display_name: editableUserData.display_name ?? managedUser.nickname,
+          display_name: editableUserData.display_name,
           active: true,
           birth_year: editableMentorData.birth_year,
           gender: editableMentorData.gender,
@@ -112,11 +112,6 @@ const EditUserModal: React.FC<Props> = ({ onDismiss, managedUser }) => {
           story: editableMentorData.story,
           skills: editableMentorData.skills,
           languages: editableMentorData.languages,
-          status_message: managedUser.mentor.statusMessage,
-          communication_channels: managedUser.mentor.communicationChannels,
-          is_vacationing: managedUser.mentor.isVacationing,
-          created: new Date(managedUser.mentor.created).toISOString(),
-          user_id: managedUser.mentor.buddyId,
         };
         console.log('mansku', managedUser);
         console.log('editfieldit:', editableMentorData);

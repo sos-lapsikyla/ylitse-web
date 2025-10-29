@@ -254,6 +254,7 @@ const CaptionText = styled(Text)`
   margin: -1rem 0 1rem 0;
 `;
 const PublicInfo = styled.div`
+  margin: 0 0 4rem 0;
   padding: 0 0 -1rem 0;
 `;
 const TitleText = styled(Text)`
