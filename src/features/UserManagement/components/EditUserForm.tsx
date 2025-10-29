@@ -2,7 +2,6 @@ import Text from '@/components/Text';
 import LabeledInput from '@/components/LabeledInput';
 import { DropdownMenu } from '@/components/Dropdown';
 import styled from 'styled-components';
-import { UserFormData } from './useUserForm';
 import { useTranslation } from 'react-i18next';
 import {
   isDisplayNameTooLong,
@@ -17,19 +16,27 @@ import { Languages } from '@/components/constants';
 import { useAppSelector } from '@/store';
 import { selectAllSkillOptions } from '@/features/MentorPage/selectors';
 import { ApiManagedUser, ManagedUser } from '../models';
-import { useEffect, useState } from 'react';
 import { ApiMentor } from '@/features/MentorPage/models';
 
 type Props = {
-  formData: UserFormData;
-  updateField: <K extends keyof UserFormData>(
-    key: K,
-    value: UserFormData[K],
-  ) => void;
   managedUser: ManagedUser;
+  editableUserData: ApiManagedUser | undefined;
+  setEditableUserData: React.Dispatch<
+    React.SetStateAction<ApiManagedUser | undefined>
+  >;
+  editableMentorData: ApiMentor | undefined;
+  setEditableMentorData: React.Dispatch<
+    React.SetStateAction<ApiMentor | undefined>
+  >;
 };
 
-const UserForm: React.FC<Props> = ({ formData, updateField, managedUser }) => {
+const UserForm: React.FC<Props> = ({
+  managedUser,
+  editableMentorData,
+  editableUserData,
+  setEditableMentorData,
+  setEditableUserData,
+}) => {
   const { t } = useTranslation('users');
   const genderOptions = [
     { text: t('newUser.publicInfo.gender.options.female'), value: 'female' },
@@ -40,101 +47,47 @@ const UserForm: React.FC<Props> = ({ formData, updateField, managedUser }) => {
   const allSkills = useAppSelector(selectAllSkillOptions());
   const isMentorAccount =
     managedUser?.role === 'mentor' && 'mentor' in managedUser;
-  const shouldShowMentorFields = formData.role === 'mentor' || isMentorAccount;
-
-  const [editableUserData, setEditableUserData] = useState<
-    ApiManagedUser | undefined
-  >(undefined);
-  const [editableMentorData, setEditableMentorData] = useState<
-    ApiMentor | undefined
-  >(undefined);
-
-  useEffect(() => {
-    if (!isMentorAccount) return;
-    const editableMentor: ApiMentor = {
-      account_id: managedUser.account_id,
-      active: true,
-      birth_year: new Date().getFullYear() - managedUser.mentor.age,
-      communication_channels: managedUser.mentor.communicationChannels,
-      created: new Date(managedUser.created).toISOString(),
-      display_name: '',
-      gender: managedUser.mentor.gender,
-      id: managedUser.mentor.mentorId,
-      is_vacationing: managedUser.mentor.isVacationing,
-      languages: managedUser.mentor.languages,
-      region: managedUser.mentor.region,
-      skills: managedUser.mentor.skills,
-      status_message: managedUser.mentor.statusMessage,
-      story: managedUser.mentor.story,
-      user_id: managedUser.mentor.buddyId,
-    };
-    setEditableMentorData(editableMentor);
-    console.log(editableMentor);
-  }, [managedUser]);
-
-  useEffect(() => {
-    const editable: ApiManagedUser = {
-      id: managedUser.id,
-      display_name: managedUser.nickname,
-      role: managedUser.role,
-      account_id: managedUser.account_id,
-      active: true,
-      created: new Date(managedUser.created).toISOString(),
-      updated: new Date().toISOString(),
-      user: managedUser.user
-        ? {
-            id: managedUser.user.id,
-            login_name: managedUser.user.loginName,
-            email: managedUser.user.email,
-            active: true,
-            role: managedUser.role,
-          }
-        : undefined,
-    };
-    setEditableUserData(editable);
-    console.log(editable);
-  }, [managedUser]);
+  const shouldShowMentorFields = isMentorAccount;
 
   // validate form
+  // Validation functions adapted for editable data
   const getEmailError = (): string | null => {
-    const email = formData.email?.trim();
+    const email = editableUserData?.user?.email?.trim();
     if (!email) return null;
-    return validateEmail(email) ? null : t('newUser.accountInfo.invalidEmail');
+    return validateEmail(email) ? null : t('editUser.accountInfo.invalidEmail');
   };
 
   const getDisplayNameError = (): string | null => {
-    const name = formData.displayName?.trim();
+    const name = editableUserData?.display_name?.trim();
     if (!name) return null;
-    if (isDisplayNameTooLong(name)) {
-      return t('newUser.publicInfo.displayName.tooLongError');
-    }
-    if (isDisplayNameTooShort(name)) {
-      return t('newUser.publicInfo.displayName.tooShortError');
-    }
+    if (isDisplayNameTooLong(name))
+      return t('editUser.publicInfo.displayName.tooLongError');
+    if (isDisplayNameTooShort(name))
+      return t('editUser.publicInfo.displayName.tooShortError');
     return null;
   };
 
   const getBirthYearError = (): string | null => {
-    const year = formData.birthYear;
+    const year = editableMentorData?.birth_year;
     if (!year) return null;
     return validateBirthYear(Number(year))
       ? null
-      : t('newUser.publicInfo.birthYear.invalidError');
+      : t('editUser.publicInfo.birthYear.invalidError');
   };
 
   const getRegionError = (): string | null => {
-    const region = formData.area?.trim();
+    const region = editableMentorData?.region?.trim();
     if (!region) return null;
     return isRegionTooLong(region)
-      ? t('newUser.publicInfo.area.tooLongError')
+      ? t('editUser.publicInfo.area.tooLongError')
       : null;
   };
 
   const getStoryError = (): string | null => {
-    const story = formData.story?.trim();
+    const story = editableMentorData?.story?.trim();
     if (!story) return null;
     return isStoryTooLong(story)
-      ? t('newUser.publicInfo.story.tooLongError')
+      ? t('editUser.publicInfo.story.tooLongError')
       : null;
   };
 
@@ -147,6 +100,7 @@ const UserForm: React.FC<Props> = ({ formData, updateField, managedUser }) => {
             {t('editUser.accountInfo.caption')}
           </CaptionText>
         </TextGroup>
+
         <StaticField>
           <Text variant="bold"> {t('editUser.accountInfo.role.title')}</Text>
           <FieldText variant="p">{managedUser?.role}</FieldText>
@@ -163,7 +117,13 @@ const UserForm: React.FC<Props> = ({ formData, updateField, managedUser }) => {
           error={getEmailError()}
           label={t('editUser.accountInfo.email')}
           value={editableUserData?.user?.email ?? ''}
-          onChange={value => updateField('email', value)}
+          onChange={value => {
+            setEditableUserData(prev =>
+              prev && prev.user
+                ? { ...prev, user: { ...prev.user, email: value } }
+                : prev,
+            );
+          }}
         />
       </AccountInfo>
 
@@ -179,22 +139,18 @@ const UserForm: React.FC<Props> = ({ formData, updateField, managedUser }) => {
             );
           }}
         />
-        <LabeledInput
-          error={getBirthYearError()}
-          label={
-            formData.role === 'mentor'
-              ? t('editUser.publicInfo.birthYear.labelMentor')
-              : t('editUser.publicInfo.birthYear.label')
-          }
-          value={String(editableMentorData?.birth_year ?? '')}
-          onChange={value => {
-            setEditableMentorData(prev =>
-              prev ? { ...prev, birth_year: Number(value) } : prev,
-            );
-          }}
-        />
         {shouldShowMentorFields && (
           <>
+            <LabeledInput
+              error={getBirthYearError()}
+              label={t('editUser.publicInfo.birthYear.labelMentor')}
+              value={String(editableMentorData?.birth_year ?? '')}
+              onChange={value => {
+                setEditableMentorData(prev =>
+                  prev ? { ...prev, birth_year: Number(value) } : prev,
+                );
+              }}
+            />
             <DropdownMenu
               options={genderOptions.map(o => o.text)}
               placeholder={t('editUser.publicInfo.gender.choose')}
@@ -271,14 +227,15 @@ const AccountInfo = styled.div`
   padding: 0 0 1rem 0;
 `;
 const CaptionText = styled(Text)`
-  margin: -1rem 0 1rem 0;
+  margin: -1rem 0 0.5rem 0;
 `;
 const PublicInfo = styled.div`
-  padding: 0 0 6rem 0;
+  margin: -1rem 0 0 0;
 `;
 const StaticField = styled.div`
-  margin: 2rem 0;
+  margin: 1rem 0;
 `;
+
 const FieldText = styled(Text)`
   margin: 0.5rem 0 1rem 0;
 `;

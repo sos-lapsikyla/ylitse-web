@@ -113,7 +113,7 @@ const ButtonContainer = styled.div`
   flex-direction: row;
   gap: 1rem;
   justify-content: space-between;
-  padding-bottom: 1.75rem;
+  padding: 2rem 0 1.75rem 0;
 `;
 
 export default NewUserModal;

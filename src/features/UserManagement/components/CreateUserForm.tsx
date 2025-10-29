@@ -185,18 +185,14 @@ const UserForm: React.FC<Props> = ({ formData, updateField }) => {
           value={formData.displayName}
           onChange={value => updateField('displayName', value)}
         />
-        <LabeledInput
-          error={getBirthYearError()}
-          label={
-            formData.role === 'mentor'
-              ? t('newUser.publicInfo.birthYear.labelMentor')
-              : t('newUser.publicInfo.birthYear.label')
-          }
-          value={String(formData.birthYear)}
-          onChange={value => updateField('birthYear', value)}
-        />
         {!shouldShowMentorFields && (
           <>
+            <LabeledInput
+              error={getBirthYearError()}
+              label={t('newUser.publicInfo.birthYear.labelMentor')}
+              value={String(formData.birthYear)}
+              onChange={value => updateField('birthYear', value)}
+            />
             <DropdownMenu
               options={genderOptions.map(o => o.text)}
               placeholder={t('newUser.publicInfo.gender.choose')}
@@ -258,7 +254,7 @@ const CaptionText = styled(Text)`
   margin: -1rem 0 1rem 0;
 `;
 const PublicInfo = styled.div`
-  padding: 0 0 6rem 0;
+  padding: 0 0 -1rem 0;
 `;
 const TitleText = styled(Text)`
   margin: 1rem 0;

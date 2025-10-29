@@ -1,25 +1,20 @@
 // import toast from 'react-hot-toast';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useEscape } from '@/hooks/useEscape';
 import { useTranslation } from 'react-i18next';
-// import {
-//   useAddManagedAccountMutation,
-//   useAddManagedUserMutation,
-//   useAddMentorMutation,
-// } from '../userManagementApi';
-import { useUserForm } from './useUserForm';
 
 import styled from 'styled-components';
 import { TextButton } from '@/components/Buttons';
 import { Modal, ModalBackground } from '@/components/Modal';
-import { ManagedUser } from '../models';
+import { ApiManagedUser, ManagedUser } from '../models';
 import EditUserForm from './EditUserForm';
-// import {
-//   useUpdateAccountMutation,
-//   useUpdateUserMutation,
-// } from '@/features/ProfilePage/profileApi';
-// import { useUpdateMentorMutation } from '@/features/MentorPage/mentorPageApi';
+import { ApiMentor } from '@/features/MentorPage/models';
+import {
+  useUpdateAccountMutation,
+  useUpdateUserMutation,
+} from '@/features/ProfilePage/profileApi';
+import { useUpdateMentorMutation } from '@/features/MentorPage/mentorPageApi';
 
 type Props = {
   managedUser: ManagedUser;
@@ -30,21 +25,119 @@ const EditUserModal: React.FC<Props> = ({ onDismiss, managedUser }) => {
   const { t } = useTranslation('users');
   useEscape(() => onDismiss());
 
-  const { formData, updateField } = useUserForm();
+  const [editableUserData, setEditableUserData] = useState<
+    ApiManagedUser | undefined
+  >(undefined);
+  const [editableMentorData, setEditableMentorData] = useState<
+    ApiMentor | undefined
+  >(undefined);
+  const isMentorAccount =
+    managedUser?.role === 'mentor' && 'mentor' in managedUser;
 
-  //   const [updateAccount] = useUpdateAccountMutation();
-  //   const [updateUser] = useUpdateUserMutation();
-  //   const [updateMentor] = useUpdateMentorMutation();
+  useEffect(() => {
+    if (!isMentorAccount) return;
+    const editableMentor: ApiMentor = {
+      account_id: managedUser.account_id,
+      active: true,
+      birth_year: new Date().getFullYear() - managedUser.mentor.age,
+      communication_channels: managedUser.mentor.communicationChannels,
+      created: new Date(managedUser.mentor.created).toISOString(),
+      display_name: managedUser.nickname,
+      gender: managedUser.mentor.gender,
+      id: managedUser.mentor.mentorId,
+      is_vacationing: managedUser.mentor.isVacationing,
+      languages: managedUser.mentor.languages,
+      region: managedUser.mentor.region,
+      skills: managedUser.mentor.skills,
+      status_message: managedUser.mentor.statusMessage,
+      story: managedUser.mentor.story,
+      user_id: managedUser.mentor.buddyId,
+    };
+    setEditableMentorData(editableMentor);
+    console.log(editableMentor);
+  }, [managedUser]);
 
-  const handleSubmit = async () => {};
+  useEffect(() => {
+    const editable: ApiManagedUser = {
+      id: managedUser.id,
+      display_name: managedUser.nickname,
+      role: managedUser.role,
+      account_id: managedUser.account_id,
+      active: true,
+      created: new Date(managedUser.created).toISOString(),
+      updated: new Date().toISOString(),
+      user: managedUser.user
+        ? {
+            id: managedUser.user.id,
+            login_name: managedUser.user.loginName,
+            email: managedUser.user.email,
+            active: true,
+            role: managedUser.role,
+          }
+        : undefined,
+    };
+    setEditableUserData(editable);
+    console.log(editable);
+  }, [managedUser]);
+
+  const [updateAccount] = useUpdateAccountMutation();
+  const [updateUser] = useUpdateUserMutation();
+  const [updateMentor] = useUpdateMentorMutation();
+
+  const handleSubmit = async () => {
+    if (!editableUserData) return;
+    try {
+      if (editableUserData.user?.email) {
+        await updateAccount({
+          ...editableUserData.user,
+          email: editableUserData.user.email,
+        }).unwrap();
+      }
+      await updateUser({
+        id: managedUser.id,
+        account_id: managedUser.account_id,
+        display_name: editableUserData?.display_name,
+        role: managedUser.role,
+        active: true,
+      }).unwrap();
+      if (editableMentorData && isMentorAccount) {
+        const mentorPayload: ApiMentor = {
+          id: managedUser.mentor.mentorId,
+          account_id: managedUser.account_id,
+          display_name: editableUserData.display_name ?? managedUser.nickname,
+          active: true,
+          birth_year: editableMentorData.birth_year,
+          gender: editableMentorData.gender,
+          region: editableMentorData.region,
+          story: editableMentorData.story,
+          skills: editableMentorData.skills,
+          languages: editableMentorData.languages,
+          status_message: managedUser.mentor.statusMessage,
+          communication_channels: managedUser.mentor.communicationChannels,
+          is_vacationing: managedUser.mentor.isVacationing,
+          created: new Date(managedUser.mentor.created).toISOString(),
+          user_id: managedUser.mentor.buddyId,
+        };
+        console.log('mansku', managedUser);
+        console.log('editfieldit:', editableMentorData);
+        console.log('mentori tiedot: ', mentorPayload);
+        await updateMentor(mentorPayload).unwrap();
+      }
+      onDismiss();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <ModalBackground>
       <Modal title={t('editUser.title')} onDismiss={onDismiss}>
         <EditUserForm
-          formData={formData}
-          updateField={updateField}
           managedUser={managedUser}
+          editableUserData={editableUserData}
+          setEditableUserData={setEditableUserData}
+          editableMentorData={editableMentorData}
+          setEditableMentorData={setEditableMentorData}
         />
         <ButtonContainer>
           <TextButton size="normal" onClick={onDismiss} variant="light">
@@ -68,7 +161,7 @@ const ButtonContainer = styled.div`
   flex-direction: row;
   gap: 1rem;
   justify-content: space-between;
-  padding-bottom: 1.75rem;
+  padding: 2rem 0 1.75rem 0;
 `;
 
 export default EditUserModal;
