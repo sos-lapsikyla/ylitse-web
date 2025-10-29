@@ -106,7 +106,7 @@ const EditUserModal: React.FC<Props> = ({ onDismiss, managedUser }) => {
           id: managedUser.mentor.mentorId,
           display_name: editableUserData.display_name,
           active: true,
-          birth_year: editableMentorData.birth_year,
+          birth_year: Number(editableMentorData.birth_year),
           gender: editableMentorData.gender,
           region: editableMentorData.region,
           story: editableMentorData.story,

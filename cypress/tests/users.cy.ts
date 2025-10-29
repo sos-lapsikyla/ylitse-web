@@ -209,13 +209,18 @@ describe('Users page', () => {
     // Open edit user form
     cy.get('button[aria-label="edit"]').eq(2).click({ force: true });
     cy.contains('h2', /^Muokkaa käyttäjätiliä$/);
-
-    cy.fillInputByLabel('Julkinen käyttäjänimi *', NEW_DISPLAY_NAME);
+    cy.getByText(mentee.role).should('be.visible');
+    cy.getByText(mentee.loginName).should('be.visible');
+    cy.getByText(mentee.displayName).should('be.visible');
     cy.fillInputByLabel('Sähköpostiosoite', NEW_EMAIL);
+    cy.contains('Julkiset tiedot').scrollIntoView();
+    cy.fillInputByLabel('Julkinen käyttäjänimi *', NEW_DISPLAY_NAME);
     // Button should now be enabled
     cy.getByText('Tallenna', 'button').should('not.be.disabled');
+    cy.getByText('Tallenna', 'button').click();
     // Verify success and navigation
     cy.location('pathname').should('eq', '/users');
+    cy.getByText('Profiili päivitetty onnistuneesti').should('be.visible');
     cy.getByText(NEW_DISPLAY_NAME, 'h2').should('be.visible');
   });
 });
