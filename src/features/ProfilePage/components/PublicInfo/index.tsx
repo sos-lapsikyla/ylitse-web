@@ -29,6 +29,7 @@ import Text from '@/components/Text';
 import { TextButton } from '@/components/Buttons';
 import { selectAllSkillOptions } from '@/features/MentorPage/selectors';
 import ChipsEditor from '@/components/ChipsEditor';
+import toast from 'react-hot-toast';
 
 type Props = {
   isMobile?: boolean;
@@ -69,10 +70,16 @@ const PublicInfo = ({ isMobile = false }: Props) => {
           display_name: localData.display_name,
         }).unwrap();
       }
-      console.log('localData näyttää tälät: ', localData);
+      console.log('localData näyttää tältä: ', localData);
       await updateMentor(localData).unwrap();
       setIsDirty(false);
+      toast.success(t('notification.success.update'), {
+        id: 'update-success',
+      });
     } catch (err) {
+      toast.error(t('notification.failure.update'), {
+        id: 'update-failure',
+      });
       return;
     }
   };

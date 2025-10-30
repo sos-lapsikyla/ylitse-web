@@ -15,6 +15,7 @@ import {
   useUpdateUserMutation,
 } from '@/features/ProfilePage/profileApi';
 import { useUpdateMentorMutation } from '@/features/MentorPage/mentorPageApi';
+import toast from 'react-hot-toast';
 
 type Props = {
   managedUser: ManagedUser;
@@ -41,7 +42,7 @@ const EditUserModal: React.FC<Props> = ({ onDismiss, managedUser }) => {
       active: true,
       birth_year: new Date().getFullYear() - managedUser.mentor.age,
       communication_channels: managedUser.mentor.communicationChannels,
-      created: new Date(managedUser.mentor.created).toISOString(),
+      created: managedUser.mentor.created,
       display_name: managedUser.nickname,
       gender: managedUser.mentor.gender,
       id: managedUser.mentor.mentorId,
@@ -100,10 +101,11 @@ const EditUserModal: React.FC<Props> = ({ onDismiss, managedUser }) => {
         role: managedUser.role,
         active: true,
       }).unwrap();
+      toast.success(t('notification.success.edit'), {
+        id: 'update-success',
+      });
       if (editableMentorData && isMentorAccount) {
-        const mentorPayload = {
-          ...editableMentorData,
-          id: managedUser.mentor.mentorId,
+        const mentorPayload: ApiMentor = {
           display_name: editableUserData.display_name,
           active: true,
           birth_year: Number(editableMentorData.birth_year),
@@ -112,15 +114,31 @@ const EditUserModal: React.FC<Props> = ({ onDismiss, managedUser }) => {
           story: editableMentorData.story,
           skills: editableMentorData.skills,
           languages: editableMentorData.languages,
+          account_id: editableMentorData.account_id,
+          communication_channels: editableMentorData.communication_channels,
+          created: editableMentorData.created,
+          id: editableMentorData.id,
+          is_vacationing: editableMentorData.is_vacationing,
+          status_message: editableMentorData.status_message,
+          user_id: editableMentorData.user_id,
         };
         console.log('mansku', managedUser);
         console.log('editfieldit:', editableMentorData);
         console.log('mentori tiedot: ', mentorPayload);
         await updateMentor(mentorPayload).unwrap();
+        toast.success(t('notification.success.mentorEdit'), {
+          id: 'update-success',
+        });
       }
       onDismiss();
     } catch (error) {
       console.log(error);
+      toast.success(t('notification.failure.edit'), {
+        id: 'update-failure',
+      });
+      toast.success(t('notification.success.mentorEdit'), {
+        id: 'update-failure',
+      });
     }
   };
 

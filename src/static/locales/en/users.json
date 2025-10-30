@@ -157,16 +157,20 @@
     "parsingUsersError": "Parsing failed",
     "fetchingUsersError": "Fetching failed",
     "success": {
-      "delete": "Deleting account was successful",
-      "accountCreate": "Creating account was successful",
-      "userCreate": "Creating user was successful",
-      "mentorCreate": "Creating mentor was successful"
+      "delete": "Deleting account was successful.",
+      "accountCreate": "Creating account was successful.",
+      "userCreate": "Creating user was successful.",
+      "mentorCreate": "Creating mentor was successful.",
+      "edit": "Updating user was successfu.l",
+      "mentorEdit": "Updating mentor was successful."
     },
     "failure": {
-      "delete": "Deleting account failed",
-      "accountCreate": "Creating account failed",
-      "userCreate": "Creating user failed",
-      "mentorCreate": "Creating mentor failed"
+      "delete": "Deleting account failed.",
+      "accountCreate": "Creating account failed.",
+      "userCreate": "Creating user failed.",
+      "mentorCreate": "Creating mentor failed.",
+      "edit": "Updating user failed.",
+      "mentorEdit": "Updating mentor failed."
     }
   },
   "role": {

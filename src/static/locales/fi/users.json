@@ -160,13 +160,17 @@
       "delete": "Käyttäjän poistaminen onnistui.",
       "accountCreate": "Tilin luominen onnistui.",
       "userCreate": "Käyttäjän luominen onnistui.",
-      "mentorCreate": "Mentorin luominen onnistui"
+      "mentorCreate": "Mentorin luominen onnistui",
+      "edit": "Käyttäjän päivittäminen onnistui.",
+      "mentorEdit": "Mentorin päivittäminen onnistui."
     },
     "failure": {
       "delete": "Käyttäjän poistaminen epäonnistui.",
       "accountCreate": "Tilin luominen epäonnistui.",
       "userCreate": "Käyttäjän luominen epäonnistui.",
-      "mentorCreate": "Mentorin luominen epäonnistui"
+      "mentorCreate": "Mentorin luominen epäonnistui",
+      "edit": "Käyttäjän päivittäminen epäonnistui.",
+      "mentorEdit": "Mentorin päivittäminen epäonnistui."
     }
   },
 
