@@ -70,7 +70,6 @@ const PublicInfo = ({ isMobile = false }: Props) => {
           display_name: localData.display_name,
         }).unwrap();
       }
-      console.log('localData näyttää tältä: ', localData);
       await updateMentor(localData).unwrap();
       setIsDirty(false);
       toast.success(t('notification.success.update'), {
