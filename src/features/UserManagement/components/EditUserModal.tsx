@@ -55,7 +55,6 @@ const EditUserModal: React.FC<Props> = ({ onDismiss, managedUser }) => {
       user_id: managedUser.mentor.buddyId,
     };
     setEditableMentorData(editableMentor);
-    console.log('set editable mentor data', editableMentor);
   }, [managedUser]);
 
   useEffect(() => {
@@ -78,7 +77,6 @@ const EditUserModal: React.FC<Props> = ({ onDismiss, managedUser }) => {
         : undefined,
     };
     setEditableUserData(editable);
-    console.log('set editable user', editable);
   }, [managedUser]);
 
   const [updateAccount] = useUpdateAccountMutation();
@@ -122,9 +120,6 @@ const EditUserModal: React.FC<Props> = ({ onDismiss, managedUser }) => {
           status_message: editableMentorData.status_message,
           user_id: editableMentorData.user_id,
         };
-        console.log('mansku', managedUser);
-        console.log('editfieldit:', editableMentorData);
-        console.log('mentori tiedot: ', mentorPayload);
         await updateMentor(mentorPayload).unwrap();
         toast.success(t('notification.success.mentorEdit'), {
           id: 'update-success',

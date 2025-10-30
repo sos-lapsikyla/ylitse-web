@@ -192,7 +192,6 @@ describe('mentor profile', () => {
     cy.getByText('Tallenna', 'button').should('be.disabled');
   });
 
-  //skill-problem: can't populate allSkills so no skills are
   it('skills held by another mentor can be found and added to profile', () => {
     // register a second mentor
     const secondMentor = accounts.mentors[1];

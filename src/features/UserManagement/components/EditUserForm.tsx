@@ -50,7 +50,6 @@ const UserForm: React.FC<Props> = ({
   const shouldShowMentorFields = isMentorAccount;
 
   // validate form
-  // Validation functions adapted for editable data
   const getEmailError = (): string | null => {
     const email = editableUserData?.user?.email?.trim();
     if (!email) return null;
