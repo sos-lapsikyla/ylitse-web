@@ -20,7 +20,10 @@ export const MentorCard = ({ mentor, onDismiss }: Props) => {
   const { isTabletNarrow } = useGetLayoutMode();
   const currentUserId = useAppSelector(selectUserId);
 
-  const isLessThan90DaysOld = getIsOlderThanDaysAgo(90, mentor.created);
+  const isLessThan90DaysOld = getIsOlderThanDaysAgo(
+    90,
+    new Date(mentor.created).getTime(),
+  );
 
   useEscape(() => onDismiss());
 

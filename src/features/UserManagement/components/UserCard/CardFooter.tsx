@@ -12,9 +12,10 @@ import { ManagedUser } from '../../models';
 
 type Props = {
   managedUser: ManagedUser;
+  onOpenEditModal: (user: ManagedUser) => void;
 };
 
-const CardFooter: React.FC<Props> = ({ managedUser }) => {
+const CardFooter: React.FC<Props> = ({ managedUser, onOpenEditModal }) => {
   const { t } = useTranslation('users');
   const [deleteManagedUser] = useDeleteManagedUserMutation();
   const confirmDelete = useConfirmDelete();
@@ -33,7 +34,7 @@ const CardFooter: React.FC<Props> = ({ managedUser }) => {
         <IconButton
           variant="edit"
           sizeInPx={ICON_SIZES.LARGE}
-          onClick={() => console.log('TODO')}
+          onClick={() => onOpenEditModal(managedUser)}
         />
         {isMe ? (
           <IconButton

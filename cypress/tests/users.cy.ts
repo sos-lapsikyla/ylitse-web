@@ -7,6 +7,7 @@ import {
   NEW_PASSWORD,
   NEW_AREA,
   NEW_STORY,
+  NEW_EMAIL,
 } from 'cypress/fixtures/inputs';
 
 const SUPERADMIN_USER = Cypress.env('apiUser') || 'admin';
@@ -190,6 +191,73 @@ describe('Users page', () => {
 
     // Verify success and navigation
     cy.location('pathname').should('eq', '/users');
+    cy.getByText(NEW_DISPLAY_NAME, 'h2').should('be.visible');
+  });
+
+  it('can edit mentee', () => {
+    cy.loginUser(
+      SUPERADMIN_USER,
+      SUPERADMIN_PASS,
+      generateTotp(SUPERADMIN_MFA).token,
+    );
+
+    // Go to users page
+    cy.get('[href="/users"]').click();
+    cy.location('pathname').should('eq', '/users');
+    cy.contains('Käyttäjät').should('be.visible');
+
+    // Open edit user form
+    cy.get('button[aria-label="edit"]').eq(2).click({ force: true });
+    cy.contains('h2', /^Muokkaa käyttäjätiliä$/);
+    cy.getByText(mentee.role).should('be.visible');
+    cy.getByText(mentee.loginName).should('be.visible');
+    cy.getByText(mentee.displayName).should('be.visible');
+    cy.fillInputByLabel('Sähköpostiosoite', NEW_EMAIL);
+    cy.contains('Julkiset tiedot').scrollIntoView();
+    cy.fillInputByLabel('Julkinen käyttäjänimi *', NEW_DISPLAY_NAME);
+    // Button should now be enabled
+    cy.getByText('Tallenna', 'button').should('not.be.disabled');
+    cy.getByText('Tallenna', 'button').click();
+    // Verify success and navigation
+    cy.location('pathname').should('eq', '/users');
+    cy.getByText('Käyttäjän päivittäminen onnistui').should('be.visible');
+    cy.getByText(NEW_DISPLAY_NAME, 'h2').should('be.visible');
+  });
+
+  it('can edit mentor', () => {
+    cy.loginUser(
+      SUPERADMIN_USER,
+      SUPERADMIN_PASS,
+      generateTotp(SUPERADMIN_MFA).token,
+    );
+
+    // Go to users page
+    cy.get('[href="/users"]').click();
+    cy.location('pathname').should('eq', '/users');
+    cy.contains('Käyttäjät').should('be.visible');
+
+    // Open edit user form
+    cy.get('button[aria-label="edit"]').eq(1).click({ force: true });
+    cy.contains('h2', /^Muokkaa käyttäjätiliä$/);
+    cy.getByText(mentor.role).should('be.visible');
+    cy.getByText(mentor.loginName).should('be.visible');
+    cy.getByText(mentor.displayName).should('be.visible');
+    cy.fillInputByLabel('Sähköpostiosoite', NEW_EMAIL);
+    cy.contains('Julkiset tiedot').scrollIntoView();
+    cy.fillInputByLabel('Julkinen käyttäjänimi *', NEW_DISPLAY_NAME);
+    cy.contains('label', 'Syntymävuosi *').should('exist').should('be.visible');
+    cy.fillInputByLabel('Syntymävuosi *', NEW_BIRTH_YEAR);
+    cy.contains('div', 'Sukupuoli *').parent().find('button').click();
+    cy.get('#dropdown-menu').contains('Muu').click();
+    cy.contains('label', 'Alue').scrollIntoView().should('be.visible');
+    cy.fillInputByLabel('Alue', NEW_AREA);
+    cy.fillInputByLabel('Tarina', NEW_STORY);
+    // Button should now be enabled
+    cy.getByText('Tallenna', 'button').should('not.be.disabled');
+    cy.getByText('Tallenna', 'button').click();
+    // Verify success and navigation
+    cy.location('pathname').should('eq', '/users');
+    cy.getByText('Mentorin päivittäminen onnistui.').should('be.visible');
     cy.getByText(NEW_DISPLAY_NAME, 'h2').should('be.visible');
   });
 });

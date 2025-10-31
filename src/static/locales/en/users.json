@@ -13,6 +13,76 @@
     "description": "The deletion of the user cannot be undone. All conversations this user has participated in will be deleted.",
     "confirm": "Delete"
   },
+  "editUser": {
+    "title": "Edit User",
+    "accountInfo": {
+      "title": "Account info",
+      "caption": "Fields marked with star * are mandatory.",
+      "role": {
+        "title": "Account type *",
+        "choose": "Choose role",
+        "roleOptions": {
+          "admin": "Admin",
+          "mentee": "Mentee",
+          "mentor": "Mentor"
+        }
+      },
+      "username": {
+        "label": "Username *",
+        "tooShortError": "Username is too short",
+        "tooLongError": "Username is too long"
+      },
+      "password": {
+        "label": "Password *",
+        "passwordRepeat": "Repeat password *",
+        "passwordTooltip": "Password has to be at least 8 characters long",
+        "tooShortError": "Password is too short",
+        "differentPasswords": "Passwords don't match"
+      },
+      "email": "Email",
+      "invalidEmail": "Email is invalid",
+      "visibility": "Visibility",
+      "hide": "Hide mentor from other users"
+    },
+    "publicInfo": {
+      "title": "Public Info",
+      "displayName": {
+        "label": "Public display name *",
+        "tooLongError": "Display name is too long",
+        "tooltip": "Display name has to be at least 2 characters long",
+        "tooShortError": "Display name is too short"
+      },
+      "birthYear": {
+        "invalidError": "Birth year is invalid",
+        "label": "Year of birth",
+        "labelMentor": "Year of birth *"
+      },
+      "gender": {
+        "label": "Gender",
+        "labelMentor": "Gender *",
+        "choose": "Choose",
+        "options": {
+          "female": "Female",
+          "male": "Male",
+          "other": "Other"
+        }
+      },
+      "area": {
+        "label": "Area",
+        "tooLongError": "Area name is too long"
+      },
+      "story": {
+        "label": "Story",
+        "tooLongError": "Story is too long"
+      },
+      "languages": "Languages",
+      "newLanguage": "Add language",
+      "skills": "Skills",
+      "newSkill": "Add new skill"
+    },
+    "cancel": "Cancel",
+    "save": "Save"
+  },
   "newUser": {
     "title": "New User",
     "accountInfo": {
@@ -87,16 +157,20 @@
     "parsingUsersError": "Parsing failed",
     "fetchingUsersError": "Fetching failed",
     "success": {
-      "delete": "Deleting account was successful",
-      "accountCreate": "Creating account was successful",
-      "userCreate": "Creating user was successful",
-      "mentorCreate": "Creating mentor was successful"
+      "delete": "Deleting account was successful.",
+      "accountCreate": "Creating account was successful.",
+      "userCreate": "Creating user was successful.",
+      "mentorCreate": "Creating mentor was successful.",
+      "edit": "Updating user was successfu.l",
+      "mentorEdit": "Updating mentor was successful."
     },
     "failure": {
-      "delete": "Deleting account failed",
-      "accountCreate": "Creating account failed",
-      "userCreate": "Creating user failed",
-      "mentorCreate": "Creating mentor failed"
+      "delete": "Deleting account failed.",
+      "accountCreate": "Creating account failed.",
+      "userCreate": "Creating user failed.",
+      "mentorCreate": "Creating mentor failed.",
+      "edit": "Updating user failed.",
+      "mentorEdit": "Updating mentor failed."
     }
   },
   "role": {

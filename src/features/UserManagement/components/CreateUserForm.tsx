@@ -1,6 +1,5 @@
 import Text from '@/components/Text';
 import LabeledInput from '@/components/LabeledInput';
-import SkillsEditor from './SkillsEditor';
 import { DropdownMenu } from '@/components/Dropdown';
 import styled from 'styled-components';
 import { UserFormData } from './useUserForm';
@@ -14,7 +13,10 @@ import {
   validateBirthYear,
   validateEmail,
 } from '@/features/ProfilePage/validators';
-import LanguagesEditor from './LanguagesEditor';
+import { Languages } from '@/components/constants';
+import { useAppSelector } from '@/store';
+import { selectAllSkillOptions } from '@/features/MentorPage/selectors';
+import ChipsEditor from '@/components/ChipsEditor';
 
 type Props = {
   formData: UserFormData;
@@ -37,7 +39,10 @@ const UserForm: React.FC<Props> = ({ formData, updateField }) => {
     { text: t('newUser.publicInfo.gender.options.other'), value: 'other' },
   ];
 
-  const shouldFieldsBeHidden = formData.role !== 'mentor';
+  const allLanguages = Languages.map(lang => lang.name);
+  const allSkills = useAppSelector(selectAllSkillOptions());
+
+  const shouldShowMentorFields = formData.role !== 'mentor';
 
   // validate form
 
@@ -180,18 +185,14 @@ const UserForm: React.FC<Props> = ({ formData, updateField }) => {
           value={formData.displayName}
           onChange={value => updateField('displayName', value)}
         />
-        <LabeledInput
-          error={getBirthYearError()}
-          label={
-            formData.role === 'mentor'
-              ? t('newUser.publicInfo.birthYear.labelMentor')
-              : t('newUser.publicInfo.birthYear.label')
-          }
-          value={String(formData.birthYear)}
-          onChange={value => updateField('birthYear', value)}
-        />
-        {!shouldFieldsBeHidden && (
+        {!shouldShowMentorFields && (
           <>
+            <LabeledInput
+              error={getBirthYearError()}
+              label={t('newUser.publicInfo.birthYear.labelMentor')}
+              value={String(formData.birthYear)}
+              onChange={value => updateField('birthYear', value)}
+            />
             <DropdownMenu
               options={genderOptions.map(o => o.text)}
               placeholder={t('newUser.publicInfo.gender.choose')}
@@ -225,14 +226,20 @@ const UserForm: React.FC<Props> = ({ formData, updateField }) => {
               value={formData.story}
               onChange={value => updateField('story', value)}
             />
-            <LanguagesEditor
-              updateLanguages={languages => updateField('languages', languages)}
-              languages={formData.languages}
-            />
-            <SkillsEditor
-              updateSkills={skills => updateField('skills', skills)}
-              skills={formData.skills}
-            />
+            <ChipsEditor
+              updateChips={skills => updateField('skills', skills)}
+              chips={formData.skills}
+              allOptions={allSkills}
+              placeholder={t('newUser.publicInfo.newSkill')}
+              label={t('newUser.publicInfo.skills')}
+            ></ChipsEditor>
+            <ChipsEditor
+              updateChips={languages => updateField('languages', languages)}
+              chips={formData.languages}
+              allOptions={allLanguages}
+              placeholder={t('newUser.publicInfo.newLanguage')}
+              label={t('newUser.publicInfo.languages')}
+            ></ChipsEditor>
           </>
         )}
       </PublicInfo>
@@ -247,7 +254,8 @@ const CaptionText = styled(Text)`
   margin: -1rem 0 1rem 0;
 `;
 const PublicInfo = styled.div`
-  padding: 0 0 6rem 0;
+  margin: 0 0 4rem 0;
+  padding: 0 0 -1rem 0;
 `;
 const TitleText = styled(Text)`
   margin: 1rem 0;

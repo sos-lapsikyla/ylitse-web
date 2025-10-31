@@ -14,7 +14,10 @@ import {
 import { selectMentor, selectUser } from '@/features/Authentication/selectors';
 import { useAppSelector } from '@/store';
 import { useConfirmDirtyLeave } from '@/features/Confirmation/useConfirmDirtyLeave';
-import { useUpdateMentorMutation } from '@/features/MentorPage/mentorPageApi';
+import {
+  useGetMentorsQuery,
+  useUpdateMentorMutation,
+} from '@/features/MentorPage/mentorPageApi';
 import { useUpdateUserMutation } from '@/features/ProfilePage/profileApi';
 
 import styled, { css } from 'styled-components';
@@ -22,9 +25,11 @@ import { palette } from '@/components/constants';
 import { ButtonRow } from '..';
 import Columns from './Columns';
 import LabeledInput from '@/components/LabeledInput';
-import SkillsEditor from '../SkillsEditor';
 import Text from '@/components/Text';
 import { TextButton } from '@/components/Buttons';
+import { selectAllSkillOptions } from '@/features/MentorPage/selectors';
+import ChipsEditor from '@/components/ChipsEditor';
+import toast from 'react-hot-toast';
 
 type Props = {
   isMobile?: boolean;
@@ -37,6 +42,8 @@ const PublicInfo = ({ isMobile = false }: Props) => {
   const [updateMentor, { isLoading: isLoadingMentor }] =
     useUpdateMentorMutation();
   const [updateUser, { isLoading: isLoadingUser }] = useUpdateUserMutation();
+  useGetMentorsQuery();
+  const allSkills = useAppSelector(selectAllSkillOptions());
 
   const [localData, setLocalData] = useState<ApiMentor>(mentor);
   const [isDirty, setIsDirty] = useState(false);
@@ -65,7 +72,13 @@ const PublicInfo = ({ isMobile = false }: Props) => {
       }
       await updateMentor(localData).unwrap();
       setIsDirty(false);
+      toast.success(t('notification.success.update'), {
+        id: 'update-success',
+      });
     } catch (err) {
+      toast.error(t('notification.failure.update'), {
+        id: 'update-failure',
+      });
       return;
     }
   };
@@ -164,9 +177,12 @@ const PublicInfo = ({ isMobile = false }: Props) => {
           value={localData.story}
           variant="textarea"
         />
-        <SkillsEditor
-          updateSkills={skills => updateMentorData('skills', skills)}
-          skills={localData.skills}
+        <ChipsEditor
+          updateChips={skills => updateMentorData('skills', skills)}
+          chips={localData.skills}
+          allOptions={allSkills}
+          placeholder={t('public.mentor.addSkill')}
+          label={t('public.mentor.skills')}
         />
       </Form>
     </Container>

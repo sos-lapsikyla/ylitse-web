@@ -11,6 +11,7 @@ type Props = {
   selectOption: (option: string) => void;
   label: string;
   defaultOption?: string;
+  selected?: string;
 };
 
 export const DropdownMenu = ({

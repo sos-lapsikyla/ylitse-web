@@ -29,7 +29,7 @@ export const selectNewestMentors = (amount: number) =>
   createSelector(selectMentors, mentorsQuery => {
     const mentors = mentorsQuery.data ?? {};
     const sortedMentors = Object.values(mentors).sort(
-      (a, b) => b.created - a.created,
+      (a, b) => new Date(b.created).getTime() - new Date(a.created).getTime(),
     );
     return sortedMentors.slice(0, amount);
   });

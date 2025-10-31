@@ -29,7 +29,10 @@ const ListCard: React.FC<Props> = ({
   const { isMobile: isActualMobile } = useGetLayoutMode();
   const isMobile = isForcedMobile || isActualMobile;
   const currentUserId = useAppSelector(selectUserId);
-  const isLessThan90DaysOld = getIsOlderThanDaysAgo(90, mentor.created);
+  const isLessThan90DaysOld = getIsOlderThanDaysAgo(
+    90,
+    new Date(mentor.created).getTime(),
+  );
   const areLanguagesDisplayed = mentor.languages.length > 0;
 
   return (

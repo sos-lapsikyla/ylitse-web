@@ -196,6 +196,10 @@ describe('mentor profile', () => {
     // register a second mentor
     const secondMentor = accounts.mentors[1];
     api.signUpMentor(secondMentor);
+    cy.intercept('GET', '/api/skills', {
+      statusCode: 200,
+      body: [...mentor.skills, ...secondMentor.skills],
+    }).as('getSkills');
 
     const skillSearch = cy.get('input[placeholder*="Lisää uusi aihe"]');
     // only skills held by other mentors should be found in the dropdown
@@ -203,7 +207,7 @@ describe('mentor profile', () => {
       cy.wait(200);
       // skill should be found in unfiltered dropdown
       skillSearch.focus();
-      cy.getByText(skill, '#skill-dropdown p').should('be.visible');
+      cy.get('#skill-dropdown p').contains(skill).should('be.visible');
 
       // skill should still be found after typing it in the search bar
       skillSearch.clear().type(skill);

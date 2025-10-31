@@ -45,7 +45,7 @@ export const toMentor = ({
   age: new Date().getFullYear() - birth_year,
   buddyId: user_id,
   communicationChannels: communication_channels,
-  created: new Date(created).getTime(),
+  created,
   gender,
   isVacationing: is_vacationing,
   languages,
