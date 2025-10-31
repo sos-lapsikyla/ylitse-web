@@ -8,7 +8,6 @@ export const selectManagedUsers =
 export const selectAccounts =
   managedUsersApi.endpoints.getManagedAccounts.select();
 
-// lisää selectUsers
 export const selectAllManagedUsers = () =>
   createSelector(
     selectManagedUsers,

@@ -14,10 +14,7 @@ import {
 import { selectMentor, selectUser } from '@/features/Authentication/selectors';
 import { useAppSelector } from '@/store';
 import { useConfirmDirtyLeave } from '@/features/Confirmation/useConfirmDirtyLeave';
-import {
-  useGetMentorsQuery,
-  useUpdateMentorMutation,
-} from '@/features/MentorPage/mentorPageApi';
+import { useUpdateMentorMutation } from '@/features/MentorPage/mentorPageApi';
 import { useUpdateUserMutation } from '@/features/ProfilePage/profileApi';
 
 import styled, { css } from 'styled-components';
@@ -27,9 +24,10 @@ import Columns from './Columns';
 import LabeledInput from '@/components/LabeledInput';
 import Text from '@/components/Text';
 import { TextButton } from '@/components/Buttons';
-import { selectAllSkillOptions } from '@/features/MentorPage/selectors';
 import ChipsEditor from '@/components/ChipsEditor';
 import toast from 'react-hot-toast';
+import { useGetSkillsQuery } from '@/features/Skills/skillsApi';
+import { selectSkillNames } from '@/features/Skills/selectors';
 
 type Props = {
   isMobile?: boolean;
@@ -42,8 +40,8 @@ const PublicInfo = ({ isMobile = false }: Props) => {
   const [updateMentor, { isLoading: isLoadingMentor }] =
     useUpdateMentorMutation();
   const [updateUser, { isLoading: isLoadingUser }] = useUpdateUserMutation();
-  useGetMentorsQuery();
-  const allSkills = useAppSelector(selectAllSkillOptions());
+  useGetSkillsQuery();
+  const allSkills = useAppSelector(selectSkillNames());
 
   const [localData, setLocalData] = useState<ApiMentor>(mentor);
   const [isDirty, setIsDirty] = useState(false);

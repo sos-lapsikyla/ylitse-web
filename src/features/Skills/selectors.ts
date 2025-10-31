@@ -8,3 +8,8 @@ export const selectAllSkills = () =>
     const skillsMap = skillsQuery.data ?? {};
     return Object.values(skillsMap);
   });
+
+export const selectSkillNames = () =>
+  createSelector(selectAllSkills(), skills =>
+    Object.values(skills).map(skill => skill.name),
+  );

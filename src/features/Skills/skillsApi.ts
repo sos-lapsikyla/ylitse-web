@@ -1,7 +1,8 @@
+import toast from 'react-hot-toast';
+import { t } from 'i18next';
 import { baseApi } from '@/baseApi';
 import { parseAndTransformTo } from '@/utils/http';
 import { skillListResponseType, Skills, toSkillMap } from './models';
-import toast from 'react-hot-toast';
 
 export const skillsApi = baseApi.injectEndpoints({
   endpoints: builder => ({
@@ -24,7 +25,26 @@ export const skillsApi = baseApi.injectEndpoints({
         }
       },
     }),
+    deleteSkill: builder.mutation<unknown, string>({
+      query: skillId => ({
+        url: `skills/${skillId}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['skills'],
+      async onQueryStarted(_, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          toast.success(t('skills:notification.success.delete'), {
+            id: 'skill-delete-success',
+          });
+        } catch {
+          toast.error(t('skills:notification.failure.delete'), {
+            id: 'skill-delete-success',
+          });
+        }
+      },
+    }),
   }),
 });
 
-export const { useGetSkillsQuery } = skillsApi;
+export const { useGetSkillsQuery, useDeleteSkillMutation } = skillsApi;

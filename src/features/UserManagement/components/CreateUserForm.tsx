@@ -15,8 +15,9 @@ import {
 } from '@/features/ProfilePage/validators';
 import { Languages } from '@/components/constants';
 import { useAppSelector } from '@/store';
-import { selectAllSkillOptions } from '@/features/MentorPage/selectors';
 import ChipsEditor from '@/components/ChipsEditor';
+import { selectSkillNames } from '@/features/Skills/selectors';
+import { useGetSkillsQuery } from '@/features/Skills/skillsApi';
 
 type Props = {
   formData: UserFormData;
@@ -39,8 +40,9 @@ const UserForm: React.FC<Props> = ({ formData, updateField }) => {
     { text: t('newUser.publicInfo.gender.options.other'), value: 'other' },
   ];
 
+  useGetSkillsQuery();
   const allLanguages = Languages.map(lang => lang.name);
-  const allSkills = useAppSelector(selectAllSkillOptions());
+  const allSkills = useAppSelector(selectSkillNames());
 
   const shouldShowMentorFields = formData.role !== 'mentor';
 
