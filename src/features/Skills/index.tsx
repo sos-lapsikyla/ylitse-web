@@ -18,7 +18,6 @@ const SkillsPage = () => {
   const isLoading = isSkillsQueryLoading;
 
   const allSkills = useAppSelector(selectAllSkills());
-  console.log(allSkills);
 
   const PageContent = isLoading ? (
     <Spinner variant="large" />

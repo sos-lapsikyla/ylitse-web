@@ -30,7 +30,7 @@ export const skillsApi = baseApi.injectEndpoints({
         url: `skills/${skillId}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['skills'],
+      invalidatesTags: ['skills', 'mentors'],
       async onQueryStarted(_, { queryFulfilled }) {
         try {
           await queryFulfilled;

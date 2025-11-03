@@ -10,7 +10,7 @@
     },
     "delete": {
       "title": "Delete topic",
-      "description": "Deleting topic can not be undone. Topic will be removed from all mentors using it.",
+      "description": "Deleting topic can not be undone.",
       "cancel": "Cancel",
       "confirm": "Delete"
     }

@@ -10,7 +10,7 @@
     },
     "delete": {
       "title": "Poista aihe",
-      "description": "Aiheen poistamista ei voi tämän jälkeen perua. Aihe poistetaan kaikilta sitä käyttäviltä mentoreilta.",
+      "description": "Aiheen poistamista ei voi tämän jälkeen perua.",
       "cancel": "Peruuta",
       "confirm": "Poista"
     }

@@ -46,7 +46,8 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  padding: 2rem;
+  justify-content: center;
+  padding: 0 2rem 6rem 2rem;
 `;
 
 const Close = styled.span`
