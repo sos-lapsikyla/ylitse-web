@@ -30,3 +30,15 @@ export const toSkillMap = ({ resources }: SkillsResponse): Skills =>
     acc[skill.id] = skill;
     return acc;
   }, {});
+
+export type NewSkillPayload = {
+  name: string;
+};
+
+export type NewSkillResponse = {
+  id: string;
+  name: string;
+  active: boolean;
+  created: string;
+  updated: string;
+};

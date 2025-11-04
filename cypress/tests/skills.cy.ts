@@ -53,4 +53,11 @@ describe('Skills', () => {
     cy.getByText('Aiheen poistaminen onnistui.').should('be.visible');
     cy.reload();
   });
+
+  it('can add a new skill', () => {
+    cy.get('[href="/topics"]').click();
+    //  cy.wait('@getSkills');
+    cy.location('pathname').should('eq', '/topics');
+    cy.getByText('Lisää uusi aihe').should('be.visible');
+  });
 });

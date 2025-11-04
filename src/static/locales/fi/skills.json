@@ -1,11 +1,17 @@
 {
   "title": "Aiheet",
   "description": "Täällä voit hallinnoida mentoreiden aiheita. Voit hakea hakukentässä tiettyjä aiheita rajaamalla niitä hakusanalla tai muutamalla alkukirjaimella. Voit myös lisätä uusia aiheita.",
+  "newSkill": {
+    "title": "Lisää uusi aihe",
+    "close": "Sulje"
+  },
   "notification": {
     "success": {
-      "delete": "Aiheen poistaminen onnistui."
+      "delete": "Aiheen poistaminen onnistui.",
+      "add": "Aiheen lisääminen onnistui."
     },
     "failure": {
+      "add": "Aiheen lisääminen epäonnistui.",
       "delete": "Aiheen poistaminen epäonnistui."
     },
     "delete": {

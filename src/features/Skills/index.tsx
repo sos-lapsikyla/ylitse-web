@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
@@ -10,12 +11,15 @@ import Skills from './Skills';
 import { useGetSkillsQuery } from './skillsApi';
 import { selectAllSkills } from './selectors';
 import { useAppSelector } from '@/store';
+import { TextButton } from '@/components/Buttons';
+import NewSkill from './NewSkill';
 
 const SkillsPage = () => {
   const { t } = useTranslation('skills');
   const { isMobile } = useGetLayoutMode();
   const { isLoading: isSkillsQueryLoading } = useGetSkillsQuery();
   const isLoading = isSkillsQueryLoading;
+  const [isNewSkillOpen, setIsNewSkillOpen] = useState(false);
 
   const allSkills = useAppSelector(selectAllSkills());
 
@@ -29,8 +33,20 @@ const SkillsPage = () => {
         </TitleWrapper>
       </PageHeader>
       <PageContainer>
-        <TopContainer>
-          <Text variant="p">{t('description')}</Text>
+        <TopContainer $isMobile={isMobile}>
+          <DescriptionWrapper>
+            <Text variant="p">{t('description')}</Text>
+          </DescriptionWrapper>
+          <ButtonContainer $isMobile={isMobile}>
+            {isNewSkillOpen && <NewSkill />}
+            <TextButton
+              leftIcon={!isNewSkillOpen ? 'add' : undefined}
+              size="normal"
+              onClick={() => setIsNewSkillOpen(!isNewSkillOpen)}
+            >
+              {isNewSkillOpen ? t('newSkill.close') : t('newSkill.title')}
+            </TextButton>
+          </ButtonContainer>
         </TopContainer>
         <Skills skills={allSkills}></Skills>
       </PageContainer>
@@ -75,6 +91,7 @@ const PageHeader = styled.div<{ $isMobile: boolean }>`
           background-color: ${palette.white};
           flex-direction: column;
           gap: 2rem;
+          margin-bottom: -3rem;
           margin-top: -3rem;
           padding: 2rem 6rem;
         `
@@ -107,8 +124,41 @@ const PageContainer = styled.div`
   width: 100%;
 `;
 
-const TopContainer = styled.div`
-  padding: 2rem;
+const TopContainer = styled.div<{ $isMobile: boolean }>`
+  align-items: center;
+  display: flex;
+  gap: 2rem;
+  padding: 2rem 4rem;
+
+  ${({ $isMobile }) =>
+    $isMobile
+      ? css`
+          flex-direction: column;
+          padding: -6rem 0;
+        `
+      : css`
+          flex-direction: row;
+          justify-content: space-between;
+        `}
+`;
+
+const DescriptionWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const ButtonContainer = styled.div<{ $isMobile: boolean }>`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  ${({ $isMobile }) =>
+    $isMobile
+      ? css`
+          width: auto;
+        `
+      : css`
+          width: 30%;
+        `}
 `;
 
 export default SkillsPage;
