@@ -51,5 +51,6 @@ describe('Skills', () => {
     cy.getByText('Poista', 'button').click();
     cy.wait('@getSkills');
     cy.getByText('Aiheen poistaminen onnistui.').should('be.visible');
+    cy.reload();
   });
 });

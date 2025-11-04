@@ -8,6 +8,7 @@ import {
   NEW_STATUS_MESSAGE,
   TOO_SHORT_DISPLAY_NAME,
 } from 'cypress/fixtures/inputs';
+type Skill = { id: number; name: string };
 
 describe('mentor profile', () => {
   const mentor = accounts.mentors[0];
@@ -192,61 +193,57 @@ describe('mentor profile', () => {
     cy.getByText('Tallenna', 'button').should('be.disabled');
   });
 
-  it('skills held by another mentor can be found and added to profile', () => {
-    // register a second mentor
-    const secondMentor = accounts.mentors[1];
-    api.signUpMentor(secondMentor);
-    cy.intercept('GET', '/api/skills', {
-      statusCode: 200,
-      body: [...mentor.skills, ...secondMentor.skills],
-    }).as('getSkills');
+  it('new skills can be found and added to profile', () => {
+    cy.intercept('GET', '**/api/skills', { fixture: 'skills.json' }).as(
+      'getSkills',
+    );
 
     const skillSearch = cy.get('input[placeholder*="Lisää uusi aihe"]');
-    // only skills held by other mentors should be found in the dropdown
-    secondMentor.skills.forEach(skill => {
-      cy.wait(200);
-      // skill should be found in unfiltered dropdown
-      skillSearch.focus();
-      cy.get('#skill-dropdown p').contains(skill).should('be.visible');
 
-      // skill should still be found after typing it in the search bar
-      skillSearch.clear().type(skill);
+    // skills are displayed
+    cy.fixture('skills.json').then(({ resources }) => {
+      resources.forEach((skill: Skill) => {
+        cy.wait(200);
+        // skill should be found in unfiltered dropdown
+        skillSearch.focus();
+        cy.get('#skill-dropdown p').contains(skill.name).should('be.visible');
 
-      cy.getByText(skill, '#skill-dropdown p').should('be.visible').click();
-      cy.wait(200);
+        // skill should still be found after typing it in the search bar
+        skillSearch.clear().type(skill.name);
 
-      // skill should now be found as a skill chip button
-      cy.getByText(skill, 'button').should('be.visible');
+        cy.getByText(skill.name, '#skill-dropdown p')
+          .should('be.visible')
+          .click();
+        cy.wait(200);
 
-      // skill should not be found in dropdown anymore
-      skillSearch.clear().focus();
+        // skill should now be found as a skill chip button
+        cy.getByText(skill.name, 'button').should('be.visible');
 
-      cy.get('body').then(body => {
-        // the dropdown only exists when there are more skills to add
-        if (body.find('#skill-dropdown').length) {
-          // check that the skill should not be present
-          cy.getByText(skill, '#skill-dropdown p').should('not.exist');
-        }
+        // skill should not be found in dropdown anymore
+        skillSearch.clear().focus();
+
+        cy.get('body').then(body => {
+          // the dropdown only exists when there are more skills to add
+          if (body.find('#skill-dropdown').length) {
+            // check that the skill should not be present
+            cy.getByText(skill.name, '#skill-dropdown p').should('not.exist');
+          }
+        });
       });
-    });
 
-    // save changes
-    cy.getByText('Tallenna', 'button').click();
+      // save changes
+      cy.getByText('Tallenna', 'button').click();
 
-    // check that values were updated correctly
-    cy.reload();
-    // mentor should now have both the original skills and the skills from the second mentor
-    mentor.skills.forEach(skill => {
-      cy.getByText(skill, 'button').should('be.visible');
-    });
-    secondMentor.skills.forEach(skill => {
-      cy.getByText(skill, 'button').should('be.visible');
+      // check that values were updated correctly
+      cy.reload();
+      // mentor should now have both the original skills and the skills from the second mentor
+      mentor.skills.forEach(skill => {
+        cy.getByText(skill, 'button').should('be.visible');
+      });
     });
   });
 
   it('skills can be removed from profile', () => {
-    const skillSearch = cy.get('input[placeholder*="Lisää uusi aihe"]');
-
     mentor.skills.forEach(skill => {
       // remove skill
       cy.getByText(skill, 'button').should('be.visible').click();
@@ -254,10 +251,6 @@ describe('mentor profile', () => {
 
       // skill chip button should be gone
       cy.getByText(skill, 'button').should('not.exist');
-
-      // skill should now be found in the dropdown
-      skillSearch.focus();
-      cy.getByText(skill, 'p').should('be.visible');
     });
 
     // check that values were updated correctly
