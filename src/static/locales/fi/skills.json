@@ -1,0 +1,18 @@
+{
+  "title": "Aiheet",
+  "description": "Täällä voit hallinnoida mentoreiden aiheita. Voit hakea hakukentässä tiettyjä aiheita rajaamalla niitä hakusanalla tai muutamalla alkukirjaimella. Voit myös lisätä uusia aiheita.",
+  "notification": {
+    "success": {
+      "delete": "Aiheen poistaminen onnistui."
+    },
+    "failure": {
+      "delete": "Aiheen poistaminen epäonnistui."
+    },
+    "delete": {
+      "title": "Poista aihe",
+      "description": "Aiheen poistamista ei voi tämän jälkeen perua.",
+      "cancel": "Peruuta",
+      "confirm": "Poista"
+    }
+  }
+}

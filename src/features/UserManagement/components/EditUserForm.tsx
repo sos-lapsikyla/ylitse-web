@@ -14,9 +14,10 @@ import {
 import ChipsEditor from '@/components/ChipsEditor';
 import { Languages } from '@/components/constants';
 import { useAppSelector } from '@/store';
-import { selectAllSkillOptions } from '@/features/MentorPage/selectors';
 import { ApiManagedUser, ManagedUser } from '../models';
 import { ApiMentor } from '@/features/MentorPage/models';
+import { selectSkillNames } from '@/features/Skills/selectors';
+import { useGetSkillsQuery } from '@/features/Skills/skillsApi';
 
 type Props = {
   managedUser: ManagedUser;
@@ -44,7 +45,8 @@ const UserForm: React.FC<Props> = ({
     { text: t('newUser.publicInfo.gender.options.other'), value: 'other' },
   ];
   const allLanguages = Languages.map(lang => lang.name);
-  const allSkills = useAppSelector(selectAllSkillOptions());
+  useGetSkillsQuery();
+  const allSkills = useAppSelector(selectSkillNames());
   const isMentorAccount =
     managedUser?.role === 'mentor' && 'mentor' in managedUser;
   const shouldShowMentorFields = isMentorAccount;

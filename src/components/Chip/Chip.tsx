@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 import Text from '../Text';
 import { animations, palette } from '../constants';
@@ -9,6 +9,7 @@ type Props = {
   isSelected?: boolean;
   shouldShake?: boolean;
   onToggle: (text: string) => void;
+  children?: ReactNode;
 };
 
 const Chip: React.FC<Props> = ({
@@ -16,6 +17,7 @@ const Chip: React.FC<Props> = ({
   isSelected = true,
   shouldShake = false,
   onToggle,
+  children,
 }) => {
   return (
     <StyledChip
@@ -29,7 +31,7 @@ const Chip: React.FC<Props> = ({
       <Text variant="chip" color={isSelected ? 'white' : 'blueDark'}>
         {text}
       </Text>
-
+      {children}
       {isSelected && <Close />}
     </StyledChip>
   );
@@ -43,12 +45,12 @@ const StyledChip = styled.button<{
   appearance: none;
   border: none;
   border-radius: 2rem;
-  box-shadow: 0 2px 8px 0 rgba(118, 117, 117, 0.2);
+  box-shadow: 0 2px 6px 0 rgba(129, 129, 129, 0.2);
   cursor: pointer;
   display: flex;
   flex: 0 0 auto;
   gap: 0.5rem;
-  height: 2.75rem;
+  height: 2.5rem;
   padding: 0 1rem;
 
   ${({ $isSelected }) =>

@@ -11,6 +11,8 @@ import mentorsEn from '@/static/locales/en/mentors.json';
 import mentorsFi from '@/static/locales/fi/mentors.json';
 import profileEn from '@/static/locales/en/profile.json';
 import profileFi from '@/static/locales/fi/profile.json';
+import skillsFi from '@/static/locales/fi/skills.json';
+import skillsEn from '@/static/locales/en/skills.json';
 import usersFi from '@/static/locales/fi/users.json';
 import usersEn from '@/static/locales/en/users.json';
 
@@ -23,6 +25,7 @@ export const resources = {
     home: homeEn,
     mentors: mentorsEn,
     profile: profileEn,
+    skills: skillsEn,
     users: usersEn,
   },
   fi: {
@@ -31,6 +34,7 @@ export const resources = {
     home: homeFi,
     mentors: mentorsFi,
     profile: profileFi,
+    skills: skillsFi,
     users: usersFi,
   },
 } as const;
@@ -42,7 +46,7 @@ export const i18nInit = i18n.use(initReactI18next).init({
   interpolation: {
     escapeValue: false,
   },
-  ns: ['chat', 'common', 'home', 'mentors', 'profile', 'users'],
+  ns: ['chat', 'common', 'home', 'mentors', 'profile', 'skills', 'users'],
   resources,
 });
 

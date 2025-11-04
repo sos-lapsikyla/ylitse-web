@@ -1,0 +1,18 @@
+{
+  "title": "Topics",
+  "description": "Here you can manage mentors' topics. You can search for specific topics in the search field by limiting them with a keyword or a few initial letters. You can also add new topics.",
+  "notification": {
+    "success": {
+      "delete": "Deleting skill was successful."
+    },
+    "failure": {
+      "delete": "Deleting skill failed."
+    },
+    "delete": {
+      "title": "Delete topic",
+      "description": "Deleting topic can not be undone.",
+      "cancel": "Cancel",
+      "confirm": "Delete"
+    }
+  }
+}

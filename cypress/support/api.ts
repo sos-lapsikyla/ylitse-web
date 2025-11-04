@@ -339,6 +339,7 @@ const updateChatStatus = ({ sender, buddyId, status }: StatusUpdate) => {
 };
 
 export const api = {
+  adminAccessToken,
   signUpMentee,
   signUpMentor,
   deleteAccount,
