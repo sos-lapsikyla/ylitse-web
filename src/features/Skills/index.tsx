@@ -38,14 +38,18 @@ const SkillsPage = () => {
             <Text variant="p">{t('description')}</Text>
           </DescriptionWrapper>
           <ButtonContainer $isMobile={isMobile}>
-            {isNewSkillOpen && <NewSkill />}
-            <TextButton
-              leftIcon={!isNewSkillOpen ? 'add' : undefined}
-              size="normal"
-              onClick={() => setIsNewSkillOpen(!isNewSkillOpen)}
-            >
-              {isNewSkillOpen ? t('newSkill.close') : t('newSkill.title')}
-            </TextButton>
+            {isNewSkillOpen && (
+              <NewSkill setIsNewSkillOpen={setIsNewSkillOpen} />
+            )}
+            {!isNewSkillOpen && (
+              <TextButton
+                leftIcon={'add'}
+                size="normal"
+                onClick={() => setIsNewSkillOpen(!isNewSkillOpen)}
+              >
+                {t('newSkill.title')}
+              </TextButton>
+            )}
           </ButtonContainer>
         </TopContainer>
         <Skills skills={allSkills}></Skills>
@@ -67,7 +71,7 @@ const Container = styled.div<{ $isMobile: boolean }>`
   flex-direction: column;
   justify-content: flex-start;
   margin: ${OUTER_VERTICAL_MARGIN} auto;
-  max-width: 95rem;
+  max-width: 70rem;
   ${({ $isMobile }) =>
     $isMobile
       ? css`
@@ -81,7 +85,7 @@ const Container = styled.div<{ $isMobile: boolean }>`
 const PageHeader = styled.div<{ $isMobile: boolean }>`
   display: flex;
   margin-bottom: -1rem;
-  max-width: 95rem;
+  max-width: 70rem;
   position: relative;
   width: 100%;
 
@@ -127,17 +131,18 @@ const PageContainer = styled.div`
 const TopContainer = styled.div<{ $isMobile: boolean }>`
   align-items: center;
   display: flex;
-  gap: 2rem;
   padding: 2rem 4rem;
 
   ${({ $isMobile }) =>
     $isMobile
       ? css`
           flex-direction: column;
-          padding: -6rem 0;
+          gap: 2rem;
+          padding: 2rem 2rem;
         `
       : css`
           flex-direction: row;
+          gap: 4rem;
           justify-content: space-between;
         `}
 `;
@@ -150,15 +155,17 @@ const DescriptionWrapper = styled.div`
 const ButtonContainer = styled.div<{ $isMobile: boolean }>`
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  align-items: flex-end;
+
   ${({ $isMobile }) =>
     $isMobile
       ? css`
+          padding-bottom: 1rem;
           width: auto;
         `
       : css`
-          width: 30%;
-        `}
+          width: 40%;
+        `}}
 `;
 
 export default SkillsPage;

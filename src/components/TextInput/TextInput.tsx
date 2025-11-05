@@ -42,6 +42,9 @@ type TextInputProps<T extends ElementType> = {
   rows?: number;
   onBlur?: () => void;
   onChange: (value: string) => void;
+  onKeyDown?: (
+    event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
   placeholder?: string;
   type?: InputType;
   value: string;
@@ -59,6 +62,7 @@ export const TextInput = <T extends ElementType = TextInputElement>({
   rows = 2,
   onBlur,
   onChange,
+  onKeyDown,
   placeholder = '',
   type = 'text',
   value,
@@ -89,6 +93,7 @@ export const TextInput = <T extends ElementType = TextInputElement>({
         id={id}
         onBlur={onBlur}
         onChange={e => onChange(e.target.value)}
+        onKeyDown={onKeyDown}
         placeholder={placeholder}
         style={{
           ...variantStyles,

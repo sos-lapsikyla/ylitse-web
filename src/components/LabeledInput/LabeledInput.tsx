@@ -19,6 +19,9 @@ type Props = {
   value: string;
   variant?: TextInputVariant;
   disabled?: boolean;
+  onKeyDown?: (
+    event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
 };
 
 export const LabeledInput = ({
@@ -31,6 +34,7 @@ export const LabeledInput = ({
   value,
   variant,
   disabled = false,
+  onKeyDown,
 }: Props): React.JSX.Element => {
   const inputId = `labeled_input_${createUniqueId()}`;
 
@@ -51,6 +55,7 @@ export const LabeledInput = ({
         value={value}
         variant={variant}
         isDisabled={disabled}
+        onKeyDown={onKeyDown}
       />
       {!!error && <InputErrorMessage text={error} />}
     </Container>
