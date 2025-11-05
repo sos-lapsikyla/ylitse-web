@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
+import { OUTER_VERTICAL_MARGIN, palette } from '@/components/constants';
+
 import { useTranslation } from 'react-i18next';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
-
-import { OUTER_VERTICAL_MARGIN, palette } from '@/components/constants';
-import PageWithTransition from '@/components/PageWithTransition';
-import Text from '@/components/Text';
-import Spinner from '@/components/Spinner';
-import Skills from './Skills';
 import { useGetSkillsQuery } from './skillsApi';
 import { selectAllSkills } from './selectors';
 import { useAppSelector } from '@/store';
+
 import { TextButton } from '@/components/Buttons';
+import Text from '@/components/Text';
+import Spinner from '@/components/Spinner';
+import PageWithTransition from '@/components/PageWithTransition';
+import Skills from './Skills';
 import NewSkill from './NewSkill';
 
 const SkillsPage = () => {

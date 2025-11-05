@@ -1,10 +1,15 @@
-import LabeledInput from '@/components/LabeledInput';
-import { useAddSkillMutation } from './skillsApi';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { TextButton } from '@/components/Buttons';
+import { useTranslation } from 'react-i18next';
+
 import styled from 'styled-components';
 import { palette } from '@/components/constants';
-import { useTranslation } from 'react-i18next';
+import LabeledInput from '@/components/LabeledInput';
+import { TextButton } from '@/components/Buttons';
+
+import { useAddSkillMutation } from './skillsApi';
+import { useAppSelector } from '@/store';
+import { selectAllSkills } from './selectors';
+import toast from 'react-hot-toast';
 
 type Props = {
   setIsNewSkillOpen: Dispatch<SetStateAction<boolean>>;
@@ -15,16 +20,23 @@ const NewSkill: React.FC<Props> = ({ setIsNewSkillOpen }) => {
   const [addSkill] = useAddSkillMutation();
   const [skill, setSkill] = useState('');
   const [isAddDisabled, setIsAddDisabled] = useState(true);
+  const allSkills = useAppSelector(selectAllSkills());
 
   useEffect(() => {
     setIsAddDisabled(skill.length < 2);
   }, [skill]);
 
-  // validate:
-  // on jo listalla
-
   const handleAdd = async () => {
     const skillPayload = { name: skill };
+
+    const alreadyExists = Object.values(allSkills).some(
+      s => s.name.toLowerCase() === skillPayload.name.toLowerCase(),
+    );
+
+    if (alreadyExists) {
+      toast.error(t('newSkill.alreadyExists'));
+      return;
+    }
     try {
       await addSkill(skillPayload).unwrap();
       setSkill('');

@@ -3,6 +3,7 @@
   "description": "Täällä voit hallinnoida mentoreiden aiheita. Voit hakea hakukentässä tiettyjä aiheita rajaamalla niitä hakusanalla tai muutamalla alkukirjaimella. Voit myös lisätä uusia aiheita.",
   "newSkill": {
     "add": "Lisää",
+    "alreadyExists": "Aihe on jo aihe-listalla.",
     "title": "Lisää uusi aihe",
     "close": "Sulje"
   },
