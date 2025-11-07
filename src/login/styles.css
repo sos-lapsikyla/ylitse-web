@@ -213,7 +213,6 @@ label {
   margin: 6px;
 }
 
-.button,
 button {
   display: flex;
   align-items: center;
@@ -246,26 +245,17 @@ button {
     background-color 300ms forwards,
     color 300ms forwards;
 }
-.button:hover,
 button:hover {
   background-color: #37119d;
   outline: 0;
 }
 
-.button:focus,
 button:focus,
-.button:active,
 button:active,
-.button:target,
 button:target {
   background-color: #4a2acb;
   outline: #4a2acb solid 3px;
   outline-offset: 4px;
-}
-
-.button:visited,
-button:visited {
-  background-color: #5c33ff;
 }
 
 #hide-mfa {
