@@ -6,7 +6,6 @@
   "loginButton": "Login",
   "loginError": "Your username or password is invalid. Check the information you provided.",
   "loginTitle": "Login",
-  "longTitle": "Ylitse MentorApp",
   "pageTitle": "Ylitse MentorApp - SOS Children's Village",
   "passwordLabel": "Password",
   "mfaButtonHide": "Hide MFA field",
@@ -14,7 +13,6 @@
   "mfaLabel": "MFA",
   "registrationLink": "Register",
   "retrievePasswordLink": "Forgot your password?",
-  "shortTitle": "Ylitse",
   "submitError": "Login failed. Please try again in a moment.",
   "usernameLabel": "Username"
 }

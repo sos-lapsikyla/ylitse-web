@@ -6,7 +6,6 @@
   "loginButton": "Kirjaudu",
   "loginError": "Käyttäjätunnus tai salasanasi on virheellinen. Tarkista syöttämäsi tiedot.",
   "loginTitle": "Kirjaudu sisään",
-  "longTitle": "Ylitse MentorApp",
   "pageTitle": "Ylitse MentorApp - SOS-Lapsikylä",
   "passwordLabel": "Salasana",
   "mfaButtonHide": "Piilota MFA-kenttä",
@@ -14,7 +13,6 @@
   "mfaLabel": "MFA",
   "registrationLink": "Rekisteröidy",
   "retrievePasswordLink": "Unohditko salasanasi?",
-  "shortTitle": "Ylitse",
   "submitError": "Kirjautuminen epäonnistui. Yritä hetken kuluttua uudelleen.",
   "usernameLabel": "Käyttäjätunnus"
 }
