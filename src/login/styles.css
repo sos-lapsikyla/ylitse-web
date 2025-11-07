@@ -24,6 +24,10 @@ main {
   overflow: hidden;
 }
 
+footer {
+  font-family: 'Source Sans 3';
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -159,7 +163,8 @@ button[type='submit'] {
   font-family: 'Source Sans 3';
   font-style: normal;
   font-weight: 400;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
+  line-height: 150%;
   width: 100%;
   text-align: center;
   color: #ffffff;
