@@ -37,13 +37,13 @@ footer {
   width: 100%;
 }
 
-h1 {
+.left h1 {
   font-family: 'Baloo 2';
   font-style: normal;
   font-weight: 700;
-  font-size: 30px;
-  line-height: 48px;
-  margin: 0 auto 0 auto;
+  font-size: 2rem;
+  line-height: normal;
+  align-self: center;
   color: #1c325d;
 }
 
@@ -56,8 +56,8 @@ a {
   line-height: 29px;
   display: flex;
   align-items: center;
+  justify-content: center;
   color: #4a2acb;
-  margin: 10px auto 0 0;
 }
 
 .logo-white {
@@ -83,41 +83,38 @@ a {
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  position: relative;
 }
 
 .left {
   background: #ffffff;
   padding-right: 4%;
+  position:relative; /* For positioning the login error box and show/hide-mfa-buttons-button absolutely within this panel */
 }
 
 form[name='login'] {
   height: fit-content;
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
-  align-items: space-between;
-  margin-bottom: 15vh;
-  margin-top: 9vh;
-  width: 65%;
-  row-gap: 0.5rem;
+  width: 80%;
+  min-height: 60%; /* This _should_ be equal to 777px * .4 = 622px, but using % to make it more responsive */
+  font-size: 2rem;
+  line-height: 3rem;
 }
 
 input[type='text'],
 input[type='password'] {
   font-family: 'Source Sans 3';
   font-style: normal;
+  font-size: 66%;
+  line-height: inherit;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
   box-sizing: border-box;
   background: #ffffff;
   border: 1px solid #4a2acb;
   border-radius: 5px;
-  height: 48px;
-  padding: 6px 10px;
   box-shadow: none;
-  box-sizing: border-box;
-
+  margin-bottom: 1.5rem;
   /* Removes awkward default styles on some inputs for iOS */
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -136,16 +133,19 @@ button[type='submit'] {
   left: 46%;
   color: #f0ba8c;
   border: none !important;
+  margin-top: 1.5rem;
 }
 
 .right {
   background: #4c2ec6;
   z-index: 1;
-  margin-left: -4%;
+  transform: translateX(-4%);
 }
 
 .right img {
-  margin-top: -60px;
+  width: 14rem;
+  height: auto;
+  padding-top: 1.5rem;
 }
 
 .right h1 {
@@ -175,19 +175,17 @@ button[type='submit'] {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 80%;
+  height: 60%; /* This _should_ be equal to 777px * .4 = 622px, but using % to make it more responsive */
 }
 
 label {
   font-family: 'Source Sans 3';
   font-style: normal;
+  font-size: 1.25rem;
   font-weight: 600;
-  font-size: 18px;
-  line-height: 150%;
   text-align: left;
-  width: 80% !important;
-  margin: 20px auto 0 0;
   color: #1c325d;
 }
 
@@ -237,10 +235,6 @@ button {
   font-style: normal;
   font-weight: 700;
   align-self: center;
-  position: absolute;
-  bottom: 150px;
-  left: 50%;
-  transform: translateX(-50%);
   transition:
     background-color 300ms forwards,
     color 300ms forwards;
@@ -258,6 +252,14 @@ button:target {
   outline-offset: 4px;
 }
 
+#mfa-buttons {
+  position: absolute;
+  bottom: 1.5rem;
+}
+#mfa-buttons a {
+  text-align: center;;
+}
+
 #hide-mfa {
   display: none;
 }
@@ -267,13 +269,14 @@ button:target {
 }
 
 .mfa-button {
-  bottom: 24px;
   cursor: pointer;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
   width: 200px;
+  align-self: center;
+}
+
+#password-link {
+  align-self: flex-start;
+  visibility: hidden; /* Can be made visible when password retrieval is implemented, hide (but have it in DOM) for now to make sure layout works in the future as well */
 }
 
 #register-button {

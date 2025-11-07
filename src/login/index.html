@@ -52,7 +52,7 @@
                 maxlength="100"
                 placeholder=""
               />
-              <!--a> href="#" localization-key="retrievePasswordLink"></a-->
+              <a id="password-link" href="#" localization-key="retrievePasswordLink"></a>
               <label
                 class="mfaField"
                 for="mfa_token"
@@ -71,6 +71,8 @@
                 type="submit"
                 localization-key="loginButton"
               ></button>
+            </form>
+            <div id="mfa-buttons">
               <a
                 class="mfa-button"
                 id="show-mfa"
@@ -81,7 +83,7 @@
                 id="hide-mfa"
                 localization-key="mfaButtonHide"
               ></a>
-            </form>
+            </div>
           </div>
           <div class="right panel">
             <div id="right-text">
