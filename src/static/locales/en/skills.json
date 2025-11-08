@@ -1,11 +1,19 @@
 {
   "title": "Topics",
   "description": "Here you can manage mentors' topics. You can search for specific topics in the search field by limiting them with a keyword or a few initial letters. You can also add new topics.",
+  "newSkill": {
+    "add": "Add",
+    "alreadyExists": "Topic is already on the list.",
+    "title": "Add new topic",
+    "close": "Close"
+  },
   "notification": {
     "success": {
+      "add": "Adding skill was successful.",
       "delete": "Deleting skill was successful."
     },
     "failure": {
+      "add": "Adding skill failed.",
       "delete": "Deleting skill failed."
     },
     "delete": {
