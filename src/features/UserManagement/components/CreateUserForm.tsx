@@ -16,8 +16,8 @@ import {
 import { Languages } from '@/components/constants';
 import { useAppSelector } from '@/store';
 import ChipsEditor from '@/components/ChipsEditor';
-import { selectSkillNames } from '@/features/Skills/selectors';
-import { useGetSkillsQuery } from '@/features/Skills/skillsApi';
+import { selectSkillNames } from '@/features/SkillsPage/selectors';
+import { useGetSkillsQuery } from '@/features/SkillsPage/skillsApi';
 
 type Props = {
   formData: UserFormData;

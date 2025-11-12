@@ -8,7 +8,8 @@ import MentorPage from '@/features/MentorPage';
 import { Navbar } from './Navbar';
 import ProfilePage from '@/features/ProfilePage';
 import UsersPage from '../UserManagement';
-import SkillsPage from '../Skills';
+import SkillsPage from '../SkillsPage';
+import ReportsPage from '../ReportsPage';
 
 const Layout = () => (
   <>
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
       { path: '/users', element: <HomePage /> },
       { path: '/statistics', element: <HomePage /> },
       { path: '/topics', element: <SkillsPage /> },
-      { path: '/reports', element: <HomePage /> },
+      { path: '/reports', element: <ReportsPage /> },
       { path: '*', element: <HomePage /> },
     ],
   },

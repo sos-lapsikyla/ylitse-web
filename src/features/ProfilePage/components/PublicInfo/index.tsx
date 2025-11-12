@@ -26,8 +26,8 @@ import Text from '@/components/Text';
 import { TextButton } from '@/components/Buttons';
 import ChipsEditor from '@/components/ChipsEditor';
 import toast from 'react-hot-toast';
-import { useGetSkillsQuery } from '@/features/Skills/skillsApi';
-import { selectSkillNames } from '@/features/Skills/selectors';
+import { useGetSkillsQuery } from '@/features/SkillsPage/skillsApi';
+import { selectSkillNames } from '@/features/SkillsPage/selectors';
 
 type Props = {
   isMobile?: boolean;
