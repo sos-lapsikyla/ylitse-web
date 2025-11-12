@@ -8,11 +8,15 @@ import Text from '@/components/Text';
 import Spinner from '@/components/Spinner';
 import PageWithTransition from '@/components/PageWithTransition';
 import { useGetReportsQuery } from './reportsApi';
+import ReportList from './components/List';
+import { useAppSelector } from '@/store';
+import { selectAllReports } from './selectors';
 
 const ReportsPage = () => {
   const { t } = useTranslation('reports');
   const { isMobile } = useGetLayoutMode();
   const { isLoading } = useGetReportsQuery();
+  const reports = useAppSelector(selectAllReports());
 
   const PageContent = isLoading ? (
     <Spinner variant="large" />
@@ -23,7 +27,9 @@ const ReportsPage = () => {
           <Text variant="h1">{t('title')}</Text>
         </TitleWrapper>
       </PageHeader>
-      <PageContainer></PageContainer>
+      <PageContainer>
+        <ReportList reports={reports}></ReportList>
+      </PageContainer>
     </>
   );
 

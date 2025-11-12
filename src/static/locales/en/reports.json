@@ -1,3 +1,14 @@
 {
-  "title": "Reports"
+  "title": "Reports",
+  "reportCard": {
+    "title": "Report #",
+    "state": {
+      "title": "State",
+      "handled": "Handled",
+      "received": "Not handled"
+    },
+    "sent": "Sent",
+    "reason": "Reason for report",
+    "contact": "Contact information"
+  }
 }
