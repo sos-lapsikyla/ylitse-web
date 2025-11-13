@@ -1,0 +1,26 @@
+{
+  "resources": [
+    {
+      "id": "1",
+      "reported_user_id": "1",
+      "reporter_user_id": "1",
+      "contact_field": "email@email.email",
+      "report_reason": "Haluan raportoida mentorin",
+      "status": "handled",
+      "active": true,
+      "updated": "2025-11-11",
+      "created": "2025-11-11"
+    },
+    {
+      "id": "2",
+      "reported_user_id": "2",
+      "reporter_user_id": "2",
+      "contact_field": "",
+      "report_reason": "Haluan raportoida mentorin 2",
+      "status": "received",
+      "active": true,
+      "updated": "2025-11-11",
+      "created": "2025-11-11"
+    }
+  ]
+}

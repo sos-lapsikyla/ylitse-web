@@ -1,7 +1,7 @@
 {
   "title": "Reports",
   "reportCard": {
-    "title": "Report #",
+    "title": "Report #{{number}}",
     "state": {
       "title": "State",
       "handled": "Handled",
@@ -9,6 +9,7 @@
     },
     "sent": "Sent",
     "reason": "Reason for report",
-    "contact": "Contact information"
+    "contact": "Contact information",
+    "emptyContactField": "No contact information"
   }
 }

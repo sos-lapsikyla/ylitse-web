@@ -1,18 +1,25 @@
 import { Color } from '../constants';
 import { palette } from '../constants';
 
+type Variant = 'default' | 'filled';
+
 type Props = {
   color?: Color;
   sizeInPx: number;
+  variant?: Variant;
 };
 
-export const Warning: React.FC<Props> = ({ color = 'blueDark', sizeInPx }) => (
+export const Warning: React.FC<Props> = ({
+  color = 'blueDark',
+  sizeInPx,
+  variant = 'default',
+}) => (
   <svg
     width={sizeInPx}
     height={sizeInPx}
     viewBox="0 0 48 48"
-    fill="none"
-    color={palette[color]}
+    fill={variant === 'default' ? 'none' : palette[color]}
+    color={variant === 'default' ? palette[color] : 'white'}
     xmlns="http://www.w3.org/2000/svg"
   >
     <path

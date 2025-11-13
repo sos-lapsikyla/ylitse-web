@@ -4,23 +4,42 @@ import styled from 'styled-components';
 import Text from '@/components/Text';
 import { useTranslation } from 'react-i18next';
 import { Report } from '../../models';
+import { Warning } from '@/components/Icons/Warning';
+import { Success } from '@/components/Icons/Success';
 
 type Props = {
   report: Report;
+  reportNumber: number;
 };
 
-const ReportCard: React.FC<Props> = ({ report }) => {
+const ReportCard: React.FC<Props> = ({ report, reportNumber }) => {
   const { t } = useTranslation('reports');
+  const isContactFieldEmpty = report.contactField === '';
   return (
     <Card headerSize="small">
       <Header color={palette.blue2} size="small">
         <Text variant="h3" color="blueDark">
-          {t('reportCard.title')}
+          {t('reportCard.title', { number: reportNumber })}
         </Text>
       </Header>
       <TextGroup>
         <Text variant="boldBaloo">{t('reportCard.state.title')}</Text>
-        <ReportInfoText variant="p">{report.status}</ReportInfoText>
+        {report.status === 'handled' && (
+          <IconTextRow>
+            <Success color="green" sizeInPx={20} variant="no-ellipse"></Success>
+            <ReportInfoText variant="boldBaloo" color="green">
+              {t('reportCard.state.handled')}
+            </ReportInfoText>
+          </IconTextRow>
+        )}
+        {report.status === 'received' && (
+          <IconTextRow>
+            <Warning color="redDark" sizeInPx={24} variant="filled"></Warning>
+            <ReportInfoText variant="boldBaloo" color="redDark">
+              {t('reportCard.state.received')}
+            </ReportInfoText>
+          </IconTextRow>
+        )}
       </TextGroup>
       <TextGroup>
         <Text variant="boldBaloo">{t('reportCard.sent')}</Text>
@@ -37,11 +56,17 @@ const ReportCard: React.FC<Props> = ({ report }) => {
       </TextGroup>
       <TextGroup>
         <Text variant="boldBaloo">{t('reportCard.reason')}</Text>
-        <ReportInfoText variant="p">{report.reportReason}</ReportInfoText>
+        <TrucatedReportInfoText variant="p">
+          {report.reportReason}
+        </TrucatedReportInfoText>
       </TextGroup>
       <TextGroup>
         <Text variant="boldBaloo">{t('reportCard.contact')}</Text>
-        <ReportInfoText variant="p">{report.contactField}</ReportInfoText>
+        <ReportInfoText variant="p">
+          {isContactFieldEmpty
+            ? t('reportCard.emptyContactField')
+            : report.contactField}
+        </ReportInfoText>
       </TextGroup>
     </Card>
   );
@@ -49,6 +74,26 @@ const ReportCard: React.FC<Props> = ({ report }) => {
 
 const ReportInfoText = styled(Text)`
   margin: 0;
+`;
+
+const TrucatedReportInfoText = styled(Text)`
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  margin: 0;
+  max-height: 5rem;
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: break-spaces;
+  width: 100%;
+`;
+
+const IconTextRow = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
 `;
 
 const TextGroup = styled.div`

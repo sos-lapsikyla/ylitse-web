@@ -1,26 +1,35 @@
 import { Color, palette } from '../constants';
 
+type Variant = 'default' | 'no-ellipse';
+
 type Props = {
   color?: Color;
   sizeInPx: number;
+  variant?: Variant;
 };
 
-export const Success: React.FC<Props> = ({ color = 'blueDark', sizeInPx }) => (
+export const Success: React.FC<Props> = ({
+  color = 'blueDark',
+  sizeInPx,
+  variant = 'default',
+}) => (
   <svg
     width={sizeInPx}
     height={sizeInPx}
-    viewBox="0 0 48 48"
+    viewBox={variant === 'no-ellipse' ? '10 10 28 28' : '0 0 48 48'}
     fill="none"
     color={palette[color]}
     xmlns="http://www.w3.org/2000/svg"
   >
     <g id="info">
-      <path
-        id="Ellipse 19"
-        d="M47 24C47 36.7026 36.7025 47 24 47C11.2975 47 1 36.7026 1 24C1 11.2975 11.2974 1 24 1C36.7025 1 47 11.2975 47 24Z"
-        stroke="currentColor"
-        strokeWidth="2"
-      />
+      {variant !== 'no-ellipse' && (
+        <path
+          id="Ellipse 19"
+          d="M47 24C47 36.7026 36.7025 47 24 47C11.2975 47 1 36.7026 1 24C1 11.2975 11.2974 1 24 1C36.7025 1 47 11.2975 47 24Z"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
+      )}
       <path
         id="Vector 1 (Stroke)"
         fillRule="evenodd"

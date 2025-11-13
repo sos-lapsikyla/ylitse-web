@@ -12,10 +12,13 @@ const ReportList: React.FC<Props> = ({ reports }) => {
 
   return (
     <ListContainer $isMobile={isMobile}>
-      <ReportCard report={reports[0]}></ReportCard>
+      {reports.map((report, index) => (
+        <ReportCard key={report.id} report={report} reportNumber={index + 1} />
+      ))}
     </ListContainer>
   );
 };
+
 const ListContainer = styled.div<{ $isMobile: boolean }>`
   display: grid;
   gap: clamp(4rem, 2vw, 1.5rem);
