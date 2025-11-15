@@ -41,7 +41,7 @@ const ListContainer = styled.div<{ $isMobile: boolean }>`
       flex-direction: column;
       gap: 2rem;
       max-width: 100%;
-      padding: 0 1rem;
+      padding: 0;
       width: 100%;
     `}
 `;
