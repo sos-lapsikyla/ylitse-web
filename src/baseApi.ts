@@ -4,6 +4,14 @@ import { refreshingBaseQuery } from '@/utils/http';
 export const baseApi = createApi({
   baseQuery: refreshingBaseQuery,
   reducerPath: 'api',
-  tagTypes: ['mentors', 'myuser', 'apiversion', 'users', 'accounts', 'skills'],
+  tagTypes: [
+    'mentors',
+    'myuser',
+    'apiversion',
+    'users',
+    'accounts',
+    'skills',
+    'reports',
+  ],
   endpoints: () => ({}),
 });

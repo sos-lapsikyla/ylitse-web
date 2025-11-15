@@ -58,7 +58,6 @@ const Close = styled.span`
   cursor: pointer;
   height: 24px;
   width: 24px;
-  z-index: 10;
 `;
 
 export default Skills;

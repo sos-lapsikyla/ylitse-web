@@ -1,0 +1,15 @@
+{
+  "title": "Ilmiannot",
+  "reportCard": {
+    "title": "Ilmianto #{{number}}",
+    "state": {
+      "title": "Tila",
+      "handled": "Käsitelty",
+      "received": "Ei käsitelty"
+    },
+    "sent": "Lähetetty",
+    "reason": "Syy ilmiantoon",
+    "contact": "Yhteystiedot",
+    "emptyContactField": "Yhteystietoja ei annettu"
+  }
+}

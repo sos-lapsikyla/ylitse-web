@@ -15,6 +15,8 @@ import skillsFi from '@/static/locales/fi/skills.json';
 import skillsEn from '@/static/locales/en/skills.json';
 import usersFi from '@/static/locales/fi/users.json';
 import usersEn from '@/static/locales/en/users.json';
+import reportsFi from '@/static/locales/fi/reports.json';
+import reportsEn from '@/static/locales/en/reports.json';
 
 export const defaultNS = 'common';
 
@@ -27,6 +29,7 @@ export const resources = {
     profile: profileEn,
     skills: skillsEn,
     users: usersEn,
+    reports: reportsEn,
   },
   fi: {
     chat: chatFi,
@@ -36,6 +39,7 @@ export const resources = {
     profile: profileFi,
     skills: skillsFi,
     users: usersFi,
+    reports: reportsFi,
   },
 } as const;
 

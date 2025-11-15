@@ -16,8 +16,8 @@ import { Languages } from '@/components/constants';
 import { useAppSelector } from '@/store';
 import { ApiManagedUser, ManagedUser } from '../models';
 import { ApiMentor } from '@/features/MentorPage/models';
-import { selectSkillNames } from '@/features/Skills/selectors';
-import { useGetSkillsQuery } from '@/features/Skills/skillsApi';
+import { selectSkillNames } from '@/features/SkillsPage/selectors';
+import { useGetSkillsQuery } from '@/features/SkillsPage/skillsApi';
 
 type Props = {
   managedUser: ManagedUser;
