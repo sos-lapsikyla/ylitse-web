@@ -8,7 +8,7 @@ type Props = {
   size: 'small' | 'large';
   children: ReactNode;
 };
-const Header: React.FC<Props> = ({ color, size, children }) => {
+const CardHeader: React.FC<Props> = ({ color, size, children }) => {
   const { isMobile } = useGetLayoutMode();
 
   return (
@@ -39,4 +39,4 @@ const HeaderContainer = styled.div<{
   z-index: 1;
 `;
 
-export default Header;
+export default CardHeader;

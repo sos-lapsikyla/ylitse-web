@@ -1,4 +1,4 @@
-import { Card, Header } from '@/components/Card';
+import { Card, CardHeader } from '@/components/Card';
 import { palette } from '@/components/constants';
 import styled from 'styled-components';
 import Text from '@/components/Text';
@@ -17,11 +17,11 @@ const ReportCard: React.FC<Props> = ({ report, reportNumber }) => {
   const isContactFieldEmpty = report.contactField === '';
   return (
     <Card headerSize="small">
-      <Header color={palette.blue2} size="small">
+      <CardHeader color={palette.blue2} size="small">
         <Text variant="h3" color="blueDark">
           {t('reportCard.title', { number: reportNumber })}
         </Text>
-      </Header>
+      </CardHeader>
       <TextGroup>
         <Text variant="boldBaloo">{t('reportCard.state.title')}</Text>
         {report.status === 'handled' && (

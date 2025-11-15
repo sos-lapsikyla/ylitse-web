@@ -29,7 +29,7 @@ const CardContent = styled.div<{
   flex-direction: column;
   justify-content: space-between;
   margin-top: ${({ $headerSize }) =>
-    $headerSize === 'small' ? '7rem' : '10rem'};
+    $headerSize === 'small' ? '6rem' : '9rem'};
   max-height: 32.5rem;
   padding: 0 2rem 2rem 2rem;
 `;
