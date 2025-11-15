@@ -10,9 +10,15 @@ type Props = {
 const ReportList: React.FC<Props> = ({ reports }) => {
   const { isMobile } = useGetLayoutMode();
 
+  const sortedReports = [...reports].sort((a, b) => {
+    const aIsReceived = a.status === 'received' ? 0 : 1;
+    const bIsReceived = b.status === 'received' ? 0 : 1;
+    return aIsReceived - bIsReceived;
+  });
+
   return (
     <ListContainer $isMobile={isMobile}>
-      {reports.map((report, index) => (
+      {sortedReports.map((report, index) => (
         <ReportCard key={report.id} report={report} reportNumber={index + 1} />
       ))}
     </ListContainer>

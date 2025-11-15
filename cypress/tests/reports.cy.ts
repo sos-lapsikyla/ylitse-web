@@ -82,4 +82,15 @@ describe('Reports page', () => {
     cy.getByText('email@email.email', 'p').should('be.visible');
     cy.getByText('Yhteystietoja ei annettu', 'p').should('be.visible');
   });
+
+  it('Displays non-handled report first', () => {
+    cy.get('[href="/reports"]').click();
+    cy.wait('@getReports');
+    cy.location('pathname').should('eq', '/reports');
+    // First report card has status recieved
+    cy.get('p:contains("Tila")')
+      .first()
+      .next()
+      .should('contain', 'Ei käsitelty');
+  });
 });
