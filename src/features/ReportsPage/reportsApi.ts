@@ -1,5 +1,6 @@
 import toast from 'react-hot-toast';
 import { baseApi } from '@/baseApi';
+import { t } from 'i18next';
 import { parseAndTransformTo } from '@/utils/http';
 import { reportListResponseType, Reports, toReportMap } from './models';
 
@@ -21,6 +22,25 @@ export const reportsApi = baseApi.injectEndpoints({
           await queryFulfilled;
         } catch (error) {
           toast('error');
+        }
+      },
+    }),
+    deleteReport: builder.mutation<unknown, string>({
+      query: reportId => ({
+        url: `reports/${reportId}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['reports'],
+      async onQueryStarted(_, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          toast.success(t('reports:delete.success'), {
+            id: 'report-delete-success',
+          });
+        } catch {
+          toast.error(t('reports:delete.failure'), {
+            id: 'report-delete-error',
+          });
         }
       },
     }),

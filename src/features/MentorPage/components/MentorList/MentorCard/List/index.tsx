@@ -10,8 +10,9 @@ import { Header } from './Header';
 import { Languages } from './Languages';
 import { Skills } from './Skills';
 import { Story } from './Story';
-import { ExpandButton } from './ExpandButton';
 import { spacing, palette, CONTENT_WIDTH } from '@/components/constants';
+import { ExpandButton } from '@/components/Buttons';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   isHomePage?: boolean;
@@ -28,6 +29,7 @@ const ListCard: React.FC<Props> = ({
 }) => {
   const { isMobile: isActualMobile } = useGetLayoutMode();
   const isMobile = isForcedMobile || isActualMobile;
+  const { t } = useTranslation('mentors');
   const currentUserId = useAppSelector(selectUserId);
   const isLessThan90DaysOld = getIsOlderThanDaysAgo(
     90,
@@ -50,7 +52,10 @@ const ListCard: React.FC<Props> = ({
         <Story story={mentor.story} />
         {areLanguagesDisplayed && <Languages languages={mentor.languages} />}
         <Skills skills={mentor.skills} />
-        <ExpandButton setVisibleCard={setVisibleCard} mentor={mentor} />
+        <ExpandButton
+          title={t('card.open')}
+          onClick={() => setVisibleCard(mentor)}
+        />
       </CardContent>
     </Container>
   );

@@ -2,14 +2,23 @@
   "title": "Ilmiannot",
   "reportCard": {
     "title": "Ilmianto #{{number}}",
+    "open": "Avaa ilmianto",
+    "cancel": "Peruuta",
+    "openConversation": "Avaa keskustelu",
     "state": {
       "title": "Tila",
       "handled": "Käsitelty",
-      "received": "Ei käsitelty"
+      "received": "Ei käsitelty",
+      "markAsHandled": "Merkitse käsitellyksi",
+      "markAsRecieved": "Merkitse käsittelemättömäksi"
     },
     "sent": "Lähetetty",
     "reason": "Syy ilmiantoon",
     "contact": "Yhteystiedot",
     "emptyContactField": "Yhteystietoja ei annettu"
+  },
+  "delete": {
+    "success": "Ilmiannon poisto onnistui.",
+    "failure": "Ilmiannon poistaminen epäonnistui."
   }
 }

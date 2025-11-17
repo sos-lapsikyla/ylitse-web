@@ -2,14 +2,23 @@
   "title": "Reports",
   "reportCard": {
     "title": "Report #{{number}}",
+    "open": "Open report",
+    "cancel": "Cancel",
+    "openConversation": "Open conversation",
     "state": {
       "title": "State",
-      "handled": "Handled",
-      "received": "Not handled"
+      "handled": "Resolved",
+      "received": "Unresolved",
+      "markAsHandled": "Mark as resolved",
+      "markAsRecieved": "Mark as unresolved"
     },
     "sent": "Sent",
     "reason": "Reason for report",
     "contact": "Contact information",
     "emptyContactField": "No contact information"
+  },
+  "delete": {
+    "success": "Deleting report was successful.",
+    "failure": "Deleting report failed."
   }
 }
