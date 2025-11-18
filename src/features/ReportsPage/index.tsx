@@ -20,7 +20,10 @@ const ReportsPage = () => {
   const { isMobile } = useGetLayoutMode();
   const { isLoading } = useGetReportsQuery();
   const reports = useAppSelector(selectAllReports());
-  const [selectedReport, setSelectedReport] = useState<Report | null>(null);
+  const [selectedReport, setSelectedReport] = useState<{
+    report: Report;
+    reportNumber: number;
+  } | null>(null);
 
   const PageContent = isLoading ? (
     <Spinner variant="large" />
@@ -34,14 +37,16 @@ const ReportsPage = () => {
       <PageContainer>
         {selectedReport && (
           <ExpandedReportCard
-            report={selectedReport}
-            reportNumber={0}
+            report={selectedReport.report}
+            reportNumber={selectedReport.reportNumber}
             onDismiss={() => setSelectedReport(null)}
           />
         )}
         <ReportList
           reports={reports}
-          setVisibleCard={setSelectedReport}
+          setVisibleCard={(report, reportNumber) =>
+            setSelectedReport({ report, reportNumber })
+          }
         ></ReportList>
       </PageContainer>
     </>

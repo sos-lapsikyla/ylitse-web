@@ -5,7 +5,7 @@ import { Report } from '../../models';
 
 type Props = {
   reports: Report[];
-  setVisibleCard: (report: Report) => void;
+  setVisibleCard: (report: Report, reportNumber: number) => void;
 };
 
 const ReportList: React.FC<Props> = ({ reports, setVisibleCard }) => {
