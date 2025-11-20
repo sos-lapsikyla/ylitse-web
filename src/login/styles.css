@@ -22,18 +22,26 @@ body {
   background-position-x: center;
 }
 
-body, main {
+body {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 main {
   width: 100vw;
+  /* min-height: var(--main-content-height); */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-footer {
+#login-footer {
+  display: flex;
+  justify-content: center;
   font-family: 'Source Sans 3';
+  text-align: center;
+  margin: unset; /* Override shared styles */
 }
 
 .container {
@@ -138,7 +146,11 @@ button[type='submit'] {
   left: 46%;
   color: #f0ba8c;
   border: none !important;
-  margin-top: 1.5rem;
+  margin: 1rem 0 2rem 0;
+}
+
+#register-anchor {
+  margin: 1rem 0 2rem 0;
 }
 
 .right {
@@ -167,9 +179,9 @@ button[type='submit'] {
 
 .right p {
   font-family: 'Source Sans 3';
+  font-size: 1.125rem;
   font-style: normal;
   font-weight: 400;
-  font-size: 1.125rem;
   line-height: 150%;
   width: 100%;
   text-align: center;
@@ -338,6 +350,10 @@ button:target {
 
 /* "Mobile" styles */
 @media only screen and (max-width: 850px) and (orientation: portrait) {
+  :root {
+    --panel-height: clamp(555px, 100vh, 666px);
+
+  }
 
   body {
     background-attachment: scroll;
@@ -374,6 +390,15 @@ button:target {
     );
     border-radius: unset;
     width: 100%;
+  }
+
+  .right p {
+    font-size: 1rem;
+  }
+
+  #login-footer {
+    color: var(--font-color-primary);
+    background-color: var(--secondary-color);
   }
 
   #mobile-header {
