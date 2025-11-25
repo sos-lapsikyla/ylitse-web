@@ -5,6 +5,8 @@ import { Success } from '@/components/Icons/Success';
 import { Warning } from '@/components/Icons/Warning';
 import { Report } from '@/features/ReportsPage/models';
 import { Button } from '@/components/Buttons';
+import { useUpdateReportMutation } from '@/features/ReportsPage/reportsApi';
+import toast from 'react-hot-toast';
 
 type Props = {
   report: Report;
@@ -13,6 +15,24 @@ type Props = {
 const ExpandedCardContent: React.FC<Props> = ({ report }) => {
   const { t } = useTranslation('reports');
   const isContactFieldEmpty = report.contactField === '';
+  const [updateReport] = useUpdateReportMutation();
+
+  const changeState = async () => {
+    try {
+      await updateReport({
+        id: report.id,
+        body: {
+          status: 'handled',
+          comment: '',
+        },
+      }).unwrap();
+      toast.success('onnistui!');
+    } catch (err) {
+      toast.error('epäonnistui');
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <TextGroup>
@@ -25,11 +45,11 @@ const ExpandedCardContent: React.FC<Props> = ({ report }) => {
             </ReportInfoText>
             <Button
               sizeInPx={18}
-              onClick={() => console.log('lol')}
+              onClick={() => void changeState}
               text={{
                 color: 'purpleDark',
                 text: t('reportCard.state.markAsRecieved'),
-                variant: 'inlineLink',
+                variant: 'underLinedinlineLink',
               }}
             />
           </IconTextRow>
@@ -42,11 +62,11 @@ const ExpandedCardContent: React.FC<Props> = ({ report }) => {
             </ReportInfoText>
             <Button
               sizeInPx={18}
-              onClick={() => console.log('lol')}
+              onClick={() => void changeState}
               text={{
-                color: 'purpleDark',
+                color: 'purple',
                 text: t('reportCard.state.markAsHandled'),
-                variant: 'inlineLink',
+                variant: 'underLinedinlineLink',
               }}
             />
           </IconTextRow>
@@ -83,6 +103,7 @@ const ExpandedCardContent: React.FC<Props> = ({ report }) => {
 
 const ReportInfoText = styled(Text)`
   margin: 0;
+  padding-right: 2rem;
 `;
 
 const IconTextRow = styled.div`

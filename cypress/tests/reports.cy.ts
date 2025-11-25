@@ -60,6 +60,12 @@ describe('Reports page', () => {
           })),
         });
       }).as('getReports');
+
+      cy.intercept('DELETE', '**/api/reports/*', req => {
+        const id = req.url.split('/').pop();
+        reportsData = reportsData.filter(r => r.id !== id);
+        req.reply({ success: true });
+      }).as('deleteReport');
     });
   });
   after(() => {
@@ -92,5 +98,37 @@ describe('Reports page', () => {
       .first()
       .next()
       .should('contain', 'Ei käsitelty');
+  });
+
+  it('can delete report', () => {
+    cy.get('[href="/reports"]').click();
+    cy.wait('@getReports');
+    cy.location('pathname').should('eq', '/reports');
+    cy.getByText('Haluan raportoida mentorin', 'p').should('be.visible');
+    cy.getByText('Avaa ilmianto', 'button')
+      .first()
+      .should('be.visible')
+      .click();
+    cy.getByText('Ilmianto #1', 'h4').should('be.visible');
+    cy.getByText('Poista ilmianto', 'button').should('be.visible').click();
+    cy.getByText('Poista', 'button').click();
+    cy.wait('@deleteReport');
+    cy.reload();
+    cy.get('body').should('not.contain.text', 'Haluan raportoida mentorin');
+  });
+
+  it('can update reports status', () => {
+    cy.get('[href="/reports"]').click();
+    cy.wait('@getReports');
+    cy.location('pathname').should('eq', '/reports');
+    cy.getByText('Ei käsitelty', 'p').should('be.visible');
+    cy.getByText('Avaa ilmianto', 'button')
+      .first()
+      .should('be.visible')
+      .click();
+    cy.getByText('Ilmianto #1', 'h4').should('be.visible');
+    cy.getByText('Merkitse käsitellyksi', 'button')
+      .should('be.visible')
+      .click();
   });
 });

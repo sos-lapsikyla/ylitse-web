@@ -46,3 +46,8 @@ export const toReportMap = ({ resources }: ReportsResponse): Reports =>
     acc[report.id] = report;
     return acc;
   }, {});
+
+export type UpdateReportPayload = {
+  id: string;
+  body: Partial<ApiReport> & { comment: string };
+};

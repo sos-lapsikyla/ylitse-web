@@ -16,7 +16,11 @@
     "reason": "Reason for report",
     "contact": "Contact information",
     "emptyContactField": "No contact information",
-    "delete": "Delete report"
+    "delete": "Delete report",
+    "update": {
+      "success": "Updating report was successful.",
+      "failure": "Updating report failed."
+    }
   },
   "delete": {
     "success": "Deleting report was successful.",

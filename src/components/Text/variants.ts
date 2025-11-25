@@ -138,6 +138,17 @@ export const variants = {
       lineHeight: '3rem',
     },
   },
+  underLinedinlineLink: {
+    element: 'a',
+    styles: {
+      fontFamily: '"Baloo 2"',
+      fontSize: '1rem',
+      fontStyle: 'normal',
+      fontWeight: 700,
+      lineHeight: '1.5rem',
+      textDecoration: 'underline',
+    },
+  },
   span: {
     element: 'span',
     styles: {

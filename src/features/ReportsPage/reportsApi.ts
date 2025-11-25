@@ -3,10 +3,10 @@ import { baseApi } from '@/baseApi';
 import { t } from 'i18next';
 import { parseAndTransformTo } from '@/utils/http';
 import {
-  ApiReport,
   reportListResponseType,
   Reports,
   toReportMap,
+  UpdateReportPayload,
 } from './models';
 
 export const reportsApi = baseApi.injectEndpoints({
@@ -49,19 +49,19 @@ export const reportsApi = baseApi.injectEndpoints({
         }
       },
     }),
-    updateReport: builder.mutation<unknown, ApiReport>({
-      query: report => ({
-        url: `reports/${report.id}`,
-        method: 'put',
-        body: report,
+    updateReport: builder.mutation<unknown, UpdateReportPayload>({
+      query: ({ id, body }) => ({
+        url: `reports/${id}`,
+        method: 'patch',
+        body: body,
       }),
       invalidatesTags: ['reports'],
       async onQueryStarted(_, { queryFulfilled }) {
         try {
           await queryFulfilled;
-          toast.success('päivitys onnistui');
+          toast.success(t('reports:reportCard.update.success'));
         } catch (err) {
-          toast.error('päivitys epäonnistui');
+          toast.error(t('reports:reportCard.update.failure'));
         }
       },
     }),

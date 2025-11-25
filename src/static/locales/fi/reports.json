@@ -16,7 +16,11 @@
     "reason": "Syy ilmiantoon",
     "contact": "Yhteystiedot",
     "emptyContactField": "Yhteystietoja ei annettu",
-    "delete": "Poista ilmianto"
+    "delete": "Poista ilmianto",
+    "update": {
+      "success": "Ilmiannon päivittäminen onnistui.",
+      "failure": "Ilmiannon päivittäminen epäonnistui."
+    }
   },
   "delete": {
     "success": "Ilmiannon poisto onnistui.",
