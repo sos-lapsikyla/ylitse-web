@@ -1,11 +1,12 @@
 import { Modal, ModalBackground } from '@/components/Modal';
 import { Report } from '@/features/ReportsPage/models';
-import Text from '@/components/Text';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import { Success } from '@/components/Icons/Success';
-import { Warning } from '@/components/Icons/Warning';
-import { TextButton } from '@/components/Buttons';
+import { Button, TextButton } from '@/components/Buttons';
+import { useDeleteReportMutation } from '@/features/ReportsPage/reportsApi';
+import { useConfirmDelete } from '@/hooks/useConfirmDelete';
+import { palette } from '@/components/constants';
+import ExpandedCardContent from './ExpandedCardContent';
 
 type Props = {
   report: Report;
@@ -19,7 +20,8 @@ const ExpandedReportCard: React.FC<Props> = ({
   onDismiss,
 }) => {
   const { t } = useTranslation('reports');
-  const isContactFieldEmpty = report.contactField === '';
+  const [deleteReport] = useDeleteReportMutation();
+  const confirmDelete = useConfirmDelete();
 
   return (
     <ModalBackground>
@@ -28,61 +30,28 @@ const ExpandedReportCard: React.FC<Props> = ({
         title={t('reportCard.title', { number: reportNumber })}
       >
         <Container>
-          <TextGroup>
-            <Text variant="boldBaloo">{t('reportCard.state.title')}</Text>
-            {report.status === 'handled' && (
-              <IconTextRow>
-                <Success
-                  color="green"
-                  sizeInPx={20}
-                  variant="no-ellipse"
-                ></Success>
-                <ReportInfoText variant="boldBaloo" color="green">
-                  {t('reportCard.state.handled')}
-                </ReportInfoText>
-              </IconTextRow>
-            )}
-            {report.status === 'received' && (
-              <IconTextRow>
-                <Warning
-                  color="redDark"
-                  sizeInPx={24}
-                  variant="filled"
-                ></Warning>
-                <ReportInfoText variant="boldBaloo" color="redDark">
-                  {t('reportCard.state.received')}
-                </ReportInfoText>
-                <Text variant="inlineLink">
-                  {t('reportCard.state.markAsHandled')}
-                </Text>
-              </IconTextRow>
-            )}
-          </TextGroup>
-          <TextGroup>
-            <Text variant="boldBaloo">{t('reportCard.sent')}</Text>
-            <ReportInfoText variant="p">
-              {' '}
-              {new Date(report.created).toLocaleString('fi-EU', {
-                year: 'numeric',
-                month: 'numeric',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-              })}
-            </ReportInfoText>
-          </TextGroup>
-          <TextGroup>
-            <Text variant="boldBaloo">{t('reportCard.reason')}</Text>
-            <ReportInfoText variant="p">{report.reportReason}</ReportInfoText>
-          </TextGroup>
-          <TextGroup>
-            <Text variant="boldBaloo">{t('reportCard.contact')}</Text>
-            <ReportInfoText variant="p">
-              {isContactFieldEmpty
-                ? t('reportCard.emptyContactField')
-                : report.contactField}
-            </ReportInfoText>
-          </TextGroup>
+          <ExpandedCardContent report={report} />
+          <Button
+            sizeInPx={18}
+            leftIcon="delete"
+            onClick={() => {
+              void confirmDelete({
+                id: report.id,
+                onDelete: deleteReport,
+                title: t('delete.title'),
+                description: t('delete.description'),
+                confirmId: 'confirm-delete',
+                borderColor: palette.redSalmon,
+                closeText: t('delete.cancel'),
+                confirmText: t('delete.confirm'),
+              });
+            }}
+            text={{
+              color: 'redDark',
+              text: t('reportCard.delete'),
+              variant: 'link',
+            }}
+          />
           <ButtonContainer>
             <TextButton size="normal" onClick={onDismiss} variant="light">
               {t('reportCard.cancel')}
@@ -111,23 +80,6 @@ const ButtonContainer = styled.div`
 
 const Container = styled.div`
   padding-top: 2rem;
-`;
-
-const ReportInfoText = styled(Text)`
-  margin: 0;
-`;
-
-const IconTextRow = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
-`;
-
-const TextGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 2rem;
 `;
 
 export default ExpandedReportCard;

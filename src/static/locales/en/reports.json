@@ -15,10 +15,15 @@
     "sent": "Sent",
     "reason": "Reason for report",
     "contact": "Contact information",
-    "emptyContactField": "No contact information"
+    "emptyContactField": "No contact information",
+    "delete": "Delete report"
   },
   "delete": {
     "success": "Deleting report was successful.",
-    "failure": "Deleting report failed."
+    "failure": "Deleting report failed.",
+    "title": "Delete report",
+    "description": "Deleting report can not be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete"
   }
 }

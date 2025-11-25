@@ -15,10 +15,15 @@
     "sent": "Lähetetty",
     "reason": "Syy ilmiantoon",
     "contact": "Yhteystiedot",
-    "emptyContactField": "Yhteystietoja ei annettu"
+    "emptyContactField": "Yhteystietoja ei annettu",
+    "delete": "Poista ilmianto"
   },
   "delete": {
     "success": "Ilmiannon poisto onnistui.",
-    "failure": "Ilmiannon poistaminen epäonnistui."
+    "failure": "Ilmiannon poistaminen epäonnistui.",
+    "title": "Poista ilmianto",
+    "description": "Ilmiannon poistamista ei voi tämän jälkeen perua.",
+    "cancel": "Peruuta",
+    "confirm": "Poista"
   }
 }

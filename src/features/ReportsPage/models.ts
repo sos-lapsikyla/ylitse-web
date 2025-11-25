@@ -12,7 +12,7 @@ const reportCodec = D.struct({
   status: status,
   updated: D.string,
 });
-type ApiReport = D.TypeOf<typeof reportCodec>;
+export type ApiReport = D.TypeOf<typeof reportCodec>;
 
 export const reportListResponseType = D.struct({
   resources: D.array(reportCodec),

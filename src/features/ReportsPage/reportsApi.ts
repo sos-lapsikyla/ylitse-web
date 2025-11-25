@@ -2,7 +2,12 @@ import toast from 'react-hot-toast';
 import { baseApi } from '@/baseApi';
 import { t } from 'i18next';
 import { parseAndTransformTo } from '@/utils/http';
-import { reportListResponseType, Reports, toReportMap } from './models';
+import {
+  ApiReport,
+  reportListResponseType,
+  Reports,
+  toReportMap,
+} from './models';
 
 export const reportsApi = baseApi.injectEndpoints({
   endpoints: builder => ({
@@ -44,7 +49,27 @@ export const reportsApi = baseApi.injectEndpoints({
         }
       },
     }),
+    updateReport: builder.mutation<unknown, ApiReport>({
+      query: report => ({
+        url: `reports/${report.id}`,
+        method: 'put',
+        body: report,
+      }),
+      invalidatesTags: ['reports'],
+      async onQueryStarted(_, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          toast.success('päivitys onnistui');
+        } catch (err) {
+          toast.error('päivitys epäonnistui');
+        }
+      },
+    }),
   }),
 });
 
-export const { useGetReportsQuery } = reportsApi;
+export const {
+  useGetReportsQuery,
+  useDeleteReportMutation,
+  useUpdateReportMutation,
+} = reportsApi;
