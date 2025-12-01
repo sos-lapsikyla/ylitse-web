@@ -6,29 +6,29 @@ import { Warning } from '@/components/Icons/Warning';
 import { Report } from '@/features/ReportsPage/models';
 import { Button } from '@/components/Buttons';
 import { useUpdateReportMutation } from '@/features/ReportsPage/reportsApi';
-import toast from 'react-hot-toast';
 
 type Props = {
   report: Report;
+  onDismiss: () => void;
 };
 
-const ExpandedCardContent: React.FC<Props> = ({ report }) => {
+const ExpandedCardContent: React.FC<Props> = ({ report, onDismiss }) => {
   const { t } = useTranslation('reports');
   const isContactFieldEmpty = report.contactField === '';
   const [updateReport] = useUpdateReportMutation();
+  type reportStatus = 'handled' | 'received';
 
-  const changeState = async () => {
+  const changeState = async (nextStatus: reportStatus) => {
     try {
       await updateReport({
         id: report.id,
         body: {
-          status: 'handled',
+          status: nextStatus,
           comment: '',
         },
       }).unwrap();
-      toast.success('onnistui!');
+      onDismiss();
     } catch (err) {
-      toast.error('epäonnistui');
       console.log(err);
     }
   };
@@ -45,10 +45,10 @@ const ExpandedCardContent: React.FC<Props> = ({ report }) => {
             </ReportInfoText>
             <Button
               sizeInPx={18}
-              onClick={() => void changeState}
+              onClick={() => void changeState('received')}
               text={{
                 color: 'purpleDark',
-                text: t('reportCard.state.markAsRecieved'),
+                text: t('reportCard.state.markAsReceived'),
                 variant: 'underLinedinlineLink',
               }}
             />
@@ -62,7 +62,7 @@ const ExpandedCardContent: React.FC<Props> = ({ report }) => {
             </ReportInfoText>
             <Button
               sizeInPx={18}
-              onClick={() => void changeState}
+              onClick={() => void changeState('handled')}
               text={{
                 color: 'purple',
                 text: t('reportCard.state.markAsHandled'),

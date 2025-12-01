@@ -52,7 +52,7 @@ export const reportsApi = baseApi.injectEndpoints({
     updateReport: builder.mutation<unknown, UpdateReportPayload>({
       query: ({ id, body }) => ({
         url: `reports/${id}`,
-        method: 'patch',
+        method: 'PATCH',
         body: body,
       }),
       invalidatesTags: ['reports'],
@@ -60,7 +60,7 @@ export const reportsApi = baseApi.injectEndpoints({
         try {
           await queryFulfilled;
           toast.success(t('reports:reportCard.update.success'));
-        } catch (err) {
+        } catch {
           toast.error(t('reports:reportCard.update.failure'));
         }
       },

@@ -30,7 +30,7 @@ const ExpandedReportCard: React.FC<Props> = ({
         title={t('reportCard.title', { number: reportNumber })}
       >
         <Container>
-          <ExpandedCardContent report={report} />
+          <ExpandedCardContent onDismiss={onDismiss} report={report} />
           <Button
             sizeInPx={18}
             leftIcon="delete"
@@ -45,6 +45,7 @@ const ExpandedReportCard: React.FC<Props> = ({
                 closeText: t('delete.cancel'),
                 confirmText: t('delete.confirm'),
               });
+              onDismiss();
             }}
             text={{
               color: 'redDark',

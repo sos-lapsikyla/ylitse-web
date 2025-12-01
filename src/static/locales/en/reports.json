@@ -10,7 +10,7 @@
       "handled": "Resolved",
       "received": "Unresolved",
       "markAsHandled": "Mark as resolved",
-      "markAsRecieved": "Mark as unresolved"
+      "markAsReceived": "Mark as unresolved"
     },
     "sent": "Sent",
     "reason": "Reason for report",

@@ -10,7 +10,7 @@
       "handled": "Käsitelty",
       "received": "Ei käsitelty",
       "markAsHandled": "Merkitse käsitellyksi",
-      "markAsRecieved": "Merkitse käsittelemättömäksi"
+      "markAsReceived": "Merkitse käsittelemättömäksi"
     },
     "sent": "Lähetetty",
     "reason": "Syy ilmiantoon",
