@@ -130,5 +130,8 @@ describe('Reports page', () => {
     cy.getByText('Merkitse käsitellyksi', 'button')
       .should('be.visible')
       .click();
+    cy.getInputByLabel('Lisää kommentti').type('Ilmianto käsitelty');
+    cy.getByText('Tallenna', 'button').should('be.visible').click();
+    cy.getByText('Ilmiannon päivittäminen onnistui.').should('be.visible');
   });
 });
