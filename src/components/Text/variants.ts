@@ -138,7 +138,7 @@ export const variants = {
       lineHeight: '3rem',
     },
   },
-  underLinedinlineLink: {
+  underlinedInlineLink: {
     element: 'a',
     styles: {
       fontFamily: '"Baloo 2"',

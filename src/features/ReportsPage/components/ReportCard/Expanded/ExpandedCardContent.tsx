@@ -72,7 +72,7 @@ const ExpandedCardContent: React.FC<Props> = ({ report, onDismiss }) => {
                 report.status === 'handled'
                   ? t('reportCard.state.markAsReceived')
                   : t('reportCard.state.markAsHandled'),
-              variant: 'underLinedinlineLink',
+              variant: 'underlinedInlineLink',
             }}
           />
         </IconTextRow>
