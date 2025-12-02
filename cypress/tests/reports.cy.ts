@@ -66,6 +66,29 @@ describe('Reports page', () => {
         reportsData = reportsData.filter(r => r.id !== id);
         req.reply({ success: true });
       }).as('deleteReport');
+
+      cy.intercept('PATCH', '**/api/reports/*', req => {
+        const id = req.url.split('/').pop()!;
+
+        expect(req.body.comment).to.be.a('string');
+
+        reportsData = reportsData.map(r =>
+          r.id === id ? { ...r, status: 'handled' } : r,
+        );
+
+        const updated = reportsData.find(r => r.id === id)!;
+
+        req.reply({
+          id: updated.id,
+          reported_user_id: updated.reportedUserId,
+          contact_field: updated.contactField,
+          report_reason: updated.reportReason,
+          status: updated.status,
+          active: true,
+          updated: new Date().toISOString(),
+          created: updated.created,
+        });
+      }).as('updateReport');
     });
   });
   after(() => {
@@ -109,7 +132,7 @@ describe('Reports page', () => {
       .first()
       .should('be.visible')
       .click();
-    cy.getByText('Ilmianto #1', 'h4').should('be.visible');
+    cy.getByText('Ilmianto #1', 'h3').should('be.visible');
     cy.getByText('Poista ilmianto', 'button').should('be.visible').click();
     cy.getByText('Poista', 'button').click();
     cy.wait('@deleteReport');
@@ -126,12 +149,13 @@ describe('Reports page', () => {
       .first()
       .should('be.visible')
       .click();
-    cy.getByText('Ilmianto #1', 'h4').should('be.visible');
+    cy.getByText('Ilmianto #1', 'h3').should('be.visible');
     cy.getByText('Merkitse käsitellyksi', 'button')
       .should('be.visible')
       .click();
     cy.getInputByLabel('Lisää kommentti').type('Ilmianto käsitelty');
     cy.getByText('Tallenna', 'button').should('be.visible').click();
+    cy.wait('@updateReport');
     cy.getByText('Ilmiannon päivittäminen onnistui.').should('be.visible');
   });
 });
