@@ -4,8 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { Success } from '@/components/Icons/Success';
 import { Warning } from '@/components/Icons/Warning';
 import { Report } from '@/features/ReportsPage/models';
-import { Button } from '@/components/Buttons';
+import { Button, TextButton } from '@/components/Buttons';
 import { useUpdateReportMutation } from '@/features/ReportsPage/reportsApi';
+import LabeledInput from '@/components/LabeledInput';
+import { useState } from 'react';
 
 type Props = {
   report: Report;
@@ -16,15 +18,18 @@ const ExpandedCardContent: React.FC<Props> = ({ report, onDismiss }) => {
   const { t } = useTranslation('reports');
   const isContactFieldEmpty = report.contactField === '';
   const [updateReport] = useUpdateReportMutation();
-  type reportStatus = 'handled' | 'received';
+  type ReportStatus = 'handled' | 'received';
+  const [comment, setComment] = useState('');
+  const [isCommentContainerOpen, setIsCommentContainerOpen] = useState(false);
+  const [nextStatus, setNextStatus] = useState<ReportStatus | null>(null);
 
-  const changeState = async (nextStatus: reportStatus) => {
+  const changeStatus = async (nextStatus: ReportStatus) => {
     try {
       await updateReport({
         id: report.id,
         body: {
           status: nextStatus,
-          comment: '',
+          comment: comment,
         },
       }).unwrap();
       onDismiss();
@@ -37,41 +42,64 @@ const ExpandedCardContent: React.FC<Props> = ({ report, onDismiss }) => {
     <>
       <TextGroup>
         <Text variant="boldBaloo">{t('reportCard.state.title')}</Text>
-        {report.status === 'handled' && (
-          <IconTextRow>
-            <Success color="green" sizeInPx={20} variant="no-ellipse"></Success>
-            <ReportInfoText variant="boldBaloo" color="green">
-              {t('reportCard.state.handled')}
-            </ReportInfoText>
-            <Button
-              sizeInPx={18}
-              onClick={() => void changeState('received')}
-              text={{
-                color: 'purpleDark',
-                text: t('reportCard.state.markAsReceived'),
-                variant: 'underLinedinlineLink',
-              }}
-            />
-          </IconTextRow>
-        )}
-        {report.status === 'received' && (
-          <IconTextRow>
-            <Warning color="redDark" sizeInPx={24} variant="filled"></Warning>
-            <ReportInfoText variant="boldBaloo" color="redDark">
-              {t('reportCard.state.received')}
-            </ReportInfoText>
-            <Button
-              sizeInPx={18}
-              onClick={() => void changeState('handled')}
-              text={{
-                color: 'purple',
-                text: t('reportCard.state.markAsHandled'),
-                variant: 'underLinedinlineLink',
-              }}
-            />
-          </IconTextRow>
-        )}
+        <IconTextRow>
+          {report.status === 'handled' ? (
+            <Success color="green" sizeInPx={20} variant="no-ellipse" />
+          ) : (
+            <Warning color="redDark" sizeInPx={24} variant="filled" />
+          )}
+
+          <ReportInfoText
+            variant="boldBaloo"
+            color={report.status === 'handled' ? 'green' : 'redDark'}
+          >
+            {report.status === 'handled'
+              ? t('reportCard.state.handled')
+              : t('reportCard.state.received')}
+          </ReportInfoText>
+
+          <Button
+            sizeInPx={18}
+            onClick={() => {
+              setNextStatus(
+                report.status === 'handled' ? 'received' : 'handled',
+              );
+              setIsCommentContainerOpen(true);
+            }}
+            text={{
+              color: report.status === 'handled' ? 'purpleDark' : 'purple',
+              text:
+                report.status === 'handled'
+                  ? t('reportCard.state.markAsReceived')
+                  : t('reportCard.state.markAsHandled'),
+              variant: 'underLinedinlineLink',
+            }}
+          />
+        </IconTextRow>
       </TextGroup>
+      {isCommentContainerOpen && (
+        <Container>
+          <LabeledInput
+            label={t('reportCard.state.addComment')}
+            onChange={value => setComment(value)}
+            value={comment}
+          />
+          <ButtonContainer>
+            <TextButton
+              onClick={() => setIsCommentContainerOpen(false)}
+              variant="outlinePurple"
+            >
+              {t('reportCard.state.close')}
+            </TextButton>
+            <TextButton
+              variant="dark"
+              onClick={() => nextStatus && void changeStatus(nextStatus)}
+            >
+              {t('reportCard.state.save')}
+            </TextButton>
+          </ButtonContainer>
+        </Container>
+      )}
       <TextGroup>
         <Text variant="boldBaloo">{t('reportCard.sent')}</Text>
         <ReportInfoText variant="p">
@@ -100,6 +128,19 @@ const ExpandedCardContent: React.FC<Props> = ({ report, onDismiss }) => {
     </>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 2rem 0;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: space-between;
+`;
 
 const ReportInfoText = styled(Text)`
   margin: 0;
