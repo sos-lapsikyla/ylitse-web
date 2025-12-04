@@ -29,6 +29,7 @@ const toReport = ({
   report_reason,
   reported_user_id,
   status,
+  updated,
 }: ApiReport) => ({
   id,
   created,
@@ -36,6 +37,7 @@ const toReport = ({
   reportReason: report_reason,
   reportedUserId: reported_user_id,
   status,
+  updated,
 });
 
 export type Reports = Record<string, Report>;

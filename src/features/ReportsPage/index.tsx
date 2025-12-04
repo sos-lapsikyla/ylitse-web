@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 import { useGetReportsQuery } from './reportsApi';
 import { useAppSelector } from '@/store';
-import { selectAllReports } from './selectors';
+import { selectReportsSorted } from './selectors';
 
 import Text from '@/components/Text';
 import Spinner from '@/components/Spinner';
@@ -19,7 +19,7 @@ const ReportsPage = () => {
   const { t } = useTranslation('reports');
   const { isMobile } = useGetLayoutMode();
   const { isLoading } = useGetReportsQuery();
-  const reports = useAppSelector(selectAllReports());
+  const reports = useAppSelector(selectReportsSorted);
   const [selectedReport, setSelectedReport] = useState<{
     report: Report;
     reportNumber: number;
