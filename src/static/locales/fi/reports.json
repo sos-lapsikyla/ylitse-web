@@ -12,7 +12,7 @@
       "markAsHandled": "Merkitse käsitellyksi",
       "markAsReceived": "Merkitse käsittelemättömäksi",
       "addComment": "Lisää kommentti",
-      "close": "Sulje",
+      "cancel": "Peuuta",
       "save": "Tallenna"
     },
     "sent": "Lähetetty",

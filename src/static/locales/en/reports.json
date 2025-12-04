@@ -12,7 +12,7 @@
       "markAsHandled": "Mark as resolved",
       "markAsReceived": "Mark as unresolved",
       "comment": "Add comment",
-      "close": "Close",
+      "cancel": "Cancel",
       "save": "Save"
     },
     "sent": "Sent",
