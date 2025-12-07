@@ -140,6 +140,24 @@ describe('Reports page', () => {
     cy.get('body').should('not.contain.text', 'Haluan raportoida mentorin');
   });
 
+  it('can opens modal again if deleting report is cancelled', () => {
+    cy.get('[href="/reports"]').click();
+    cy.wait('@getReports');
+    cy.location('pathname').should('eq', '/reports');
+    cy.getByText('Haluan raportoida mentorin', 'p').should('be.visible');
+    cy.getByText('Avaa ilmianto', 'button')
+      .first()
+      .should('be.visible')
+      .click();
+    cy.getByText('Ilmianto #1', 'h3').should('be.visible');
+    cy.getByText('Poista ilmianto', 'button').should('be.visible').click();
+    // assure modal is opened again if deleting is cancelled
+    cy.getByText('Peruuta', 'button').should('be.visible').click();
+    cy.getByText('Ilmianto #1', 'h3').should('be.visible');
+    cy.reload();
+    cy.get('body').should('contain.text', 'Haluan raportoida mentorin');
+  });
+
   it('can update reports status', () => {
     cy.get('[href="/reports"]').click();
     cy.wait('@getReports');

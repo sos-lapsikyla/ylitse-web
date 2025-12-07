@@ -3,6 +3,7 @@ import { useConfirm } from '@/features/Confirmation/useConfirm';
 type ConfirmDeleteOptions = {
   id: string;
   onDelete: (id: string) => Promise<unknown> | void;
+  onCancel?: () => void;
   title: string;
   description: string;
   confirmId: string;
@@ -22,6 +23,7 @@ export const useConfirmDelete = () => {
     description,
     title,
     id,
+    onCancel,
     onDelete,
   }: ConfirmDeleteOptions): Promise<void> => {
     const isConfirmed = await getConfirmation({
@@ -32,6 +34,9 @@ export const useConfirmDelete = () => {
       description: description,
       title: title,
     });
+    if (!isConfirmed && onCancel) {
+      onCancel();
+    }
     if (isConfirmed) {
       await onDelete(id);
     }

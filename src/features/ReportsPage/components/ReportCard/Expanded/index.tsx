@@ -17,12 +17,14 @@ export type ReportStatus = 'handled' | 'received';
 type Props = {
   report: Report;
   reportNumber: number;
+  reopen: () => void;
   onDismiss: () => void;
 };
 
 const ExpandedReportCard: React.FC<Props> = ({
   report,
   reportNumber,
+  reopen,
   onDismiss,
 }) => {
   const { t } = useTranslation('reports');
@@ -107,8 +109,10 @@ const ExpandedReportCard: React.FC<Props> = ({
               sizeInPx={18}
               leftIcon="delete"
               onClick={() => {
+                onDismiss();
                 void confirmDelete({
                   id: report.id,
+                  onCancel: reopen,
                   onDelete: deleteReport,
                   title: t('delete.title'),
                   description: t('delete.description'),
@@ -117,7 +121,6 @@ const ExpandedReportCard: React.FC<Props> = ({
                   closeText: t('delete.cancel'),
                   confirmText: t('delete.confirm'),
                 });
-                onDismiss();
               }}
               text={{
                 color: 'redDark',

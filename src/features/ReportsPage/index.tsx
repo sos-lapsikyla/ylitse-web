@@ -40,6 +40,7 @@ const ReportsPage = () => {
             report={selectedReport.report}
             reportNumber={selectedReport.reportNumber}
             onDismiss={() => setSelectedReport(null)}
+            reopen={() => setSelectedReport(selectedReport)}
           />
         )}
         <ReportList
