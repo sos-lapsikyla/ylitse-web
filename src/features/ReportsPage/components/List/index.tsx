@@ -5,21 +5,21 @@ import { Report } from '../../models';
 
 type Props = {
   reports: Report[];
+  setVisibleCard: (report: Report, reportNumber: number) => void;
 };
 
-const ReportList: React.FC<Props> = ({ reports }) => {
+const ReportList: React.FC<Props> = ({ reports, setVisibleCard }) => {
   const { isMobile } = useGetLayoutMode();
-
-  const sortedReports = [...reports].sort((a, b) => {
-    const aIsReceived = a.status === 'received' ? 0 : 1;
-    const bIsReceived = b.status === 'received' ? 0 : 1;
-    return aIsReceived - bIsReceived;
-  });
 
   return (
     <ListContainer $isMobile={isMobile}>
-      {sortedReports.map((report, index) => (
-        <ReportCard key={report.id} report={report} reportNumber={index + 1} />
+      {reports.map((report, index) => (
+        <ReportCard
+          key={report.id}
+          report={report}
+          reportNumber={index + 1}
+          setVisibleCard={setVisibleCard}
+        />
       ))}
     </ListContainer>
   );

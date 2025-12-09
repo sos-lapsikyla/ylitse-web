@@ -1,22 +1,29 @@
+import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { OUTER_VERTICAL_MARGIN, palette } from '@/components/constants';
 
 import { useTranslation } from 'react-i18next';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
+import { useGetReportsQuery } from './reportsApi';
+import { useAppSelector } from '@/store';
+import { selectReportsSorted } from './selectors';
 
 import Text from '@/components/Text';
 import Spinner from '@/components/Spinner';
 import PageWithTransition from '@/components/PageWithTransition';
-import { useGetReportsQuery } from './reportsApi';
 import ReportList from './components/List';
-import { useAppSelector } from '@/store';
-import { selectAllReports } from './selectors';
+import { Report } from './models';
+import ExpandedReportCard from './components/ReportCard/Expanded';
 
 const ReportsPage = () => {
   const { t } = useTranslation('reports');
   const { isMobile } = useGetLayoutMode();
   const { isLoading } = useGetReportsQuery();
-  const reports = useAppSelector(selectAllReports());
+  const reports = useAppSelector(selectReportsSorted);
+  const [selectedReport, setSelectedReport] = useState<{
+    report: Report;
+    reportNumber: number;
+  } | null>(null);
 
   const PageContent = isLoading ? (
     <Spinner variant="large" />
@@ -28,7 +35,20 @@ const ReportsPage = () => {
         </TitleWrapper>
       </PageHeader>
       <PageContainer>
-        <ReportList reports={reports}></ReportList>
+        {selectedReport && (
+          <ExpandedReportCard
+            report={selectedReport.report}
+            reportNumber={selectedReport.reportNumber}
+            onDismiss={() => setSelectedReport(null)}
+            reopen={() => setSelectedReport(selectedReport)}
+          />
+        )}
+        <ReportList
+          reports={reports}
+          setVisibleCard={(report, reportNumber) =>
+            setSelectedReport({ report, reportNumber })
+          }
+        ></ReportList>
       </PageContainer>
     </>
   );

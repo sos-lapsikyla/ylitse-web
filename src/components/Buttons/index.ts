@@ -3,5 +3,13 @@ import IconButton from './IconButton';
 import { type ButtonProps } from './IconButton';
 import StatusButton from './StatusButton';
 import TextButton from './TextButton';
+import ExpandButton from './ExpandButton';
 
-export { Button, IconButton, StatusButton, TextButton, type ButtonProps };
+export {
+  Button,
+  ExpandButton,
+  IconButton,
+  StatusButton,
+  TextButton,
+  type ButtonProps,
+};

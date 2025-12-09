@@ -12,7 +12,7 @@ const reportCodec = D.struct({
   status: status,
   updated: D.string,
 });
-type ApiReport = D.TypeOf<typeof reportCodec>;
+export type ApiReport = D.TypeOf<typeof reportCodec>;
 
 export const reportListResponseType = D.struct({
   resources: D.array(reportCodec),
@@ -29,6 +29,7 @@ const toReport = ({
   report_reason,
   reported_user_id,
   status,
+  updated,
 }: ApiReport) => ({
   id,
   created,
@@ -36,6 +37,7 @@ const toReport = ({
   reportReason: report_reason,
   reportedUserId: reported_user_id,
   status,
+  updated,
 });
 
 export type Reports = Record<string, Report>;
@@ -46,3 +48,8 @@ export const toReportMap = ({ resources }: ReportsResponse): Reports =>
     acc[report.id] = report;
     return acc;
   }, {});
+
+export type UpdateReportPayload = {
+  id: string;
+  body: Partial<ApiReport> & { comment: string };
+};

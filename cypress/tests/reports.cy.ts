@@ -60,6 +60,35 @@ describe('Reports page', () => {
           })),
         });
       }).as('getReports');
+
+      cy.intercept('DELETE', '**/api/reports/*', req => {
+        const id = req.url.split('/').pop();
+        reportsData = reportsData.filter(r => r.id !== id);
+        req.reply({ success: true });
+      }).as('deleteReport');
+
+      cy.intercept('PATCH', '**/api/reports/*', req => {
+        const id = req.url.split('/').pop()!;
+
+        expect(req.body.comment).to.be.a('string');
+
+        reportsData = reportsData.map(r =>
+          r.id === id ? { ...r, status: 'handled' } : r,
+        );
+
+        const updated = reportsData.find(r => r.id === id)!;
+
+        req.reply({
+          id: updated.id,
+          reported_user_id: updated.reportedUserId,
+          contact_field: updated.contactField,
+          report_reason: updated.reportReason,
+          status: updated.status,
+          active: true,
+          updated: new Date().toISOString(),
+          created: updated.created,
+        });
+      }).as('updateReport');
     });
   });
   after(() => {
@@ -92,5 +121,59 @@ describe('Reports page', () => {
       .first()
       .next()
       .should('contain', 'Ei käsitelty');
+  });
+
+  it('can delete report', () => {
+    cy.get('[href="/reports"]').click();
+    cy.wait('@getReports');
+    cy.location('pathname').should('eq', '/reports');
+    cy.getByText('Haluan raportoida mentorin', 'p').should('be.visible');
+    cy.getByText('Avaa ilmianto', 'button')
+      .first()
+      .should('be.visible')
+      .click();
+    cy.getByText('Ilmianto #1', 'h3').should('be.visible');
+    cy.getByText('Poista ilmianto', 'button').should('be.visible').click();
+    cy.getByText('Poista', 'button').click();
+    cy.wait('@deleteReport');
+    cy.reload();
+    cy.get('body').should('not.contain.text', 'Haluan raportoida mentorin');
+  });
+
+  it('can opens modal again if deleting report is cancelled', () => {
+    cy.get('[href="/reports"]').click();
+    cy.wait('@getReports');
+    cy.location('pathname').should('eq', '/reports');
+    cy.getByText('Haluan raportoida mentorin', 'p').should('be.visible');
+    cy.getByText('Avaa ilmianto', 'button')
+      .first()
+      .should('be.visible')
+      .click();
+    cy.getByText('Ilmianto #1', 'h3').should('be.visible');
+    cy.getByText('Poista ilmianto', 'button').should('be.visible').click();
+    // assure modal is opened again if deleting is cancelled
+    cy.getByText('Peruuta', 'button').should('be.visible').click();
+    cy.getByText('Ilmianto #1', 'h3').should('be.visible');
+    cy.reload();
+    cy.get('body').should('contain.text', 'Haluan raportoida mentorin');
+  });
+
+  it('can update reports status', () => {
+    cy.get('[href="/reports"]').click();
+    cy.wait('@getReports');
+    cy.location('pathname').should('eq', '/reports');
+    cy.getByText('Ei käsitelty', 'p').should('be.visible');
+    cy.getByText('Avaa ilmianto', 'button')
+      .first()
+      .should('be.visible')
+      .click();
+    cy.getByText('Ilmianto #1', 'h3').should('be.visible');
+    cy.getByText('Merkitse käsitellyksi', 'button')
+      .should('be.visible')
+      .click();
+    cy.getInputByLabel('Lisää kommentti').type('Ilmianto käsitelty');
+    cy.getByText('Tallenna', 'button').should('be.visible').click();
+    cy.wait('@updateReport');
+    cy.getByText('Ilmiannon päivittäminen onnistui.').should('be.visible');
   });
 });

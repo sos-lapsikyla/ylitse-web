@@ -21,13 +21,13 @@ export const skillsApi = baseApi.injectEndpoints({
           skillListResponseType,
           { resources: [] },
           toSkillMap,
-          () => toast.error('error'),
+          () => toast.error(t('skills:notification.failure.get')),
         ),
       async onQueryStarted(_, { queryFulfilled }) {
         try {
           await queryFulfilled;
         } catch (error) {
-          toast('error');
+          toast(t('skills:notification.failure.get'));
         }
       },
     }),

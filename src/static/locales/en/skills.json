@@ -14,7 +14,8 @@
     },
     "failure": {
       "add": "Adding skill failed.",
-      "delete": "Deleting skill failed."
+      "delete": "Deleting skill failed.",
+      "get": "Fetching skills failed"
     },
     "delete": {
       "title": "Delete topic",

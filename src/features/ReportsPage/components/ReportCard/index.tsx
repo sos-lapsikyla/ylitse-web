@@ -6,13 +6,19 @@ import { useTranslation } from 'react-i18next';
 import { Report } from '../../models';
 import { Warning } from '@/components/Icons/Warning';
 import { Success } from '@/components/Icons/Success';
+import { ExpandButton } from '@/components/Buttons';
 
 type Props = {
   report: Report;
   reportNumber: number;
+  setVisibleCard: (report: Report, reportNumber: number) => void;
 };
 
-const ReportCard: React.FC<Props> = ({ report, reportNumber }) => {
+const ReportCard: React.FC<Props> = ({
+  report,
+  reportNumber,
+  setVisibleCard,
+}) => {
   const { t } = useTranslation('reports');
   const isContactFieldEmpty = report.contactField === '';
   return (
@@ -68,6 +74,10 @@ const ReportCard: React.FC<Props> = ({ report, reportNumber }) => {
             : report.contactField}
         </ReportInfoText>
       </TextGroup>
+      <ExpandButton
+        title={t('reportCard.open')}
+        onClick={() => setVisibleCard(report, reportNumber)}
+      />
     </Card>
   );
 };

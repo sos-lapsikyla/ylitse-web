@@ -1,0 +1,187 @@
+import { Modal, ModalBackground } from '@/components/Modal';
+import { Report } from '@/features/ReportsPage/models';
+import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
+import { Button, TextButton } from '@/components/Buttons';
+import { useDeleteReportMutation } from '@/features/ReportsPage/reportsApi';
+import { useConfirmDelete } from '@/hooks/useConfirmDelete';
+import { palette } from '@/components/constants';
+import StatusChangeModal from './StatusChangeModal';
+import Text from '@/components/Text';
+import { useState } from 'react';
+import { Success } from '@/components/Icons/Success';
+import { Warning } from '@/components/Icons/Warning';
+
+export type ReportStatus = 'handled' | 'received';
+
+type Props = {
+  report: Report;
+  reportNumber: number;
+  reopen: () => void;
+  onDismiss: () => void;
+};
+
+const ExpandedReportCard: React.FC<Props> = ({
+  report,
+  reportNumber,
+  reopen,
+  onDismiss,
+}) => {
+  const { t } = useTranslation('reports');
+  const [deleteReport] = useDeleteReportMutation();
+  const confirmDelete = useConfirmDelete();
+  const isContactFieldEmpty = report.contactField === '';
+  const [isCommentContainerOpen, setIsCommentContainerOpen] = useState(false);
+  const [nextStatus, setNextStatus] = useState<ReportStatus | null>(null);
+
+  return (
+    <ModalBackground>
+      {!isCommentContainerOpen && (
+        <Modal
+          onDismiss={() => onDismiss()}
+          title={t('reportCard.title', { number: reportNumber })}
+        >
+          <Container>
+            <TextGroup>
+              <Text variant="boldBaloo">{t('reportCard.state.title')}</Text>
+              <IconTextRow>
+                {report.status === 'handled' ? (
+                  <Success color="green" sizeInPx={20} variant="no-ellipse" />
+                ) : (
+                  <Warning color="redDark" sizeInPx={24} variant="filled" />
+                )}
+
+                <ReportInfoText
+                  variant="boldBaloo"
+                  color={report.status === 'handled' ? 'green' : 'redDark'}
+                >
+                  {report.status === 'handled'
+                    ? t('reportCard.state.handled')
+                    : t('reportCard.state.received')}
+                </ReportInfoText>
+
+                <Button
+                  sizeInPx={18}
+                  onClick={() => {
+                    setNextStatus(
+                      report.status === 'handled' ? 'received' : 'handled',
+                    );
+                    setIsCommentContainerOpen(true);
+                  }}
+                  text={{
+                    color:
+                      report.status === 'handled' ? 'purpleDark' : 'purple',
+                    text:
+                      report.status === 'handled'
+                        ? t('reportCard.state.markAsReceived')
+                        : t('reportCard.state.markAsHandled'),
+                    variant: 'underlinedInlineLink',
+                  }}
+                />
+              </IconTextRow>
+            </TextGroup>
+            <TextGroup>
+              <Text variant="boldBaloo">{t('reportCard.sent')}</Text>
+              <ReportInfoText variant="p">
+                {' '}
+                {new Date(report.created).toLocaleString('fi-EU', {
+                  year: 'numeric',
+                  month: 'numeric',
+                  day: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                })}
+              </ReportInfoText>
+            </TextGroup>
+            <TextGroup>
+              <Text variant="boldBaloo">{t('reportCard.reason')}</Text>
+              <ReportInfoText variant="p">{report.reportReason}</ReportInfoText>
+            </TextGroup>
+            <TextGroup>
+              <Text variant="boldBaloo">{t('reportCard.contact')}</Text>
+              <ReportInfoText variant="p">
+                {isContactFieldEmpty
+                  ? t('reportCard.emptyContactField')
+                  : report.contactField}
+              </ReportInfoText>
+            </TextGroup>
+            <Button
+              sizeInPx={18}
+              leftIcon="delete"
+              onClick={() => {
+                onDismiss();
+                void confirmDelete({
+                  id: report.id,
+                  onCancel: reopen,
+                  onDelete: deleteReport,
+                  title: t('delete.title'),
+                  description: t('delete.description'),
+                  confirmId: 'confirm-delete',
+                  borderColor: palette.redSalmon,
+                  closeText: t('delete.cancel'),
+                  confirmText: t('delete.confirm'),
+                });
+              }}
+              text={{
+                color: 'redDark',
+                text: t('reportCard.delete'),
+                variant: 'link',
+              }}
+            />
+            <ButtonContainer>
+              <TextButton size="normal" onClick={onDismiss} variant="light">
+                {t('reportCard.cancel')}
+              </TextButton>
+              <TextButton
+                size="normal"
+                onClick={() => console.log('todo')}
+                variant="disabled"
+              >
+                {t('reportCard.openConversation')}
+              </TextButton>
+            </ButtonContainer>
+          </Container>
+        </Modal>
+      )}
+      {isCommentContainerOpen && nextStatus && (
+        <StatusChangeModal
+          report={report}
+          onDismiss={() => setIsCommentContainerOpen(false)}
+          onSaved={onDismiss}
+          nextStatus={nextStatus}
+        />
+      )}
+    </ModalBackground>
+  );
+};
+
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 2rem 0 1.75rem 0;
+`;
+
+const Container = styled.div`
+  padding-top: 2rem;
+`;
+
+const ReportInfoText = styled(Text)`
+  margin: 0;
+  padding-right: 2rem;
+`;
+
+const IconTextRow = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+`;
+
+const TextGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+`;
+export default ExpandedReportCard;

@@ -2,14 +2,35 @@
   "title": "Reports",
   "reportCard": {
     "title": "Report #{{number}}",
+    "open": "Open report",
+    "cancel": "Cancel",
+    "openConversation": "Open conversation",
     "state": {
       "title": "State",
-      "handled": "Handled",
-      "received": "Not handled"
+      "handled": "Resolved",
+      "received": "Unresolved",
+      "markAsHandled": "Mark as resolved",
+      "markAsReceived": "Mark as unresolved",
+      "comment": "Add comment",
+      "cancel": "Cancel",
+      "save": "Save"
     },
     "sent": "Sent",
     "reason": "Reason for report",
     "contact": "Contact information",
-    "emptyContactField": "No contact information"
+    "emptyContactField": "No contact information",
+    "delete": "Delete report",
+    "update": {
+      "success": "Updating report was successful.",
+      "failure": "Updating report failed."
+    }
+  },
+  "delete": {
+    "success": "Deleting report was successful.",
+    "failure": "Deleting report failed.",
+    "title": "Delete report",
+    "description": "Deleting report can not be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete"
   }
 }

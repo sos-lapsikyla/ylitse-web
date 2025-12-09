@@ -14,7 +14,8 @@
     },
     "failure": {
       "add": "Aiheen lisääminen epäonnistui.",
-      "delete": "Aiheen poistaminen epäonnistui."
+      "delete": "Aiheen poistaminen epäonnistui.",
+      "get": "Aiheiden haku epäonnistui"
     },
     "delete": {
       "title": "Poista aihe",

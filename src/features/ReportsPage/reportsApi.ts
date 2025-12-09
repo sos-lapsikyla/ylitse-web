@@ -1,7 +1,13 @@
 import toast from 'react-hot-toast';
 import { baseApi } from '@/baseApi';
+import { t } from 'i18next';
 import { parseAndTransformTo } from '@/utils/http';
-import { reportListResponseType, Reports, toReportMap } from './models';
+import {
+  reportListResponseType,
+  Reports,
+  toReportMap,
+  UpdateReportPayload,
+} from './models';
 
 export const reportsApi = baseApi.injectEndpoints({
   endpoints: builder => ({
@@ -24,7 +30,46 @@ export const reportsApi = baseApi.injectEndpoints({
         }
       },
     }),
+    deleteReport: builder.mutation<unknown, string>({
+      query: reportId => ({
+        url: `reports/${reportId}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['reports'],
+      async onQueryStarted(_, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          toast.success(t('reports:delete.success'), {
+            id: 'report-delete-success',
+          });
+        } catch {
+          toast.error(t('reports:delete.failure'), {
+            id: 'report-delete-error',
+          });
+        }
+      },
+    }),
+    updateReport: builder.mutation<unknown, UpdateReportPayload>({
+      query: ({ id, body }) => ({
+        url: `reports/${id}`,
+        method: 'PATCH',
+        body: body,
+      }),
+      invalidatesTags: ['reports'],
+      async onQueryStarted(_, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          toast.success(t('reports:reportCard.update.success'));
+        } catch {
+          toast.error(t('reports:reportCard.update.failure'));
+        }
+      },
+    }),
   }),
 });
 
-export const { useGetReportsQuery } = reportsApi;
+export const {
+  useGetReportsQuery,
+  useDeleteReportMutation,
+  useUpdateReportMutation,
+} = reportsApi;
