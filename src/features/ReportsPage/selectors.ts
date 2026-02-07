@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import { reportsApi } from './reportsApi';
+import { toGroupedReportMessages } from './ChatInspection/mappers';
 
 export const selectReports = reportsApi.endpoints.getReports.select();
 
@@ -28,3 +29,27 @@ export const selectReportsSorted = createSelector(
       });
   },
 );
+
+export const selectReportMessages = (senderId: string, recipientId: string) =>
+  reportsApi.endpoints.getReportMessages.select({
+    senderId,
+    recipientId,
+  });
+
+// group messages by date
+export const selectGroupedReportMessages = (
+  senderId: string,
+  recipientId: string,
+) =>
+  createSelector(
+    [
+      reportsApi.endpoints.getReportMessages.select({
+        senderId,
+        recipientId,
+      }),
+    ],
+    result => {
+      const messagesArray = Object.values(result.data?.messages ?? {});
+      return toGroupedReportMessages(messagesArray);
+    },
+  );

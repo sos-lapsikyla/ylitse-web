@@ -6,6 +6,8 @@ import BackIcon from '@/static/icons/back.svg';
 import BlockIcon from '@/static/icons/block.svg';
 import BlockedChatsIcon from '@/static/icons/blocked-chats.svg';
 import ChatWithBackground from '@/static/icons/chat-with-background.svg';
+import CheckBoxChecked from '@/static/icons/checkbox-checked.svg';
+import CheckBoxUnChecked from '@/static/icons/checkbox-unchecked.svg';
 import Chevron from '@/static/icons/chevron.svg';
 import CloseIcon from '@/static/icons/close.svg';
 import CloseWithBackgroundIcon from '@/static/icons/close-with-background.svg';
@@ -141,6 +143,8 @@ export const iconVariants = {
   close: `url(${CloseIcon})`,
   closeWithBackground: `url(${CloseWithBackgroundIcon})`,
   chatWithBackground: `url(${ChatWithBackground})`,
+  checkboxChecked: `url(${CheckBoxChecked})`,
+  checkboxUnChecked: `url(${CheckBoxUnChecked})`,
   chevron: `url(${Chevron})`,
   danger: `url(${DangerIcon})`,
   delete: `url(${DeleteIcon})`,

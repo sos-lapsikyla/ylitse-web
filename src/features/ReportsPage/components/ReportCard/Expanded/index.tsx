@@ -19,6 +19,7 @@ type Props = {
   reportNumber: number;
   reopen: () => void;
   onDismiss: () => void;
+  setShouldShowChat: () => void;
 };
 
 const ExpandedReportCard: React.FC<Props> = ({

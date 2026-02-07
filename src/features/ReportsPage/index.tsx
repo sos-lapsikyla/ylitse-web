@@ -14,6 +14,7 @@ import PageWithTransition from '@/components/PageWithTransition';
 import ReportList from './components/List';
 import { Report } from './models';
 import ExpandedReportCard from './components/ReportCard/Expanded';
+import ChatInspection from './ChatInspection';
 
 const ReportsPage = () => {
   const { t } = useTranslation('reports');
@@ -25,37 +26,46 @@ const ReportsPage = () => {
     reportNumber: number;
   } | null>(null);
 
-  const PageContent = isLoading ? (
-    <Spinner variant="large" />
-  ) : (
-    <>
-      <PageHeader $isMobile={isMobile}>
-        <TitleWrapper $isMobile={isMobile}>
-          <Text variant="h1">{t('title')}</Text>
-        </TitleWrapper>
-      </PageHeader>
-      <PageContainer>
-        {selectedReport && (
-          <ExpandedReportCard
-            report={selectedReport.report}
-            reportNumber={selectedReport.reportNumber}
-            onDismiss={() => setSelectedReport(null)}
-            reopen={() => setSelectedReport(selectedReport)}
-          />
-        )}
-        <ReportList
-          reports={reports}
-          setVisibleCard={(report, reportNumber) =>
-            setSelectedReport({ report, reportNumber })
-          }
-        ></ReportList>
-      </PageContainer>
-    </>
-  );
+  const [shouldShowChat, setShouldShowChat] = useState(false);
+
+  if (isLoading) {
+    return <Spinner variant="large" />;
+  }
+
+  if (shouldShowChat) {
+    return (
+      <PageWithTransition>
+        <ChatInspection />
+      </PageWithTransition>
+    );
+  }
 
   return (
     <PageWithTransition>
-      <Container $isMobile={isMobile}>{PageContent}</Container>
+      <Container $isMobile={isMobile}>
+        <PageHeader $isMobile={isMobile}>
+          <TitleWrapper $isMobile={isMobile}>
+            <Text variant="h1">{t('title')}</Text>
+          </TitleWrapper>
+        </PageHeader>
+        <PageContainer>
+          {selectedReport && (
+            <ExpandedReportCard
+              report={selectedReport.report}
+              reportNumber={selectedReport.reportNumber}
+              onDismiss={() => setSelectedReport(null)}
+              reopen={() => setSelectedReport(selectedReport)}
+              setShouldShowChat={() => setShouldShowChat}
+            />
+          )}
+          <ReportList
+            reports={reports}
+            setVisibleCard={(report, reportNumber) =>
+              setSelectedReport({ report, reportNumber })
+            }
+          ></ReportList>
+        </PageContainer>
+      </Container>
     </PageWithTransition>
   );
 };
@@ -118,6 +128,7 @@ const TitleWrapper = styled.div<{ $isMobile: boolean }>`
 `;
 
 const PageContainer = styled.div`
+  padding-bottom: 3rem;
   padding-top: 1rem;
   width: 100%;
 `;

@@ -7,15 +7,8 @@ import { useIsVisible } from '@/hooks/useIsVisible';
 
 import { toPutMessage, useMarkSeenMutation } from '@/features/Chat/chatPageApi';
 
-import styled from 'styled-components';
 import { messageColors } from '@/features/Chat/constants';
-import Text from '@/components/Text';
-
-const toReadable = (timestamp: string) =>
-  new Date(timestamp).toLocaleTimeString([], {
-    hour: '2-digit',
-    minute: '2-digit',
-  });
+import { ChatMessage } from '@/components/Chat';
 
 type Props = {
   folder: ChatFolder;
@@ -46,43 +39,13 @@ export const Message = ({ folder, buddyId, message }: Props) => {
     messageColors[folder][message.isSent ? 'sent' : 'received'];
 
   return (
-    <Container $isSent={message.isSent} ref={ref} id="message-bubble">
-      <Bubble $background={background}>
-        <Content>{message.content}</Content>
-      </Bubble>
-      <Timestamp $isSent={message.isSent}>
-        {toReadable(message.created)}
-      </Timestamp>
-    </Container>
+    <ChatMessage
+      ref={ref}
+      messagContent={message.content}
+      bubbleColor={background}
+      isSent={message.isSent}
+      isSender={message.isSent}
+      created={message.created}
+    />
   );
 };
-
-const Container = styled.div<{ $isSent: boolean }>`
-  align-items: ${({ $isSent }) => ($isSent ? 'flex-end' : 'flex-start')};
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 8px;
-`;
-
-const Bubble = styled.div<{
-  $background: string;
-}>`
-  background-color: ${({ $background }) => $background};
-  border-radius: 10px;
-  box-sizing: border-box;
-  max-width: 75%;
-  padding: 14px 22px;
-  text-align: left;
-  word-break: break-word;
-`;
-
-const Content = styled(Text)`
-  margin: 0;
-  white-space: pre-wrap;
-`;
-
-const Timestamp = styled(Text)<{ $isSent: boolean }>`
-  margin: 0;
-  ${({ $isSent }) => ($isSent ? 'margin-right: 22px;' : 'margin-left: 22px;')}
-  text-align: right;
-`;

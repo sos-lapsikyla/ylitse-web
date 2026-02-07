@@ -32,5 +32,14 @@
     "description": "Ilmiannon poistamista ei voi tämän jälkeen perua.",
     "cancel": "Peruuta",
     "confirm": "Poista"
+  },
+  "chatInspection": {
+    "success": "",
+    "failure": {
+      "fetchingReportMessages": "Ilmiannettujen viestien haku epäonnistui."
+    },
+    "showIdentity": "Näytä aktorin identiteetti",
+    "back": "Takaisin ilmiantoon",
+    "placeholderName": "Aktori"
   }
 }
