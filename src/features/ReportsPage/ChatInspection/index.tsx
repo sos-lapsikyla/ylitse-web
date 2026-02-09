@@ -9,7 +9,11 @@ import { CONTENT_WIDTH, OUTER_VERTICAL_MARGIN } from '@/components/constants';
 import styled, { css } from 'styled-components';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 
-const ChatInspection = () => {
+type Props = {
+  reopenReport: () => void;
+};
+
+const ChatInspection: React.FC<Props> = ({ reopenReport }) => {
   const { t } = useTranslation('reports');
   const { isTablet } = useGetLayoutMode();
   const chats = useAppSelector(selectChats);
@@ -19,9 +23,9 @@ const ChatInspection = () => {
   ) : (
     <PageContainer $isDesktop>
       <ChatListContainer
-        header="Mentorin nimi"
+        header="Mentorin nimi tähän"
         navigateBackText={t('chatInspection.back')}
-        onClick={() => console.log('todo, open reportcard again')}
+        onClick={() => reopenReport()}
       >
         <MenuItem buddy={chats[0]} />
       </ChatListContainer>

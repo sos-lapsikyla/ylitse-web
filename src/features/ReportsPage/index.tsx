@@ -26,16 +26,16 @@ const ReportsPage = () => {
     reportNumber: number;
   } | null>(null);
 
-  const [shouldShowChat, setShouldShowChat] = useState(false);
+  const [isChatViewOpen, setIsChatViewOpen] = useState(false);
 
   if (isLoading) {
     return <Spinner variant="large" />;
   }
 
-  if (shouldShowChat) {
+  if (isChatViewOpen) {
     return (
       <PageWithTransition>
-        <ChatInspection />
+        <ChatInspection reopenReport={() => setIsChatViewOpen(false)} />
       </PageWithTransition>
     );
   }
@@ -55,7 +55,7 @@ const ReportsPage = () => {
               reportNumber={selectedReport.reportNumber}
               onDismiss={() => setSelectedReport(null)}
               reopen={() => setSelectedReport(selectedReport)}
-              setShouldShowChat={() => setShouldShowChat}
+              openChat={() => setIsChatViewOpen(true)}
             />
           )}
           <ReportList

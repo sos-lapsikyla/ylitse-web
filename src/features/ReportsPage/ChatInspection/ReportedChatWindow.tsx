@@ -41,7 +41,7 @@ const ReportedChatWindow = () => {
       <ChatHeader
         onBack={() => console.log('todo, return to opened report')}
         icon={<ProfileIcon color="purpleDark" />}
-        displayName={'Aktori'}
+        displayName={t('chatInspection.placeholderName')}
         isChatBuddyMentor={false}
       >
         <ButtonContainer>

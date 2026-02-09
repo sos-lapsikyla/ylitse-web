@@ -41,11 +41,6 @@ const BaseContainer = styled.div`
   background-color: ${palette.white};
 `;
 
-// const TabletContainer = styled(BaseContainer)`
-//   left: 0;
-//   position: absolute;
-//   right: 0;
-// `;
 const Container = styled(BaseContainer)`
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.03);
