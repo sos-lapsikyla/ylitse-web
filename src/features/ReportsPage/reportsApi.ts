@@ -29,13 +29,13 @@ export const reportsApi = baseApi.injectEndpoints({
           reportListResponseType,
           { resources: [] },
           toReportMap,
-          () => toast.error('error'),
+          () => toast.error('Failed to parse reports'),
         ),
       async onQueryStarted(_, { queryFulfilled }) {
         try {
           await queryFulfilled;
         } catch (error) {
-          toast('error');
+          toast(t('reports:reportCard.get.failure'));
         }
       },
     }),

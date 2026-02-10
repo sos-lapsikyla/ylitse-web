@@ -23,6 +23,9 @@
     "update": {
       "success": "Ilmiannon päivittäminen onnistui.",
       "failure": "Ilmiannon päivittäminen epäonnistui."
+    },
+    "get": {
+      "failure": "Ilmiantojen haku epäonnistui."
     }
   },
   "delete": {

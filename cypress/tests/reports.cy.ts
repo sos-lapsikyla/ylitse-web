@@ -8,6 +8,7 @@ const SUPERADMIN_MFA = Cypress.env('mfaSecret') || '';
 type Report = {
   id: string;
   reportedUserId: string;
+  reporterUserId: string;
   contactField: string;
   reportReason: string;
   created: string;
@@ -21,6 +22,7 @@ type ApiReport = {
   id: string;
   report_reason: string;
   reported_user_id: string;
+  reporter_user_id: string;
   status: string;
   updated: string;
 };
@@ -39,6 +41,7 @@ describe('Reports page', () => {
       reportsData = data.resources.map((r: ApiReport) => ({
         id: r.id,
         reportedUserId: r.reported_user_id,
+        reporterUserId: r.reporter_user_id,
         contactField: r.contact_field,
         reportReason: r.report_reason,
         status: r.status,
@@ -51,6 +54,7 @@ describe('Reports page', () => {
           resources: reportsData.map(r => ({
             id: r.id,
             reported_user_id: r.reportedUserId,
+            reporter_user_id: r.reporterUserId,
             contact_field: r.contactField,
             report_reason: r.reportReason,
             status: r.status,
@@ -81,6 +85,7 @@ describe('Reports page', () => {
         req.reply({
           id: updated.id,
           reported_user_id: updated.reportedUserId,
+          reporter_user_id: updated.reporterUserId,
           contact_field: updated.contactField,
           report_reason: updated.reportReason,
           status: updated.status,
