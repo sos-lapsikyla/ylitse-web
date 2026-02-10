@@ -33,9 +33,9 @@
     "cancel": "Cancel",
     "confirm": "Delete"
   },
-      "get": {
-      "failure": "Fetching reports was unsuccessful."
-    },
+  "get": {
+    "failure": "Fetching reports was unsuccessful."
+  },
   "chatInspection": {
     "success": "",
     "failure": {
