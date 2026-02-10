@@ -32,10 +32,15 @@ const ReportsPage = () => {
     return <Spinner variant="large" />;
   }
 
-  if (isChatViewOpen) {
+  if (isChatViewOpen && selectedReport) {
+    console.log(isChatViewOpen, selectedReport);
     return (
       <PageWithTransition>
-        <ChatInspection reopenReport={() => setIsChatViewOpen(false)} />
+        <ChatInspection
+          reopenReport={() => setIsChatViewOpen(false)}
+          recipientId={selectedReport?.report.reportedUserId}
+          senderId={selectedReport.report.reporterUserId}
+        />
       </PageWithTransition>
     );
   }

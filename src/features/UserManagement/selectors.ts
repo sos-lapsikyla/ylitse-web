@@ -31,3 +31,8 @@ export const selectAllManagedUsers = () =>
       return managedUsers;
     },
   );
+
+export const selectManagedUserById = (userId: string) =>
+  createSelector(selectAllManagedUsers(), managedUsers =>
+    managedUsers.find(user => user.id === userId),
+  );

@@ -94,7 +94,7 @@ export const reportsApi = baseApi.injectEndpoints({
             await queryFulfilled;
           } catch (err) {
             toast.error(
-              'reports:chatInspection.failure.fetchingReportMessages',
+              t('reports:chatInspection.failure.fetchingReportMessages'),
             );
           }
         },

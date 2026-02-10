@@ -8,6 +8,7 @@ const reportCodec = D.struct({
   created: D.string,
   id: D.string,
   report_reason: D.string,
+  reporter_user_id: D.string,
   reported_user_id: D.string,
   status: status,
   updated: D.string,
@@ -28,6 +29,7 @@ const toReport = ({
   contact_field,
   report_reason,
   reported_user_id,
+  reporter_user_id,
   status,
   updated,
 }: ApiReport) => ({
@@ -36,6 +38,7 @@ const toReport = ({
   contactField: contact_field,
   reportReason: report_reason,
   reportedUserId: reported_user_id,
+  reporterUserId: reporter_user_id,
   status,
   updated,
 });

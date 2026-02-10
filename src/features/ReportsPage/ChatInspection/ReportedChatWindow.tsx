@@ -11,17 +11,21 @@ import { selectGroupedReportMessages } from '../selectors';
 import { palette } from '@/components/constants';
 import Checkbox from '@/components/Checkbox';
 import { useTranslation } from 'react-i18next';
+import { selectManagedUserById } from '@/features/UserManagement/selectors';
+import { useGetManagedUsersQuery } from '@/features/UserManagement/userManagementApi';
 
-// type Props = {
+type Props = {
+  onBack: () => void;
+  senderId: string;
+  recipientId: string;
+};
 
-// };
-
-const ReportedChatWindow = () => {
+const ReportedChatWindow: React.FC<Props> = ({
+  recipientId,
+  senderId,
+  onBack,
+}) => {
   const { t } = useTranslation('reports');
-  //senderid and recipientid should be sent as props from opened report card
-  // mentor's (reciever) name should be gotten as props as well
-  const senderId = 'mdPx0f4VxoWqPG-As_IC8aSJ5B-nXMgvG1DGn7D_cyg';
-  const recipientId = 'lwNHPWnfZIAY3bVoBJ2DWmM0HOYTqCJKcQHecqGYucc';
 
   const { isLoading } = useGetReportMessagesQuery(
     senderId && recipientId ? { senderId, recipientId } : skipToken,
@@ -31,6 +35,9 @@ const ReportedChatWindow = () => {
     selectGroupedReportMessages(senderId, recipientId),
   );
 
+  useGetManagedUsersQuery();
+  const mentee = useAppSelector(selectManagedUserById(senderId));
+
   const [showMenteesIdentity, setShowMenteesIdentity] = useState(false);
   const toggleCheckbox = () => {
     setShowMenteesIdentity(!showMenteesIdentity);
@@ -39,9 +46,13 @@ const ReportedChatWindow = () => {
   return (
     <ChatWindow>
       <ChatHeader
-        onBack={() => console.log('todo, return to opened report')}
+        onBack={onBack}
         icon={<ProfileIcon color="purpleDark" />}
-        displayName={t('chatInspection.placeholderName')}
+        displayName={
+          showMenteesIdentity && mentee
+            ? mentee?.nickname
+            : t('chatInspection.placeholderName')
+        }
         isChatBuddyMentor={false}
       >
         <ButtonContainer>

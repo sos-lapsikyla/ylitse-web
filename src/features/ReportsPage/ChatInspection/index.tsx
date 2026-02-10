@@ -8,28 +8,46 @@ import { CHAT_GAP_WIDTH } from '@/features/Chat/constants';
 import { CONTENT_WIDTH, OUTER_VERTICAL_MARGIN } from '@/components/constants';
 import styled, { css } from 'styled-components';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
+import { selectMentorById } from '@/features/MentorPage/selectors';
+import { useGetMentorsQuery } from '@/features/MentorPage/mentorPageApi';
 
 type Props = {
+  recipientId: string;
+  senderId: string;
   reopenReport: () => void;
 };
 
-const ChatInspection: React.FC<Props> = ({ reopenReport }) => {
+const ChatInspection: React.FC<Props> = ({
+  recipientId,
+  senderId,
+  reopenReport,
+}) => {
   const { t } = useTranslation('reports');
   const { isTablet } = useGetLayoutMode();
   const chats = useAppSelector(selectChats);
+  useGetMentorsQuery();
+  const mentor = useAppSelector(selectMentorById(recipientId));
 
   return isTablet ? (
-    <ReportedChatWindow />
+    <ReportedChatWindow
+      onBack={() => reopenReport()}
+      senderId={senderId}
+      recipientId={recipientId}
+    />
   ) : (
     <PageContainer $isDesktop>
       <ChatListContainer
-        header="Mentorin nimi tähän"
+        header={mentor ? mentor.name : 'Mentori'}
         navigateBackText={t('chatInspection.back')}
         onClick={() => reopenReport()}
       >
         <MenuItem buddy={chats[0]} />
       </ChatListContainer>
-      <ReportedChatWindow />
+      <ReportedChatWindow
+        onBack={() => reopenReport()}
+        senderId={senderId}
+        recipientId={recipientId}
+      />
     </PageContainer>
   );
 };
