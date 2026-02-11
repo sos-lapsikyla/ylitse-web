@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 import styled from 'styled-components';
 import { CONTENT_WIDTH, ICON_SIZES, palette } from '../constants';
 import {
@@ -6,10 +8,11 @@ import {
   HIGH_ROW_HEIGHT,
   ROW_HEIGHT,
 } from '@/features/Chat/constants';
+
 import Text from '../Text';
-import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
-import { ReactNode } from 'react';
 import { IconButton } from '../Buttons';
+
+import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 
 type Props = {
   children?: ReactNode;
@@ -20,7 +23,7 @@ type Props = {
   mentorBio?: string;
 };
 
-const ChatHeader: React.FC<Props> = ({
+const ChatWindowHeader: React.FC<Props> = ({
   children,
   onBack,
   icon,
@@ -47,7 +50,7 @@ const ChatHeader: React.FC<Props> = ({
   );
 };
 
-export default ChatHeader;
+export default ChatWindowHeader;
 
 const Container = styled.div<{ $isTablet: boolean }>`
   align-items: center;

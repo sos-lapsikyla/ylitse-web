@@ -19,7 +19,7 @@ import BlockedIcon from '@/static/icons/blocked-chats.svg';
 import { Profile as ProfileIcon } from '@/components/Icons/Profile';
 import ReportModal from '../ReportModal';
 import Buttons from './Buttons';
-import { ChatHeader } from '@/components/Chat';
+import { ChatWindowHeader } from '@/components/Chat';
 
 type DialogVariant = 'archive' | 'block' | 'restore' | 'unblock';
 
@@ -85,7 +85,7 @@ const Header = ({ chat }: Props) => {
 
   return (
     <>
-      <ChatHeader
+      <ChatWindowHeader
         onBack={returnToTabletMenu}
         icon={iconMap[chat.status]}
         displayName={chat.displayName}
@@ -106,7 +106,7 @@ const Header = ({ chat }: Props) => {
           }}
           openReportModal={() => setIsReportModalOpen(true)}
         />
-      </ChatHeader>
+      </ChatWindowHeader>
     </>
   );
 };

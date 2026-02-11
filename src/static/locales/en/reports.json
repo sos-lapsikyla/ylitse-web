@@ -43,6 +43,7 @@
     },
     "showIdentity": "Show mentee's identity",
     "back": "Return to report",
-    "placeholderName": "Mentee"
+    "placeholderName": "Mentee",
+    "mentorPlaceholderName": "Mentor"
   }
 }

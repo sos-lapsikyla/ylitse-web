@@ -43,6 +43,7 @@
     },
     "showIdentity": "Näytä aktorin identiteetti",
     "back": "Takaisin ilmiantoon",
-    "placeholderName": "Aktori"
+    "placeholderName": "Aktori",
+    "mentorPlaceholderName": "Mentori"
   }
 }

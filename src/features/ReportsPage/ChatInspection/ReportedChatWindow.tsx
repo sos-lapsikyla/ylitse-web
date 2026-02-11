@@ -1,29 +1,38 @@
-import { ChatHeader, ChatBody, ChatMessage } from '@/components/Chat';
-import ChatWindow from '@/components/Chat/ChatWindow';
-import { Profile as ProfileIcon } from '@/components/Icons/Profile';
-import styled from 'styled-components';
-import { useGetReportMessagesQuery } from '../reportsApi';
-import { Fragment, useState } from 'react';
-import DateDivider from '@/components/Chat/DateDivider';
-import { useAppSelector } from '@/store';
+import { Fragment } from 'react';
 import { skipToken } from '@reduxjs/toolkit/query';
-import { selectGroupedReportMessages } from '../selectors';
-import { palette } from '@/components/constants';
+
+import { ChatBody, ChatMessage, ChatWindowHeader } from '@/components/Chat';
+import ChatWindow from '@/components/Chat/ChatWindow';
+import DateDivider from '@/components/Chat/DateDivider';
 import Checkbox from '@/components/Checkbox';
+import { Profile as ProfileIcon } from '@/components/Icons/Profile';
+
 import { useTranslation } from 'react-i18next';
-import { selectManagedUserById } from '@/features/UserManagement/selectors';
-import { useGetManagedUsersQuery } from '@/features/UserManagement/userManagementApi';
+import { useGetReportMessagesQuery } from '../reportsApi';
+import { useAppSelector } from '@/store';
+import { selectGroupedReportMessages } from '../selectors';
+
+import { palette } from '@/components/constants';
+import styled from 'styled-components';
+
+import { ManagedUser } from '@/features/UserManagement/models';
 
 type Props = {
   onBack: () => void;
   senderId: string;
   recipientId: string;
+  mentee: ManagedUser | undefined;
+  toggleCheckbox: () => void;
+  showMenteesIdentity: boolean;
 };
 
 const ReportedChatWindow: React.FC<Props> = ({
   recipientId,
   senderId,
   onBack,
+  mentee,
+  toggleCheckbox,
+  showMenteesIdentity,
 }) => {
   const { t } = useTranslation('reports');
 
@@ -34,18 +43,9 @@ const ReportedChatWindow: React.FC<Props> = ({
   const groupedMessages = useAppSelector(
     selectGroupedReportMessages(senderId, recipientId),
   );
-
-  useGetManagedUsersQuery();
-  const mentee = useAppSelector(selectManagedUserById(senderId));
-
-  const [showMenteesIdentity, setShowMenteesIdentity] = useState(false);
-  const toggleCheckbox = () => {
-    setShowMenteesIdentity(!showMenteesIdentity);
-  };
-
   return (
     <ChatWindow>
-      <ChatHeader
+      <ChatWindowHeader
         onBack={onBack}
         icon={<ProfileIcon color="purpleDark" />}
         displayName={
@@ -62,7 +62,7 @@ const ReportedChatWindow: React.FC<Props> = ({
             onChange={toggleCheckbox}
           />
         </ButtonContainer>
-      </ChatHeader>
+      </ChatWindowHeader>
       <ChatBody isLoading={isLoading}>
         {Object.keys(groupedMessages).map(date => (
           <Fragment key={date}>
