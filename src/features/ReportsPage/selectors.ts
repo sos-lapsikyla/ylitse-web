@@ -53,3 +53,21 @@ export const selectGroupedReportMessages = (
       return toGroupedReportMessages(messagesArray);
     },
   );
+
+export const selectLastUpdatedReportMessage = (
+  senderId: string,
+  recipientId: string,
+) =>
+  createSelector(selectReportMessages(senderId, recipientId), result => {
+    const messagesMap = result?.data?.messages;
+
+    if (!messagesMap) return undefined;
+
+    const messages = Object.values(messagesMap);
+
+    if (messages.length === 0) return undefined;
+
+    return messages.reduce((latest, current) =>
+      current.updated > latest.updated ? current : latest,
+    );
+  });

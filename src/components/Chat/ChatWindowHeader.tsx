@@ -32,6 +32,8 @@ const ChatWindowHeader: React.FC<Props> = ({
   displayName,
 }) => {
   const { isTablet } = useGetLayoutMode();
+  const { isMobile } = useGetLayoutMode();
+  const shouldIconBeVisible = !isMobile;
 
   return (
     <Container $isTablet={isTablet}>
@@ -42,7 +44,7 @@ const ChatWindowHeader: React.FC<Props> = ({
           onClick={onBack}
         />
       )}
-      <IconContainer>{icon}</IconContainer>
+      {shouldIconBeVisible && <IconContainer>{icon}</IconContainer>}
       <DisplayName variant="h2">{displayName}</DisplayName>
       {isChatBuddyMentor && <MentorBio>{mentorBio}</MentorBio>}
       <ButtonsWrapper>{children}</ButtonsWrapper>
@@ -58,14 +60,14 @@ const Container = styled.div<{ $isTablet: boolean }>`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.03);
   box-sizing: border-box;
   display: flex;
-  gap: 30px;
-  height: ${({ $isTablet }) => ($isTablet ? HIGH_ROW_HEIGHT : ROW_HEIGHT)};
+  gap: ${({ $isTablet }) => ($isTablet ? '15px' : '30px')};
   justify-content: flex-start;
+  min-height: ${({ $isTablet }) => ($isTablet ? HIGH_ROW_HEIGHT : ROW_HEIGHT)};
   padding: 14px 40px;
   width: ${({ $isTablet }) =>
     $isTablet
       ? '100vw'
-      : `calc(${CONTENT_WIDTH}-${CHAT_MENU_WIDTH}-${CHAT_GAP_WIDTH}})`};
+      : `calc(${CONTENT_WIDTH}-${CHAT_MENU_WIDTH}-${CHAT_GAP_WIDTH})`};
 `;
 
 const IconContainer = styled.div`
@@ -73,12 +75,28 @@ const IconContainer = styled.div`
 `;
 
 const DisplayName = styled(Text)`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  -ms-overflow-style: none;
+  flex: 0 1 auto;
+  line-height: 1.4;
+  max-height: calc(1.4em * 2);
+
+  /* Limit height to 2 lines */
+  min-width: 0;
+  overflow-x: hidden;
+
+  overflow-y: auto;
+  scrollbar-width: none;
+
+  white-space: normal;
+  word-break: break-word;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const MentorBio = styled(Text)`
+  flex: 0 1 auto;
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -86,5 +104,6 @@ const MentorBio = styled(Text)`
 `;
 
 const ButtonsWrapper = styled.div`
+  flex: 0 2 auto;
   margin-left: auto;
 `;

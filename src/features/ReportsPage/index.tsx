@@ -33,7 +33,6 @@ const ReportsPage = () => {
   }
 
   if (isChatViewOpen && selectedReport) {
-    console.log(isChatViewOpen, selectedReport);
     return (
       <PageWithTransition>
         <ChatInspection

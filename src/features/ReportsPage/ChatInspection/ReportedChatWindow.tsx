@@ -16,12 +16,14 @@ import { palette } from '@/components/constants';
 import styled from 'styled-components';
 
 import { ManagedUser } from '@/features/UserManagement/models';
+import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 
 type Props = {
   onBack: () => void;
   senderId: string;
   recipientId: string;
   mentee: ManagedUser | undefined;
+  mentorName: string | undefined;
   toggleCheckbox: () => void;
   showMenteesIdentity: boolean;
 };
@@ -31,10 +33,12 @@ const ReportedChatWindow: React.FC<Props> = ({
   senderId,
   onBack,
   mentee,
+  mentorName,
   toggleCheckbox,
   showMenteesIdentity,
 }) => {
   const { t } = useTranslation('reports');
+  const { isTablet } = useGetLayoutMode();
 
   const { isLoading } = useGetReportMessagesQuery(
     senderId && recipientId ? { senderId, recipientId } : skipToken,
@@ -43,16 +47,25 @@ const ReportedChatWindow: React.FC<Props> = ({
   const groupedMessages = useAppSelector(
     selectGroupedReportMessages(senderId, recipientId),
   );
+
+  const displayName =
+    showMenteesIdentity && mentee
+      ? mentee?.nickname
+      : t('chatInspection.placeholderName');
+
+  const tabletTitle = t('chatInspection.chatHeaderTablet', {
+    mentor: mentorName,
+    mentee: displayName,
+  });
+
+  const headerDisplayName = !isTablet ? displayName : tabletTitle;
+
   return (
     <ChatWindow>
       <ChatWindowHeader
         onBack={onBack}
         icon={<ProfileIcon color="purpleDark" />}
-        displayName={
-          showMenteesIdentity && mentee
-            ? mentee?.nickname
-            : t('chatInspection.placeholderName')
-        }
+        displayName={headerDisplayName}
         isChatBuddyMentor={false}
       >
         <ButtonContainer>

@@ -16,6 +16,7 @@ import { CONTENT_WIDTH, OUTER_VERTICAL_MARGIN } from '@/components/constants';
 import styled, { css } from 'styled-components';
 
 import { folderColors } from '@/features/Chat/constants';
+import { selectLastUpdatedReportMessage } from '../selectors';
 
 type Props = {
   recipientId: string;
@@ -35,6 +36,9 @@ const ChatInspection: React.FC<Props> = ({
   useGetManagedUsersQuery();
   const mentor = useAppSelector(selectMentorById(recipientId));
   const mentee = useAppSelector(selectManagedUserById(senderId));
+  const latestMessage = useAppSelector(
+    selectLastUpdatedReportMessage(senderId, recipientId),
+  );
 
   const [showMenteesIdentity, setShowMenteesIdentity] = useState(false);
   const toggleCheckbox = () => {
@@ -47,6 +51,7 @@ const ChatInspection: React.FC<Props> = ({
       senderId={senderId}
       recipientId={recipientId}
       mentee={mentee}
+      mentorName={mentor?.name}
       toggleCheckbox={toggleCheckbox}
       showMenteesIdentity={showMenteesIdentity}
     />
@@ -69,6 +74,7 @@ const ChatInspection: React.FC<Props> = ({
           isActiveChat={true}
           isLoading={false}
           isUnseenDotVisible={false}
+          latestMessage={latestMessage?.content}
           profileIconColor={'blueDark'}
         />
       </ChatListContainer>
@@ -77,6 +83,7 @@ const ChatInspection: React.FC<Props> = ({
         senderId={senderId}
         recipientId={recipientId}
         mentee={mentee}
+        mentorName={mentor?.name}
         toggleCheckbox={toggleCheckbox}
         showMenteesIdentity={showMenteesIdentity}
       />
@@ -96,4 +103,5 @@ const PageContainer = styled.div<{ $isDesktop?: boolean }>`
       width: ${CONTENT_WIDTH};
     `}
 `;
+
 export default ChatInspection;

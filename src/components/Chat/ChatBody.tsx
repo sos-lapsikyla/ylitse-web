@@ -28,7 +28,7 @@ const ChatBody: React.FC<Props> = ({
   );
 
   return (
-    <Container>
+    <Container ref={historyRef}>
       {isLoading && (
         <SpinnerContainer>
           <Spinner variant="small" isDark isInline />

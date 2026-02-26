@@ -39,11 +39,12 @@
   "chatInspection": {
     "success": "",
     "failure": {
-      "fetchingReportMessages": "Fetching reported messages failed."
+      "fetchingReportMessages": "Reported messages were not found."
     },
-    "showIdentity": "Show mentee's identity",
+    "showIdentity": "Show mentee's nickname",
     "back": "Return to report",
     "placeholderName": "Mentee",
-    "mentorPlaceholderName": "Mentor"
+    "mentorPlaceholderName": "Mentor",
+    "chatHeaderTablet": "{{mentor}} ↔ {{mentee}}"
   }
 }

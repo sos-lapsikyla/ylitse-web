@@ -96,6 +96,7 @@ describe('Reports page', () => {
       }).as('updateReport');
     });
   });
+
   after(() => {
     api.deleteAccounts();
   });
@@ -181,4 +182,24 @@ describe('Reports page', () => {
     cy.wait('@updateReport');
     cy.getByText('Ilmiannon päivittäminen onnistui.').should('be.visible');
   });
+
+  it('displays reported chat', () => {
+    cy.get('[href="/reports"]').click();
+    cy.wait('@getReports');
+    cy.location('pathname').should('eq', '/reports');
+    cy.getByText('Ei käsitelty', 'p').should('be.visible');
+    cy.getByText('Avaa ilmianto', 'button')
+      .first()
+      .should('be.visible')
+      .click();
+    cy.getByText('Avaa keskustelu', 'button').should('be.visible').click();
+    // hae keskustelu fixture
+    //  cy.getByText('Mentorin nimi', 'h1').should('be.visible');
+  });
+
+  it('hides mentees identity by default', () => {});
+
+  it('can reveal mentees identity', () => {});
+
+  it('returns straight to the report from chatinspection', () => {});
 });

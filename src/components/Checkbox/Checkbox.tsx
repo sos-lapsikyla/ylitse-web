@@ -36,7 +36,7 @@ const CheckboxInput = styled.input`
   margin: 0;
   opacity: 0;
   position: absolute;
-  width: 18px;
+  width: auto;
 `;
 
 const IconWrapper = styled.div`

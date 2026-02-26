@@ -39,11 +39,12 @@
   "chatInspection": {
     "success": "",
     "failure": {
-      "fetchingReportMessages": "Ilmiannettujen viestien haku epäonnistui."
+      "fetchingReportMessages": "Ilmiannettuja viestejä ei löytynyt."
     },
-    "showIdentity": "Näytä aktorin identiteetti",
+    "showIdentity": "Näytä aktorin käyttäjänimi",
     "back": "Takaisin ilmiantoon",
     "placeholderName": "Aktori",
-    "mentorPlaceholderName": "Mentori"
+    "mentorPlaceholderName": "Mentori",
+    "chatHeaderTablet": "{{mentor}} ↔ {{mentee}}"
   }
 }
