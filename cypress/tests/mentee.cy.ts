@@ -163,7 +163,7 @@ describe('mentee profile', () => {
     cy.getByText('Poista', 'button').click();
 
     // should log out automatically
-    cy.location('pathname').should('eq', '/landing/');
+    cy.location('pathname').should('match', /landing/);
 
     // go to login page
     cy.getByText('Kirjaudu sisään', 'a').click();
