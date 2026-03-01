@@ -20,5 +20,8 @@
   "mobileAppAdText": "Voit käyttää Ylitse-palvelua itsellesi sopivalla tavalla, oli se sitten kännykällä tai tietokoneella. Löydät Ylitsen Android- ja iOS-laitteiden sovelluskaupoista.",
   "mobileAppDownload": "Lataa Ylitse-sovellus",
   "pageTitle": "Ylitse MentorApp",
-  "registerButton": "Rekisteröidy"
+  "registerButton": "Rekisteröidy",
+  "infoRing1": "aktiivista mentoria",
+  "infoRing2a": "Yli",
+  "infoRing2b": "käytyä keskustelua"
 }

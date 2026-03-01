@@ -224,6 +224,7 @@ section.max-width {
   top: 2.5rem;
   font-weight: 600;
   line-height: 1.5rem;
+  word-spacing: 13.5rem;
 }
 
 .info-ring:nth-child(1) {
