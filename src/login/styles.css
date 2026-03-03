@@ -6,7 +6,7 @@ body {
       rgba(1, 165, 236, 0.58) 0%,
       rgba(89, 58, 214, 0.58) 100%
     ),
-    url(../static/img/splash-background.jpg) no-repeat fixed right top;
+    url(/static/img/splash-background.jpg) no-repeat fixed right top;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

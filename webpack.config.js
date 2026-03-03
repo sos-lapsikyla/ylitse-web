@@ -18,6 +18,20 @@ module.exports = (env, argv) => {
       client: { overlay: true },
       historyApiFallback: {
         verbose: true,
+        rewrites: [
+          {
+            from: /^\/([a-z]{2})(?=\/landing(?:\/|$))/,
+            to: '/landing/index.html',
+          },
+          {
+            from: /^\/([a-z]{2})(?=\/login(?:\/|$))/,
+            to: '/login/index.html',
+          },
+          {
+            from: /^\/([a-z]{2})(?=\/register(?:\/|$))/,
+            to: '/register/index.html',
+          },
+        ],
       },
       hot: true,
       port: 8082,
@@ -33,6 +47,7 @@ module.exports = (env, argv) => {
       ],
       static: {
         directory: path.resolve(__dirname, 'src'),
+        publicPath: '/',
       },
     },
     devtool: isProd ? 'source-map' : 'eval-source-map',

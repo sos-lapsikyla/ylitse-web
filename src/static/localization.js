@@ -1,25 +1,53 @@
 (function (document) {
-  const getPage = path => {
-    switch (path) {
-      case '/login/': {
-        return 'login';
-      }
-      case '/register/': {
-        return 'register';
-      }
-      default: {
-        return 'landing';
-      }
+  const SUPPORTED_PAGES = ['landing', 'login', 'register'];
+  const DEFAULT_PAGE = 'landing';
+  const SUPPORTED_LOCALES = ['fi', 'en'];
+  const DEFAULT_LOCALE = 'fi';
+
+  const parsePath = path => {
+    const dirs = path
+      .replace(/\/+/g, '/')
+      .replace(/^\/|\/$/g, '')
+      .split('/');
+
+    let locale = DEFAULT_LOCALE;
+    if (dirs.length && SUPPORTED_LOCALES.includes(dirs[0])) {
+      locale = dirs.shift();
     }
+
+    let page = dirs.join('/');
+    if (!SUPPORTED_PAGES.includes(page)) {
+      page = DEFAULT_PAGE;
+    }
+
+    return { locale, page };
   };
-  const page = getPage(window.location.pathname);
+
+  const { page, locale } = parsePath(window.location.pathname);
+  // console.log(`Page: ${page}, locale: ${locale}`)
+
+  const updateLinks = newLocale => {
+    if (!SUPPORTED_LOCALES.includes(newLocale)) return;
+
+    const links = document.querySelectorAll('a[href]');
+
+    links.forEach(link => {
+      const href = link.getAttribute('href');
+
+      // Skip external links
+      if (!href || href.startsWith('http')) return;
+
+      link.setAttribute('href', `/${newLocale}/${parsePath(href).page}`);
+    });
+  };
+
   let translations = {};
 
   const enButton = document.getElementById('en-button');
   const fiButton = document.getElementById('fi-button');
 
   const fetchTranslations = async newLocale => {
-    const response = await fetch(`../static/locales/${newLocale}/${page}.json`);
+    const response = await fetch(`/static/locales/${newLocale}/${page}.json`);
     if (!response.ok) {
       console.error(`Could not fetch translations for locale ${newLocale}`);
     }
@@ -77,10 +105,15 @@
       disableLanguageButton(fiButton);
       enableLanguageButton(enButton);
     }
+
+    updateLinks(newLocale);
+
+    // Update path
+    history.pushState({}, '', `/${newLocale}/${page}`);
   };
 
   document.addEventListener('DOMContentLoaded', async () => {
-    setLocale('fi');
+    setLocale(locale);
   });
 
   if (enButton) {
