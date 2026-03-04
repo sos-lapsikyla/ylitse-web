@@ -6,11 +6,12 @@ body {
       rgba(1, 165, 236, 0.58) 0%,
       rgba(89, 58, 214, 0.58) 100%
     ),
-    url(/static/img/splash-background.jpg) no-repeat fixed right top;
+    url(/static/img/splash-background.svg) no-repeat fixed right top;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  background-position-x: center;
   min-height: 100%;
 }
 
@@ -72,7 +73,7 @@ a {
   font-weight: 700;
   font-size: 18px;
   line-height: 27px;
-  color: #4a2acb;
+  color: var(--primary-color);
 }
 
 a img {
@@ -100,19 +101,19 @@ input {
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
-  line-height: 27px;
+  line-height: 2.75rem;
   height: 38px;
   width: 100%;
   box-sizing: border-box;
   padding: 6px 10px;
   margin-top: 10px;
-  border: 1px solid #4a2acb;
+  border: 1px solid var(--primary-color);
   border-radius: 5px;
   color: #1c325d;
 }
 
 input:focus {
-  border: solid 2px #4a2acb;
+  border: solid 2px var(--primary-color);
   background-color: #e4f3fb;
   outline: 0;
 }
@@ -134,15 +135,15 @@ input:focus {
   align-items: center;
   gap: 10px;
   padding: 6px 0;
-  color: #972232;
+  color: var(--error-color);
 }
 
 .error-color {
-  color: #972232;
+  color: var(--error-color);
 }
 
 .error-border {
-  border: 2px #972232 solid;
+  border: 2px var(--error-color) solid;
 }
 
 .align-right {
@@ -154,9 +155,9 @@ input:focus {
   margin-top: 13px;
   position: relative;
   left: 10px; /* to adjust for the box shadow  */
-  box-shadow: -10px 0px #01a5ec;
+  box-shadow: -10px 0px var(--secondary-color-darker);
   border-left: 6px white solid;
-  background-color: #e4f3fb;
+  background-color: var(--secondary-background-color);
 }
 
 /* Tooltip container */
@@ -185,8 +186,8 @@ input:focus {
   padding: 5px 0;
   border-radius: 10px;
   white-space: wrap;
-  background-color: #f0ba8c;
-  color: #1c325d;
+  background-color: var(--highlight-color);
+  color: var(--font-color-primary);
 }
 
 /* Bottom arrow */
@@ -198,7 +199,7 @@ input:focus {
   margin-left: -8px;
   border-width: 8px;
   border-style: solid;
-  border-color: #f0ba8c transparent transparent transparent;
+  border-color: var(--highlight-color) transparent transparent transparent;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
@@ -252,7 +253,7 @@ input:focus {
 
 /* Focus style for accessibility */
 .switch input:focus-visible + .slider {
-  outline: 2px solid #4a2acb;
+  outline: 2px solid var(--primary-color);
   outline-offset: 2px;
 }
 
@@ -270,11 +271,11 @@ input:focus {
 }
 
 input:checked + .slider {
-  border-color: #4a2acb;
+  border-color: var(--primary-color);
 }
 
 input:checked + .slider:before {
-  background-color: #4a2acb;
+  background-color: var(--primary-color);
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
@@ -291,7 +292,7 @@ input:checked + .slider:before {
   margin-right: 15px;
   border: 0;
   background-color: white;
-  color: #4a2acb;
+  color: var(--primary-color);
 }
 
 #hide-password,
@@ -312,15 +313,15 @@ input:checked + .slider:before {
   margin-top: 40px;
   border: 1px solid #bbb;
   border-radius: 50px;
-  background-color: #4a2acb;
-  color: #f0ba8c;
+  background-color: var(--primary-color);
+  color: var(--highlight-color);
 }
 
 #submit:focus,
 #submit:active {
-  outline: #4a2acb solid 3px;
+  outline: var(--primary-color) solid 3px;
   outline-offset: 4px;
-  background-color: #4a2acb;
+  background-color: var(--primary-color);
 }
 
 #submit:disabled {
@@ -336,8 +337,51 @@ input:checked + .slider:before {
   outline: none;
 }
 
+#mobile-header {
+  display: none;
+  background: var(--primary-color);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+#mobile-header h1 {
+  color: var(--font-color-secondary);
+}
+
+#register-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  font-family: 'Source Sans 3';
+  margin: unset; /* Override shared styles */
+  color: var(--font-color-secondary);
+  font-weight: 600;
+}
+
+#register-footer p {
+  color: inherit;
+  font-weight: inherit;
+}
+
 @media (max-width: 880px) {
   form {
     padding: 24px 32px !important;
+  }
+}
+
+@media only screen and (max-width: 850px) and (orientation: portrait) {
+  form {
+    margin-bottom: 4rem;
+  }
+
+  #mobile-header {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+  }
+
+  #register-footer {
+    color: var(--font-color-primary);
+    background-color: var(--secondary-color);
   }
 }
