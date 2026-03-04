@@ -10,10 +10,7 @@
     <link rel="stylesheet" href="/register/styles.css" />
     <link rel="icon" href="/static/favicon/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/static/favicon/icon.svg" type="image/svg+xml" />
-    <link
-      rel="apple-touch-icon"
-      href="/static/favicon/apple-touch-icon.png"
-    />
+    <link rel="apple-touch-icon" href="/static/favicon/apple-touch-icon.png" />
   </head>
 
   <body>
@@ -25,22 +22,7 @@
       </div>
       <form id="register-form" name="register">
         <h1 localization-key="registerTitle"></h1>
-        <p>
-          <span localization-key="description"></span>
-          <a href="https://apuu.fi" localization-key="apuuLink"></a>
-          <a href="https://apuu.fi">
-            <img
-              class="fi-alt-text"
-              src="/static/icons/outsidelink.svg"
-              alt="Siirry apuu.fi verkkosivulle."
-            />
-            <img
-              class="en-alt-text"
-              src="/static/icons/outsidelink.svg"
-              alt="Visit the apuu.fi website."
-            />
-          </a>
-        </p>
+        <p localization-key-html="description"></p>
         <h2 localization-key="accountInfoTitle"></h2>
         <p localization-key="requiredFieldInfo"></p>
         <fieldset id="username-field">
@@ -48,7 +30,7 @@
             <span localization-key="usernameLabel"></span>
             <span class="align-right">
               <span class="tooltip">
-                <img src="/static/icons/tooltip.svg" />
+                <img src="/static/icons/tooltip.svg" alt="" />
                 <span class="tooltip-text" localization-key="usernameTooltip">
                 </span>
               </span>
@@ -62,10 +44,11 @@
             minlength="2"
             pattern=".{2,100}"
             onblur="checkInput('username')"
+            aria-describedby="username-error"
             required
           />
-          <label class="error-message">
-            <img src="/static/icons/warning-with-background.svg" />
+          <div class="error-message" id="username-error" role="alert">
+            <img src="/static/icons/warning-with-background.svg" alt="" />
             <span
               id="too-short-message"
               localization-key="usernameTooShortError"
@@ -75,7 +58,7 @@
             </span>
             <span id="try-again-message" localization-key="tryAgainMessage">
             </span>
-          </label>
+          </div>
         </fieldset>
         <fieldset id="password-field">
           <label for="password">
@@ -96,7 +79,7 @@
                 localization-key="hidePassword"
               ></button>
               <span class="tooltip">
-                <img src="/static/icons/tooltip.svg" />
+                <img src="/static/icons/tooltip.svg" alt="" />
                 <span class="tooltip-text" localization-key="passwordTooltip">
                 </span>
               </span>
@@ -110,12 +93,13 @@
             minlength="8"
             pattern=".{8,100}"
             onblur="checkInput('password')"
+            aria-describedby="password-error"
             required
           />
-          <label class="error-message">
-            <img src="/static/icons/warning-with-background.svg" />
+          <div class="error-message" id="password-error" role="alert">
+            <img src="/static/icons/warning-with-background.svg" alt="" />
             <span localization-key="passwordTooShortError"></span>
-          </label>
+          </div>
         </fieldset>
         <fieldset id="password-confirmation-field">
           <label for="password-confirmation">
@@ -136,7 +120,7 @@
                 localization-key="hidePassword"
               ></button>
               <span class="tooltip">
-                <img src="/static/icons/tooltip.svg" />
+                <img src="/static/icons/tooltip.svg" alt="" />
                 <span class="tooltip-text" localization-key="passwordTooltip">
                 </span>
               </span>
@@ -148,12 +132,17 @@
             type="password"
             maxlength="100"
             onblur="checkInput('password-confirmation')"
+            aria-describedby="password-confirmation-error"
             required
           />
-          <label class="error-message">
-            <img src="/static/icons/warning-with-background.svg" />
+          <div
+            class="error-message"
+            id="password-confirmation-error"
+            role="alert"
+          >
+            <img src="/static/icons/warning-with-background.svg" alt="" />
             <span localization-key="passwordsDontMatchError"></span>
-          </label>
+          </div>
         </fieldset>
         <fieldset id="email-field">
           <label for="email" localization-key="emailLabel"></label>
@@ -164,11 +153,12 @@
             maxlength="200"
             onblur="checkInput('email')"
             pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+            aria-describedby="email-error"
           />
-          <label class="error-message">
-            <img src="/static/icons/warning-with-background.svg" />
+          <div class="error-message" id="email-error" role="alert">
+            <img src="/static/icons/warning-with-background.svg" alt="" />
             <span localization-key="emailError"> </span>
-          </label>
+          </div>
           <p class="field-info" localization-key="emailFieldInfo"></p>
         </fieldset>
         <fieldset id="display-name-field">
@@ -176,7 +166,7 @@
             <span localization-key="displayNameLabel"></span>
             <span class="align-right">
               <span class="tooltip">
-                <img src="/static/icons/tooltip.svg" />
+                <img src="/static/icons/tooltip.svg" alt="" />
                 <span
                   class="tooltip-text"
                   localization-key="displayNameTooltip"
@@ -193,43 +183,23 @@
             minlength="2"
             pattern=".{2,30}"
             onblur="checkInput('display-name')"
+            aria-describedby="display-name-error"
             required
           />
-          <label class="error-message">
-            <img src="/static/icons/warning-with-background.svg" />
+          <div class="error-message" id="display-name-error" role="alert">
+            <img src="/static/icons/warning-with-background.svg" alt="" />
             <span localization-key="displayNameTooShortError"></span>
-          </label>
+          </div>
           <p class="field-info" localization-key="displayNameFieldInfo"></p>
         </fieldset>
         <h2 localization-key="privacyTitle"></h2>
         <section>
           <p localization-key="privacyParagraph1"></p>
           <p localization-key="privacyParagraph2"></p>
-          <p>
-            <span localization-key="privacyParagraph3"></span>
-            <a
-              href="https://www.sos-lapsikyla.fi/wp-content/uploads/2021/02/Ylitse_MentorApp_kayttyoehdot_tietosuojaseloste.pdf"
-              localization-key="privacyPolicyLink"
-            >
-            </a>
-            <a
-              href="https://www.sos-lapsikyla.fi/wp-content/uploads/2021/02/Ylitse_MentorApp_kayttyoehdot_tietosuojaseloste.pdf"
-            >
-              <img
-                class="fi-alt-text"
-                src="/static/icons/outsidelink.svg"
-                alt="Lataa tietosuojaseloste."
-              />
-              <img
-                class="en-alt-text"
-                src="/static/icons/outsidelink.svg"
-                alt="Download privacy policy."
-              />
-            </a>
-          </p>
+          <p localization-key-html="privacyParagraph3"></p>
         </section>
         <fieldset class="switch-line">
-          <label class="switch" tabindex="0">
+          <label class="switch">
             <input
               id="required-age"
               type="checkbox"
@@ -246,7 +216,7 @@
           </label>
         </fieldset>
         <fieldset class="switch-line">
-          <label class="switch" tabindex="0">
+          <label class="switch">
             <input
               id="privacy-consent"
               type="checkbox"

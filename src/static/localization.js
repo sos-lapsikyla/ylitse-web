@@ -60,6 +60,13 @@
       let translation = translations[key];
       element.innerText = translation;
     });
+
+    // For elements that need HTML content (e.g., links within text)
+    document.querySelectorAll('[localization-key-html]').forEach(element => {
+      let key = element.getAttribute('localization-key-html');
+      let translation = translations[key];
+      element.innerHTML = translation;
+    });
   };
 
   const styleButton = (button, color, fontWeight, pointerEvents) => {
