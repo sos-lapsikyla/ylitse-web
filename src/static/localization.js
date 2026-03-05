@@ -86,16 +86,6 @@
     }
   };
 
-  const showClass = className =>
-    document
-      .querySelectorAll(`.${className}`)
-      .forEach(element => (element.style.display = 'unset'));
-
-  const hideClass = className =>
-    document
-      .querySelectorAll(`.${className}`)
-      .forEach(element => (element.style.display = 'none'));
-
   const enableLanguageButton = button =>
     styleButton(button, '#37119d', '700', 'auto');
 
