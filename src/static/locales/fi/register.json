@@ -4,7 +4,6 @@
   "displayNameFieldInfo": "Syötä nimimerkki, josta sinua ei voi tunnistaa, jos haluat käyttää palvelua anonyymisti.",
   "displayNameLabel": "Julkinen nimimerkki *",
   "displayNameTooShortError": "Nimimerkki on liian lyhyt",
-  "displayNameTooltip": "Nimimerkin tulee olla vähintään 2 merkkiä pitkä",
   "emailError": "Sähköpostiosoite on virheellinen",
   "emailFieldInfo": "Sähköpostiosoitteen tallentaminen mahdollistaa salasanan palauttamisen myöhemmin. Sähköpostiosoitetta ei käytetä muihin tarkoituksiin.",
   "emailLabel": "Sähköpostiosoite (vapaaehtoinen)",
@@ -32,6 +31,5 @@
   "tryAgainMessage": "Emme pystyneet tarkistamaan käyttäjätunnusta. Syötä tunnus uudelleen hetken kuluttua.",
   "usernameLabel": "Käyttäjätunnus *",
   "usernameTakenError": "Käyttäjätunnus on jo käytössä",
-  "usernameTooShortError": "Käyttäjätunnus on liian lyhyt",
-  "usernameTooltip": "Käyttäjätunnuksen tulee olla vähintään 2 merkkiä pitkä."
+  "usernameTooShortError": "Käyttäjätunnus on liian lyhyt"
 }

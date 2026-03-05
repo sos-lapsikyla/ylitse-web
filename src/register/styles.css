@@ -336,6 +336,11 @@ input:checked + .slider:before {
   color: var(--highlight-color);
 }
 
+#submit:hover {
+  background-color: var(--primary-color-darker);
+  outline: 0;
+}
+
 #submit:focus,
 #submit:active {
   outline: var(--primary-color) solid 3px;

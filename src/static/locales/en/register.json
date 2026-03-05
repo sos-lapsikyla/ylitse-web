@@ -4,7 +4,6 @@
   "displayNameFieldInfo": "Provided a display name that can't be identified, if you want to use the application anonymously.",
   "displayNameLabel": "Display name *",
   "displayNameTooShortError": "Display name is too short",
-  "displayNameTooltip": "Your display name has to be at least 2 characters long",
   "emailError": "Email is invalid",
   "emailFieldInfo": "Providing an email address enables you to recover a forgotten password. Your email isn't used for other purposes.",
   "emailLabel": "Email (optional)",
@@ -32,6 +31,5 @@
   "tryAgainMessage": "We weren't able to check your username. Please try again in a moment.",
   "usernameLabel": "Username *",
   "usernameTakenError": "Username is already taken",
-  "usernameTooShortError": "Username is too short",
-  "usernameTooltip": "Your username has to be at least 2 characters long."
+  "usernameTooShortError": "Username is too short"
 }
