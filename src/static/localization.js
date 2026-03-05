@@ -67,6 +67,15 @@
       let translation = translations[key];
       element.innerHTML = translation;
     });
+
+    // For elements that need aria-label attribute
+    document
+      .querySelectorAll('[localization-key-aria-label]')
+      .forEach(element => {
+        let key = element.getAttribute('localization-key-aria-label');
+        let translation = translations[key];
+        element.setAttribute('aria-label', translation);
+      });
   };
 
   const styleButton = (button, color, fontWeight, pointerEvents) => {

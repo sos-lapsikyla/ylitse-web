@@ -19,11 +19,4 @@
   --secondary-background-color: #e4f3fb;
   --background-color-dark: #c2edfe;
   --background-color-light: #ffffff;
-
-  /* These are the minimum values for the breakpoint */
-  --breakpoint-mobile: 576px;
-  --breakpoint-tablet: 768px;
-  --breakpoint-desktop: 992px;
-  --breakpoint-large-desktop: 1200px;
-  --breakpoint-extra-large-desktop: 1400px;
 }

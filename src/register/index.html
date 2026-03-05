@@ -72,19 +72,29 @@
                 class="password-toggle"
                 type="button"
                 onclick="togglePassword('password', true)"
-                localization-key="showPassword"
-              ></button>
+                aria-controls="password"
+                localization-key-aria-label="showPassword"
+              >
+                <img src="/static/icons/eye.svg" alt="" class="eye-icon" />
+                <span localization-key="showPassword"></span>
+              </button>
               <button
                 id="hide-password"
                 class="password-toggle"
                 type="button"
                 onclick="togglePassword('password', false)"
-                localization-key="hidePassword"
-              ></button>
+                aria-controls="password"
+                localization-key-aria-label="hidePassword"
+              >
+                <img src="/static/icons/eye.svg" alt="" class="eye-icon" />
+                <span localization-key="hidePassword"></span>
+              </button>
               <span class="tooltip">
                 <img src="/static/icons/tooltip.svg" alt="" />
-                <span class="tooltip-text" localization-key="passwordTooltip">
-                </span>
+                <span
+                  class="tooltip-text"
+                  localization-key="passwordTooltip"
+                ></span>
               </span>
             </span>
           </label>
@@ -113,15 +123,23 @@
                 class="password-toggle"
                 type="button"
                 onclick="togglePassword('password-confirmation', true)"
-                localization-key="showPassword"
-              ></button>
+                aria-controls="password-confirmation"
+                localization-key-aria-label="showPassword"
+              >
+                <img src="/static/icons/eye.svg" alt="" class="eye-icon" />
+                <span localization-key="showPassword"></span>
+              </button>
               <button
                 id="hide-password-confirmation"
                 class="password-toggle"
                 type="button"
                 onclick="togglePassword('password-confirmation', false)"
-                localization-key="hidePassword"
-              ></button>
+                aria-controls="password-confirmation"
+                localization-key-aria-label="hidePassword"
+              >
+                <img src="/static/icons/eye.svg" alt="" class="eye-icon" />
+                <span localization-key="hidePassword"></span>
+              </button>
               <span class="tooltip">
                 <img src="/static/icons/tooltip.svg" alt="" />
                 <span class="tooltip-text" localization-key="passwordTooltip">
