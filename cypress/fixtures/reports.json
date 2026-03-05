@@ -2,8 +2,8 @@
   "resources": [
     {
       "id": "1",
-      "reported_user_id": "1",
-      "reporter_user_id": "1",
+      "reported_user_id": "20",
+      "reporter_user_id": "10",
       "contact_field": "email@email.email",
       "report_reason": "Tämä mentori kiusaa",
       "status": "handled",
@@ -13,8 +13,8 @@
     },
     {
       "id": "2",
-      "reported_user_id": "2",
-      "reporter_user_id": "2",
+      "reported_user_id": "20",
+      "reporter_user_id": "10",
       "contact_field": "",
       "report_reason": "Haluan raportoida mentorin",
       "status": "received",

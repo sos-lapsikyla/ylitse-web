@@ -1,0 +1,22 @@
+{
+  "resources": [
+    {
+      "id": "20",
+      "user_id": "20",
+      "account_id": "20",
+      "display_name": "TestiMentori",
+      "birth_year": 1990,
+      "gender": "other",
+      "region": "Helsinki",
+      "languages": [],
+      "skills": [],
+      "communication_channels": [],
+      "story": "",
+      "status_message": "",
+      "is_vacationing": false,
+      "active": true,
+      "created": "2026-01-01T00:00:00Z",
+      "updated": "2026-01-01T00:00:00Z"
+    }
+  ]
+}

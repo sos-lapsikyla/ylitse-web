@@ -54,6 +54,7 @@ export const toManagedUser = ({
   }
   return account;
 };
+
 export type ManagedUser = ReturnType<typeof toManagedUser>;
 
 export type ManagedUsersResponse = D.TypeOf<typeof managedUserListResponseType>;

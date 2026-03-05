@@ -1,0 +1,44 @@
+{
+  "resources": [
+    {
+      "id": "1",
+      "sender_id": "20",
+      "recipient_id": "10",
+      "opened": false,
+      "active": true,
+      "updated": "2026-01-01T00:00:00Z",
+      "created": "2026-01-01T00:00:00Z",
+      "content": "Viesti mentorilta aktorille"
+    },
+    {
+      "id": "2",
+      "sender_id": "10",
+      "recipient_id": "20",
+      "opened": true,
+      "active": true,
+      "updated": "2026-01-01T00:05:00Z",
+      "created": "2026-01-01T00:05:00Z",
+      "content": "Viesti aktorilta mentorille"
+    }
+  ],
+  "contacts": [
+    {
+      "id": "10",
+      "display_name": "TestiAktori",
+      "role": "mentee",
+      "account_id": "10",
+      "active": true,
+      "updated": "2026-01-01T00:00:00Z",
+      "created": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "20",
+      "display_name": "TestiMentori",
+      "role": "mentor",
+      "account_id": "20",
+      "active": true,
+      "updated": "2026-01-01T00:00:00Z",
+      "created": "2026-01-01T00:00:00Z"
+    }
+  ]
+}
