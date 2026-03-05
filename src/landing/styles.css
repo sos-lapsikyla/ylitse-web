@@ -84,10 +84,9 @@ header {
   max-width: 1921px;
   flex-direction: row;
   gap: 0rem;
-  filter: drop-shadow(-0.5rem 0 0.5rem rgba(0, 0, 0, 0.01)) 
-          drop-shadow(0.5rem 0 0.5rem rgba(0, 0, 0, 0.01))
-          drop-shadow(0 0.5rem 0.5rem rgba(0, 0, 0, 0.1));
-
+  filter: drop-shadow(-0.5rem 0 0.5rem rgba(0, 0, 0, 0.01))
+    drop-shadow(0.5rem 0 0.5rem rgba(0, 0, 0, 0.01))
+    drop-shadow(0 0.5rem 0.5rem rgba(0, 0, 0, 0.1));
 }
 
 .card {
@@ -330,7 +329,6 @@ section.max-width {
   outline: none;
 }
 
-
 /* MENTORS */
 
 .mentors {
@@ -355,9 +353,9 @@ section.max-width {
   background-color: var(--background-color-light);
   border-radius: 1.125rem;
   position: relative;
-  filter: drop-shadow(-0.5rem 0 0.5rem rgba(0, 0, 0, 0.01)) 
-          drop-shadow(0.5rem 0 0.5rem rgba(0, 0, 0, 0.01))
-          drop-shadow(0 0.5rem 0.5rem rgba(0, 0, 0, 0.01));
+  filter: drop-shadow(-0.5rem 0 0.5rem rgba(0, 0, 0, 0.01))
+    drop-shadow(0.5rem 0 0.5rem rgba(0, 0, 0, 0.01))
+    drop-shadow(0 0.5rem 0.5rem rgba(0, 0, 0, 0.01));
 }
 
 .mentor-card:before {
@@ -537,12 +535,8 @@ section.max-width {
 /* FOOTER */
 
 footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 3.5rem;
   max-width: 1921px;
-  margin: 0 auto;
   background-color: var(--secondary-color-darker);
   color: var(--font-color-primary);
 }
@@ -628,7 +622,6 @@ footer a:target {
   .mobile-app-desktop {
     margin: 1rem auto;
   }
-
 }
 
 /* TABLET */
@@ -781,7 +774,6 @@ footer a:target {
   .mobile-app-mock-up {
     min-width: 20.25rem;
   }
-
 }
 
 /* MOBILE */
@@ -848,7 +840,6 @@ footer a:target {
   section.bg-mobile {
     background-color: var(--background-color);
   }
-
 
   .information {
     border-top-left-radius: 0;
@@ -949,16 +940,16 @@ footer a:target {
     justify-content: start;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    scrollbar-width: none; 
-    -ms-overflow-style: none; 
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   .mentor-cards::-webkit-scrollbar {
-    display: none; 
+    display: none;
   }
 
   .mentor-card {
-    scroll-snap-align: center; 
+    scroll-snap-align: center;
   }
 
   .mentor-card:first-child {
@@ -966,7 +957,7 @@ footer a:target {
   }
 
   .mentor-cards::after {
-    content: "";
+    content: '';
     flex: 0 0 0.75rem;
   }
 

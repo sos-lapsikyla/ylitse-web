@@ -111,13 +111,9 @@
 
     // Set alt texts and language buttons.
     if (newLocale === 'en') {
-      showClass('en-alt-text');
-      hideClass('fi-alt-text');
       disableLanguageButton(enButton);
       enableLanguageButton(fiButton);
     } else {
-      showClass('fi-alt-text');
-      hideClass('en-alt-text');
       disableLanguageButton(fiButton);
       enableLanguageButton(enButton);
     }

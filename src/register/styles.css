@@ -367,17 +367,6 @@ input:checked + .slider:before {
   color: var(--font-color-secondary);
 }
 
-#register-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 5rem;
-  font-family: 'Source Sans 3';
-  margin: unset; /* Override shared styles */
-  color: var(--font-color-secondary);
-  font-weight: 600;
-}
-
 #register-footer p {
   color: inherit;
   font-weight: inherit;
