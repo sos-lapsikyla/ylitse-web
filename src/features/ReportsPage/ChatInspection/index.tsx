@@ -34,6 +34,7 @@ const ChatInspection: React.FC<Props> = ({
 
   useGetMentorsQuery();
   useGetManagedUsersQuery();
+
   const mentor = useAppSelector(selectMentorById(recipientId));
   const mentee = useAppSelector(selectManagedUserById(senderId));
   const latestMessage = useAppSelector(
@@ -68,7 +69,7 @@ const ChatInspection: React.FC<Props> = ({
           backgroundColor={folderColors['ok']}
           displayName={
             mentee && showMenteesIdentity
-              ? mentee?.nickname
+              ? mentee.nickname
               : t('chatInspection.placeholderName')
           }
           isActiveChat={true}

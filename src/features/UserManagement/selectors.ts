@@ -32,7 +32,12 @@ export const selectAllManagedUsers = () =>
     },
   );
 
-export const selectManagedUserById = (userId: string) =>
-  createSelector(selectAllManagedUsers(), managedUsers =>
-    managedUsers.find(user => user.id === userId),
+export const selectManagedUsersData = createSelector(
+  selectManagedUsers,
+  managedUsersQuery => managedUsersQuery.data ?? {},
+);
+
+export const selectManagedUserById = (userId: string | null) =>
+  createSelector(selectManagedUsersData, users =>
+    userId ? users[userId] : undefined,
   );

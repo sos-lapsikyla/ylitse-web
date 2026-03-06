@@ -102,7 +102,7 @@ describe('Reports page', () => {
     cy.intercept('GET', '**/mentors*', { fixture: 'mentorForReports.json' }).as(
       'getMentors',
     );
-    cy.intercept('GET', '**/users*', {
+    cy.intercept('GET', '**/users', {
       fixture: 'managedUsersForReports.json',
     }).as('getManagedUsers');
   });
@@ -227,6 +227,7 @@ describe('Reports page', () => {
   //   cy.wait('@getMentors');
   //   cy.wait('@getManagedUsers');
   //   cy.wait('@getReportMessages');
+
   //   // Mentor's name is revelead
   //   cy.getByText('TestiMentori', 'h1').should('be.visible');
   //   // Mentee's username is hidden by default
@@ -236,6 +237,7 @@ describe('Reports page', () => {
   //   cy.getByText('Näytä aktorin käyttäjänimi', 'p')
   //     .should('be.visible')
   //     .click();
+
   //   cy.getByText('TestiAktori', 'h2').should('be.visible');
   //   // hide username after revealing
   //   cy.getByText('Näytä aktorin käyttäjänimi', 'p')
