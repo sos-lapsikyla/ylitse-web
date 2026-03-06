@@ -1,11 +1,9 @@
 {
   "accountInfoTitle": "Tilin tiedot",
-  "apuuLink": "Apuu-chatissa.",
-  "description": "Hienoa, että haluat aloittaa palvelun käytön. Huomaathan, että palvelu on tarkoitettu vähintään 17-vuotiaille. Jos olet alle 17-vuotias, vieraile",
+  "description": "Hienoa, että haluat aloittaa palvelun käytön. Huomaathan, että palvelu on tarkoitettu vähintään 17-vuotiaille. Jos olet alle 17-vuotias, vieraile <a href=\"https://sekasin.fi/\">Sekasin-chatissa</a> tai <a href=\"https://apuu.fi\">Apuu-chatissa</a>.",
   "displayNameFieldInfo": "Syötä nimimerkki, josta sinua ei voi tunnistaa, jos haluat käyttää palvelua anonyymisti.",
   "displayNameLabel": "Julkinen nimimerkki *",
   "displayNameTooShortError": "Nimimerkki on liian lyhyt",
-  "displayNameTooltip": "Nimimerkin tulee olla vähintään 2 merkkiä pitkä",
   "emailError": "Sähköpostiosoite on virheellinen",
   "emailFieldInfo": "Sähköpostiosoitteen tallentaminen mahdollistaa salasanan palauttamisen myöhemmin. Sähköpostiosoitetta ei käytetä muihin tarkoituksiin.",
   "emailLabel": "Sähköpostiosoite (vapaaehtoinen)",
@@ -22,8 +20,7 @@
   "privacyConsentSwitch": "Hyväksyn tietojeni käsittelyn",
   "privacyParagraph1": "Käytämme tietojasi ainoastaan tämän palvelun mahdollis- tamiseksi. Noudatamme tarkkoja tietoturvastandardeja ja teemme parhaamme, jotta tietosi säilyvät turvassa ja yksityisinä.",
   "privacyParagraph2": "Huomaathan, että keräämme anonyymejä tilastoja, jotta voimme kehittää palvelua entistä paremmaksi.",
-  "privacyParagraph3": "Rekisteröitymällä palvelun käyttäjäksi hyväksyt, että käsittelemme sinua koskevia tietoja. Voit lukea lisää:",
-  "privacyPolicyLink": "Tietoja yksityisyydensuojasta.",
+  "privacyParagraph3": "Rekisteröitymällä palvelun käyttäjäksi hyväksyt, että käsittelemme sinua koskevia tietoja. Voit lukea lisää: <a href=\"https://www.sos-lapsikyla.fi/wp-content/uploads/2021/02/Ylitse_MentorApp_kayttyoehdot_tietosuojaseloste.pdf\">Tietoja yksityisyydensuojasta.</a>",
   "privacyTitle": "Yksityisyydensuoja",
   "registerButton": "Rekisteröidy",
   "registerTitle": "Rekisteröidy",
@@ -34,6 +31,5 @@
   "tryAgainMessage": "Emme pystyneet tarkistamaan käyttäjätunnusta. Syötä tunnus uudelleen hetken kuluttua.",
   "usernameLabel": "Käyttäjätunnus *",
   "usernameTakenError": "Käyttäjätunnus on jo käytössä",
-  "usernameTooShortError": "Käyttäjätunnus on liian lyhyt",
-  "usernameTooltip": "Käyttäjätunnuksen tulee olla vähintään 2 merkkiä pitkä."
+  "usernameTooShortError": "Käyttäjätunnus on liian lyhyt"
 }

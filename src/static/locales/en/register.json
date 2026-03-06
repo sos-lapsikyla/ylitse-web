@@ -1,11 +1,9 @@
 {
   "accountInfoTitle": "Account information",
-  "apuuLink": "the Apuu chat.",
-  "description": "Great that you want to start using the application. Please notice that the application is meant for people who are at least 17. If you're under 17, please visit",
+  "description": "Great that you want to start using the application. Please notice that the application is meant for people who are at least 17. If you're under 17, please visit <a href=\"https://apuu.fi\">the Apuu chat</a>.",
   "displayNameFieldInfo": "Provided a display name that can't be identified, if you want to use the application anonymously.",
   "displayNameLabel": "Display name *",
   "displayNameTooShortError": "Display name is too short",
-  "displayNameTooltip": "Your display name has to be at least 2 characters long",
   "emailError": "Email is invalid",
   "emailFieldInfo": "Providing an email address enables you to recover a forgotten password. Your email isn't used for other purposes.",
   "emailLabel": "Email (optional)",
@@ -22,8 +20,7 @@
   "privacyConsentSwitch": "I approve the use of my information",
   "privacyParagraph1": "We only use your data and message history to make this service possible. We follow high security standards and do our best to keep your conversations private and safe.",
   "privacyParagraph2": "Please note that we use anonymous statistics to evaluate the service and its usefulness.",
-  "privacyParagraph3": "By continuing you agree to trust us with your data. Read these for more details:",
-  "privacyPolicyLink": "Privacy policy",
+  "privacyParagraph3": "By continuing you agree to trust us with your data. Read these for more details: <a href=\"https://www.sos-lapsikyla.fi/wp-content/uploads/2021/02/Ylitse_MentorApp_kayttyoehdot_tietosuojaseloste.pdf\">Privacy policy.</a>",
   "privacyTitle": "Privacy",
   "registerButton": "Register",
   "registerTitle": "Register",
@@ -34,6 +31,5 @@
   "tryAgainMessage": "We weren't able to check your username. Please try again in a moment.",
   "usernameLabel": "Username *",
   "usernameTakenError": "Username is already taken",
-  "usernameTooShortError": "Username is too short",
-  "usernameTooltip": "Your username has to be at least 2 characters long."
+  "usernameTooShortError": "Username is too short"
 }

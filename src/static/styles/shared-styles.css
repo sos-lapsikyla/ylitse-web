@@ -2,10 +2,6 @@
 @import 'normalize.css';
 @import 'fonts.css';
 
-.en-alt-text {
-  display: none;
-}
-
 #language-buttons {
   display: flex;
   align-items: center;
@@ -33,10 +29,14 @@
 }
 
 footer {
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Source Sans 3';
   font-weight: 600;
   font-size: 1.125rem;
   line-height: 1.688rem;
-  margin-top: 1.563rem;
-  margin-bottom: 1.563rem;
-  color: #ffffff;
+  color: var(--font-color-secondary);
+  margin: 0;
 }

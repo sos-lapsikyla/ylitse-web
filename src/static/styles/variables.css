@@ -7,21 +7,17 @@
 
   --primary-color: #4a2acb;
   --primary-color-lighter: #5c33ff;
+  --primary-color-darker: #37119d;
   --secondary-color: #43bfff;
   --secondary-color-opacity-50: #43bfff7f;
   --secondary-color-opacity-0: #43bfff00;
   --secondary-color-darker: #01a5ec;
   --highlight-color: #f0ba8c;
 
-  --background-color: #D3EFFF;
-  --secondary-background-color: #E4F3FB;
-  --background-color-dark: #C2EDFE;
-  --background-color-light: #ffffff;
+  --error-color: #972232;
 
-  /* These are the minimum values for the breakpoint */
-  --breakpoint-mobile: 576px;
-  --breakpoint-tablet: 768px;
-  --breakpoint-desktop: 992px;
-  --breakpoint-large-desktop: 1200px;
-  --breakpoint-extra-large-desktop: 1400px;
+  --background-color: #d3efff;
+  --secondary-background-color: #e4f3fb;
+  --background-color-dark: #c2edfe;
+  --background-color-light: #ffffff;
 }

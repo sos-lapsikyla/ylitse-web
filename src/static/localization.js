@@ -60,6 +60,22 @@
       let translation = translations[key];
       element.innerText = translation;
     });
+
+    // For elements that need HTML content (e.g. links within text)
+    document.querySelectorAll('[localization-key-html]').forEach(element => {
+      let key = element.getAttribute('localization-key-html');
+      let translation = translations[key];
+      element.innerHTML = translation;
+    });
+
+    // For elements that need aria-label attribute
+    document
+      .querySelectorAll('[localization-key-aria-label]')
+      .forEach(element => {
+        let key = element.getAttribute('localization-key-aria-label');
+        let translation = translations[key];
+        element.setAttribute('aria-label', translation);
+      });
   };
 
   const styleButton = (button, color, fontWeight, pointerEvents) => {
@@ -69,16 +85,6 @@
       button.style.pointerEvents = pointerEvents;
     }
   };
-
-  const showClass = className =>
-    document
-      .querySelectorAll(`.${className}`)
-      .forEach(element => (element.style.display = 'unset'));
-
-  const hideClass = className =>
-    document
-      .querySelectorAll(`.${className}`)
-      .forEach(element => (element.style.display = 'none'));
 
   const enableLanguageButton = button =>
     styleButton(button, '#37119d', '700', 'auto');
@@ -95,13 +101,9 @@
 
     // Set alt texts and language buttons.
     if (newLocale === 'en') {
-      showClass('en-alt-text');
-      hideClass('fi-alt-text');
       disableLanguageButton(enButton);
       enableLanguageButton(fiButton);
     } else {
-      showClass('fi-alt-text');
-      hideClass('en-alt-text');
       disableLanguageButton(fiButton);
       enableLanguageButton(enButton);
     }

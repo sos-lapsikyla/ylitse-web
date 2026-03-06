@@ -117,7 +117,6 @@ input[type='password'] {
 input[type='text']:focus,
 input[type='password']:focus {
   border: solid 2px #4a2acb;
-  background-color: #e4f3fb;
   outline: 0;
 }
 
@@ -219,8 +218,8 @@ button {
   cursor: pointer;
   box-sizing: border-box;
   width: 12.5rem;
-  height: 3.5rem;
-  max-height: 3.5rem;
+  height: 48px;
+  max-height: 48px;
   padding: 1rem 2rem;
   font-family: 'Baloo 2';
   text-decoration: none;

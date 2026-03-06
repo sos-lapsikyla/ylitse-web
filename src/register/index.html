@@ -10,13 +10,13 @@
     <link rel="stylesheet" href="/register/styles.css" />
     <link rel="icon" href="/static/favicon/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/static/favicon/icon.svg" type="image/svg+xml" />
-    <link
-      rel="apple-touch-icon"
-      href="/static/favicon/apple-touch-icon.png"
-    />
+    <link rel="apple-touch-icon" href="/static/favicon/apple-touch-icon.png" />
   </head>
 
   <body>
+    <header id="mobile-header">
+      <img src="/static/img/ylitse-logo-small-new.svg" alt="Ylitse" />
+    </header>
     <main>
       <div id="language-buttons">
         <a id="fi-button" href="#" localization-key="inFinnish"></a>
@@ -25,35 +25,11 @@
       </div>
       <form id="register-form" name="register">
         <h1 localization-key="registerTitle"></h1>
-        <p>
-          <span localization-key="description"></span>
-          <a href="https://apuu.fi" localization-key="apuuLink"></a>
-          <a href="https://apuu.fi">
-            <img
-              class="fi-alt-text"
-              src="/static/icons/outsidelink.svg"
-              alt="Siirry apuu.fi verkkosivulle."
-            />
-            <img
-              class="en-alt-text"
-              src="/static/icons/outsidelink.svg"
-              alt="Visit the apuu.fi website."
-            />
-          </a>
-        </p>
+        <p localization-key-html="description"></p>
         <h2 localization-key="accountInfoTitle"></h2>
         <p localization-key="requiredFieldInfo"></p>
         <fieldset id="username-field">
-          <label for="username">
-            <span localization-key="usernameLabel"></span>
-            <span class="align-right">
-              <span class="tooltip">
-                <img src="/static/icons/tooltip.svg" />
-                <span class="tooltip-text" localization-key="usernameTooltip">
-                </span>
-              </span>
-            </span>
-          </label>
+          <label for="username" localization-key="usernameLabel"></label>
           <input
             id="username"
             name="username"
@@ -62,10 +38,11 @@
             minlength="2"
             pattern=".{2,100}"
             onblur="checkInput('username')"
+            aria-describedby="username-error"
             required
           />
-          <label class="error-message">
-            <img src="/static/icons/warning-with-background.svg" />
+          <div class="error-message" id="username-error" role="alert">
+            <img src="/static/icons/warning-with-background.svg" alt="" />
             <span
               id="too-short-message"
               localization-key="usernameTooShortError"
@@ -75,7 +52,7 @@
             </span>
             <span id="try-again-message" localization-key="tryAgainMessage">
             </span>
-          </label>
+          </div>
         </fieldset>
         <fieldset id="password-field">
           <label for="password">
@@ -86,19 +63,29 @@
                 class="password-toggle"
                 type="button"
                 onclick="togglePassword('password', true)"
-                localization-key="showPassword"
-              ></button>
+                aria-controls="password"
+                localization-key-aria-label="showPassword"
+              >
+                <img src="/static/icons/eye.svg" alt="" class="eye-icon" />
+                <span localization-key="showPassword"></span>
+              </button>
               <button
                 id="hide-password"
                 class="password-toggle"
                 type="button"
                 onclick="togglePassword('password', false)"
-                localization-key="hidePassword"
-              ></button>
+                aria-controls="password"
+                localization-key-aria-label="hidePassword"
+              >
+                <img src="/static/icons/eye.svg" alt="" class="eye-icon" />
+                <span localization-key="hidePassword"></span>
+              </button>
               <span class="tooltip">
-                <img src="/static/icons/tooltip.svg" />
-                <span class="tooltip-text" localization-key="passwordTooltip">
-                </span>
+                <img src="/static/icons/tooltip.svg" alt="" />
+                <span
+                  class="tooltip-text"
+                  localization-key="passwordTooltip"
+                ></span>
               </span>
             </span>
           </label>
@@ -110,12 +97,13 @@
             minlength="8"
             pattern=".{8,100}"
             onblur="checkInput('password')"
+            aria-describedby="password-error"
             required
           />
-          <label class="error-message">
-            <img src="/static/icons/warning-with-background.svg" />
+          <div class="error-message" id="password-error" role="alert">
+            <img src="/static/icons/warning-with-background.svg" alt="" />
             <span localization-key="passwordTooShortError"></span>
-          </label>
+          </div>
         </fieldset>
         <fieldset id="password-confirmation-field">
           <label for="password-confirmation">
@@ -126,17 +114,25 @@
                 class="password-toggle"
                 type="button"
                 onclick="togglePassword('password-confirmation', true)"
-                localization-key="showPassword"
-              ></button>
+                aria-controls="password-confirmation"
+                localization-key-aria-label="showPassword"
+              >
+                <img src="/static/icons/eye.svg" alt="" class="eye-icon" />
+                <span localization-key="showPassword"></span>
+              </button>
               <button
                 id="hide-password-confirmation"
                 class="password-toggle"
                 type="button"
                 onclick="togglePassword('password-confirmation', false)"
-                localization-key="hidePassword"
-              ></button>
+                aria-controls="password-confirmation"
+                localization-key-aria-label="hidePassword"
+              >
+                <img src="/static/icons/eye.svg" alt="" class="eye-icon" />
+                <span localization-key="hidePassword"></span>
+              </button>
               <span class="tooltip">
-                <img src="/static/icons/tooltip.svg" />
+                <img src="/static/icons/tooltip.svg" alt="" />
                 <span class="tooltip-text" localization-key="passwordTooltip">
                 </span>
               </span>
@@ -148,12 +144,17 @@
             type="password"
             maxlength="100"
             onblur="checkInput('password-confirmation')"
+            aria-describedby="password-confirmation-error"
             required
           />
-          <label class="error-message">
-            <img src="/static/icons/warning-with-background.svg" />
+          <div
+            class="error-message"
+            id="password-confirmation-error"
+            role="alert"
+          >
+            <img src="/static/icons/warning-with-background.svg" alt="" />
             <span localization-key="passwordsDontMatchError"></span>
-          </label>
+          </div>
         </fieldset>
         <fieldset id="email-field">
           <label for="email" localization-key="emailLabel"></label>
@@ -164,27 +165,16 @@
             maxlength="200"
             onblur="checkInput('email')"
             pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+            aria-describedby="email-error"
           />
-          <label class="error-message">
-            <img src="/static/icons/warning-with-background.svg" />
+          <div class="error-message" id="email-error" role="alert">
+            <img src="/static/icons/warning-with-background.svg" alt="" />
             <span localization-key="emailError"> </span>
-          </label>
+          </div>
           <p class="field-info" localization-key="emailFieldInfo"></p>
         </fieldset>
         <fieldset id="display-name-field">
-          <label for="display-name">
-            <span localization-key="displayNameLabel"></span>
-            <span class="align-right">
-              <span class="tooltip">
-                <img src="/static/icons/tooltip.svg" />
-                <span
-                  class="tooltip-text"
-                  localization-key="displayNameTooltip"
-                >
-                </span>
-              </span>
-            </span>
-          </label>
+          <label for="display-name" localization-key="displayNameLabel"></label>
           <input
             id="display-name"
             name="display-name"
@@ -193,43 +183,23 @@
             minlength="2"
             pattern=".{2,30}"
             onblur="checkInput('display-name')"
+            aria-describedby="display-name-error"
             required
           />
-          <label class="error-message">
-            <img src="/static/icons/warning-with-background.svg" />
+          <div class="error-message" id="display-name-error" role="alert">
+            <img src="/static/icons/warning-with-background.svg" alt="" />
             <span localization-key="displayNameTooShortError"></span>
-          </label>
+          </div>
           <p class="field-info" localization-key="displayNameFieldInfo"></p>
         </fieldset>
         <h2 localization-key="privacyTitle"></h2>
         <section>
           <p localization-key="privacyParagraph1"></p>
           <p localization-key="privacyParagraph2"></p>
-          <p>
-            <span localization-key="privacyParagraph3"></span>
-            <a
-              href="https://www.sos-lapsikyla.fi/wp-content/uploads/2021/02/Ylitse_MentorApp_kayttyoehdot_tietosuojaseloste.pdf"
-              localization-key="privacyPolicyLink"
-            >
-            </a>
-            <a
-              href="https://www.sos-lapsikyla.fi/wp-content/uploads/2021/02/Ylitse_MentorApp_kayttyoehdot_tietosuojaseloste.pdf"
-            >
-              <img
-                class="fi-alt-text"
-                src="/static/icons/outsidelink.svg"
-                alt="Lataa tietosuojaseloste."
-              />
-              <img
-                class="en-alt-text"
-                src="/static/icons/outsidelink.svg"
-                alt="Download privacy policy."
-              />
-            </a>
-          </p>
+          <p localization-key-html="privacyParagraph3"></p>
         </section>
         <fieldset class="switch-line">
-          <label class="switch" tabindex="0">
+          <label class="switch">
             <input
               id="required-age"
               type="checkbox"
@@ -246,7 +216,7 @@
           </label>
         </fieldset>
         <fieldset class="switch-line">
-          <label class="switch" tabindex="0">
+          <label class="switch">
             <input
               id="privacy-consent"
               type="checkbox"
@@ -269,8 +239,10 @@
           localization-key="registerButton"
         ></button>
       </form>
-      <footer localization-key="footer"></footer>
     </main>
+    <footer id="register-footer">
+      <p localization-key="footer"></p>
+    </footer>
     <script src="/register/index.js"></script>
     <script src="/static/localization.js"></script>
   </body>
