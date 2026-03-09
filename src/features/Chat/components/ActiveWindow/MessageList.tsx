@@ -10,12 +10,12 @@ import { useBottomAction } from './ScrollToBottomButton/useBottomAction';
 import { useOnScrollToTop } from './useOnScrollToTop';
 import { toGroupedMessages } from './mappers';
 
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { palette } from '@/components/constants';
 import { Message } from './Message';
-import Text from '@/components/Text';
 import Spinner from '@/components/Spinner';
 import ScrollToBottomButton from './ScrollToBottomButton';
+import DateDivider from '@/components/Chat/DateDivider';
 
 type Props = {
   messageList: Array<AppMessage>;
@@ -65,7 +65,7 @@ const MessageList = ({ messageList, status, buddyId, isLoading }: Props) => {
       )}
       {Object.keys(groupedMessages).map(date => (
         <Fragment key={date}>
-          <DateDivider $isTablet={isTablet}>{date}</DateDivider>
+          <DateDivider date={date} />
           <Messages>
             {groupedMessages[date].map(message => (
               <Message
@@ -100,35 +100,6 @@ const ChatHistory = styled.div`
 
 const SpinnerContainer = styled.div`
   padding-top: 1rem;
-`;
-
-const DateDivider = styled(Text)<{ $isTablet: boolean }>`
-  position: relative;
-  text-align: center;
-  ${({ $isTablet }) =>
-    !$isTablet &&
-    css`
-      margin-left: 40px;
-      margin-right: 40px;
-    `}
-
-  &:before,
-  &:after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: ${({ $isTablet }) => ($isTablet ? '30%' : '40%')};
-    height: 1px;
-    background-color: ${palette.purple}};
-  }
-
-  &:before {
-    left: 0;
-  }
-
-  &:after {
-    right: 0;
-  }
 `;
 
 const Messages = styled.div`

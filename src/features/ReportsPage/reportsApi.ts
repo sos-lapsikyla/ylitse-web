@@ -3,11 +3,20 @@ import { baseApi } from '@/baseApi';
 import { t } from 'i18next';
 import { parseAndTransformTo } from '@/utils/http';
 import {
+  messagesResponseCodec,
   reportListResponseType,
   Reports,
+  ReportMessagesResult,
+  toContactMap,
+  toMessageMap,
   toReportMap,
   UpdateReportPayload,
 } from './models';
+
+type ReportMessagesQuery = {
+  senderId: string;
+  recipientId: string;
+};
 
 export const reportsApi = baseApi.injectEndpoints({
   endpoints: builder => ({
@@ -20,13 +29,13 @@ export const reportsApi = baseApi.injectEndpoints({
           reportListResponseType,
           { resources: [] },
           toReportMap,
-          () => toast.error('error'),
+          () => toast.error('Failed to parse reports'),
         ),
       async onQueryStarted(_, { queryFulfilled }) {
         try {
           await queryFulfilled;
         } catch (error) {
-          toast('error');
+          toast(t('reports:reportCard.get.failure'));
         }
       },
     }),
@@ -65,11 +74,38 @@ export const reportsApi = baseApi.injectEndpoints({
         }
       },
     }),
+    getReportMessages: builder.query<ReportMessagesResult, ReportMessagesQuery>(
+      {
+        query: ({ senderId, recipientId }) =>
+          `users/${senderId}/messages_for_admin?&contact_user_ids=${recipientId}&desc=true`,
+        providesTags: ['adminMessages'],
+        transformResponse: (response: unknown) =>
+          parseAndTransformTo(
+            response,
+            messagesResponseCodec,
+            { resources: [], contacts: [] },
+            data => ({
+              messages: toMessageMap(data),
+              contacts: toContactMap(data),
+            }),
+          ),
+        async onQueryStarted(_, { queryFulfilled }) {
+          try {
+            await queryFulfilled;
+          } catch (err) {
+            toast.error(
+              t('reports:chatInspection.failure.fetchingReportMessages'),
+            );
+          }
+        },
+      },
+    ),
   }),
 });
 
 export const {
   useGetReportsQuery,
+  useGetReportMessagesQuery,
   useDeleteReportMutation,
   useUpdateReportMutation,
 } = reportsApi;

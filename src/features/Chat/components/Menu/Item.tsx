@@ -10,13 +10,8 @@ import { setActiveChat } from '@/features/Chat/chatSlice';
 
 import type { ChatBuddy } from '@/features/Chat/mappers';
 
-import styled, { css } from 'styled-components';
 import { folderColors } from '@/features/Chat/constants';
-import { palette } from '@/components/constants';
-import { Profile as ProfileIcon } from '@/components/Icons/Profile';
-import { Row } from './Row';
-import Text from '@/components/Text';
-import Spinner from '@/components/Spinner';
+import { ChatMenuItem } from '@/components/Chat';
 
 type Props = {
   buddy: ChatBuddy;
@@ -48,79 +43,16 @@ export const MenuItem = ({ buddy }: Props) => {
   const isUnseenDotVisible = isDefaultFolder && hasUnread;
 
   return (
-    <ItemRow
-      $isActive={isActiveChat}
-      $background={folderColors[activeFolder]}
-      onClick={openChat}
-    >
-      <ProfileIcon color={getProfileIconColor()} />
-      <MentorInfo>
-        <BuddyName>
-          <Text variant="bold">{displayName}</Text>
-          {isUnseenDotVisible && (
-            <UnseenDot id="unseen-messages-dot-conversation">{count}</UnseenDot>
-          )}
-        </BuddyName>
-        {isLoading ? (
-          <Spinner variant="tiny" isDark isInline isCentered={false} />
-        ) : (
-          <Message>{latest}</Message>
-        )}
-      </MentorInfo>
-    </ItemRow>
+    <ChatMenuItem
+      backgroundColor={folderColors[activeFolder]}
+      displayName={displayName}
+      isActiveChat={isActiveChat}
+      isLoading={isLoading}
+      isUnseenDotVisible={isUnseenDotVisible}
+      newMessageCount={count}
+      latestMessage={latest}
+      openChat={openChat}
+      profileIconColor={getProfileIconColor()}
+    />
   );
 };
-
-const ItemRow = styled(Row)<{
-  $isActive: boolean;
-  $background: { active: string; hover: string };
-}>`
-  cursor: pointer;
-  overflow: hidden;
-
-  ${({ $isActive, $background }) =>
-    $isActive
-      ? css`
-          background-color: ${$background.active};
-        `
-      : css`
-          &:hover {
-            background-color: ${$background.hover};
-          }
-        `}
-`;
-
-const MentorInfo = styled.div`
-  color: ${palette.blueDark};
-  margin-left: 20px;
-  padding-bottom: 15px;
-  padding-top: 15px;
-  width: 240px;
-`;
-
-const BuddyName = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const Message = styled(Text)`
-  margin: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
-
-const UnseenDot = styled.div`
-  align-items: center;
-  background-color: ${palette.blue2};
-  border-radius: 50%;
-  color: ${palette.blueDark};
-  display: flex;
-  font-family: 'Source Sans 3';
-  font-size: '1rem',
-  font-weight: 600;
-  height: 27px;
-  justify-content: center;
-  margin-left: 10px;
-  width: 27px;
-`;

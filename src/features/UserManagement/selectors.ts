@@ -31,3 +31,13 @@ export const selectAllManagedUsers = () =>
       return managedUsers;
     },
   );
+
+export const selectManagedUsersData = createSelector(
+  selectManagedUsers,
+  managedUsersQuery => managedUsersQuery.data ?? {},
+);
+
+export const selectManagedUserById = (userId: string | null) =>
+  createSelector(selectManagedUsersData, users =>
+    userId ? users[userId] : undefined,
+  );

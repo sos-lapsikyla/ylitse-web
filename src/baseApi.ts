@@ -5,6 +5,7 @@ export const baseApi = createApi({
   baseQuery: refreshingBaseQuery,
   reducerPath: 'api',
   tagTypes: [
+    'adminMessages',
     'mentors',
     'myuser',
     'apiversion',

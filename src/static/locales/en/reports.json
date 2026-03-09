@@ -32,5 +32,19 @@
     "description": "Deleting report can not be undone.",
     "cancel": "Cancel",
     "confirm": "Delete"
+  },
+  "get": {
+    "failure": "Fetching reports was unsuccessful."
+  },
+  "chatInspection": {
+    "success": "",
+    "failure": {
+      "fetchingReportMessages": "Reported messages were not found."
+    },
+    "showIdentity": "Show mentee's nickname",
+    "back": "Return to report",
+    "placeholderName": "Mentee",
+    "mentorPlaceholderName": "Mentor",
+    "chatHeaderTablet": "{{mentor}} ↔ {{mentee}}"
   }
 }

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import styled, { css } from 'styled-components';
 
 import {
   selectActiveChat,
@@ -12,23 +11,13 @@ import {
   useSendMessageMutation,
 } from '@/features/Chat/chatPageApi';
 import { useAppDispatch, useAppSelector } from '@/store';
-import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 
-import {
-  CHAT_MIN_HEIGHT,
-  CHAT_WINDOW_MIN_WIDTH,
-} from '@/features/Chat/constants';
-import {
-  DESKTOP_CONTENT_HEIGHT,
-  MOBILE_AND_TABLET_CONTENT_HEIGHT,
-  palette,
-} from '@/components/constants';
 import Header from './Header';
 import MessageField from './MessageField';
 import MessageList from './MessageList';
+import ChatWindow from '@/components/Chat/ChatWindow';
 
 const ActiveWindow = () => {
-  const { isTablet } = useGetLayoutMode();
   const dispatch = useAppDispatch();
   const [sendMessage] = useSendMessageMutation();
   const userId = useAppSelector(selectUserId);
@@ -62,7 +51,6 @@ const ActiveWindow = () => {
     setMessage('');
   }, [activeChat.buddyId]);
 
-  // when the message list is updated we clear the message field and stop loading
   useEffect(() => {
     if (isLoadingSentMessage) {
       setMessage('');
@@ -72,7 +60,7 @@ const ActiveWindow = () => {
 
   return (
     activeChat && (
-      <Container $isTablet={isTablet}>
+      <ChatWindow>
         <Header chat={activeChat} />
         <MessageList
           messageList={activeChat.messages}
@@ -91,25 +79,9 @@ const ActiveWindow = () => {
             onChange={setMessage}
           />
         )}
-      </Container>
+      </ChatWindow>
     )
   );
 };
-
-const Container = styled.div<{ $isTablet: boolean }>`
-  background-color: ${palette.white};
-  border-radius: 10px;
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-  height: ${({ $isTablet }) =>
-    $isTablet ? MOBILE_AND_TABLET_CONTENT_HEIGHT : DESKTOP_CONTENT_HEIGHT};
-  min-height: ${CHAT_MIN_HEIGHT};
-  ${({ $isTablet }) =>
-    !$isTablet &&
-    css`
-      min-width: ${CHAT_WINDOW_MIN_WIDTH};
-    `};
-`;
 
 export default ActiveWindow;

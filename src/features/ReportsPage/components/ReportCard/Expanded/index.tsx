@@ -19,6 +19,7 @@ type Props = {
   reportNumber: number;
   reopen: () => void;
   onDismiss: () => void;
+  openChat: () => void;
 };
 
 const ExpandedReportCard: React.FC<Props> = ({
@@ -26,6 +27,7 @@ const ExpandedReportCard: React.FC<Props> = ({
   reportNumber,
   reopen,
   onDismiss,
+  openChat,
 }) => {
   const { t } = useTranslation('reports');
   const [deleteReport] = useDeleteReportMutation();
@@ -134,8 +136,8 @@ const ExpandedReportCard: React.FC<Props> = ({
               </TextButton>
               <TextButton
                 size="normal"
-                onClick={() => console.log('todo')}
-                variant="disabled"
+                onClick={() => openChat()}
+                variant="dark"
               >
                 {t('reportCard.openConversation')}
               </TextButton>

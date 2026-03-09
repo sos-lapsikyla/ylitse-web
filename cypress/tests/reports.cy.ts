@@ -8,6 +8,7 @@ const SUPERADMIN_MFA = Cypress.env('mfaSecret') || '';
 type Report = {
   id: string;
   reportedUserId: string;
+  reporterUserId: string;
   contactField: string;
   reportReason: string;
   created: string;
@@ -21,6 +22,7 @@ type ApiReport = {
   id: string;
   report_reason: string;
   reported_user_id: string;
+  reporter_user_id: string;
   status: string;
   updated: string;
 };
@@ -39,6 +41,7 @@ describe('Reports page', () => {
       reportsData = data.resources.map((r: ApiReport) => ({
         id: r.id,
         reportedUserId: r.reported_user_id,
+        reporterUserId: r.reporter_user_id,
         contactField: r.contact_field,
         reportReason: r.report_reason,
         status: r.status,
@@ -51,6 +54,7 @@ describe('Reports page', () => {
           resources: reportsData.map(r => ({
             id: r.id,
             reported_user_id: r.reportedUserId,
+            reporter_user_id: r.reporterUserId,
             contact_field: r.contactField,
             report_reason: r.reportReason,
             status: r.status,
@@ -81,6 +85,7 @@ describe('Reports page', () => {
         req.reply({
           id: updated.id,
           reported_user_id: updated.reportedUserId,
+          reporter_user_id: updated.reporterUserId,
           contact_field: updated.contactField,
           report_reason: updated.reportReason,
           status: updated.status,
@@ -90,7 +95,18 @@ describe('Reports page', () => {
         });
       }).as('updateReport');
     });
+
+    cy.intercept('GET', '**/users/*/messages_for_admin*', {
+      fixture: 'reportMessages.json',
+    }).as('getReportMessages');
+    cy.intercept('GET', '**/mentors*', { fixture: 'mentorForReports.json' }).as(
+      'getMentors',
+    );
+    cy.intercept('GET', '**/users', {
+      fixture: 'managedUsersForReports.json',
+    }).as('getManagedUsers');
   });
+
   after(() => {
     api.deleteAccounts();
   });
@@ -175,5 +191,77 @@ describe('Reports page', () => {
     cy.getByText('Tallenna', 'button').should('be.visible').click();
     cy.wait('@updateReport');
     cy.getByText('Ilmiannon päivittäminen onnistui.').should('be.visible');
+  });
+
+  it('displays reported chat', () => {
+    cy.get('[href="/reports"]').click();
+    cy.visit('/reports');
+    cy.wait('@getReports');
+    cy.location('pathname').should('eq', '/reports');
+    cy.getByText('Ei käsitelty', 'p').should('be.visible');
+    cy.getByText('Avaa ilmianto', 'button').should('be.visible').click();
+    cy.getByText('Avaa keskustelu', 'button')
+      .scrollIntoView()
+      .should('be.visible')
+      .click();
+    cy.wait('@getReportMessages');
+    cy.wait('@getMentors');
+    cy.getByText('TestiMentori', 'h1').should('be.visible');
+    cy.getByText('Aktori', 'h2').should('be.visible');
+    cy.getByText('Viesti mentorilta aktorille').should('be.visible');
+    cy.getByText('Näytä aktorin käyttäjänimi', 'p').should('be.visible');
+  });
+
+  it('can reveal mentees identity', () => {
+    cy.get('[href="/reports"]').click();
+    cy.visit('/reports');
+    cy.wait('@getReports');
+    cy.location('pathname').should('eq', '/reports');
+    cy.getByText('Ei käsitelty', 'p').should('be.visible');
+    cy.getByText('Avaa ilmianto', 'button').should('be.visible').click();
+    cy.getByText('Avaa keskustelu', 'button')
+      .scrollIntoView()
+      .should('be.visible')
+      .click();
+
+    cy.wait('@getMentors');
+    cy.wait('@getManagedUsers');
+    cy.wait('@getReportMessages');
+
+    // Mentor's name is revelead
+    cy.getByText('TestiMentori', 'h1').should('be.visible');
+    // Mentee's username is hidden by default
+    cy.getByText('Aktori', 'h2').should('be.visible');
+    cy.getByText('Viesti mentorilta aktorille').should('be.visible');
+    // reveal mentee's username
+    cy.getByText('Näytä aktorin käyttäjänimi', 'p')
+      .should('be.visible')
+      .click();
+
+    cy.getByText('TestiAktori', 'h2').should('be.visible');
+    // hide username after revealing
+    cy.getByText('Näytä aktorin käyttäjänimi', 'p')
+      .should('be.visible')
+      .click();
+    cy.getByText('Aktori', 'h2').should('be.visible');
+  });
+
+  it('returns straight to the report from chatinspection', () => {
+    cy.get('[href="/reports"]').click();
+    cy.visit('/reports');
+    cy.wait('@getReports');
+    cy.location('pathname').should('eq', '/reports');
+    cy.getByText('Ei käsitelty', 'p').should('be.visible');
+    cy.getByText('Avaa ilmianto', 'button').should('be.visible').click();
+    cy.getByText('Avaa keskustelu', 'button')
+      .scrollIntoView()
+      .should('be.visible')
+      .click();
+    cy.wait('@getMentors');
+    cy.getByText('TestiMentori', 'h1').should('be.visible');
+    cy.getByText('Aktori', 'h2').should('be.visible');
+    cy.getByText('Takaisin ilmiantoon', 'p').should('be.visible').click();
+    cy.getByText('Ilmianto #1', 'h2').should('be.visible');
+    cy.getByText('Merkitse käsitellyksi', 'button').should('be.visible');
   });
 });
