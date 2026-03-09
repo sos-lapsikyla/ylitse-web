@@ -539,6 +539,7 @@ footer {
   max-width: 1921px;
   background-color: var(--secondary-color-darker);
   color: var(--font-color-primary);
+  font-size: 1.125rem;
 }
 
 footer a {

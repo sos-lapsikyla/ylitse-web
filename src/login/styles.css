@@ -136,8 +136,12 @@ button[type='submit'] {
   margin-left: -4%;
 }
 
-.right img {
+.right .logo-image {
+  max-width: 220px;
+  height: auto;
+  filter: brightness(0) invert(1);
   margin-top: -60px;
+  margin-bottom: 20px;
 }
 
 .right h1 {
@@ -156,10 +160,11 @@ button[type='submit'] {
   font-family: 'Source Sans 3';
   font-style: normal;
   font-weight: 400;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   width: 100%;
   text-align: center;
   color: #ffffff;
+  line-height: 150%;
 }
 
 #right-text {
@@ -312,38 +317,53 @@ button:visited {
   main {
     margin-top: 0;
   }
+
+  .right p {
+    font-size: 1rem;
+  }
 }
 
 @media only screen and (max-width: 960px) {
   body {
     height: auto;
   }
+
   main {
     width: 100%;
     min-width: none !important;
   }
+
   #mobile-header {
     display: flex;
   }
+
   .panels {
     flex-direction: column;
     margin: 0;
     width: 100%;
     max-width: none;
   }
+
   .panel {
     width: 100% !important;
     border-radius: 0;
     min-width: 100px !important;
     margin: 0 auto 0 auto;
   }
+
   .right {
     margin-left: 0px;
   }
+
+  .right .logo-image {
+    max-width: 180px;
+  }
+
   .left {
     margin-top: -40px;
     z-index: 1;
   }
+
   form[name='login'] {
     margin-top: 30px;
   }
