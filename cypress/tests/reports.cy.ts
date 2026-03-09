@@ -212,42 +212,9 @@ describe('Reports page', () => {
     cy.getByText('Näytä aktorin käyttäjänimi', 'p').should('be.visible');
   });
 
-  // it('can reveal mentees identity', () => {
-  //   cy.get('[href="/reports"]').click();
-  //   cy.visit('/reports');
-  //   cy.wait('@getReports');
-  //   cy.location('pathname').should('eq', '/reports');
-  //   cy.getByText('Ei käsitelty', 'p').should('be.visible');
-  //   cy.getByText('Avaa ilmianto', 'button').should('be.visible').click();
-  //   cy.getByText('Avaa keskustelu', 'button')
-  //     .scrollIntoView()
-  //     .should('be.visible')
-  //     .click();
-
-  //   cy.wait('@getMentors');
-  //   cy.wait('@getManagedUsers');
-  //   cy.wait('@getReportMessages');
-
-  //   // Mentor's name is revelead
-  //   cy.getByText('TestiMentori', 'h1').should('be.visible');
-  //   // Mentee's username is hidden by default
-  //   cy.getByText('Aktori', 'h2').should('be.visible');
-  //   cy.getByText('Viesti mentorilta aktorille').should('be.visible');
-  //   // reveal mentee's username
-  //   cy.getByText('Näytä aktorin käyttäjänimi', 'p')
-  //     .should('be.visible')
-  //     .click();
-
-  //   cy.getByText('TestiAktori', 'h2').should('be.visible');
-  //   // hide username after revealing
-  //   cy.getByText('Näytä aktorin käyttäjänimi', 'p')
-  //     .should('be.visible')
-  //     .click();
-  //   cy.getByText('Aktori', 'h2').should('be.visible');
-  // });
-
-  it('returns straight to the report from chatinspection', () => {
+  it('can reveal mentees identity', () => {
     cy.get('[href="/reports"]').click();
+    cy.visit('/reports');
     cy.wait('@getReports');
     cy.location('pathname').should('eq', '/reports');
     cy.getByText('Ei käsitelty', 'p').should('be.visible');
@@ -256,6 +223,42 @@ describe('Reports page', () => {
       .scrollIntoView()
       .should('be.visible')
       .click();
+
+    cy.wait('@getMentors');
+    cy.wait('@getManagedUsers');
+    cy.wait('@getReportMessages');
+
+    // Mentor's name is revelead
+    cy.getByText('TestiMentori', 'h1').should('be.visible');
+    // Mentee's username is hidden by default
+    cy.getByText('Aktori', 'h2').should('be.visible');
+    cy.getByText('Viesti mentorilta aktorille').should('be.visible');
+    // reveal mentee's username
+    cy.getByText('Näytä aktorin käyttäjänimi', 'p')
+      .should('be.visible')
+      .click();
+
+    cy.getByText('TestiAktori', 'h2').should('be.visible');
+    // hide username after revealing
+    cy.getByText('Näytä aktorin käyttäjänimi', 'p')
+      .should('be.visible')
+      .click();
+    cy.getByText('Aktori', 'h2').should('be.visible');
+  });
+
+  it('returns straight to the report from chatinspection', () => {
+    cy.get('[href="/reports"]').click();
+    cy.visit('/reports');
+    cy.wait('@getReports');
+    cy.location('pathname').should('eq', '/reports');
+    cy.getByText('Ei käsitelty', 'p').should('be.visible');
+    cy.getByText('Avaa ilmianto', 'button').should('be.visible').click();
+    cy.getByText('Avaa keskustelu', 'button')
+      .scrollIntoView()
+      .should('be.visible')
+      .click();
+    cy.wait('@getMentors');
+    cy.getByText('TestiMentori', 'h1').should('be.visible');
     cy.getByText('Aktori', 'h2').should('be.visible');
     cy.getByText('Takaisin ilmiantoon', 'p').should('be.visible').click();
     cy.getByText('Ilmianto #1', 'h2').should('be.visible');

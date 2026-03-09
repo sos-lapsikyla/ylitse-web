@@ -7,9 +7,7 @@
       "updated": "2026-01-01T00:00:00.000Z",
       "display_name": "TestiAktori",
       "role": "mentee",
-      "active": true,
-      "mentor": null,
-      "user": null
+      "active": true
     }
   ]
 }
