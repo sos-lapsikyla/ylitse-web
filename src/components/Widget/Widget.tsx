@@ -4,10 +4,12 @@ import { palette } from '../constants';
 import Text from '../Text';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 
+type WidgetVariant = 'default' | 'callToAction' | 'centered';
+
 type WidgetProps = {
   title: string;
   children: ReactNode;
-  variant?: 'default' | 'callToAction';
+  variant?: WidgetVariant;
 };
 
 export const Widget: React.FC<WidgetProps> = ({
@@ -16,11 +18,11 @@ export const Widget: React.FC<WidgetProps> = ({
   variant = 'default',
 }) => {
   const { isTabletNarrow } = useGetLayoutMode();
-  const isDefault = variant === 'default';
+  const isCallToAction = variant === 'callToAction';
   return (
     <Container $isDesktop={!isTabletNarrow} $variant={variant}>
-      {isDefault && <Text variant="h2">{title}</Text>}
-      {!isDefault && (
+      {!isCallToAction && <Text variant="h2">{title}</Text>}
+      {isCallToAction && (
         <TextContainer>
           <Text variant="h2" color="white">
             {title}
@@ -55,14 +57,22 @@ const variantStyles = {
         min-height: 16rem;
       `}
   `,
+  centered: css<{ $isDesktop: boolean }>`
+    align-items: center;
+    background: ${palette.white};
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: ${({ $isDesktop }) =>
+      $isDesktop ? '3rem' : '3rem 2rem 4rem 2rem'};
+    text-align: center;
+  `,
 };
 
 const Container = styled.div<{
   $isDesktop: boolean;
-  $variant: 'default' | 'callToAction';
+  $variant: WidgetVariant;
 }>`
-  gap: 1rem;
-
   ${({ $isDesktop }) =>
     $isDesktop &&
     css`

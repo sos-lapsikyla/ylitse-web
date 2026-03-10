@@ -4,6 +4,7 @@ import { variants } from './variants';
 import { palette } from '../constants';
 import type { TextVariant } from './variants';
 import type { Color } from '../constants';
+import ExternalIcon from './ExternalIcon';
 
 type Props = {
   variant?: TextVariant;
@@ -37,6 +38,7 @@ export const Text: React.FC<Props> = ({
       {...(isExternalUrl && { target: '_blank', rel: 'noreferrer' })}
     >
       {children}
+      {isExternalUrl && <ExternalIcon />}
     </TextElement>
   );
 };

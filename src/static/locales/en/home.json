@@ -55,6 +55,18 @@
       "definition": "You can also use the service with our mobile app, which is available on <a1>Google Play</a1> and <a2>App Store</a2>."
     }
   },
+  "feedback": {
+    "mentee": {
+      "title": "Would you like to help us improve the service?",
+      "description": "<a>Fill in the feedback survey</a> – Your responses help us make Ylitse even better to use!"
+    },
+    "mentor": {
+      "title": "Report your conversations",
+      "description": "Mentors report their conversations from the past period at least once every three months. Select the correct period and submit your report here:",
+      "link": "<a>Ylitse reporting form</a>",
+      "description2": "You can find instructions for reporting in the form."
+    }
+  },
   "newestMentors": {
     "title": "Newest mentors",
     "info": {
