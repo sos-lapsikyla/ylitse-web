@@ -5,6 +5,7 @@ import { type Mentor } from '@/features/MentorPage/models';
 import { palette } from '@/components/constants';
 import Text from '@/components/Text';
 import { Link } from 'react-router';
+import Widget from '@/components/Widget';
 
 type Props = {
   isMobile?: boolean;
@@ -18,8 +19,7 @@ const ProfileWidget: React.FC<Props> = ({
   const { t } = useTranslation('home');
 
   return (
-    <Container $isDesktop={!isMobile}>
-      <Text variant="h2">{t('profileWidget.title')}</Text>
+    <Widget title={t('profileWidget.title')}>
       <MiddleContainer $isDesktop={!isMobile}>
         <InfoBox>
           <InfoBoxTitle variant="boldBaloo">
@@ -46,7 +46,7 @@ const ProfileWidget: React.FC<Props> = ({
           </LinkText>
         </Link>
       </Text>
-    </Container>
+    </Widget>
   );
 };
 
@@ -82,20 +82,6 @@ const MiddleContainer = styled.div<{ $isDesktop: boolean }>`
         margin-bottom: 0;
         width: 100%;
       }
-    `}
-`;
-
-const Container = styled.div<{ $isDesktop: boolean }>`
-  background-color: ${palette.white};
-  gap: 1rem;
-  padding: ${({ $isDesktop }) => ($isDesktop ? '2rem' : '3rem 2rem 2rem 2rem')};
-
-  ${({ $isDesktop }) =>
-    $isDesktop &&
-    css`
-      border-radius: 10px;
-      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
-      box-sizing: border-box;
     `}
 `;
 

@@ -27,11 +27,11 @@ const HomePage = () => {
   return isTabletNarrow ? (
     <PageWithTransition>
       <Info isMobile />
-      {hasUnreadMessages ? <NewMessages isMobile /> : <Welcome isMobile />}
-      <Announcements isMobile />
+      {hasUnreadMessages ? <NewMessages isMobile /> : <Welcome />}
+      <Announcements />
       <NewestMentors isMobile />
       {mentor && <ProfileWidget mentor={mentor} isMobile />}
-      <FindMentor isMobile />
+      <FindMentor />
       <Concepts isMobile />
     </PageWithTransition>
   ) : (
