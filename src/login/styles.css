@@ -39,9 +39,9 @@ h1 {
   font-family: 'Baloo 2';
   font-style: normal;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 1.875rem;
   line-height: 48px;
-  margin: 0 auto 0 auto;
+  margin: 0 auto 20px;
   color: #1c325d;
 }
 
@@ -50,11 +50,11 @@ a {
   text-decoration: none;
   font-style: normal;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 29px;
   display: flex;
   align-items: center;
-  color: #4a2acb;
+  color: var(--primary-color);
   margin: 10px auto 0 0;
 }
 
@@ -95,19 +95,32 @@ form[name='login'] {
   width: 65%;
 }
 
+label {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 150%;
+  text-align: left;
+  width: 80% !important;
+  margin: 0 0 8px;
+  color: #1c325d;
+}
+
 input[type='text'],
 input[type='password'] {
   font-family: 'Source Sans 3';
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
   box-sizing: border-box;
   background: #ffffff;
-  border: 1px solid #4a2acb;
+  border: 1px solid var(--primary-color);
   border-radius: 5px;
-  height: 48px;
+  height: 56px;
   padding: 6px 10px;
+  margin: 0 0 24px;
   box-shadow: none;
   box-sizing: border-box;
 
@@ -119,14 +132,14 @@ input[type='password'] {
 
 input[type='text']:focus,
 input[type='password']:focus {
-  border: solid 2px #4a2acb;
+  border: solid 2px var(--primary-color);
   outline: 0;
 }
 
 button[type='submit'] {
-  background-color: #4a2acb;
+  background-color: var(--primary-color);
   left: 46%;
-  color: #f0ba8c;
+  color: var(--highlight-color);
   border: none !important;
 }
 
@@ -142,18 +155,6 @@ button[type='submit'] {
   filter: brightness(0) invert(1);
   margin-top: -60px;
   margin-bottom: 20px;
-}
-
-.right h1 {
-  font-family: 'Baloo 2';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 30px;
-  line-height: 48px;
-  width: 80%;
-  text-align: center;
-  margin: 34px auto 0 auto;
-  color: #ffffff;
 }
 
 .right p {
@@ -173,18 +174,6 @@ button[type='submit'] {
   align-items: center;
   justify-content: center;
   width: 80%;
-}
-
-label {
-  font-family: 'Source Sans 3';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 150%;
-  text-align: left;
-  width: 80% !important;
-  margin: 20px auto 0 0;
-  color: #1c325d;
 }
 
 #login-error {
@@ -239,12 +228,12 @@ button {
   left: 50%;
   transform: translateX(-50%);
   transition:
-    background-color 300ms forwards,
-    color 300ms forwards;
+    background-color 300ms,
+    color 300ms;
 }
 .button:hover,
 button:hover {
-  background-color: #37119d;
+  background-color: var(--primary-color-darker);
   outline: 0;
 }
 
@@ -254,14 +243,9 @@ button:focus,
 button:active,
 .button:target,
 button:target {
-  background-color: #4a2acb;
-  outline: #4a2acb solid 3px;
+  background-color: var(--primary-color);
+  outline: var(--primary-color) solid 3px;
   outline-offset: 4px;
-}
-
-.button:visited,
-button:visited {
-  background-color: #5c33ff;
 }
 
 #hide-mfa {
@@ -283,8 +267,18 @@ button:visited {
 }
 
 #register-button {
-  border: 3px solid #f0ba8c !important;
-  color: #f0ba8c;
+  border: 3px solid var(--highlight-color);
+  color: var(--highlight-color);
+}
+
+#register-button:focus {
+  outline: var(--highlight-color) solid 3px;
+  outline-offset: 4px;
+  background-color: transparent;
+}
+
+#register-button:hover {
+  background-color: var(--primary-color-darker);
 }
 
 #mobile-header {
@@ -293,7 +287,7 @@ button:visited {
   letter-spacing: 0.1em;
   left: 0px;
   top: 0px;
-  background: #4a2acb;
+  background: var(--primary-color);
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
   border-radius: 0px 0px 19px 19px;
   min-height: 101px;
@@ -318,6 +312,15 @@ button:visited {
     margin-top: 0;
   }
 
+  label {
+    font-size: 1rem;
+  }
+
+  input[type='text'],
+  input[type='password'] {
+    height: 48px;
+  }
+
   .right p {
     font-size: 1rem;
   }
@@ -331,6 +334,16 @@ button:visited {
   main {
     width: 100%;
     min-width: none !important;
+  }
+
+  h1 {
+    font-weight: 600;
+    font-size: 1.4375rem;
+  }
+
+  input[type='text'],
+  input[type='password'] {
+    height: 44px;
   }
 
   #mobile-header {
