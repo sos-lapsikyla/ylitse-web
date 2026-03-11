@@ -26,15 +26,6 @@ main {
   margin-top: 60px;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  width: 100%;
-}
-
 h1 {
   font-family: 'Baloo 2';
   font-style: normal;
@@ -70,7 +61,7 @@ a {
 .panel {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
   border-radius: 19px;
-  min-width: 596px !important;
+  min-width: 596px;
   min-height: 777px;
   display: flex;
   flex-direction: column;
@@ -153,7 +144,6 @@ button[type='submit'] {
   max-width: 220px;
   height: auto;
   filter: brightness(0) invert(1);
-  margin-top: -60px;
   margin-bottom: 20px;
 }
 
@@ -174,6 +164,7 @@ button[type='submit'] {
   align-items: center;
   justify-content: center;
   width: 80%;
+  margin-top: -60px;
 }
 
 #login-error {
@@ -285,28 +276,14 @@ button:target {
 
 #mobile-header {
   display: none;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  left: 0px;
-  top: 0px;
   background: var(--primary-color);
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-  border-radius: 0px 0px 19px 19px;
-  min-height: 101px;
-  align-items: start;
-  color: #fff;
-  z-index: 2;
-}
-
-#mobile-header img {
-  margin: 27px 32px 0 auto;
-  text-align: center;
+  justify-content: center;
+  padding: 1rem 0;
 }
 
 #mobile-header h1 {
-  color: #fff;
-  text-align: left;
-  margin: 27px auto 0 0;
+  color: var(--font-color-secondary);
 }
 
 @media (max-width: 1310px) {
@@ -337,9 +314,18 @@ button:target {
     height: auto;
   }
 
+  #mobile-header {
+    display: flex;
+  }
+
   main {
     width: 100%;
     min-width: none !important;
+  }
+
+  footer {
+    color: var(--font-color-primary);
+    background-color: var(--secondary-color);
   }
 
   h1 {
@@ -352,38 +338,67 @@ button:target {
     height: 44px;
   }
 
-  #mobile-header {
-    display: flex;
-  }
-
   .panels {
     flex-direction: column;
-    margin: 0;
-    width: 100%;
+    width: auto;
     max-width: none;
+    margin: 0;
+    padding: 0 20px;
   }
 
   .panel {
-    width: 100% !important;
-    border-radius: 0;
-    min-width: 100px !important;
-    margin: 0 auto 0 auto;
+    width: 100%;
+    min-height: auto;
+    margin: 0 auto;
+  }
+
+  .left {
+    max-width: 500px;
+    min-width: auto;
+    padding: 24px 32px;
   }
 
   .right {
-    margin-left: 0px;
+    min-width: auto;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    margin: 90px 0;
   }
 
   .right .logo-image {
     max-width: 180px;
   }
 
-  .left {
-    margin-top: -40px;
-    z-index: 1;
+  #right-text {
+    width: 100%;
+    margin-top: 0;
   }
 
   form[name='login'] {
+    width: 100%;
+    max-width: calc(596px * 0.65);
     margin-top: 30px;
+    margin-bottom: 0;
+  }
+
+  .button,
+  button {
+    position: static;
+  }
+
+  button[type='submit'] {
+    transform: none;
+    margin: 30px 0 50px;
+  }
+
+  #register-button {
+    transform: none;
+    margin: 0 auto;
+  }
+
+  .mfa-button {
+    position: static;
+    margin: 0 auto;
   }
 }

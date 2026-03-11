@@ -366,15 +366,12 @@ input:checked + .slider:before {
   display: none;
   background: var(--primary-color);
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  justify-content: center;
+  padding: 1rem 0;
 }
 
 #mobile-header h1 {
   color: var(--font-color-secondary);
-}
-
-#register-footer p {
-  color: inherit;
-  font-weight: inherit;
 }
 
 @media (max-width: 1310px) {
@@ -384,6 +381,10 @@ input:checked + .slider:before {
 }
 
 @media (max-width: 768px) {
+  #mobile-header {
+    display: flex;
+  }
+
   form {
     padding: 24px 32px !important;
     margin-bottom: 4rem;
@@ -391,12 +392,6 @@ input:checked + .slider:before {
 
   input {
     height: 44px;
-  }
-
-  #mobile-header {
-    display: flex;
-    justify-content: center;
-    padding: 1rem 0;
   }
 
   #register-footer {
