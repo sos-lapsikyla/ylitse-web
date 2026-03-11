@@ -89,7 +89,7 @@ form[name='login'] {
   height: fit-content;
   display: flex;
   flex-direction: column;
-  align-items: space-between;
+  justify-content: space-between;
   margin-bottom: 15vh;
   margin-top: 9vh;
   width: 65%;
@@ -138,9 +138,9 @@ input[type='password']:focus {
 
 button[type='submit'] {
   background-color: var(--primary-color);
-  left: 46%;
   color: var(--highlight-color);
   border: none !important;
+  transform: translateX(calc(-50% - 16px));
 }
 
 .right {
@@ -257,13 +257,15 @@ button:target {
 }
 
 .mfa-button {
-  bottom: 24px;
-  cursor: pointer;
+  display: block;
+  width: auto;
   position: absolute;
-  left: 0;
   right: 0;
-  margin: auto;
-  width: 200px;
+  bottom: 24px;
+  left: 0;
+  cursor: pointer;
+  text-align: center;
+  margin: 0 32px 0 0;
 }
 
 #register-button {
@@ -319,6 +321,10 @@ button:target {
   input[type='text'],
   input[type='password'] {
     height: 48px;
+  }
+
+  .mfa-button {
+    margin: 0;
   }
 
   .right p {
