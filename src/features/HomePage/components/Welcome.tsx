@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import process from 'process';
@@ -9,10 +9,7 @@ import { useAppSelector } from '@/store';
 import { palette } from '@/components/constants';
 import Text from '@/components/Text';
 import { TextButton } from '@/components/Buttons';
-
-type Props = {
-  isMobile?: boolean;
-};
+import Widget from '@/components/Widget';
 
 const roleNavigation = {
   admin:
@@ -26,7 +23,7 @@ const roleNavigation = {
 };
 type Role = keyof typeof roleNavigation;
 
-const Welcome = ({ isMobile = false }: Props) => {
+const Welcome = () => {
   const { t } = useTranslation('home');
   const userRole = useAppSelector(selectAppRole) as Role | undefined;
   const navigate = useNavigate();
@@ -43,11 +40,8 @@ const Welcome = ({ isMobile = false }: Props) => {
   };
 
   return (
-    <Container $isDesktop={!isMobile}>
+    <Widget variant="callToAction" title={t(`welcome.${userRole}.title`)}>
       <TextContainer>
-        <Text variant="h2" color="white">
-          {t(`welcome.${userRole}.title`)}
-        </Text>
         <Text color="white">{t(`welcome.${userRole}.text`)}</Text>
         <Button
           size="large"
@@ -57,27 +51,9 @@ const Welcome = ({ isMobile = false }: Props) => {
           {t(`welcome.${userRole}.button`)}
         </Button>
       </TextContainer>
-    </Container>
+    </Widget>
   );
 };
-
-const Container = styled.div<{ $isDesktop: boolean }>`
-  align-items: center;
-  background-color: ${palette.purple};
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: ${({ $isDesktop }) => ($isDesktop ? '4rem' : '3rem 2rem 4rem 2rem')};
-
-  ${({ $isDesktop }) =>
-    $isDesktop &&
-    css`
-      border-radius: 10px;
-      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
-      box-sizing: border-box;
-      min-height: 16rem;
-    `}
-`;
 
 const TextContainer = styled.div`
   align-items: center;

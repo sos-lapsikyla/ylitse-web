@@ -4,6 +4,7 @@ import links from '@/static/links.json';
 
 import { palette } from '@/components/constants';
 import Text from '@/components/Text';
+import Widget from '@/components/Widget';
 
 type Props = {
   isMobile?: boolean;
@@ -13,8 +14,7 @@ const Concepts = ({ isMobile = false }: Props) => {
   const { t } = useTranslation('home');
 
   return (
-    <Container $isDesktop={!isMobile}>
-      <Text variant="h2">{t('concepts.title')}</Text>
+    <Widget title={t('concepts.title')}>
       <Text>{t('concepts.description')} </Text>
       <InnerContainer>
         <Concept $isMobile={isMobile}>
@@ -71,25 +71,9 @@ const Concepts = ({ isMobile = false }: Props) => {
           </Definition>
         </Concept>
       </InnerContainer>
-    </Container>
+    </Widget>
   );
 };
-
-const Container = styled.div<{ $isDesktop: boolean }>`
-  background-color: ${palette.white};
-  display: flex;
-  flex-direction: column;
-  padding: ${({ $isDesktop }) =>
-    $isDesktop ? '2rem 2rem 3rem 2rem' : '3rem 2rem 4rem 2rem'};
-
-  ${({ $isDesktop }) =>
-    $isDesktop &&
-    css`
-      border-radius: 10px;
-      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
-      box-sizing: border-box;
-    `}
-`;
 
 const InnerContainer = styled.div`
   display: flex;

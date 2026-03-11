@@ -55,6 +55,18 @@
       "definition": "Ylitseä voit käyttää myös mobiilisovelluksella. Mobiilisovelluksen saat <a1>Google Play</a1> ja <a2>App Store</a2> -kaupoista."
     }
   },
+  "feedback": {
+    "mentee": {
+      "title": "Haluatko auttaa parantamaan palvelua?",
+      "description": "<a>Täytä palautekysely</a> – Vastausten avulla teemme Ylitsestä entistä paremman käyttää!"
+    },
+    "mentor": {
+      "title": "Raportoi keskustelusi",
+      "description": "Mentorit raportoivat keskustelunsa menneeltä kaudelta kerran ainakin kerran kolmessa kuukaudessa. Valitse oikea kausi ja raportoi keskustelusi täällä:",
+      "link": "<a>Ylitse havannointilomake</a>",
+      "description2": "Löydät ohjeita raportoiniin lomakkeesta."
+    }
+  },
   "newestMentors": {
     "title": "Uusimmat mentorit",
     "info": {

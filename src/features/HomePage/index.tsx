@@ -18,6 +18,8 @@ import PageWithTransition from '@/components/PageWithTransition';
 import ProfileWidget from './components/ProfileWidget';
 import Welcome from './components/Welcome';
 import WelcomeMessage from './components/WelcomeMessage';
+import Feedback from './components/Feedback';
+import MentorFeedback from './components/MentorFeedback';
 
 const HomePage = () => {
   const hasUnreadMessages = useAppSelector(selectHasUnreadMessages);
@@ -27,8 +29,9 @@ const HomePage = () => {
   return isTabletNarrow ? (
     <PageWithTransition>
       <Info isMobile />
-      {hasUnreadMessages ? <NewMessages isMobile /> : <Welcome isMobile />}
-      <Announcements isMobile />
+      {hasUnreadMessages ? <NewMessages isMobile /> : <Welcome />}
+      {!mentor && <Feedback />}
+      {mentor && <MentorFeedback />}
       <NewestMentors isMobile />
       {mentor && <ProfileWidget mentor={mentor} isMobile />}
       <FindMentor isMobile />
@@ -43,12 +46,14 @@ const HomePage = () => {
       <MiddleContainer>
         <InnerContainer>
           {hasUnreadMessages ? <NewMessages /> : <Welcome />}
-          {!mentor && <Announcements />}
+          {!mentor && <Feedback />}
+          {mentor && <Announcements />}
           {mentor && <ProfileWidget mentor={mentor} />}
         </InnerContainer>
         <InnerContainer>
-          {mentor && <Announcements />}
+          {mentor && <MentorFeedback />}
           <Concepts />
+          {!mentor && <Announcements />}
         </InnerContainer>
       </MiddleContainer>
       <BottomContainer>
