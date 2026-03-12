@@ -311,7 +311,11 @@ button:target {
 
 @media only screen and (max-width: 960px) {
   body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     height: auto;
+    background-position-y: -80px;
   }
 
   #mobile-header {
@@ -324,6 +328,7 @@ button:target {
   }
 
   footer {
+    margin-top: auto;
     color: var(--font-color-primary);
     background-color: var(--secondary-color);
   }
@@ -372,13 +377,14 @@ button:target {
 
   #right-text {
     width: 100%;
+    max-width: 700px;
     margin-top: 0;
   }
 
   form[name='login'] {
     width: 100%;
     max-width: calc(596px * 0.65);
-    margin-top: 30px;
+    margin-top: 60px;
     margin-bottom: 0;
   }
 
@@ -389,12 +395,12 @@ button:target {
 
   button[type='submit'] {
     transform: none;
-    margin: 30px 0 50px;
+    margin: 30px 0 70px;
   }
 
   #register-button {
     transform: none;
-    margin: 0 auto;
+    margin: 2px auto 0;
   }
 
   .mfa-button {

@@ -381,6 +381,12 @@ input:checked + .slider:before {
 }
 
 @media (max-width: 768px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
   #mobile-header {
     display: flex;
   }
@@ -395,6 +401,7 @@ input:checked + .slider:before {
   }
 
   #register-footer {
+    margin-top: auto;
     color: var(--font-color-primary);
     background-color: var(--secondary-color);
   }
