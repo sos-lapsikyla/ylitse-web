@@ -17,15 +17,6 @@ fieldset {
   border-width: 0;
 }
 
-label {
-  font-family: 'Source Sans 3';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 1.125rem;
-  line-height: 1.6875rem;
-  color: var(--font-color-primary);
-}
-
 input {
   height: 48px;
   line-height: 1.6875rem;

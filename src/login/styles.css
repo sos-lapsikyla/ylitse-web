@@ -36,15 +36,8 @@ form[name='login'] {
 }
 
 label {
-  font-family: 'Source Sans 3';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 1.125rem;
-  line-height: 150%;
-  text-align: left;
   width: 80% !important;
   margin: 0 0 8px;
-  color: #1c325d;
 }
 
 input[type='text'],
