@@ -1,29 +1,5 @@
-html {
-  min-height: 100%;
-  overscroll-behavior: none;
-}
-
-body {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(1, 165, 236, 0.58) 0%,
-      rgba(89, 58, 214, 0.58) 100%
-    ),
-    url(/static/img/splash-background.svg) no-repeat fixed right top;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-position-x: center;
-  min-height: 100%;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 60px;
+section p {
+  margin-bottom: 10px;
 }
 
 form {
@@ -33,57 +9,6 @@ form {
   padding: 60px 100px;
   border-radius: 20px;
   background-color: white;
-}
-
-h1 {
-  font-family: 'Baloo 2';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 30px;
-  line-height: 48px;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-  color: var(--font-color-primary);
-}
-
-h2 {
-  font-family: 'Baloo 2';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 26px;
-  line-height: 42px;
-  margin: 0;
-  margin-top: 30px;
-  color: var(--font-color-primary);
-}
-
-p {
-  font-family: 'Source Sans 3';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
-  margin: 0;
-  color: var(--font-color-primary);
-}
-
-section p {
-  margin-bottom: 10px;
-}
-
-a {
-  font-family: 'Source Sans 3';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 27px;
-  color: var(--primary-color);
-}
-
-a img {
-  vertical-align: middle;
-  margin-left: 2px;
 }
 
 fieldset {
@@ -96,30 +21,15 @@ label {
   font-family: 'Source Sans 3';
   font-style: normal;
   font-weight: 600;
-  font-size: 18px;
-  line-height: 27px;
+  font-size: 1.125rem;
+  line-height: 1.6875rem;
   color: var(--font-color-primary);
 }
 
 input {
-  font-family: 'Source Sans 3';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 2.75rem;
   height: 48px;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 6px 10px;
+  line-height: 1.6875rem;
   margin-top: 8px;
-  border: 1px solid var(--primary-color);
-  border-radius: 5px;
-  color: var(--font-color-primary);
-}
-
-input:focus {
-  border: solid 2px var(--primary-color);
-  outline: 0;
 }
 
 .input-checkmark {
@@ -133,8 +43,8 @@ input:focus {
   font-family: 'Source Sans 3';
   font-style: normal;
   font-weight: 700;
-  font-size: 15px;
-  line-height: 21px;
+  font-size: 0.9375rem;
+  line-height: 1.3125rem;
   display: none;
   align-items: center;
   gap: 10px;

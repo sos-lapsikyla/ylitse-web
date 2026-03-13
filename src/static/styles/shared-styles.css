@@ -2,6 +2,106 @@
 @import 'normalize.css';
 @import 'fonts.css';
 
+html {
+  min-height: 100%;
+  overscroll-behavior: none;
+}
+
+body {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(1, 165, 236, 0.58) 0%,
+      rgba(89, 58, 214, 0.58) 100%
+    ),
+    url(/static/img/splash-background.svg) no-repeat fixed right top;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position-x: center;
+  min-height: 100%;
+}
+
+h1 {
+  font-family: 'Baloo 2';
+  font-style: normal;
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 3rem;
+  margin: 0 auto 20px;
+  color: var(--font-color-primary);
+}
+
+h2 {
+  font-family: 'Baloo 2';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.625rem;
+  line-height: 2.625rem;
+  margin: 0;
+  margin-top: 30px;
+  color: var(--font-color-primary);
+}
+
+p {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  margin: 0;
+  color: var(--font-color-primary);
+}
+
+a {
+  font-family: 'Baloo 2';
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: var(--primary-color);
+}
+
+p a {
+  font-family: inherit;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  background: #ffffff;
+  color: var(--font-color-primary);
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  padding: 6px 10px;
+  box-shadow: none;
+  box-sizing: border-box;
+
+  /* Removes awkward default styles on some inputs for iOS */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+input:focus {
+  border: solid 2px var(--primary-color);
+  outline: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
+}
+
 #language-buttons {
   display: flex;
   align-items: center;
