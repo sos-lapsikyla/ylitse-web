@@ -14,6 +14,7 @@
   "pageTitle": "Ylitse MentorApp - SOS Children's Village",
   "passwordConfirmationLabel": "Confirm password *",
   "passwordLabel": "Password *",
+  "passwordRequirements": "Password requirements",
   "passwordTooShortError": "Password is too short",
   "passwordTooltip": "Your password has to be at least 8 characters long.",
   "passwordsDontMatchError": "Passwords don't match",

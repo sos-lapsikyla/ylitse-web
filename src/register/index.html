@@ -37,6 +37,7 @@
             maxlength="100"
             minlength="2"
             pattern=".{2,100}"
+            autocomplete="username"
             onblur="checkInput('username')"
             aria-describedby="username-error"
             required
@@ -80,13 +81,18 @@
                 <img src="/static/icons/eye.svg" alt="" class="eye-icon" />
                 <span localization-key="hidePassword"></span>
               </button>
-              <span class="tooltip">
+              <button
+                type="button"
+                class="tooltip"
+                localization-key-aria-label="passwordRequirements"
+              >
                 <img src="/static/icons/tooltip.svg" alt="" />
                 <span
                   class="tooltip-text"
+                  role="tooltip"
                   localization-key="passwordTooltip"
                 ></span>
-              </span>
+              </button>
             </span>
           </label>
           <input
@@ -96,6 +102,7 @@
             maxlength="100"
             minlength="8"
             pattern=".{8,100}"
+            autocomplete="new-password"
             onblur="checkInput('password')"
             aria-describedby="password-error"
             required
@@ -131,11 +138,19 @@
                 <img src="/static/icons/eye.svg" alt="" class="eye-icon" />
                 <span localization-key="hidePassword"></span>
               </button>
-              <span class="tooltip">
+              <button
+                type="button"
+                class="tooltip"
+                localization-key-aria-label="passwordRequirements"
+              >
                 <img src="/static/icons/tooltip.svg" alt="" />
-                <span class="tooltip-text" localization-key="passwordTooltip">
+                <span
+                  class="tooltip-text"
+                  role="tooltip"
+                  localization-key="passwordTooltip"
+                >
                 </span>
-              </span>
+              </button>
             </span>
           </label>
           <input
@@ -143,6 +158,7 @@
             name="password-confirmation"
             type="password"
             maxlength="100"
+            autocomplete="new-password"
             onblur="checkInput('password-confirmation')"
             aria-describedby="password-confirmation-error"
             required
@@ -163,6 +179,7 @@
             name="email"
             type="email"
             maxlength="200"
+            autocomplete="email"
             onblur="checkInput('email')"
             pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
             aria-describedby="email-error"
@@ -182,6 +199,7 @@
             maxlength="30"
             minlength="2"
             pattern=".{2,30}"
+            autocomplete="nickname"
             onblur="checkInput('display-name')"
             aria-describedby="display-name-error"
             required
@@ -206,7 +224,7 @@
               onchange="checkForm()"
               required
             />
-            <span class="slider"></span>
+            <span class="slider" aria-hidden="true"></span>
           </label>
           <label
             for="required-age"
@@ -223,7 +241,7 @@
               onchange="checkForm()"
               required
             />
-            <span class="slider"></span>
+            <span class="slider" aria-hidden="true"></span>
           </label>
           <label
             for="privacy-consent"

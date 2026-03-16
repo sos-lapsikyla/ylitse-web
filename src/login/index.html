@@ -25,10 +25,10 @@
       </div>
       <div class="panels">
         <div class="left panel">
-          <form name="login">
+          <form name="login" id="login-form">
             <h1 localization-key="loginTitle"></h1>
-            <div id="login-error">
-              <img src="/static/icons/warning-with-background.svg" />
+            <div id="login-error" role="alert" aria-live="assertive">
+              <img src="/static/icons/warning-with-background.svg" alt="" />
               <div localization-key="loginError"></div>
             </div>
             <label for="username" localization-key="usernameLabel"></label>
@@ -37,7 +37,9 @@
               name="username"
               type="text"
               maxlength="100"
-              placeholder=""
+              autocomplete="username"
+              aria-describedby="login-error"
+              required
               autofocus
             />
             <label for="password" localization-key="passwordLabel"></label>
@@ -46,7 +48,9 @@
               name="password"
               type="password"
               maxlength="100"
-              placeholder=""
+              autocomplete="current-password"
+              aria-describedby="login-error"
+              required
             />
             <!--a> href="#" localization-key="retrievePasswordLink"></a-->
             <label
@@ -59,24 +63,27 @@
               id="mfa_token"
               name="mfa_token"
               type="text"
+              inputmode="numeric"
+              autocomplete="one-time-code"
               maxlength="100"
-              placeholder=""
             />
             <button
               id="submit"
               type="submit"
               localization-key="loginButton"
             ></button>
-            <a
-              class="mfa-button"
+            <button
+              type="button"
+              class="mfa-button link-button"
               id="show-mfa"
               localization-key="mfaButtonShow"
-            ></a>
-            <a
-              class="mfa-button"
+            ></button>
+            <button
+              type="button"
+              class="mfa-button link-button"
               id="hide-mfa"
               localization-key="mfaButtonHide"
-            ></a>
+            ></button>
           </form>
         </div>
         <div class="right panel">

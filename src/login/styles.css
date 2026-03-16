@@ -46,13 +46,6 @@ input[type='password'] {
   margin: 0 0 24px;
 }
 
-button[type='submit'] {
-  background-color: var(--primary-color);
-  color: var(--highlight-color);
-  border: none !important;
-  transform: translateX(calc(-50% - 16px));
-}
-
 .right {
   background: #4c2ec6;
   z-index: 1;
@@ -104,7 +97,7 @@ button[type='submit'] {
 }
 
 .button,
-button {
+button:not(.link-button) {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -138,20 +131,35 @@ button {
     color 300ms;
 }
 .button:hover,
-button:hover {
+button:not(.link-button):hover {
   background-color: var(--primary-color-darker);
   outline: 0;
 }
 
 .button:focus,
-button:focus,
+button:not(.link-button):focus,
 .button:active,
-button:active,
+button:not(.link-button):active,
 .button:target,
-button:target {
+button:not(.link-button):target {
   background-color: var(--primary-color);
   outline: var(--primary-color) solid 3px;
   outline-offset: 4px;
+}
+
+button[type='submit'] {
+  background-color: var(--primary-color);
+  color: var(--highlight-color);
+  border: none !important;
+  transform: translateX(calc(-50% - 16px));
+}
+
+.link-button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  position: static;
+  transform: none;
 }
 
 #hide-mfa {
@@ -162,13 +170,19 @@ button:target {
   display: none;
 }
 
-.mfa-button {
+button.mfa-button {
   display: block;
   width: auto;
   position: absolute;
   right: 0;
   bottom: 24px;
   left: 0;
+  font-family: 'Baloo 2';
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: var(--primary-color);
+  background-color: transparent;
   cursor: pointer;
   text-align: center;
   margin: 0 32px 0 0;
@@ -215,7 +229,7 @@ button:target {
     height: 48px;
   }
 
-  .mfa-button {
+  button.mfa-button {
     margin: 0;
   }
 
@@ -255,7 +269,7 @@ button:target {
 
   main {
     width: 100%;
-    min-width: none !important;
+    min-width: 0 !important;
   }
 
   footer {
@@ -322,7 +336,7 @@ button:target {
   }
 
   .button,
-  button {
+  button:not(.link-button) {
     height: 42px;
     position: static;
     font-size: 1.1875rem;
@@ -339,7 +353,7 @@ button:target {
     margin: 30px auto 0;
   }
 
-  .mfa-button {
+  button.mfa-button {
     position: static;
     margin: 0 auto;
   }
