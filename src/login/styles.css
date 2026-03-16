@@ -215,7 +215,7 @@ button.mfa-button {
   color: var(--font-color-secondary);
 }
 
-@media (max-width: 1310px) {
+@media (max-width: 1199px) {
   main {
     margin-top: 0;
   }
@@ -238,7 +238,7 @@ button.mfa-button {
   }
 }
 
-@media only screen and (max-width: 960px) {
+@media only screen and (max-width: 991px) {
   body {
     display: flex;
     flex-direction: column;

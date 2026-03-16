@@ -286,13 +286,13 @@ input:checked + .slider:before {
   color: var(--font-color-secondary);
 }
 
-@media (max-width: 1310px) {
+@media (max-width: 991px) {
   main {
     margin-top: 0;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   body {
     display: flex;
     flex-direction: column;
