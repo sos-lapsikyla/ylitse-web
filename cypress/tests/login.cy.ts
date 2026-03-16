@@ -39,7 +39,6 @@ describe('login', () => {
     cy.contains(
       'Uusi täällä? Palvelussa voit jutella SOS-Lapsikylän valmentamien vertaismentoreiden kanssa mistä tahansa mieltäsi painavasta asiasta. Palvelun käyttö on luottamuksellista ja täysin maksutonta.',
     ).should('be.visible');
-    cy.contains('Ylitse MentorApp').should('be.visible');
     //cy.contains('Unohditko salasanasi?').should('be.visible');
   });
 

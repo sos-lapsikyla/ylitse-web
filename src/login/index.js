@@ -1,5 +1,15 @@
 (function (window, document) {
   const form = document.forms.namedItem('login');
+  const loginError = document.getElementById('login-error');
+
+  // Show error on browser validation failure
+  form.addEventListener(
+    'invalid',
+    () => {
+      loginError.style.display = 'flex';
+    },
+    true,
+  );
 
   form.addEventListener(
     'submit',
