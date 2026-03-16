@@ -1,7 +1,7 @@
 {
   "accountInfoTitle": "Account information",
   "description": "Great that you want to start using the application. Please notice that the application is meant for people who are at least 17. If you're under 17, please visit <a href=\"https://apuu.fi\">the Apuu chat</a>.",
-  "displayNameFieldInfo": "Provided a display name that can't be identified, if you want to use the application anonymously.",
+  "displayNameFieldInfo": "Enter a public display name for conversations. The display name must contain letters.",
   "displayNameLabel": "Display name *",
   "displayNameTooShortError": "Display name is too short",
   "emailError": "Email is invalid",
