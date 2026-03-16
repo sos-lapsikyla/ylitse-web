@@ -46,7 +46,7 @@ Cypress.Commands.add(
     cy.fillInput('password', password);
 
     if (otp) {
-      cy.get('a[id="show-mfa"]').click();
+      cy.get('button[id="show-mfa"]').click();
       cy.fillInput('mfa_token', otp);
     }
 
