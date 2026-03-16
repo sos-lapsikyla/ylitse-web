@@ -1,28 +1,5 @@
-html {
-  min-height: 100%;
-  overscroll-behavior: none;
-}
-
-body {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(1, 165, 236, 0.58) 0%,
-      rgba(89, 58, 214, 0.58) 100%
-    ),
-    url(/static/img/splash-background.svg) no-repeat fixed right top;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-position-x: center;
-  min-height: 100%;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+section p {
+  margin-bottom: 10px;
 }
 
 form {
@@ -34,91 +11,16 @@ form {
   background-color: white;
 }
 
-h1 {
-  font-family: 'Baloo 2';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 30px;
-  line-height: 48px;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-  color: var(--font-color-primary);
-}
-
-h2 {
-  font-family: 'Baloo 2';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 26px;
-  line-height: 42px;
-  margin: 0;
-  margin-top: 30px;
-  color: var(--font-color-primary);
-}
-
-p {
-  font-family: 'Source Sans 3';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
-  margin: 0;
-  color: var(--font-color-primary);
-}
-
-section p {
-  margin-bottom: 10px;
-}
-
-a {
-  font-family: 'Source Sans 3';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 27px;
-  color: var(--primary-color);
-}
-
-a img {
-  vertical-align: middle;
-  margin-left: 2px;
-}
-
 fieldset {
   padding: 0;
   margin-top: 20px;
   border-width: 0;
 }
 
-label {
-  font-family: 'Source Sans 3';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 27px;
-  color: var(--font-color-primary);
-}
-
 input {
-  font-family: 'Source Sans 3';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 2.75rem;
   height: 48px;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 6px 10px;
-  margin-top: 10px;
-  border: 1px solid var(--primary-color);
-  border-radius: 5px;
-  color: var(--font-color-primary);
-}
-
-input:focus {
-  border: solid 2px var(--primary-color);
-  outline: 0;
+  line-height: 1.6875rem;
+  margin-top: 8px;
 }
 
 .input-checkmark {
@@ -132,8 +34,8 @@ input:focus {
   font-family: 'Source Sans 3';
   font-style: normal;
   font-weight: 700;
-  font-size: 15px;
-  line-height: 21px;
+  font-size: 0.9375rem;
+  line-height: 1.3125rem;
   display: none;
   align-items: center;
   gap: 10px;
@@ -168,6 +70,16 @@ input:focus {
   display: inline-block;
   position: relative;
   vertical-align: middle;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.tooltip:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: 3px;
 }
 
 .tooltip img {
@@ -209,8 +121,9 @@ input:focus {
   border-color: var(--highlight-color) transparent transparent transparent;
 }
 
-/* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltip-text {
+/* Show the tooltip text on hover or focus */
+.tooltip:hover .tooltip-text,
+.tooltip:focus .tooltip-text {
   visibility: visible;
 }
 
@@ -365,18 +278,31 @@ input:checked + .slider:before {
   display: none;
   background: var(--primary-color);
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  justify-content: center;
+  padding: 1rem 0;
 }
 
 #mobile-header h1 {
   color: var(--font-color-secondary);
 }
 
-#register-footer p {
-  color: inherit;
-  font-weight: inherit;
+@media (max-width: 991px) {
+  main {
+    margin-top: 0;
+  }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  #mobile-header {
+    display: flex;
+  }
+
   form {
     padding: 24px 32px !important;
     margin-bottom: 4rem;
@@ -386,13 +312,8 @@ input:checked + .slider:before {
     height: 44px;
   }
 
-  #mobile-header {
-    display: flex;
-    justify-content: center;
-    padding: 1rem 0;
-  }
-
   #register-footer {
+    margin-top: auto;
     color: var(--font-color-primary);
     background-color: var(--secondary-color);
   }

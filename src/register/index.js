@@ -149,12 +149,14 @@ const displayError = input => {
   document.getElementById('submit').disabled = true;
   input.classList.remove('input-checkmark');
   input.classList.add('error-border');
+  input.setAttribute('aria-describedby', `${input.id}-error`);
   document.querySelector(`label[for=${input.id}]`).classList.add('error-color');
   getErrorMessage(input.id).style.display = 'flex';
 };
 
 const removeError = input => {
   input.classList.remove('error-border');
+  input.removeAttribute('aria-describedby');
   document
     .querySelector(`label[for=${input.id}]`)
     .classList.remove('error-color');

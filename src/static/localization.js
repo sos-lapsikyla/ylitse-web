@@ -76,6 +76,13 @@
         let translation = translations[key];
         element.setAttribute('aria-label', translation);
       });
+
+    // For elements that need alt attribute
+    document.querySelectorAll('[localization-key-alt]').forEach(element => {
+      let key = element.getAttribute('localization-key-alt');
+      let translation = translations[key];
+      element.setAttribute('alt', translation);
+    });
   };
 
   const styleButton = (button, color, fontWeight, pointerEvents) => {

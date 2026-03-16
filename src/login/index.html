@@ -10,97 +10,103 @@
     <link rel="stylesheet" href="/login/styles.css" />
     <link rel="icon" href="/static/favicon/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/static/favicon/icon.svg" type="image/svg+xml" />
-    <link
-      rel="apple-touch-icon"
-      href="/static/favicon/apple-touch-icon.png"
-    />
+    <link rel="apple-touch-icon" href="/static/favicon/apple-touch-icon.png" />
   </head>
 
   <body>
+    <header id="mobile-header">
+      <img src="/static/img/ylitse-logo-small-new.svg" alt="" />
+    </header>
     <main>
-      <div class="container">
-        <div id="language-buttons">
-          <a id="fi-button" href="#" localization-key="inFinnish"></a>
-          <span class="separator"></span>
-          <a id="en-button" href="#" localization-key="inEnglish"></a>
-        </div>
-        <div class="panels">
-          <div id="mobile-header">
-            <img src="/static/img/ylitse-logo-tiny.svg" />
-            <h1 localization-key="shortTitle"></h1>
-          </div>
-          <div class="left panel">
-            <form name="login">
-              <h1 localization-key="loginTitle"></h1>
-              <div id="login-error">
-                <img src="/static/icons/warning-with-background.svg" />
-                <div localization-key="loginError"></div>
-              </div>
-              <label for="username" localization-key="usernameLabel"></label>
-              <input
-                id="username"
-                name="username"
-                type="text"
-                maxlength="100"
-                placeholder=""
-                autofocus
-              />
-              <label for="password" localization-key="passwordLabel"></label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                maxlength="100"
-                placeholder=""
-              />
-              <!--a> href="#" localization-key="retrievePasswordLink"></a-->
-              <label
-                class="mfaField"
-                for="mfa_token"
-                localization-key="mfaLabel"
-              ></label>
-              <input
-                class="mfaField"
-                id="mfa_token"
-                name="mfa_token"
-                type="text"
-                maxlength="100"
-                placeholder=""
-              />
-              <button
-                id="submit"
-                type="submit"
-                localization-key="loginButton"
-              ></button>
-              <a
-                class="mfa-button"
-                id="show-mfa"
-                localization-key="mfaButtonShow"
-              ></a>
-              <a
-                class="mfa-button"
-                id="hide-mfa"
-                localization-key="mfaButtonHide"
-              ></a>
-            </form>
-          </div>
-          <div class="right panel">
-            <div id="right-text">
-              <img src="/static/img/ylitse-logo-small.svg" />
-              <h1 localization-key="longTitle"></h1>
-              <p localization-key="appDescription"></p>
-              <a
-                id="register-button"
-                class="button"
-                href="/register/"
-                localization-key="registrationLink"
-              ></a>
+      <div id="language-buttons">
+        <a id="fi-button" href="#" localization-key="inFinnish"></a>
+        <span class="separator"></span>
+        <a id="en-button" href="#" localization-key="inEnglish"></a>
+      </div>
+      <div class="panels">
+        <div class="left panel">
+          <form name="login" id="login-form">
+            <h1 localization-key="loginTitle"></h1>
+            <div id="login-error" role="alert" aria-live="assertive">
+              <img src="/static/icons/warning-with-background.svg" alt="" />
+              <div localization-key="loginError"></div>
             </div>
+            <label for="username" localization-key="usernameLabel"></label>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              maxlength="100"
+              autocomplete="username"
+              aria-describedby="login-error"
+              required
+              autofocus
+            />
+            <label for="password" localization-key="passwordLabel"></label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              maxlength="100"
+              autocomplete="current-password"
+              aria-describedby="login-error"
+              required
+            />
+            <!--a> href="#" localization-key="retrievePasswordLink"></a-->
+            <label
+              class="mfaField"
+              for="mfa_token"
+              localization-key="mfaLabel"
+            ></label>
+            <input
+              class="mfaField"
+              id="mfa_token"
+              name="mfa_token"
+              type="text"
+              inputmode="numeric"
+              autocomplete="one-time-code"
+              maxlength="100"
+            />
+            <button
+              id="submit"
+              type="submit"
+              localization-key="loginButton"
+            ></button>
+            <button
+              type="button"
+              class="mfa-button link-button"
+              id="show-mfa"
+              localization-key="mfaButtonShow"
+            ></button>
+            <button
+              type="button"
+              class="mfa-button link-button"
+              id="hide-mfa"
+              localization-key="mfaButtonHide"
+            ></button>
+          </form>
+        </div>
+        <div class="right panel">
+          <div id="right-text">
+            <img
+              class="logo-image"
+              src="/static/img/ylitse-logo-mountain.svg"
+              localization-key-alt="longTitle"
+            />
+            <p localization-key="appDescription"></p>
+            <a
+              id="register-button"
+              class="button"
+              href="/register/"
+              localization-key="registrationLink"
+            ></a>
           </div>
         </div>
-        <footer localization-key="footer"></footer>
       </div>
     </main>
+    <footer>
+      <span localization-key="footer"></span>
+    </footer>
     <script src="/login/index.js"></script>
     <script src="/static/localization.js"></script>
   </body>
