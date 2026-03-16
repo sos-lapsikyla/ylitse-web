@@ -39,7 +39,6 @@
             pattern=".{2,100}"
             autocomplete="username"
             onblur="checkInput('username')"
-            aria-describedby="username-error"
             required
           />
           <div class="error-message" id="username-error" role="alert">
@@ -104,7 +103,6 @@
             pattern=".{8,100}"
             autocomplete="new-password"
             onblur="checkInput('password')"
-            aria-describedby="password-error"
             required
           />
           <div class="error-message" id="password-error" role="alert">
@@ -160,7 +158,6 @@
             maxlength="100"
             autocomplete="new-password"
             onblur="checkInput('password-confirmation')"
-            aria-describedby="password-confirmation-error"
             required
           />
           <div
@@ -182,7 +179,6 @@
             autocomplete="email"
             onblur="checkInput('email')"
             pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
-            aria-describedby="email-error"
           />
           <div class="error-message" id="email-error" role="alert">
             <img src="/static/icons/warning-with-background.svg" alt="" />
@@ -201,7 +197,6 @@
             pattern=".{2,30}"
             autocomplete="nickname"
             onblur="checkInput('display-name')"
-            aria-describedby="display-name-error"
             required
           />
           <div class="error-message" id="display-name-error" role="alert">
