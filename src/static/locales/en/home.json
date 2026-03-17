@@ -86,5 +86,11 @@
     "text": "Do you want to edit your profile information? ",
     "link": "Go to profile"
   },
+  "mobileApp": {
+    "heading": "Also available as a mobile app",
+    "text": "You can use the Ylitse service in the way that suits you best, whether on your phone or computer. You can find Ylitse in the Android and iOS app stores.",
+    "googlePlay": "Get it on Google Play",
+    "appStore": "Download on the App Store"
+  },
   "welcomeMessage": "Welcome, {{user.display_name}}!"
 }

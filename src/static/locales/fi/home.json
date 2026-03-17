@@ -86,5 +86,11 @@
     "text": "Haluatko muuttaa profiilisi tietoja? ",
     "link": "Siirry profiiliin"
   },
+  "mobileApp": {
+    "heading": "Saatavilla myös mobiilisovelluksena",
+    "text": "Voit käyttää Ylitse-palvelua itsellesi sopivalla tavalla, oli se sitten kännykällä tai tietokoneella. Löydät Ylitsen Android- ja iOS-laitteiden sovelluskaupoista.",
+    "googlePlay": "Lataa Google Playsta",
+    "appStore": "Lataa App Storesta"
+  },
   "welcomeMessage": "Tervetuloa, {{user.display_name}}!"
 }
