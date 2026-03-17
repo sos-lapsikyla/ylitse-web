@@ -80,7 +80,7 @@ const Container = styled.section`
 const InnerWrapper = styled.div`
   align-items: center;
   display: flex;
-  margin: -1.5rem auto;
+  margin: -1.33rem auto;
   max-width: 100%;
 `;
 
@@ -89,8 +89,8 @@ const MobileContainer = styled.section`
   background-color: #c2edfe;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  padding: 2rem 1rem;
+  gap: 1.33rem;
+  padding: 1.78rem 0.89rem;
   text-align: center;
   width: 100%;
 `;
@@ -98,7 +98,7 @@ const MobileContainer = styled.section`
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.89rem;
 `;
 
 const DescriptionText = styled(Text)`
@@ -108,26 +108,26 @@ const DescriptionText = styled(Text)`
 const MockupImage = styled.img`
   display: flex;
   height: auto;
-  max-width: 47.56rem;
-  min-width: 20.25rem;
+  max-width: 42.27rem;
+  min-width: 18rem;
   width: 100%;
 `;
 
 const MobileMockupImage = styled.img`
   height: auto;
   max-width: 100vw;
-  padding: 0 2rem;
+  padding: 0 1.78rem;
 `;
 
 const AppButtons = styled.div`
   display: flex;
-  gap: 1.125rem;
+  gap: 1.07rem;
 `;
 
 const MobileAppButtons = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.89rem;
 `;
 
 const AppLink = styled.a`
