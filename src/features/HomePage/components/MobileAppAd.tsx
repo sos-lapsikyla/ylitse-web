@@ -66,7 +66,7 @@ const MobileAppAd = ({ isMobile = false }: Props) => {
 };
 
 const Container = styled.section`
-  background-color: #c2edfe;
+  background-color: ${palette.blueCyan};
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -88,7 +88,7 @@ const InnerWrapper = styled.div`
 
 const MobileContainer = styled.section`
   align-items: center;
-  background-color: #c2edfe;
+  background-color: ${palette.blueCyan};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;

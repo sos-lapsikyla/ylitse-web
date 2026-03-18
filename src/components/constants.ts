@@ -6,6 +6,7 @@ export const palette = {
   blue: '#01A5EC',
   blue2: '#43BFFF',
   blue3: '#A2DBF8',
+  blueCyan: '#C2EDFE',
   blueDark: '#1C325D',
   blueGrey: '#4C6282',
   blueLight: '#D3EFFF',
