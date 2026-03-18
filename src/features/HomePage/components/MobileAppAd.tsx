@@ -1,50 +1,48 @@
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
+import { palette } from '@/components/constants';
 import Text from '@/components/Text';
-import AppMockup from '@/static/img/ylitse-app-mockup-blue-transparent.svg';
+import AppDeviceImage from '@/static/img/ylitse-app-mockup-blue-transparent.svg';
 import GooglePlayBadge from '@/static/img/google-play-badge.svg';
 import AppStoreBadge from '@/static/img/appstore-badge.svg';
+import links from '@/static/links.json';
+
+import { BREAKPOINTS_BOOTSTRAP_MAX } from '@/components/constants';
 
 type Props = {
   isMobile?: boolean;
 };
 
-const GOOGLE_PLAY_URL =
-  'https://play.google.com/store/apps/details?id=com.ylitse&hl=fi';
-const APP_STORE_URL =
-  'https://apps.apple.com/fi/app/ylitse-mentorapp/id1436844984';
+const isAppleDevice = () => {
+  const ua = navigator.userAgent.toLowerCase();
+  return /iphone|ipad|ipod|macintosh|mac os/.test(ua);
+};
 
 const MobileAppAd = ({ isMobile = false }: Props) => {
   const { t } = useTranslation('home');
+  const storeUrl = isAppleDevice()
+    ? links.ylitseAppStoreUrl
+    : links.ylitsePlayStoreUrl;
 
   return isMobile ? (
     <MobileContainer>
       <Text variant="h2">{t('mobileApp.heading')}</Text>
-      <MobileMockupImage src={AppMockup} alt="" />
-      <MobileAppButtons>
-        <AppLink
-          href={GOOGLE_PLAY_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <BadgeImage src={GooglePlayBadge} alt={t('mobileApp.googlePlay')} />
-        </AppLink>
-        <AppLink href={APP_STORE_URL} target="_blank" rel="noopener noreferrer">
-          <BadgeImage src={AppStoreBadge} alt={t('mobileApp.appStore')} />
-        </AppLink>
-      </MobileAppButtons>
+      <MobileDeviceImage src={AppDeviceImage} alt="" />
+      <ButtonLink href={storeUrl} target="_blank" rel="noopener noreferrer">
+        {t('mobileApp.downloadButton')}
+      </ButtonLink>
     </MobileContainer>
   ) : (
     <Container>
       <InnerWrapper>
-        <MockupImage src={AppMockup} alt="" />
+        <DeviceImage src={AppDeviceImage} alt="" />
         <Content>
           <Text variant="h2">{t('mobileApp.heading')}</Text>
           <DescriptionText>{t('mobileApp.text')}</DescriptionText>
           <AppButtons>
             <AppLink
-              href={GOOGLE_PLAY_URL}
+              href={links.ylitsePlayStoreUrl}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -54,7 +52,7 @@ const MobileAppAd = ({ isMobile = false }: Props) => {
               />
             </AppLink>
             <AppLink
-              href={APP_STORE_URL}
+              href={links.ylitseAppStoreUrl}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -82,11 +80,16 @@ const InnerWrapper = styled.div`
   display: flex;
   margin: -1.33rem auto;
   max-width: 100%;
+
+  @media only screen and (max-width: ${BREAKPOINTS_BOOTSTRAP_MAX.lg}px) {
+    margin: 0.89rem auto;
+  }
 `;
 
 const MobileContainer = styled.section`
   align-items: center;
   background-color: #c2edfe;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 1.33rem;
@@ -105,7 +108,7 @@ const DescriptionText = styled(Text)`
   margin-top: 0;
 `;
 
-const MockupImage = styled.img`
+const DeviceImage = styled.img`
   display: flex;
   height: auto;
   max-width: 42.27rem;
@@ -113,21 +116,19 @@ const MockupImage = styled.img`
   width: 100%;
 `;
 
-const MobileMockupImage = styled.img`
+const MobileDeviceImage = styled.img`
   height: auto;
+  margin: -70px 0 -60px;
   max-width: 100vw;
-  padding: 0 1.78rem;
+
+  @media only screen and (max-width: ${BREAKPOINTS_BOOTSTRAP_MAX.xs}px) {
+    margin: -50px 0 -40px;
+  }
 `;
 
 const AppButtons = styled.div`
   display: flex;
   gap: 1.07rem;
-`;
-
-const MobileAppButtons = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.89rem;
 `;
 
 const AppLink = styled.a`
@@ -139,6 +140,33 @@ const BadgeImage = styled.img`
   height: auto;
   max-height: 75px;
   width: 100%;
+`;
+
+const ButtonLink = styled.a`
+  align-items: center;
+  background-color: ${palette.purple};
+  border: none;
+  border-radius: 50px;
+  color: ${palette.orange};
+  cursor: pointer;
+  display: inline-flex;
+  font-family: 'Baloo 2';
+  font-size: 1.056rem;
+  font-weight: 700;
+  line-height: 1.25;
+  padding: 0.5rem 2rem;
+  text-decoration: none;
+  width: fit-content;
+
+  &:hover {
+    background-color: ${palette.purpleDark};
+    opacity: 0.7;
+  }
+
+  &:focus {
+    outline: 2px solid ${palette.purple};
+    outline-offset: 3px;
+  }
 `;
 
 export default MobileAppAd;

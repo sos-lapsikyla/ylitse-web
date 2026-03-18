@@ -90,7 +90,8 @@
     "heading": "Also available as a mobile app",
     "text": "You can use the Ylitse service in the way that suits you best, whether on your phone or computer. You can find Ylitse in the Android and iOS app stores.",
     "googlePlay": "Get it on Google Play",
-    "appStore": "Download on the App Store"
+    "appStore": "Download on the App Store",
+    "downloadButton": "Download Ylitse-app"
   },
   "welcomeMessage": "Welcome, {{user.display_name}}!"
 }

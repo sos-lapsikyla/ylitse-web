@@ -66,6 +66,14 @@ export const breakpoints = {
   tabletNarrow: `${TABLET_NARROW_THRESHOLD}px`,
 };
 
+export const BREAKPOINTS_BOOTSTRAP_MAX = {
+  xs: 575,
+  sm: 767,
+  md: 991,
+  lg: 1199,
+  xl: 1399,
+};
+
 export const spacing = {
   layout_spacing: '2rem',
 };
