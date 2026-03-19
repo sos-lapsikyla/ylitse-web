@@ -9,19 +9,13 @@
     <link rel="stylesheet" href="/landing/styles.css" />
     <link rel="icon" href="/static/favicon/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/static/favicon/icon.svg" type="image/svg+xml" />
-    <link
-      rel="apple-touch-icon"
-      href="/static/favicon/apple-touch-icon.png"
-    />
+    <link rel="apple-touch-icon" href="/static/favicon/apple-touch-icon.png" />
   </head>
   <body>
     <header>
       <div class="header-inner">
         <div class="card bg-secondary">
-          <img
-            class="ylitse-logo"
-            src="/static/img/ylitse-logo-mountain.svg"
-          />
+          <img class="ylitse-logo" src="/static/img/ylitse-logo-mountain.svg" />
           <p localization-key="cardText"></p>
           <nav>
             <a class="button" href="/login/" localization-key="loginButton"></a>
@@ -43,30 +37,28 @@
             <h2 localization-key="mobileAppAdHeading"></h2>
           </div>
           <div>
-            <img class="mobile-app-mock-up-mobile" 
-                 src="/static/img/ylitse-app-mockup-blue-transparent.svg" 
-                 alt="ylitse-app-mock-up"/>
+            <img
+              class="mobile-app-mock-up-mobile"
+              src="/static/img/ylitse-app-mockup-blue-transparent.svg"
+              alt="ylitse-app-mock-up"
+            />
           </div>
-          <div class="app-buttons" >
-            <a class="app-button" href="https://play.google.com/store/apps/details?id=com.ylitse&hl=fi&pli=1" target="_blank">
-              <img class="app-call-to-action" src="/static/img/google-play-badge.svg"/>
-            </a>
-            <a class="app-button" href="https://apps.apple.com/fi/app/ylitse-mentorapp/id1436844984" target="_blank">
-              <img class="app-call-to-action" src="/static/img/appstore-badge.svg"/>
-            </a>
-          </div>
-          </div>
+          <a
+            id="mobile-app-download-button"
+            class="button"
+            href="https://play.google.com/store/apps/details?id=com.ylitse&hl=fi&pli=1"
+            target="_blank"
+            localization-key="mobileAppDownload"
+          ></a>
         </div>
       </section>
 
       <section class="no-padding-mobile bg-secondary bg-mobile">
         <div class="information">
           <div class="information-illustration">
-            <!-- <div class="info-ring" dynamic-localization-key="infoRing1"></div>
-              <div class="info-ring" dynamic-localization-key="infoRing2"></div> -->
             <div class="info-ring">
-                <p><span>48</span></p>
-                <p localization-key="infoRing1" />
+              <p><span>48</span></p>
+              <p localization-key="infoRing1" />
             </div>
             <div class="info-ring">
               <p localization-key="infoRing2a" />
@@ -103,19 +95,37 @@
       <section class="bg-dark no-padding-mobile no-margin-mobile">
         <div class="mobile-app-desktop">
           <div>
-            <img class="mobile-app-mock-up" src="/static/img/ylitse-app-mockup-blue-transparent.svg" alt="ylitse-app-mock-up"/>
+            <img
+              class="mobile-app-mock-up"
+              src="/static/img/ylitse-app-mockup-blue-transparent.svg"
+              alt="ylitse-app-mock-up"
+            />
           </div>
           <div>
             <div class="app-information">
               <h2 localization-key="mobileAppAdHeading"></h2>
               <p localization-key="mobileAppAdText"></p>
             </div>
-             <div class="app-buttons" >
-              <a class="app-button" href="https://play.google.com/store/apps/details?id=com.ylitse&hl=fi&pli=1" target="_blank">
-                <img class="app-call-to-action" src="/static/img/google-play-badge.svg"/>
+            <div class="app-buttons">
+              <a
+                class="app-button"
+                href="https://play.google.com/store/apps/details?id=com.ylitse&hl=fi&pli=1"
+                target="_blank"
+              >
+                <img
+                  class="app-call-to-action"
+                  src="/static/img/google-play-badge.svg"
+                />
               </a>
-              <a class="app-button" href="https://apps.apple.com/fi/app/ylitse-mentorapp/id1436844984" target="_blank">
-                <img class="app-call-to-action" src="/static/img/appstore-badge.svg"/>
+              <a
+                class="app-button"
+                href="https://apps.apple.com/fi/app/ylitse-mentorapp/id1436844984"
+                target="_blank"
+              >
+                <img
+                  class="app-call-to-action"
+                  src="/static/img/appstore-badge.svg"
+                />
               </a>
             </div>
           </div>
@@ -227,7 +237,7 @@
         <img src="/static/img/footer-logo.svg" class="footer-logo" />
       </a>
     </footer>
-    <!-- <script src="index.js"></script> -->
     <script src="/static/localization.js"></script>
+    <script src="/landing/index.js"></script>
   </body>
 </html>
