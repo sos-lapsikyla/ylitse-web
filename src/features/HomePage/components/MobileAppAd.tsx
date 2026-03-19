@@ -93,7 +93,7 @@ const MobileContainer = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1.33rem;
-  padding: 1.78rem 0.89rem;
+  padding: 2.5rem 2rem;
   text-align: center;
   width: 100%;
 `;
