@@ -1,8 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useState, useRef, useEffect } from 'react';
 import Text from '../Text';
 import { palette } from '../constants';
 import { Chevron } from '../Icons/Chevron';
+
+type DropdownVariant = 'default' | 'compact' | 'form'
 
 type Props = {
   isDisabled?: boolean;
@@ -12,6 +14,7 @@ type Props = {
   label: string;
   defaultOption?: string;
   selected?: string;
+  variant?: DropdownVariant;
 };
 
 export const DropdownMenu = ({
@@ -21,6 +24,7 @@ export const DropdownMenu = ({
   selectOption,
   label,
   defaultOption,
+  variant = 'default'
 }: Props): React.JSX.Element => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
@@ -68,7 +72,7 @@ export const DropdownMenu = ({
 
   return (
     <Container>
-      <DropdownContainer ref={containerRef}>
+      <DropdownContainer ref={containerRef} $variant={variant}>
         <LabelRow>
           <Text variant="label">{label}</Text>
         </LabelRow>
@@ -112,10 +116,14 @@ const Container = styled.div`
   padding: 0 0 1rem 0;
 `;
 
-const DropdownContainer = styled.div`
+const DropdownContainer = styled.div<{$variant: DropdownVariant}>`
   margin-top: 0.5rem;
-  max-width: 250px;
   position: relative;
+    ${({ $variant }) =>
+    $variant === 'form' &&
+    css`
+      max-width: 250px;
+    `}
 `;
 
 const DropdownTrigger = styled.button<{
