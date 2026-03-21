@@ -180,8 +180,12 @@ const PublicInfo = ({ isMobile = false }: Props) => {
           chips={localData.skills}
           allOptions={allSkills}
           placeholder={t('public.mentor.addSkill')}
-          label={t('public.mentor.skills')}
+          label={t('public.mentor.skills.title')}
+          searchVariant="half"
         />
+        <TextWrapper>
+          <Text variant="blueBox">{t('public.mentor.skills.info')}</Text>
+        </TextWrapper>
       </Form>
     </Container>
   );
@@ -225,6 +229,11 @@ const Form = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 3rem;
+`;
+
+const TextWrapper = styled.div`
+  margin-top: -1rem;
+  max-width: 50%;
 `;
 
 export default PublicInfo;

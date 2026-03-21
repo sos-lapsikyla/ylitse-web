@@ -5,12 +5,15 @@ import { Column } from '../common';
 import { Chip } from '../Chip';
 import { DropdownSearch } from '../DropdownSearch';
 
+type SearchBarVariant = 'default' | 'half';
+
 type EditorProps = {
   updateChips: (chips: string[]) => void;
   chips: string[];
   allOptions: string[];
   placeholder: string;
   label: string;
+  searchVariant?: SearchBarVariant;
 };
 
 const ChipsEditor = ({
@@ -19,6 +22,7 @@ const ChipsEditor = ({
   allOptions: allChips,
   placeholder,
   label,
+  searchVariant = 'default',
 }: EditorProps) => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
@@ -44,13 +48,17 @@ const ChipsEditor = ({
           ))}
         </Chips>
       )}
-      <DropdownSearch
-        isDropdownVisible={isDropdownVisible}
-        options={chipOptions}
-        placeholder={placeholder}
-        selectOption={addChip}
-        setIsDropdownVisible={setIsDropdownVisible}
-      />
+      {searchVariant === 'half' && (
+        <SkillSearchWrapper>
+          <DropdownSearch
+            isDropdownVisible={isDropdownVisible}
+            options={chipOptions}
+            placeholder={placeholder}
+            selectOption={addChip}
+            setIsDropdownVisible={setIsDropdownVisible}
+          />
+        </SkillSearchWrapper>
+      )}
     </Column>
   );
 };
@@ -64,6 +72,10 @@ const Chips = styled.div`
   flex-wrap: wrap;
   gap: 1rem;
   margin-top: 1rem;
+`;
+
+const SkillSearchWrapper = styled.div`
+  max-width: 50%;
 `;
 
 export default ChipsEditor;

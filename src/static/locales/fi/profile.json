@@ -85,7 +85,10 @@
         "tooLongError": "Viesti on liian pitkä"
       },
       "story": { "label": "Tarinani", "tooLongError": "Tarina on liian pitkä" },
-      "skills": "Aiheeni",
+      "skills": {
+        "title": "Aiheeni",
+        "info": "Ohjeteksti tähän"
+      },
       "vacation": {
         "info": "Poissaolotilan aikana uusia keskusteluja ei voi aloittaa kanssasi, mutta olemassa olevat voivat jatkua. Ilmoitathan poissaolosi pituuden tilaviestissä.",
         "switch": { "off": "Tavoitettavissa", "on": "Ei tavoitettavissa" },
