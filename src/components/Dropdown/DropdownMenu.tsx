@@ -9,6 +9,7 @@ import { animations, palette } from '../constants';
 import { Chevron } from '../Icons/Chevron';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 type Props<T extends string | number> = {
   options: T[];
   value?: T;
@@ -20,6 +21,9 @@ type Props<T extends string | number> = {
   allowClear?: boolean;
 =======
 type DropdownVariant = 'default' | 'compact' | 'form'
+=======
+type DropdownVariant = 'default' | 'compact' | 'form';
+>>>>>>> c6c43c4 (Filter, sort and search users)
 
 type Props = {
   isDisabled?: boolean;
@@ -47,7 +51,7 @@ export const DropdownMenu = <T extends string | number>({
   const [isOpen, setIsOpen] = useState(false);
 =======
   defaultOption,
-  variant = 'default'
+  variant = 'default',
 }: Props): React.JSX.Element => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
@@ -248,13 +252,17 @@ const FormContainer = styled.div`
 `;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const FormDropdownContainer = styled.div`
 =======
 const DropdownContainer = styled.div<{$variant: DropdownVariant}>`
 >>>>>>> 8faf417 (Filter, sort and search users)
+=======
+const DropdownContainer = styled.div<{ $variant: DropdownVariant }>`
+>>>>>>> c6c43c4 (Filter, sort and search users)
   margin-top: 0.5rem;
   position: relative;
-    ${({ $variant }) =>
+  ${({ $variant }) =>
     $variant === 'form' &&
     css`
       max-width: 250px;

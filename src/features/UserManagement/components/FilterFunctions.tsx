@@ -2,10 +2,7 @@ import { DropdownMenu } from '@/components/Dropdown';
 import SearchBar from '@/components/SearchBar';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 import styled, { css } from 'styled-components';
-import {
-  SortOrder,
-  UserFilter,
-} from '../selectors';
+import { SortOrder, UserFilter } from '../selectors';
 import { useTranslation } from 'react-i18next';
 
 type Props = {
@@ -79,9 +76,9 @@ const FilterFunctions: React.FC<Props> = ({
 const Container = styled.div<{ $isMobile: boolean }>`
   display: flex;
   flex-direction: row;
-  padding: 2rem;
-  justify-content: space-between;
   gap: 2rem;
+  justify-content: space-between;
+  padding: 2rem;
   ${({ $isMobile }) =>
     $isMobile &&
     css`

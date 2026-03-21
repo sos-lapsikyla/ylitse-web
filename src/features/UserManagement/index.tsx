@@ -107,15 +107,15 @@ const Container = styled.div<{ $isMobile: boolean }>`
         `}
 `;
 
-const FilterContainer = styled.div<{$isMobile: boolean}>`
+const FilterContainer = styled.div<{ $isMobile: boolean }>`
   background-color: white;
   border-radius: 0 0 10px 10px;
   width: 100%;
   ${({ $isMobile }) =>
     $isMobile
       ? css`
+          margin-top: -1rem;
           padding-top: -1rem;
-          margin-top:-1rem;
         `
       : css`
           padding-top: 1rem;
