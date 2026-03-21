@@ -144,7 +144,7 @@ const UserForm: React.FC<Props> = ({ formData, updateField }) => {
             }
           }}
           label={t('newUser.accountInfo.role.title')}
-          variant='form'
+          variant="form"
         />
 
         <LabeledInput
@@ -211,7 +211,7 @@ const UserForm: React.FC<Props> = ({ formData, updateField }) => {
                   ? t('newUser.publicInfo.gender.labelMentor')
                   : t('newUser.publicInfo.gender.label')
               }
-              variant='form'
+              variant="form"
             />
 
             <LabeledInput

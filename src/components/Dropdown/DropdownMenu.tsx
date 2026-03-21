@@ -4,7 +4,7 @@ import Text from '../Text';
 import { palette } from '../constants';
 import { Chevron } from '../Icons/Chevron';
 
-type DropdownVariant = 'default' | 'compact' | 'form'
+type DropdownVariant = 'default' | 'compact' | 'form';
 
 type Props = {
   isDisabled?: boolean;
@@ -24,7 +24,7 @@ export const DropdownMenu = ({
   selectOption,
   label,
   defaultOption,
-  variant = 'default'
+  variant = 'default',
 }: Props): React.JSX.Element => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
@@ -116,10 +116,10 @@ const Container = styled.div`
   padding: 0 0 1rem 0;
 `;
 
-const DropdownContainer = styled.div<{$variant: DropdownVariant}>`
+const DropdownContainer = styled.div<{ $variant: DropdownVariant }>`
   margin-top: 0.5rem;
   position: relative;
-    ${({ $variant }) =>
+  ${({ $variant }) =>
     $variant === 'form' &&
     css`
       max-width: 250px;

@@ -26,8 +26,8 @@ const sizingMap: Record<Variant, RuleSet> = {
     padding: 0.75rem 2rem 0.75rem 3.5rem;
   `,
   narrow: css`
-    padding: 0.5rem 2rem 0.5rem 2.7rem;
     font-size: 18px;
+    padding: 0.5rem 2rem 0.5rem 2.7rem;
   `,
 };
 
@@ -43,23 +43,24 @@ const SearchBar: React.FC<SearchProps> = ({
   ...props
 }) => (
   <Container $variant={variant}>
-  {label && 
-  <LabelWrapper>
-  <Text variant='label'>{label}</Text>
-  </LabelWrapper>}
-  <SearchBox className={className}>
-    <SearchIcon $variant={variant} />
-    <SearchInput
-      disabled={isDisabled}
-      $hasOpenDropdown={hasOpenDropdown}
-      onBlur={onBlur}
-      onChange={e => onChange(e.target.value)}
-      onFocus={onFocus}
-      type="text"
-      $variant={variant}
-      {...props}
-    ></SearchInput>
-  </SearchBox>
+    {label && (
+      <LabelWrapper>
+        <Text variant="label">{label}</Text>
+      </LabelWrapper>
+    )}
+    <SearchBox className={className}>
+      <SearchIcon $variant={variant} />
+      <SearchInput
+        disabled={isDisabled}
+        $hasOpenDropdown={hasOpenDropdown}
+        onBlur={onBlur}
+        onChange={e => onChange(e.target.value)}
+        onFocus={onFocus}
+        type="text"
+        $variant={variant}
+        {...props}
+      ></SearchInput>
+    </SearchBox>
   </Container>
 );
 
@@ -72,8 +73,8 @@ const Container = styled.div<{ $variant: Variant }>`
 `;
 
 const LabelWrapper = styled.div`
-    margin-bottom: 0.5rem;
-    padding-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-right: 0.5rem;
 `;
 
 const SearchInput = styled.input<{
@@ -118,14 +119,13 @@ const SearchIcon = styled.div<{ $variant: Variant }>`
   left: 1.25rem;
   position: absolute;
   width: 1.5rem;
-   ${({ $variant }) =>
+  ${({ $variant }) =>
     $variant === 'narrow' &&
     css`
       height: 1.2rem;
       left: 1.05rem;
       width: 1.2rem;
     `}
-
 `;
 
 export default SearchBar;
