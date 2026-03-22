@@ -89,7 +89,7 @@ describe('Users page', () => {
     cy.contains('Käyttäjät').should('be.visible');
     cy.contains(mentor.displayName).should('be.visible');
     cy.get('button[aria-label="deleteWithBackground"]')
-      .eq(2)
+      .eq(1)
       .click({ force: true });
     cy.contains(
       'Käyttäjän poistamista ei voi tämän jälkeen perua. Kaikki tämän käyttäjän käymät keskustelut poistetaan.',
@@ -110,7 +110,7 @@ describe('Users page', () => {
     cy.location('pathname').should('eq', '/users');
     cy.contains('Käyttäjät').should('be.visible');
     // try to delete current user
-    cy.get('button[aria-label="deleteDisabled"]').eq(2).click({ force: true });
+    cy.get('button[aria-label="deleteDisabled"]').eq(0).click({ force: true });
     // assure account is still listed
     cy.contains(SUPERADMIN_USER).should('be.visible');
   });
