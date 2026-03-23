@@ -20,6 +20,7 @@ import Welcome from './components/Welcome';
 import WelcomeMessage from './components/WelcomeMessage';
 import Feedback from './components/Feedback';
 import MentorFeedback from './components/MentorFeedback';
+import MobileAppAd from './components/MobileAppAd';
 
 const HomePage = () => {
   const hasUnreadMessages = useAppSelector(selectHasUnreadMessages);
@@ -36,6 +37,7 @@ const HomePage = () => {
       {mentor && <ProfileWidget mentor={mentor} isMobile />}
       <FindMentor isMobile />
       <Concepts isMobile />
+      <MobileAppAd isMobile />
     </PageWithTransition>
   ) : (
     <PageWithTransition>
@@ -59,6 +61,7 @@ const HomePage = () => {
       <BottomContainer>
         <NewestMentors />
       </BottomContainer>
+      <MobileAppAd />
     </PageWithTransition>
   );
 };

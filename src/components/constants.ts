@@ -6,6 +6,7 @@ export const palette = {
   blue: '#01A5EC',
   blue2: '#43BFFF',
   blue3: '#A2DBF8',
+  blueCyan: '#C2EDFE',
   blueDark: '#1C325D',
   blueGrey: '#4C6282',
   blueLight: '#D3EFFF',
@@ -64,6 +65,14 @@ export const breakpoints = {
   mobile: `${MOBILE_THRESHOLD}px`,
   tablet: `${TABLET_THRESHOLD}px`,
   tabletNarrow: `${TABLET_NARROW_THRESHOLD}px`,
+};
+
+export const BREAKPOINTS_BOOTSTRAP_MAX = {
+  xs: 575,
+  sm: 767,
+  md: 991,
+  lg: 1199,
+  xl: 1399,
 };
 
 export const spacing = {
