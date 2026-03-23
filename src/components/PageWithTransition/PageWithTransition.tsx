@@ -18,7 +18,7 @@ type Props = {
   children: ReactNode;
 };
 
-const TRANSITION_LENGTH = 0.7;
+const TRANSITION_LENGTH = 0.5;
 
 const PageWithTransition: React.FC<Props> = ({ children }) => {
   const { isTablet } = useGetLayoutMode();
@@ -35,9 +35,9 @@ const PageWithTransition: React.FC<Props> = ({ children }) => {
     <Container $isTablet={isTablet}>
       {showContent && children}
       <Layer role="transition" $color="blue2" $delay={0} />
-      <Layer role="transition" $color="purple" $delay={0.3} />
-      <Layer role="transition" $color="white" $delay={0.12} />
-      <Layer role="transition" $color="orange2" $delay={0.08} />
+      <Layer role="transition" $color="purple" $delay={0.21} />
+      <Layer role="transition" $color="white" $delay={0.09} />
+      <Layer role="transition" $color="orange2" $delay={0.06} />
     </Container>
   );
 };
