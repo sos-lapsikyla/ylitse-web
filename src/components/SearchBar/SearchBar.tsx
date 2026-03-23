@@ -1,8 +1,9 @@
 import styled, { css, type RuleSet } from 'styled-components';
 import { palette } from '../constants';
 import SearchIconImg from '@/static/icons/search.svg';
+import Text from '../Text';
 
-type Variant = 'small' | 'normal';
+type Variant = 'small' | 'normal' | 'narrow';
 
 type SearchProps = {
   className?: string;
@@ -14,6 +15,7 @@ type SearchProps = {
   placeholder: string;
   value: string;
   variant: Variant;
+  label?: string;
 };
 
 const sizingMap: Record<Variant, RuleSet> = {
@@ -22,6 +24,10 @@ const sizingMap: Record<Variant, RuleSet> = {
   `,
   small: css`
     padding: 0.75rem 2rem 0.75rem 3.5rem;
+  `,
+  narrow: css`
+    font-size: 18px;
+    padding: 0.5rem 2rem 0.5rem 2.7rem;
   `,
 };
 
@@ -33,22 +39,43 @@ const SearchBar: React.FC<SearchProps> = ({
   onChange,
   onFocus,
   variant,
+  label,
   ...props
 }) => (
-  <SearchBox className={className}>
-    <SearchIcon />
-    <SearchInput
-      disabled={isDisabled}
-      $hasOpenDropdown={hasOpenDropdown}
-      onBlur={onBlur}
-      onChange={e => onChange(e.target.value)}
-      onFocus={onFocus}
-      type="text"
-      $variant={variant}
-      {...props}
-    ></SearchInput>
-  </SearchBox>
+  <Container $variant={variant}>
+    {label && (
+      <LabelWrapper>
+        <Text variant="label">{label}</Text>
+      </LabelWrapper>
+    )}
+    <SearchBox className={className}>
+      <SearchIcon $variant={variant} />
+      <SearchInput
+        disabled={isDisabled}
+        $hasOpenDropdown={hasOpenDropdown}
+        onBlur={onBlur}
+        onChange={e => onChange(e.target.value)}
+        onFocus={onFocus}
+        type="text"
+        $variant={variant}
+        {...props}
+      ></SearchInput>
+    </SearchBox>
+  </Container>
 );
+
+const Container = styled.div<{ $variant: Variant }>`
+  ${({ $variant }) =>
+    $variant === 'narrow' &&
+    css`
+      margin-top: 0.5rem;
+    `}
+`;
+
+const LabelWrapper = styled.div`
+  margin-bottom: 0.5rem;
+  padding-right: 0.5rem;
+`;
 
 const SearchInput = styled.input<{
   $hasOpenDropdown: boolean;
@@ -82,7 +109,7 @@ const SearchBox = styled.div`
   position: relative;
 `;
 
-const SearchIcon = styled.div`
+const SearchIcon = styled.div<{ $variant: Variant }>`
   background-image: url(${SearchIconImg});
   background-repeat: no-repeat;
   background-size: contain;
@@ -92,6 +119,13 @@ const SearchIcon = styled.div`
   left: 1.25rem;
   position: absolute;
   width: 1.5rem;
+  ${({ $variant }) =>
+    $variant === 'narrow' &&
+    css`
+      height: 1.2rem;
+      left: 1.05rem;
+      width: 1.2rem;
+    `}
 `;
 
 export default SearchBar;

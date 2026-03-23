@@ -83,6 +83,24 @@
     "cancel": "Cancel",
     "save": "Save"
   },
+  "filterUsers": {
+    "search": {
+      "label": "Search",
+      "placeholder": "Search for user"
+    },
+    "sort": {
+      "label": "Sort",
+      "newest": "Newest first",
+      "oldest": "Oldest first"
+    },
+    "filterByRole": {
+      "label": "Show",
+      "all": "All",
+      "both": "Mentees and mentors",
+      "mentees": "Mentees",
+      "mentors": "Mentors"
+    }
+  },
   "newUser": {
     "title": "New User",
     "accountInfo": {

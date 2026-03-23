@@ -170,6 +170,7 @@ const UserForm: React.FC<Props> = ({
                 }
               }}
               label={t('editUser.publicInfo.gender.labelMentor')}
+              variant="form"
             />
 
             <LabeledInput

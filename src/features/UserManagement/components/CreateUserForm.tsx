@@ -131,7 +131,6 @@ const UserForm: React.FC<Props> = ({ formData, updateField }) => {
             {t('newUser.accountInfo.caption')}
           </CaptionText>
         </TextGroup>
-
         <DropdownMenu
           options={roleOptions.map(o => o.text)}
           placeholder={t('newUser.accountInfo.role.choose')}
@@ -145,6 +144,7 @@ const UserForm: React.FC<Props> = ({ formData, updateField }) => {
             }
           }}
           label={t('newUser.accountInfo.role.title')}
+          variant="form"
         />
 
         <LabeledInput
@@ -211,6 +211,7 @@ const UserForm: React.FC<Props> = ({ formData, updateField }) => {
                   ? t('newUser.publicInfo.gender.labelMentor')
                   : t('newUser.publicInfo.gender.label')
               }
+              variant="form"
             />
 
             <LabeledInput
