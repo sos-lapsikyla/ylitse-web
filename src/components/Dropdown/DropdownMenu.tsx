@@ -1,30 +1,47 @@
-import styled from 'styled-components';
-import { useState, useRef, useEffect } from 'react';
+import styled, { css } from 'styled-components';
+import { useRef, useEffect, useState } from 'react';
 import Text from '../Text';
-import { palette } from '../constants';
+import { animations, palette } from '../constants';
 import { Chevron } from '../Icons/Chevron';
 
-type Props = {
+type BaseProps<T extends string | number> = {
+  options: T[];
+  value?: T;
+  onChange: (value: T | undefined) => void;
   isDisabled?: boolean;
-  options: string[];
-  placeholder: string;
-  selectOption: (option: string) => void;
-  label: string;
-  defaultOption?: string;
-  selected?: string;
+  allowClear?: boolean;
 };
 
-export const DropdownMenu = ({
-  isDisabled = false,
+type FormVariantProps<T extends string | number> = BaseProps<T> & {
+  variant?: 'form';
+  label: string;
+  placeholder: string;
+};
+
+type InlineVariantProps<T extends string | number> = BaseProps<T> & {
+  variant: 'inline';
+  label?: string;
+};
+
+type Props<T extends string | number> =
+  | FormVariantProps<T>
+  | InlineVariantProps<T>;
+
+export const DropdownMenu = <T extends string | number>({
   options,
-  placeholder,
-  selectOption,
-  label,
-  defaultOption,
-}: Props): React.JSX.Element => {
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('');
+  value,
+  onChange,
+  isDisabled = false,
+  allowClear = false,
+  ...rest
+}: Props<T>): React.JSX.Element => {
+  const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const variant = rest.variant ?? 'form';
+  const label = rest.label;
+  const placeholder =
+    variant === 'form' ? (rest as FormVariantProps<T>).placeholder : '';
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -33,92 +50,124 @@ export const DropdownMenu = ({
         containerRef.current &&
         !containerRef.current.contains(event.target as Node)
       ) {
-        setIsDropdownVisible(false);
+        setIsOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  useEffect(() => {
-    if (defaultOption) {
-      setSelectedOption(defaultOption);
-      selectOption(defaultOption);
-    }
-  }, [defaultOption]);
-
-  const handleSelect = (option: string) => {
+  const handleSelect = (option: T) => {
     if (isDisabled) return;
 
-    if (option === selectedOption) {
-      setSelectedOption('');
-      selectOption('');
+    if (allowClear && option === value) {
+      onChange(undefined);
     } else {
-      setSelectedOption(option);
-      selectOption(option);
+      onChange(option);
     }
-    setIsDropdownVisible(false);
+    setIsOpen(false);
   };
 
-  const handleToggleDropdown = () => {
+  const handleToggle = () => {
     if (!isDisabled) {
-      setIsDropdownVisible(prev => !prev);
+      setIsOpen(prev => !prev);
     }
   };
+
+  if (variant === 'inline') {
+    return (
+      <InlineContainer>
+        {label && <Text>{label}</Text>}
+        <InlineAnchor ref={containerRef}>
+          <InlineTrigger
+            onClick={handleToggle}
+            $isOpen={isOpen}
+            disabled={isDisabled}
+          >
+            <Text variant="boldBaloo" color="purple">
+              {value ?? ''}
+            </Text>
+            <Chevron variant={isOpen ? 'up' : 'down'} color="purple" isLarge />
+          </InlineTrigger>
+
+          {isOpen && (
+            <InlineMenu>
+              {options.map(option => (
+                <InlineOption
+                  key={option}
+                  onClick={() => handleSelect(option)}
+                  disabled={option === value}
+                  $isSelected={option === value}
+                >
+                  <InlineOptionText
+                    color={option === value ? 'greyOverlay' : 'blueDark'}
+                  >
+                    {option}
+                  </InlineOptionText>
+                </InlineOption>
+              ))}
+            </InlineMenu>
+          )}
+        </InlineAnchor>
+      </InlineContainer>
+    );
+  }
 
   return (
-    <Container>
-      <DropdownContainer ref={containerRef}>
+    <FormContainer>
+      <FormDropdownContainer ref={containerRef}>
         <LabelRow>
           <Text variant="label">{label}</Text>
         </LabelRow>
 
-        <DropdownTrigger
-          $hasOpenDropdown={isDropdownVisible}
+        <FormTrigger
+          $hasOpenDropdown={isOpen}
           $isDisabled={isDisabled}
-          onClick={handleToggleDropdown}
+          onClick={handleToggle}
           disabled={isDisabled}
         >
           <Text
             variant="menuOption"
             color={isDisabled ? 'greyFaded' : 'blueDark'}
           >
-            {selectedOption || placeholder}
+            {value ?? placeholder}
           </Text>
 
-          <RightIconWrapper $isOpen={isDropdownVisible}>
+          <FormChevronWrapper $isOpen={isOpen}>
             <Chevron
               variant="down"
               color={isDisabled ? 'greyFaded' : 'purple'}
             />
-          </RightIconWrapper>
-        </DropdownTrigger>
+          </FormChevronWrapper>
+        </FormTrigger>
 
-        {!isDisabled && isDropdownVisible && (
-          <Dropdown id="dropdown-menu">
+        {!isDisabled && isOpen && (
+          <FormMenu>
             {options.map((option, i) => (
-              <DropdownItem key={i} onMouseDown={() => handleSelect(option)}>
+              <FormMenuItem key={i} onMouseDown={() => handleSelect(option)}>
                 <Text variant="menuOption">{option}</Text>
-              </DropdownItem>
+              </FormMenuItem>
             ))}
-          </Dropdown>
+          </FormMenu>
         )}
-      </DropdownContainer>
-    </Container>
+      </FormDropdownContainer>
+    </FormContainer>
   );
 };
 
-const Container = styled.div`
+// Form variant styles
+
+const FormContainer = styled.div`
   padding: 0 0 1rem 0;
 `;
 
-const DropdownContainer = styled.div`
+const FormDropdownContainer = styled.div`
   margin-top: 0.5rem;
   max-width: 250px;
   position: relative;
 `;
 
-const DropdownTrigger = styled.button<{
+const FormTrigger = styled.button<{
   $isDisabled: boolean;
   $hasOpenDropdown: boolean;
 }>`
@@ -149,7 +198,7 @@ const DropdownTrigger = styled.button<{
   }
 `;
 
-const RightIconWrapper = styled.div<{ $isOpen: boolean }>`
+const FormChevronWrapper = styled.div<{ $isOpen: boolean }>`
   transform: ${({ $isOpen }) =>
     $isOpen
       ? 'rotate(180deg) translateY(3.1px)'
@@ -157,7 +206,7 @@ const RightIconWrapper = styled.div<{ $isOpen: boolean }>`
   transition: transform 0.2s ease;
 `;
 
-const Dropdown = styled.div`
+const FormMenu = styled.div`
   background-color: white;
   border: 1px solid ${palette.purple};
   border-radius: 0 0 10px 10px;
@@ -173,7 +222,7 @@ const Dropdown = styled.div`
   z-index: 10;
 `;
 
-const DropdownItem = styled.div`
+const FormMenuItem = styled.div`
   cursor: pointer;
   padding: 0.75rem 1rem;
 
@@ -188,6 +237,93 @@ const LabelRow = styled.div`
   justify-content: space-between;
   margin-bottom: 0.5rem;
   padding-right: 0.5rem;
+`;
+
+// Inline variant styles
+
+const InlineContainer = styled.div`
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+`;
+
+const InlineAnchor = styled.div`
+  align-items: stretch;
+  display: inline-flex;
+  overflow: visible;
+  position: relative;
+`;
+
+const InlineTrigger = styled.button<{ $isOpen: boolean }>`
+  align-items: center;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+
+  ${({ $isOpen }) =>
+    $isOpen
+      ? css`
+          border-bottom-color: transparent;
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+          border-color: ${palette.purple};
+        `
+      : css`
+          &:hover {
+            background-color: ${palette.white};
+          }
+        `}
+`;
+
+const InlineMenu = styled.div`
+  animation: ${animations.growDown};
+  background: ${palette.white};
+  border: 2px solid ${palette.purple};
+  border-radius: 0 0 8px 8px;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  min-width: calc(100% - 4px);
+  position: absolute;
+  top: calc(100% - 2px);
+  transform-origin: top center;
+  z-index: 10;
+
+  button:last-of-type {
+    border-bottom: none;
+    border-radius: 0 0 8px 8px;
+  }
+`;
+
+const InlineOption = styled.button<{ $isSelected?: boolean }>`
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid ${palette.greyMid};
+  box-sizing: border-box;
+  cursor: ${({ $isSelected }) => ($isSelected ? 'auto' : 'pointer')};
+  display: flex;
+  padding: 0 0.5rem;
+  width: 100%;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &:hover {
+    background-color: ${({ $isSelected }) =>
+      $isSelected ? 'inherit' : palette.blueLight};
+  }
+`;
+
+const InlineOptionText = styled(Text)`
+  line-height: 1rem;
+  margin: 0.5rem 0;
 `;
 
 export default DropdownMenu;

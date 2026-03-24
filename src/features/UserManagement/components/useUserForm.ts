@@ -17,7 +17,7 @@ export type UserFormData = {
 
 export const useUserForm = (initial?: Partial<UserFormData>) => {
   const [formData, setFormData] = useState<UserFormData>({
-    role: '',
+    role: 'mentor',
     username: '',
     password: '',
     passwordAgain: '',
@@ -41,7 +41,7 @@ export const useUserForm = (initial?: Partial<UserFormData>) => {
 
   const reset = () =>
     setFormData({
-      role: '',
+      role: 'mentor',
       username: '',
       password: '',
       passwordAgain: '',
