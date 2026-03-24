@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useCallback } from 'react';
 import Text from '../Text';
 import { animations, palette } from '../constants';
 import { Chevron } from '../Icons/Chevron';
@@ -43,8 +43,10 @@ export const DropdownMenu = <T extends string | number>({
   const placeholder =
     variant === 'form' ? (rest as FormVariantProps<T>).placeholder : '';
 
-  // Close dropdown when clicking outside
+  // Close dropdown when clicking outside or pressing Escape
   useEffect(() => {
+    if (!isOpen) return;
+
     const handleClickOutside = (event: MouseEvent) => {
       if (
         containerRef.current &&
@@ -53,36 +55,59 @@ export const DropdownMenu = <T extends string | number>({
         setIsOpen(false);
       }
     };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen]);
 
-  const handleSelect = (option: T) => {
-    if (isDisabled) return;
+  const handleSelect = useCallback(
+    (option: T) => {
+      if (isDisabled) return;
 
-    if (allowClear && option === value) {
-      onChange(undefined);
-    } else {
-      onChange(option);
-    }
-    setIsOpen(false);
-  };
+      if (allowClear && option === value) {
+        onChange(undefined);
+      } else {
+        onChange(option);
+      }
+      setIsOpen(false);
+    },
+    [isDisabled, allowClear, value, onChange],
+  );
 
-  const handleToggle = () => {
+  const handleToggle = useCallback(() => {
     if (!isDisabled) {
       setIsOpen(prev => !prev);
     }
-  };
+  }, [isDisabled]);
+
+  const dropdownId = `dropdown-${label?.replace(/\s+/g, '-').toLowerCase() ?? 'menu'}`;
 
   if (variant === 'inline') {
     return (
       <InlineContainer>
-        {label && <Text>{label}</Text>}
+        {label && (
+          <span id={`${dropdownId}-label`}>
+            <Text>{label}</Text>
+          </span>
+        )}
         <InlineAnchor ref={containerRef}>
           <InlineTrigger
             onClick={handleToggle}
             $isOpen={isOpen}
             disabled={isDisabled}
+            aria-haspopup="listbox"
+            aria-expanded={isOpen}
+            aria-labelledby={label ? `${dropdownId}-label` : undefined}
           >
             <Text variant="boldBaloo" color="purple">
               {value ?? ''}
@@ -91,13 +116,15 @@ export const DropdownMenu = <T extends string | number>({
           </InlineTrigger>
 
           {isOpen && (
-            <InlineMenu>
+            <InlineMenu role="listbox" aria-labelledby={`${dropdownId}-label`}>
               {options.map(option => (
                 <InlineOption
                   key={option}
                   onClick={() => handleSelect(option)}
                   disabled={option === value}
                   $isSelected={option === value}
+                  role="option"
+                  aria-selected={option === value}
                 >
                   <InlineOptionText
                     color={option === value ? 'greyOverlay' : 'blueDark'}
@@ -117,7 +144,9 @@ export const DropdownMenu = <T extends string | number>({
     <FormContainer>
       <FormDropdownContainer ref={containerRef}>
         <LabelRow>
-          <Text variant="label">{label}</Text>
+          <span id={`${dropdownId}-label`}>
+            <Text variant="label">{label}</Text>
+          </span>
         </LabelRow>
 
         <FormTrigger
@@ -125,6 +154,9 @@ export const DropdownMenu = <T extends string | number>({
           $isDisabled={isDisabled}
           onClick={handleToggle}
           disabled={isDisabled}
+          aria-haspopup="listbox"
+          aria-expanded={isOpen}
+          aria-labelledby={`${dropdownId}-label`}
         >
           <Text
             variant="menuOption"
@@ -142,9 +174,14 @@ export const DropdownMenu = <T extends string | number>({
         </FormTrigger>
 
         {!isDisabled && isOpen && (
-          <FormMenu>
-            {options.map((option, i) => (
-              <FormMenuItem key={i} onMouseDown={() => handleSelect(option)}>
+          <FormMenu role="listbox" aria-labelledby={`${dropdownId}-label`}>
+            {options.map(option => (
+              <FormMenuItem
+                key={option}
+                onMouseDown={() => handleSelect(option)}
+                role="option"
+                aria-selected={option === value}
+              >
                 <Text variant="menuOption">{option}</Text>
               </FormMenuItem>
             ))}
