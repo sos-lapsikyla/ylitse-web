@@ -1,7 +1,7 @@
 import { useComponentVisible } from '@/hooks/useComponentShow';
 import { useTranslation } from 'react-i18next';
 
-import { pageSizes } from './constants';
+import { pageSizes } from '../../constants';
 
 import { animations, palette } from '@/components/constants';
 import styled from 'styled-components';
@@ -39,7 +39,7 @@ const PageSizeDropdown = ({ skillsInPage, setSkillsInPage }: Props) => {
             {pageSizes.map(size => (
               <PageOption
                 key={size}
-                onClick={handlePageSizeChange}
+                onClick={() => handlePageSizeChange(size)}
                 isSelected={size === skillsInPage}
                 size={size}
               />
