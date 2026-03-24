@@ -174,7 +174,12 @@ export const DropdownMenu = <T extends string | number>({
         </FormTrigger>
 
         {!isDisabled && isOpen && (
-          <FormMenu role="listbox" aria-labelledby={`${dropdownId}-label`}>
+          <FormMenu
+            id={`${dropdownId}-menu`}
+            data-testid="dropdown-menu"
+            role="listbox"
+            aria-labelledby={`${dropdownId}-label`}
+          >
             {options.map(option => (
               <FormMenuItem
                 key={option}
