@@ -1,132 +1,229 @@
-import styled from 'styled-components';
-import { useState, useRef, useEffect } from 'react';
+import styled, { css } from 'styled-components';
+import { useRef, useEffect, useState, useCallback } from 'react';
 import Text from '../Text';
-import { palette } from '../constants';
+import { animations, palette } from '../constants';
 import { Chevron } from '../Icons/Chevron';
 
-type Props = {
+type Props<T extends string | number> = {
+  options: T[];
+  value?: T;
+  onChange: (value: T | undefined) => void;
+  variant?: 'form' | 'inline';
+  label?: string;
+  placeholder?: string;
   isDisabled?: boolean;
-  options: string[];
-  placeholder: string;
-  selectOption: (option: string) => void;
-  label: string;
-  defaultOption?: string;
-  selected?: string;
+  allowClear?: boolean;
 };
 
-export const DropdownMenu = ({
-  isDisabled = false,
+export const DropdownMenu = <T extends string | number>({
   options,
-  placeholder,
-  selectOption,
+  value,
+  onChange,
+  variant = 'form',
   label,
-  defaultOption,
-}: Props): React.JSX.Element => {
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('');
+  placeholder = '',
+  isDisabled = false,
+  allowClear = false,
+}: Props<T>): React.JSX.Element => {
+  const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const isInline = variant === 'inline';
 
-  // Close dropdown when clicking outside
   useEffect(() => {
+    if (!isOpen) return;
+
     const handleClickOutside = (event: MouseEvent) => {
       if (
         containerRef.current &&
         !containerRef.current.contains(event.target as Node)
       ) {
-        setIsDropdownVisible(false);
+        setIsOpen(false);
       }
     };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen]);
 
-  useEffect(() => {
-    if (defaultOption) {
-      setSelectedOption(defaultOption);
-      selectOption(defaultOption);
-    }
-  }, [defaultOption]);
+  const handleSelect = useCallback(
+    (option: T) => {
+      if (isDisabled) return;
 
-  const handleSelect = (option: string) => {
-    if (isDisabled) return;
+      if (allowClear && option === value) {
+        onChange(undefined);
+      } else {
+        onChange(option);
+      }
+      setIsOpen(false);
+    },
+    [isDisabled, allowClear, value, onChange],
+  );
 
-    if (option === selectedOption) {
-      setSelectedOption('');
-      selectOption('');
-    } else {
-      setSelectedOption(option);
-      selectOption(option);
-    }
-    setIsDropdownVisible(false);
-  };
-
-  const handleToggleDropdown = () => {
+  const handleToggle = useCallback(() => {
     if (!isDisabled) {
-      setIsDropdownVisible(prev => !prev);
+      setIsOpen(prev => !prev);
     }
+  }, [isDisabled]);
+
+  const dropdownId = `dropdown-${label?.replace(/\s+/g, '-').toLowerCase() ?? 'menu'}`;
+  const labelId = `${dropdownId}-label`;
+  const displayValue = value ?? placeholder;
+  const textColor = isDisabled ? 'greyFaded' : 'purple';
+
+  const labelElement = label && (
+    <LabelRow $isInline={isInline}>
+      <span id={labelId}>
+        <Text variant={isInline ? undefined : 'label'}>{label}</Text>
+      </span>
+    </LabelRow>
+  );
+
+  const triggerProps = {
+    onClick: handleToggle,
+    disabled: isDisabled,
+    'aria-haspopup': 'listbox' as const,
+    'aria-expanded': isOpen,
+    'aria-labelledby': label ? labelId : undefined,
   };
+
+  if (isInline) {
+    return (
+      <InlineContainer>
+        {labelElement}
+        <InlineAnchor ref={containerRef}>
+          <InlineTrigger {...triggerProps} $isOpen={isOpen}>
+            <Text variant="boldBaloo" color="purple">
+              {displayValue}
+            </Text>
+            <Chevron
+              variant={isOpen ? 'up' : 'down'}
+              color={textColor}
+              isLarge
+            />
+          </InlineTrigger>
+
+          {!isDisabled && isOpen && (
+            <InlineMenu
+              id={`${dropdownId}-menu`}
+              data-testid="dropdown-menu"
+              role="listbox"
+              aria-labelledby={labelId}
+            >
+              {options.map(option => {
+                const isSelected = option === value;
+                return (
+                  <InlineOption
+                    key={option}
+                    onClick={() => handleSelect(option)}
+                    disabled={isSelected}
+                    $isSelected={isSelected}
+                    role="option"
+                    aria-selected={isSelected}
+                  >
+                    <InlineOptionText
+                      color={isSelected ? 'greyOverlay' : 'blueDark'}
+                    >
+                      {option}
+                    </InlineOptionText>
+                  </InlineOption>
+                );
+              })}
+            </InlineMenu>
+          )}
+        </InlineAnchor>
+      </InlineContainer>
+    );
+  }
 
   return (
-    <Container>
-      <DropdownContainer ref={containerRef}>
-        <LabelRow>
-          <Text variant="label">{label}</Text>
-        </LabelRow>
-
-        <DropdownTrigger
-          $hasOpenDropdown={isDropdownVisible}
+    <FormContainer>
+      {labelElement}
+      <FormDropdownContainer ref={containerRef}>
+        <FormTrigger
+          {...triggerProps}
+          $isOpen={isOpen}
           $isDisabled={isDisabled}
-          onClick={handleToggleDropdown}
-          disabled={isDisabled}
         >
           <Text
             variant="menuOption"
             color={isDisabled ? 'greyFaded' : 'blueDark'}
           >
-            {selectedOption || placeholder}
+            {displayValue}
           </Text>
 
-          <RightIconWrapper $isOpen={isDropdownVisible}>
-            <Chevron
-              variant="down"
-              color={isDisabled ? 'greyFaded' : 'purple'}
-            />
-          </RightIconWrapper>
-        </DropdownTrigger>
+          <FormChevronWrapper $isOpen={isOpen}>
+            <Chevron variant="down" color={textColor} />
+          </FormChevronWrapper>
+        </FormTrigger>
 
-        {!isDisabled && isDropdownVisible && (
-          <Dropdown id="dropdown-menu">
-            {options.map((option, i) => (
-              <DropdownItem key={i} onMouseDown={() => handleSelect(option)}>
+        {!isDisabled && isOpen && (
+          <FormMenu
+            id={`${dropdownId}-menu`}
+            data-testid="dropdown-menu"
+            role="listbox"
+            aria-labelledby={labelId}
+          >
+            {options.map(option => (
+              <FormMenuItem
+                key={option}
+                onMouseDown={() => handleSelect(option)}
+                role="option"
+                aria-selected={option === value}
+              >
                 <Text variant="menuOption">{option}</Text>
-              </DropdownItem>
+              </FormMenuItem>
             ))}
-          </Dropdown>
+          </FormMenu>
         )}
-      </DropdownContainer>
-    </Container>
+      </FormDropdownContainer>
+    </FormContainer>
   );
 };
 
-const Container = styled.div`
+// Shared styles
+
+const LabelRow = styled.div<{ $isInline: boolean }>`
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  ${({ $isInline }) =>
+    !$isInline &&
+    css`
+      margin-bottom: 0.5rem;
+      padding-right: 0.5rem;
+    `}
+`;
+
+// Form variant styles
+
+const FormContainer = styled.div`
   padding: 0 0 1rem 0;
 `;
 
-const DropdownContainer = styled.div`
+const FormDropdownContainer = styled.div`
   margin-top: 0.5rem;
   max-width: 250px;
   position: relative;
 `;
 
-const DropdownTrigger = styled.button<{
+const FormTrigger = styled.button<{
   $isDisabled: boolean;
-  $hasOpenDropdown: boolean;
+  $isOpen: boolean;
 }>`
   align-items: center;
   background-color: ${({ $isDisabled }) => ($isDisabled ? '#f8f8f8' : 'white')};
   border: 1px solid ${palette.purple};
-  border-radius: ${({ $hasOpenDropdown }) =>
-    $hasOpenDropdown ? '10px 10px 0 0' : '10px'};
+  border-radius: ${({ $isOpen }) => ($isOpen ? '10px 10px 0 0' : '10px')};
   color: ${palette.blueDark};
   display: flex;
   font-size: 1rem;
@@ -149,7 +246,7 @@ const DropdownTrigger = styled.button<{
   }
 `;
 
-const RightIconWrapper = styled.div<{ $isOpen: boolean }>`
+const FormChevronWrapper = styled.div<{ $isOpen: boolean }>`
   transform: ${({ $isOpen }) =>
     $isOpen
       ? 'rotate(180deg) translateY(3.1px)'
@@ -157,7 +254,7 @@ const RightIconWrapper = styled.div<{ $isOpen: boolean }>`
   transition: transform 0.2s ease;
 `;
 
-const Dropdown = styled.div`
+const FormMenu = styled.div`
   background-color: white;
   border: 1px solid ${palette.purple};
   border-radius: 0 0 10px 10px;
@@ -173,7 +270,7 @@ const Dropdown = styled.div`
   z-index: 10;
 `;
 
-const DropdownItem = styled.div`
+const FormMenuItem = styled.div`
   cursor: pointer;
   padding: 0.75rem 1rem;
 
@@ -182,12 +279,91 @@ const DropdownItem = styled.div`
   }
 `;
 
-const LabelRow = styled.div`
+// Inline variant styles
+
+const InlineContainer = styled.div`
   align-items: center;
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-  padding-right: 0.5rem;
+  gap: 1rem;
+`;
+
+const InlineAnchor = styled.div`
+  align-items: stretch;
+  display: inline-flex;
+  overflow: visible;
+  position: relative;
+`;
+
+const InlineTrigger = styled.button<{ $isOpen: boolean }>`
+  align-items: center;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+
+  ${({ $isOpen }) =>
+    $isOpen
+      ? css`
+          border-bottom-color: transparent;
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+          border-color: ${palette.purple};
+        `
+      : css`
+          &:hover {
+            background-color: ${palette.white};
+          }
+        `}
+`;
+
+const InlineMenu = styled.div`
+  animation: ${animations.growDown};
+  background: ${palette.white};
+  border: 2px solid ${palette.purple};
+  border-radius: 0 0 8px 8px;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  min-width: calc(100% - 4px);
+  position: absolute;
+  top: calc(100% - 2px);
+  transform-origin: top center;
+  z-index: 10;
+
+  button:last-of-type {
+    border-bottom: none;
+    border-radius: 0 0 8px 8px;
+  }
+`;
+
+const InlineOption = styled.button<{ $isSelected?: boolean }>`
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid ${palette.greyMid};
+  box-sizing: border-box;
+  cursor: ${({ $isSelected }) => ($isSelected ? 'auto' : 'pointer')};
+  display: flex;
+  padding: 0 0.5rem;
+  width: 100%;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &:hover {
+    background-color: ${({ $isSelected }) =>
+      $isSelected ? 'inherit' : palette.blueLight};
+  }
+`;
+
+const InlineOptionText = styled(Text)`
+  line-height: 1rem;
+  margin: 0.5rem 0;
 `;
 
 export default DropdownMenu;

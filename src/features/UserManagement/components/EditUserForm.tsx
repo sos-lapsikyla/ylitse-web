@@ -155,11 +155,11 @@ const UserForm: React.FC<Props> = ({
             <DropdownMenu
               options={genderOptions.map(o => o.text)}
               placeholder={t('editUser.publicInfo.gender.choose')}
-              defaultOption={
+              value={
                 genderOptions.find(o => o.value === editableMentorData?.gender)
                   ?.text
               }
-              selectOption={(selectedText: string) => {
+              onChange={selectedText => {
                 const selectedOption = genderOptions.find(
                   o => o.text === selectedText,
                 );

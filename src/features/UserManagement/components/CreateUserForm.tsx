@@ -135,8 +135,8 @@ const UserForm: React.FC<Props> = ({ formData, updateField }) => {
         <DropdownMenu
           options={roleOptions.map(o => o.text)}
           placeholder={t('newUser.accountInfo.role.choose')}
-          defaultOption={t('newUser.accountInfo.role.roleOptions.mentor')}
-          selectOption={(selectedText: string) => {
+          value={roleOptions.find(o => o.value === formData.role)?.text}
+          onChange={selectedText => {
             const selectedOption = roleOptions.find(
               o => o.text === selectedText,
             );
@@ -198,7 +198,8 @@ const UserForm: React.FC<Props> = ({ formData, updateField }) => {
             <DropdownMenu
               options={genderOptions.map(o => o.text)}
               placeholder={t('newUser.publicInfo.gender.choose')}
-              selectOption={(selectedText: string) => {
+              value={genderOptions.find(o => o.value === formData.gender)?.text}
+              onChange={selectedText => {
                 const selectedOption = genderOptions.find(
                   o => o.text === selectedText,
                 );
@@ -259,7 +260,7 @@ const PublicInfo = styled.div`
   margin: 0 0 4rem 0;
   padding: 0 0 -1rem 0;
 `;
-const TitleText = styled(Text)`
+const TitleText = styled.div`
   margin: 1rem 0;
 `;
 const TextGroup = styled.div`
