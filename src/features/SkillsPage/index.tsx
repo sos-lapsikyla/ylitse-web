@@ -11,7 +11,6 @@ import { useAppSelector } from '@/store';
 import { TextButton } from '@/components/Buttons';
 import Text from '@/components/Text';
 import Spinner from '@/components/Spinner';
-import PageWithTransition from '@/components/PageWithTransition';
 import Skills from './Skills';
 import NewSkill from './NewSkill';
 
@@ -58,11 +57,7 @@ const SkillsPage = () => {
     </>
   );
 
-  return (
-    <PageWithTransition>
-      <Container $isMobile={isMobile}>{PageContent}</Container>
-    </PageWithTransition>
-  );
+  return <Container $isMobile={isMobile}>{PageContent}</Container>;
 };
 
 const Container = styled.div<{ $isMobile: boolean }>`

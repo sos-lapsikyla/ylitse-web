@@ -14,7 +14,6 @@ import Info from './components/Info';
 import NewestMentors from './components/NewestMentors';
 import NewMessages from './components/NewMessages';
 import { OUTER_HORIZONTAL_MARGIN, palette } from '@/components/constants';
-import PageWithTransition from '@/components/PageWithTransition';
 import ProfileWidget from './components/ProfileWidget';
 import Welcome from './components/Welcome';
 import WelcomeMessage from './components/WelcomeMessage';
@@ -28,7 +27,7 @@ const HomePage = () => {
   const mentor = useAppSelector(selectMyMentorProfile);
 
   return isTabletNarrow ? (
-    <PageWithTransition>
+    <>
       <Info isMobile />
       {hasUnreadMessages ? <NewMessages isMobile /> : <Welcome />}
       {!mentor && <Feedback />}
@@ -38,9 +37,9 @@ const HomePage = () => {
       <FindMentor isMobile />
       <Concepts isMobile />
       <MobileAppAd isMobile />
-    </PageWithTransition>
+    </>
   ) : (
-    <PageWithTransition>
+    <>
       <TopContainer>
         <Info />
         <WelcomeMessage />
@@ -62,7 +61,7 @@ const HomePage = () => {
         <NewestMentors />
       </BottomContainer>
       <MobileAppAd />
-    </PageWithTransition>
+    </>
   );
 };
 
