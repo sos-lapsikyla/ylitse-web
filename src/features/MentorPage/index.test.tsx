@@ -62,7 +62,7 @@ afterAll(() => server.close());
 
 server.use(
   http.get('api/mentors', async () => {
-    await delay(1000);
+    await delay(200);
     return HttpResponse.json(mentorsResponse);
   }),
 );
@@ -181,7 +181,7 @@ describe('<MentorPage />', () => {
   it('wont display mentors if response is not correct', async () => {
     server.use(
       http.get('api/mentors', async () => {
-        await delay(1000);
+        await delay(200);
         return HttpResponse.json([{ resources: [{ wrong: 'data' }] }]);
       }),
     );
