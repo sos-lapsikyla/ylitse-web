@@ -6,7 +6,6 @@ import { selectFilteredMentors } from './selectors';
 import { useAppSelector } from '@/store';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 
-import PageWithTransition from '@/components/PageWithTransition';
 import Spinner from '@/components/Spinner';
 import MentorsFilter from './components/MentorsFilter';
 import MentorList from './components/MentorList';
@@ -40,11 +39,7 @@ const MentorPage = () => {
     </>
   );
 
-  return (
-    <PageWithTransition>
-      {isMobile ? PageContent : <PageContainer>{PageContent}</PageContainer>}
-    </PageWithTransition>
-  );
+  return isMobile ? PageContent : <PageContainer>{PageContent}</PageContainer>;
 };
 
 const PageContainer = styled.div`

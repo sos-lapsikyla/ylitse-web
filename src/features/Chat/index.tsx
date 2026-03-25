@@ -9,7 +9,6 @@ import { CONTENT_WIDTH, OUTER_VERTICAL_MARGIN } from '@/components/constants';
 
 import ActiveWindow from './components/ActiveWindow';
 import Menu from './components/Menu';
-import PageWithTransition from '@/components/PageWithTransition';
 import WelcomeWindow from './components/WelcomeWindow';
 
 const Chat = () => {
@@ -18,19 +17,15 @@ const Chat = () => {
   const areOngoingChats = useAppSelector(selectOngoingChatsExist);
   const isDesktopChatOpen = isActiveChatExisting || areOngoingChats;
 
-  return (
-    <PageWithTransition>
-      {isTablet ? (
-        <PageContainer>
-          {isActiveChatExisting ? <ActiveWindow /> : <Menu />}
-        </PageContainer>
-      ) : (
-        <PageContainer $isDesktop>
-          <Menu />
-          {isDesktopChatOpen ? <ActiveWindow /> : <WelcomeWindow />}
-        </PageContainer>
-      )}
-    </PageWithTransition>
+  return isTablet ? (
+    <PageContainer>
+      {isActiveChatExisting ? <ActiveWindow /> : <Menu />}
+    </PageContainer>
+  ) : (
+    <PageContainer $isDesktop>
+      <Menu />
+      {isDesktopChatOpen ? <ActiveWindow /> : <WelcomeWindow />}
+    </PageContainer>
   );
 };
 
