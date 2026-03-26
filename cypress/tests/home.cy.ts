@@ -23,8 +23,7 @@ describe('home', () => {
       'p',
     ).should('be.visible');
 
-    cy.getByText('Tervetuloa', 'p').should('be.visible');
-    cy.getByText(mentee.displayName, 'p').should('be.visible');
+    cy.getByText(`Tervetuloa, ${mentee.displayName}`, 'p').should('be.visible');
 
     cy.getByText('Aloita etsimällä mentori', 'h2').should('be.visible');
     // assure that find mentor button works
@@ -35,8 +34,7 @@ describe('home', () => {
     cy.get('[href="/"]').first().click();
 
     // assure welcome-message is not visible when navigated back to home-page
-    cy.getByText('Tervetuloa', 'p').should('not.exist');
-    cy.getByText(mentee.displayName, 'p').should('not.exist');
+    cy.getByText(`Tervetuloa, ${mentee.displayName}`, 'p').should('not.exist');
 
     cy.getByText('Tiedotteet', 'h2').should('be.visible');
     cy.getByText('Mikä on Ylitse?', 'h2').should('be.visible');
@@ -134,13 +132,11 @@ describe('home', () => {
 
     cy.getByText('Tukea ja seuraa', 'h1').should('be.visible');
 
-    cy.getByText('Tervetuloa', 'p').should('be.visible');
-    cy.getByText(mentor.displayName, 'p').should('be.visible');
+    cy.getByText(`Tervetuloa, ${mentor.displayName}`, 'p').should('be.visible');
 
     //assure that welcome message disappers when page is refreshed
     cy.reload();
-    cy.getByText('Tervetuloa', 'p').should('not.exist');
-    cy.getByText(mentor.displayName, 'p').should('not.exist');
+    cy.getByText(`Tervetuloa, ${mentor.displayName}`, 'p').should('not.exist');
 
     // assure that there is no messages yet
     cy.get('[href="/chat"]').click();
