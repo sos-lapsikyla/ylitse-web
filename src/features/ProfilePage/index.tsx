@@ -11,7 +11,6 @@ import {
   OUTER_VERTICAL_MARGIN,
   palette,
 } from '@/components/constants';
-import PageWithTransition from '@/components/PageWithTransition';
 import PublicInfo from './components/PublicInfo';
 import Text from '@/components/Text';
 
@@ -21,7 +20,7 @@ const ProfilePage = () => {
   const isMentor = useAppSelector(selectIsMentor);
 
   return (
-    <PageWithTransition>
+    <>
       {isMentor ? (
         <Container $isMobile={isTablet}>
           <Header $isMobile={isTablet}>
@@ -35,7 +34,7 @@ const ProfilePage = () => {
       ) : (
         <AccountInfo isMobile={isTablet} />
       )}
-    </PageWithTransition>
+    </>
   );
 };
 
