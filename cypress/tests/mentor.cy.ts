@@ -247,9 +247,13 @@ describe('mentor profile', () => {
     mentor.skills.forEach(skill => {
       // remove skill
       cy.getByText(skill, 'button').should('be.visible').click();
+      cy.wait(200);
       // skill chip button should be gone
       cy.getByText(skill, 'button').should('not.exist');
     });
+
+    // save changes
+    cy.getByText('Tallenna', 'button').click();
 
     // check that values were updated correctly
     cy.reload();
