@@ -269,3 +269,5 @@ describe('Users page', () => {
     cy.getByText(NEW_DISPLAY_NAME, 'h2').should('be.visible');
   });
 });
+
+// add comment to check git access
