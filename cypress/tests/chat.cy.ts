@@ -57,6 +57,7 @@ describe('chat', () => {
 
     // send message
     cy.getByText('Avaa kortti', 'button').scrollIntoView().click();
+    cy.wait(200);
     cy.getByText('Aloita keskustelu', 'button').click();
     cy.get('textarea[placeholder*="Kirjoita viestisi tähän"]')
       .click()
