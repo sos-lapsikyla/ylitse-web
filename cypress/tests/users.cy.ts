@@ -125,14 +125,15 @@ describe('Users page', () => {
     cy.getByText('Uusi käyttäjä', 'button').click();
     cy.getByText('Uusi käyttäjä', 'h2').should('be.visible');
 
-    // Open dropdown
+    // Open dropdown and select mentee
     cy.contains('div', 'Käyttäjätilin tyyppi *')
       .parent()
       .find('button')
       .click();
-
-    // Select mentee from the dropdown
-    cy.get('#dropdown-menu').contains('Aktori').should('be.visible').click();
+    cy.get('[data-testid="dropdown-menu"]')
+      .contains('Aktori')
+      .should('be.visible')
+      .click();
     // Fill mentee fields
     cy.fillInputByLabel('Käyttäjätunnus *', NEW_LOGIN_NAME);
     cy.fillInputByLabel('Salasana *', NEW_PASSWORD);
@@ -162,7 +163,7 @@ describe('Users page', () => {
       .parent()
       .find('button')
       .click();
-    cy.get('#dropdown-menu').contains('Mentori').click();
+    cy.get('[data-testid="dropdown-menu"]').contains('Mentori').click();
     cy.contains('label', 'Käyttäjätunnus *')
       .scrollIntoView()
       .should('be.visible');
@@ -177,7 +178,7 @@ describe('Users page', () => {
 
     // Select gender
     cy.contains('div', 'Sukupuoli *').parent().find('button').click();
-    cy.get('#dropdown-menu').contains('Muu').click();
+    cy.get('[data-testid="dropdown-menu"]').contains('Muu').click();
 
     // Button should now be enabled
     cy.getByText('Luo uusi käyttäjä', 'button').should('not.be.disabled');
@@ -248,7 +249,7 @@ describe('Users page', () => {
     cy.contains('label', 'Syntymävuosi *').should('exist').should('be.visible');
     cy.fillInputByLabel('Syntymävuosi *', NEW_BIRTH_YEAR);
     cy.contains('div', 'Sukupuoli *').parent().find('button').click();
-    cy.get('#dropdown-menu').contains('Muu').click();
+    cy.get('[data-testid="dropdown-menu"]').contains('Muu').click();
     cy.contains('label', 'Alue').scrollIntoView().should('be.visible');
     cy.fillInputByLabel('Alue', NEW_AREA);
     cy.fillInputByLabel('Tarina', NEW_STORY);

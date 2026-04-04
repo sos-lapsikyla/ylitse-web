@@ -7,7 +7,8 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { PageButton } from './PageButton';
 import { Button, IconButton } from '@/components/Buttons';
-import PageSizeDropdown from './PageSizeDropdown';
+import { DropdownMenu } from '@/components/Dropdown';
+import { pageSizes } from '../constants';
 
 type Props = {
   skillTotalAmount: number;
@@ -103,6 +104,25 @@ const Container = styled.div`
   padding-top: 0.5rem;
   width: 100%;
 `;
+
+const PageSizeDropdown = ({
+  skillsInPage,
+  setSkillsInPage,
+}: {
+  skillsInPage: number;
+  setSkillsInPage: (next: number) => void;
+}) => {
+  const { t } = useTranslation('mentors');
+  return (
+    <DropdownMenu
+      variant="inline"
+      options={pageSizes}
+      value={skillsInPage}
+      onChange={value => value !== undefined && setSkillsInPage(value)}
+      label={t('filters.pageSizeLabel')}
+    />
+  );
+};
 
 const PaginationContainer = styled.div`
   display: flex;

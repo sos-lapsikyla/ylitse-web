@@ -9,7 +9,7 @@ import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 
 import { usePillShakeChecker } from './usePillShakeChecker';
 import { useTranslation } from 'react-i18next';
-import { defaultPageSize } from './BottomBar/PageSizeDropdown/constants';
+import { defaultPageSize } from './constants';
 
 import styled from 'styled-components';
 import { Text } from '@/components/Text/Text';

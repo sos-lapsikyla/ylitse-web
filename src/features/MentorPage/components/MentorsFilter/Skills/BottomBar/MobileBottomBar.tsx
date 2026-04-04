@@ -10,7 +10,8 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { PageButton } from './PageButton';
 import { Button, IconButton } from '@/components/Buttons';
-import PageSizeDropdown from './PageSizeDropdown';
+import { DropdownMenu } from '@/components/Dropdown';
+import { pageSizes } from '../constants';
 
 type Props = {
   skillTotalAmount: number;
@@ -82,9 +83,12 @@ export const MobileBottomBar = ({
         )}
       </PaginationContainer>
 
-      <PageSizeDropdown
-        skillsInPage={skillsInPage}
-        setSkillsInPage={handleSetPageSize}
+      <DropdownMenu
+        variant="inline"
+        options={pageSizes}
+        value={skillsInPage}
+        onChange={value => value !== undefined && handleSetPageSize(value)}
+        label={t('filters.pageSizeLabel')}
       />
       {shouldShowRemoveFiltersButton && (
         <ButtonContainer>

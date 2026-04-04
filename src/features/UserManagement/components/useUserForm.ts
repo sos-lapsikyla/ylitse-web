@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export type UserFormData = {
   role: string;
@@ -15,45 +15,39 @@ export type UserFormData = {
   skills: string[];
 };
 
+const DEFAULT_ROLE = 'mentor';
+
+const getDefaultFormData = (): UserFormData => ({
+  role: DEFAULT_ROLE,
+  username: '',
+  password: '',
+  passwordAgain: '',
+  email: '',
+  displayName: '',
+  birthYear: '',
+  gender: '',
+  area: '',
+  story: '',
+  languages: [],
+  skills: [],
+});
+
 export const useUserForm = (initial?: Partial<UserFormData>) => {
   const [formData, setFormData] = useState<UserFormData>({
-    role: '',
-    username: '',
-    password: '',
-    passwordAgain: '',
-    email: '',
-    displayName: '',
-    birthYear: '',
-    gender: '',
-    area: '',
-    story: '',
-    languages: [],
-    skills: [],
+    ...getDefaultFormData(),
     ...initial,
   });
 
-  const updateField = <K extends keyof UserFormData>(
-    key: K,
-    value: UserFormData[K],
-  ) => {
-    setFormData(prev => ({ ...prev, [key]: value }));
-  };
+  const updateField = useCallback(
+    <K extends keyof UserFormData>(key: K, value: UserFormData[K]) => {
+      setFormData(prev => ({ ...prev, [key]: value }));
+    },
+    [],
+  );
 
-  const reset = () =>
-    setFormData({
-      role: '',
-      username: '',
-      password: '',
-      passwordAgain: '',
-      email: '',
-      displayName: '',
-      birthYear: '',
-      gender: '',
-      area: '',
-      story: '',
-      languages: [],
-      skills: [],
-    });
+  const reset = useCallback(() => {
+    setFormData(getDefaultFormData());
+  }, []);
 
   return { formData, updateField, reset };
 };
