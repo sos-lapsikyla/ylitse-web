@@ -87,7 +87,7 @@
       "story": { "label": "Tarinani", "tooLongError": "Tarina on liian pitkä" },
       "skills": {
         "title": "Aiheeni",
-        "info": "Ohjeteksti tähän"
+        "info": "Aiheiden avulla mentorit voivat kuvata itseään ja mentorointiaan. Lisää tai poista aiheita profiilistasi. Jos järjestelmässä ei ole sinulle sopivaa aihetta, ilmoita siitä palvelun valvojalle."
       },
       "vacation": {
         "info": "Poissaolotilan aikana uusia keskusteluja ei voi aloittaa kanssasi, mutta olemassa olevat voivat jatkua. Ilmoitathan poissaolosi pituuden tilaviestissä.",

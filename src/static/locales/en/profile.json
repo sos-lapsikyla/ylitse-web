@@ -87,7 +87,7 @@
       "story": { "label": "My story", "tooLongError": "Story is too long" },
       "skills": {
         "title": "My skills",
-        "info": "Tähän ohjeteksti"
+        "info": "Mentors can use skills to describe themselves and their mentoring. Add or remove skills from your profile. If there is not a suitable skill, please inform the service admin."
       },
       "vacation": {
         "info": "While in vacation mode, new conversations cannot be started with you, but existing ones can continue. Please specify the duration of your vacation in your status message.",
