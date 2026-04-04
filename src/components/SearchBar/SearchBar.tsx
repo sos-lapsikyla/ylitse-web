@@ -27,6 +27,7 @@ const sizingMap: Record<Variant, RuleSet> = {
   `,
   narrow: css`
     font-size: 18px;
+    height: 41px;
     padding: 0.5rem 2rem 0.5rem 2.7rem;
   `,
 };
@@ -44,7 +45,7 @@ const SearchBar: React.FC<SearchProps> = ({
 }) => (
   <Container $variant={variant}>
     {label && (
-      <LabelWrapper>
+      <LabelWrapper $variant={variant}>
         <Text variant="label">{label}</Text>
       </LabelWrapper>
     )}
@@ -68,13 +69,21 @@ const Container = styled.div<{ $variant: Variant }>`
   ${({ $variant }) =>
     $variant === 'narrow' &&
     css`
-      margin-top: 0.5rem;
+      margin-top: 0.25rem;
+      padding-bottom: 1rem;
     `}
 `;
 
-const LabelWrapper = styled.div`
+const LabelWrapper = styled.div<{ $variant: Variant }>`
   margin-bottom: 0.5rem;
   padding-right: 0.5rem;
+  ${({ $variant }) =>
+    $variant === 'narrow' &&
+    css`
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+    `}
 `;
 
 const SearchInput = styled.input<{

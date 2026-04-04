@@ -33,7 +33,7 @@ const UsersPage = () => {
     useGetManagedAccountsQuery();
   const { isLoading: isAccountsQueryLoading } = useGetManagedUsersQuery();
 
-  const [filter, setFilter] = useState<UserFilter>('both');
+  const [filter, setFilter] = useState<UserFilter>('all');
   const [sort, setSort] = useState<SortOrder>('newest');
   const [search, setSearch] = useState('');
 
@@ -68,6 +68,8 @@ const UsersPage = () => {
       <FilterContainer $isMobile={isMobile}>
         <FilterFunctions
           search={search}
+          filter={filter}
+          sort={sort}
           onFilterChange={setFilter}
           onSortChange={setSort}
           onSearchChange={setSearch}

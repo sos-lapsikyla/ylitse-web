@@ -1,40 +1,20 @@
 import styled, { css } from 'styled-components';
-<<<<<<< HEAD
 import { useRef, useEffect, useState, useCallback } from 'react';
-=======
-import { useState, useRef, useEffect } from 'react';
->>>>>>> 8faf417 (Filter, sort and search users)
 import Text from '../Text';
 import { animations, palette } from '../constants';
 import { Chevron } from '../Icons/Chevron';
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+type DropdownVariant = 'form' | 'inline' | 'filter';
+
 type Props<T extends string | number> = {
   options: T[];
   value?: T;
   onChange: (value: T | undefined) => void;
-  variant?: 'form' | 'inline';
+  variant?: DropdownVariant;
   label?: string;
   placeholder?: string;
   isDisabled?: boolean;
   allowClear?: boolean;
-=======
-type DropdownVariant = 'default' | 'compact' | 'form'
-=======
-type DropdownVariant = 'default' | 'compact' | 'form';
->>>>>>> c6c43c4 (Filter, sort and search users)
-
-type Props = {
-  isDisabled?: boolean;
-  options: string[];
-  placeholder: string;
-  selectOption: (option: string) => void;
-  label: string;
-  defaultOption?: string;
-  selected?: string;
-  variant?: DropdownVariant;
->>>>>>> 8faf417 (Filter, sort and search users)
 };
 
 export const DropdownMenu = <T extends string | number>({
@@ -43,19 +23,11 @@ export const DropdownMenu = <T extends string | number>({
   onChange,
   variant = 'form',
   label,
-<<<<<<< HEAD
   placeholder = '',
   isDisabled = false,
   allowClear = false,
 }: Props<T>): React.JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
-=======
-  defaultOption,
-  variant = 'default',
-}: Props): React.JSX.Element => {
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('');
->>>>>>> 8faf417 (Filter, sort and search users)
   const containerRef = useRef<HTMLDivElement>(null);
   const isInline = variant === 'inline';
 
@@ -176,23 +148,12 @@ export const DropdownMenu = <T extends string | number>({
   }
 
   return (
-<<<<<<< HEAD
     <FormContainer>
       {labelElement}
-      <FormDropdownContainer ref={containerRef}>
+      <FormDropdownContainer ref={containerRef} $variant={variant}>
         <FormTrigger
           {...triggerProps}
           $isOpen={isOpen}
-=======
-    <Container>
-      <DropdownContainer ref={containerRef} $variant={variant}>
-        <LabelRow>
-          <Text variant="label">{label}</Text>
-        </LabelRow>
-
-        <DropdownTrigger
-          $hasOpenDropdown={isDropdownVisible}
->>>>>>> 8faf417 (Filter, sort and search users)
           $isDisabled={isDisabled}
         >
           <Text
@@ -251,21 +212,14 @@ const FormContainer = styled.div`
   padding: 0 0 1rem 0;
 `;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-const FormDropdownContainer = styled.div`
-=======
-const DropdownContainer = styled.div<{$variant: DropdownVariant}>`
->>>>>>> 8faf417 (Filter, sort and search users)
-=======
-const DropdownContainer = styled.div<{ $variant: DropdownVariant }>`
->>>>>>> c6c43c4 (Filter, sort and search users)
+const FormDropdownContainer = styled.div<{ $variant: DropdownVariant }>`
   margin-top: 0.5rem;
+  max-width: 250px;
   position: relative;
   ${({ $variant }) =>
-    $variant === 'form' &&
+    $variant === 'filter' &&
     css`
-      max-width: 250px;
+      max-width: 1000px;
     `}
 `;
 

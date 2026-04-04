@@ -7,6 +7,8 @@ import { useTranslation } from 'react-i18next';
 
 type Props = {
   search: string;
+  filter: UserFilter;
+  sort: SortOrder;
   onFilterChange: (f: UserFilter) => void;
   onSortChange: (s: SortOrder) => void;
   onSearchChange: (s: string) => void;
@@ -14,6 +16,8 @@ type Props = {
 
 const FilterFunctions: React.FC<Props> = ({
   search,
+  filter,
+  sort,
   onFilterChange,
   onSearchChange,
   onSortChange,
@@ -47,26 +51,30 @@ const FilterFunctions: React.FC<Props> = ({
         <DropdownMenu
           placeholder={t('filterUsers.filterByRole.all')}
           options={filterOptions.map(o => o.text)}
-          selectOption={option => {
-            const selected = filterOptions.find(o => o.text === option);
+          value={filterOptions.find(o => o.value === filter)?.text}
+          onChange={selectedText => {
+            const selected = filterOptions.find(o => o.text === selectedText);
             if (selected) {
               onFilterChange(selected.value as UserFilter);
             }
           }}
           label={t('filterUsers.filterByRole.label')}
+          variant="filter"
         />
       </ItemWrapper>
       <ItemWrapper>
         <DropdownMenu
           placeholder={t('filterUsers.sort.newest')}
           options={sortOptions.map(o => o.text)}
-          selectOption={option => {
-            const selected = sortOptions.find(o => o.text === option);
+          value={sortOptions.find(o => o.value === sort)?.text}
+          onChange={selectedText => {
+            const selected = sortOptions.find(o => o.text === selectedText);
             if (selected) {
               onSortChange(selected.value as SortOrder);
             }
           }}
           label={t('filterUsers.sort.label')}
+          variant="filter"
         />
       </ItemWrapper>
     </Container>
