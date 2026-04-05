@@ -85,7 +85,10 @@
         "tooLongError": "Viesti on liian pitkä"
       },
       "story": { "label": "Tarinani", "tooLongError": "Tarina on liian pitkä" },
-      "skills": "Aiheeni",
+      "skills": {
+        "title": "Aiheeni",
+        "info": "Aiheiden avulla mentorit voivat kuvata itseään ja mentorointiaan. Lisää tai poista aiheita profiilistasi. Jos järjestelmässä ei ole sinulle sopivaa aihetta, ilmoita siitä palvelun valvojalle."
+      },
       "vacation": {
         "info": "Poissaolotilan aikana uusia keskusteluja ei voi aloittaa kanssasi, mutta olemassa olevat voivat jatkua. Ilmoitathan poissaolosi pituuden tilaviestissä.",
         "switch": { "off": "Tavoitettavissa", "on": "Ei tavoitettavissa" },
