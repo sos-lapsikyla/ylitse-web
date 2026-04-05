@@ -27,7 +27,8 @@ const sizingMap: Record<Variant, RuleSet> = {
   `,
   narrow: css`
     font-size: 18px;
-    height: 41px;
+    height: 46px;
+    line-height: 1;
     padding: 0.5rem 2rem 0.5rem 2.7rem;
   `,
 };
@@ -69,8 +70,13 @@ const Container = styled.div<{ $variant: Variant }>`
   ${({ $variant }) =>
     $variant === 'narrow' &&
     css`
-      margin-top: 0.25rem;
       padding-bottom: 1rem;
+      width: 100%;
+    `}
+  ${({ $variant }) =>
+    $variant === 'normal' &&
+    css`
+      width: 30rem;
     `}
 `;
 
@@ -83,6 +89,8 @@ const LabelWrapper = styled.div<{ $variant: Variant }>`
       align-items: center;
       display: flex;
       justify-content: space-between;
+      margin-bottom: 0;
+      margin-top: 0.25rem;
     `}
 `;
 
@@ -102,6 +110,11 @@ const SearchInput = styled.input<{
   font-weight: 400;
   padding: 1rem 4.5rem;
   width: 100%;
+  ${({ $variant }) =>
+    $variant === 'narrow' &&
+    css`
+      border-radius: 18px;
+    `}
 
   ${({ $variant }) => sizingMap[$variant]}
 
@@ -131,9 +144,9 @@ const SearchIcon = styled.div<{ $variant: Variant }>`
   ${({ $variant }) =>
     $variant === 'narrow' &&
     css`
-      height: 1.2rem;
-      left: 1.05rem;
-      width: 1.2rem;
+      height: 1rem;
+      left: 1rem;
+      width: 1rem;
     `}
 `;
 

@@ -83,7 +83,7 @@ export const DropdownMenu = <T extends string | number>({
   const textColor = isDisabled ? 'greyFaded' : 'purple';
 
   const labelElement = label && (
-    <LabelRow $isInline={isInline}>
+    <LabelRow $isInline={isInline} $variant={variant}>
       <span id={labelId}>
         <Text variant={isInline ? undefined : 'label'}>{label}</Text>
       </span>
@@ -194,7 +194,7 @@ export const DropdownMenu = <T extends string | number>({
 
 // Shared styles
 
-const LabelRow = styled.div<{ $isInline: boolean }>`
+const LabelRow = styled.div<{ $isInline: boolean; $variant: DropdownVariant }>`
   align-items: center;
   display: flex;
   justify-content: space-between;
@@ -205,6 +205,12 @@ const LabelRow = styled.div<{ $isInline: boolean }>`
       padding-right: 0.5rem;
     `}
 `;
+
+// ${({ $variant }) =>
+// $variant === 'filter' &&
+// css`
+//   margin-bottom: 0.5rem;
+// `}
 
 // Form variant styles
 
@@ -219,6 +225,7 @@ const FormDropdownContainer = styled.div<{ $variant: DropdownVariant }>`
   ${({ $variant }) =>
     $variant === 'filter' &&
     css`
+      margin-top: -0.5rem;
       max-width: 1000px;
     `}
 `;

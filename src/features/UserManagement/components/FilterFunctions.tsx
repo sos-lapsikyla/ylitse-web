@@ -82,11 +82,12 @@ const FilterFunctions: React.FC<Props> = ({
 };
 
 const Container = styled.div<{ $isMobile: boolean }>`
+  align-items: center;
   display: flex;
   flex-direction: row;
   gap: 2rem;
   justify-content: space-between;
-  padding: 2rem;
+  padding: 1rem 2rem 1rem 2rem;
   ${({ $isMobile }) =>
     $isMobile &&
     css`

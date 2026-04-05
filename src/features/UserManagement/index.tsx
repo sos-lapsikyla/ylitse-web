@@ -112,11 +112,12 @@ const Container = styled.div<{ $isMobile: boolean }>`
 const FilterContainer = styled.div<{ $isMobile: boolean }>`
   background-color: white;
   border-radius: 0 0 10px 10px;
+  max-height: 8rem;
   width: 100%;
   ${({ $isMobile }) =>
     $isMobile
       ? css`
-          margin-top: -1rem;
+          max-height: 20rem;
           padding-top: -1rem;
         `
       : css`
