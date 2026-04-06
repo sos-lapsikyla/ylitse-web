@@ -4,11 +4,13 @@ import Text from '../Text';
 import { animations, palette } from '../constants';
 import { Chevron } from '../Icons/Chevron';
 
+type DropdownVariant = 'form' | 'inline' | 'filter';
+
 type Props<T extends string | number> = {
   options: T[];
   value?: T;
   onChange: (value: T | undefined) => void;
-  variant?: 'form' | 'inline';
+  variant?: DropdownVariant;
   label?: string;
   placeholder?: string;
   isDisabled?: boolean;
@@ -81,7 +83,7 @@ export const DropdownMenu = <T extends string | number>({
   const textColor = isDisabled ? 'greyFaded' : 'purple';
 
   const labelElement = label && (
-    <LabelRow $isInline={isInline}>
+    <LabelRow $isInline={isInline} $variant={variant}>
       <span id={labelId}>
         <Text variant={isInline ? undefined : 'label'}>{label}</Text>
       </span>
@@ -148,7 +150,7 @@ export const DropdownMenu = <T extends string | number>({
   return (
     <FormContainer>
       {labelElement}
-      <FormDropdownContainer ref={containerRef}>
+      <FormDropdownContainer ref={containerRef} $variant={variant}>
         <FormTrigger
           {...triggerProps}
           $isOpen={isOpen}
@@ -192,7 +194,7 @@ export const DropdownMenu = <T extends string | number>({
 
 // Shared styles
 
-const LabelRow = styled.div<{ $isInline: boolean }>`
+const LabelRow = styled.div<{ $isInline: boolean; $variant: DropdownVariant }>`
   align-items: center;
   display: flex;
   justify-content: space-between;
@@ -204,16 +206,28 @@ const LabelRow = styled.div<{ $isInline: boolean }>`
     `}
 `;
 
+// ${({ $variant }) =>
+// $variant === 'filter' &&
+// css`
+//   margin-bottom: 0.5rem;
+// `}
+
 // Form variant styles
 
 const FormContainer = styled.div`
   padding: 0 0 1rem 0;
 `;
 
-const FormDropdownContainer = styled.div`
+const FormDropdownContainer = styled.div<{ $variant: DropdownVariant }>`
   margin-top: 0.5rem;
   max-width: 250px;
   position: relative;
+  ${({ $variant }) =>
+    $variant === 'filter' &&
+    css`
+      margin-top: -0.5rem;
+      max-width: 1000px;
+    `}
 `;
 
 const FormTrigger = styled.button<{

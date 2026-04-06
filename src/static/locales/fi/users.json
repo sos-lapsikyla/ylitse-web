@@ -83,6 +83,24 @@
     "cancel": "Peruuta",
     "save": "Tallenna"
   },
+  "filterUsers": {
+    "search": {
+      "label": "Haku",
+      "placeholder": "Etsi käyttäjää"
+    },
+    "sort": {
+      "label": "Lajittele",
+      "newest": "Uusimmat ensin",
+      "oldest": "Vanhimmat ensin"
+    },
+    "filterByRole": {
+      "label": "Näytä",
+      "all": "Kaikki",
+      "both": "Aktorit ja mentorit",
+      "mentees": "Aktorit",
+      "mentors": "Mentorit"
+    }
+  },
   "newUser": {
     "title": "Uusi käyttäjä",
     "accountInfo": {

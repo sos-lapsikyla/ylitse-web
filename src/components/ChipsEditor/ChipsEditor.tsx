@@ -48,7 +48,7 @@ const ChipsEditor = ({
           ))}
         </Chips>
       )}
-      {searchVariant === 'half' && (
+      {searchVariant === 'half' ? (
         <SkillSearchWrapper>
           <DropdownSearch
             isDropdownVisible={isDropdownVisible}
@@ -58,6 +58,14 @@ const ChipsEditor = ({
             setIsDropdownVisible={setIsDropdownVisible}
           />
         </SkillSearchWrapper>
+      ) : (
+        <DropdownSearch
+          isDropdownVisible={isDropdownVisible}
+          options={chipOptions}
+          placeholder={placeholder}
+          selectOption={addChip}
+          setIsDropdownVisible={setIsDropdownVisible}
+        />
       )}
     </Column>
   );

@@ -2,7 +2,11 @@ import styled, { css } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useGetLayoutMode } from '@/hooks/useGetLayoutMode';
 import { useAppSelector } from '@/store';
-import { selectAllManagedUsers } from '../UserManagement/selectors';
+import {
+  selectFilteredAndSortedUsers,
+  SortOrder,
+  UserFilter,
+} from '../UserManagement/selectors';
 import {
   useGetManagedAccountsQuery,
   useGetManagedUsersQuery,
@@ -18,6 +22,7 @@ import UserCardList from './components/List';
 import { TextButton } from '@/components/Buttons';
 import NewUserModal from './components/NewUserModal';
 import { useState } from 'react';
+import FilterFunctions from './components/FilterFunctions';
 
 const UsersPage = () => {
   const { t } = useTranslation('users');
@@ -27,7 +32,14 @@ const UsersPage = () => {
   const { isLoading: isManagedAccountsQueryLoading } =
     useGetManagedAccountsQuery();
   const { isLoading: isAccountsQueryLoading } = useGetManagedUsersQuery();
-  const managedUsers = useAppSelector(selectAllManagedUsers());
+
+  const [filter, setFilter] = useState<UserFilter>('all');
+  const [sort, setSort] = useState<SortOrder>('newest');
+  const [search, setSearch] = useState('');
+
+  const managedUsers = useAppSelector(
+    selectFilteredAndSortedUsers(filter, sort, search),
+  );
   const [isNewUserModalVisible, setIsNewUserModalVisible] = useState(false);
 
   const isLoading =
@@ -53,6 +65,16 @@ const UsersPage = () => {
           </TextButton>
         </ButtonWrapper>
       </PageHeader>
+      <FilterContainer $isMobile={isMobile}>
+        <FilterFunctions
+          search={search}
+          filter={filter}
+          sort={sort}
+          onFilterChange={setFilter}
+          onSortChange={setSort}
+          onSearchChange={setSearch}
+        />
+      </FilterContainer>
       {isNewUserModalVisible && (
         <NewUserModal
           onDismiss={() => setIsNewUserModalVisible(false)}
@@ -87,9 +109,25 @@ const Container = styled.div<{ $isMobile: boolean }>`
         `}
 `;
 
+const FilterContainer = styled.div<{ $isMobile: boolean }>`
+  background-color: white;
+  border-radius: 0 0 10px 10px;
+  max-height: 8rem;
+  width: 100%;
+  ${({ $isMobile }) =>
+    $isMobile
+      ? css`
+          max-height: 20rem;
+          padding-top: -1rem;
+        `
+      : css`
+          padding-top: 1rem;
+        `}
+`;
+
 const PageHeader = styled.div<{ $isMobile: boolean }>`
   display: flex;
-  margin-bottom: 1rem;
+  margin-bottom: -1rem;
   max-width: 95rem;
   position: relative;
   width: 100%;
@@ -112,6 +150,7 @@ const PageHeader = styled.div<{ $isMobile: boolean }>`
           max-height: 80px;
         `}
 `;
+
 const TitleWrapper = styled.div<{ $isMobile: boolean }>`
   ${({ $isMobile }) =>
     !$isMobile
