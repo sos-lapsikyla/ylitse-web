@@ -14,7 +14,6 @@ import {
 import { useGetMentorsQuery } from '../MentorPage/mentorPageApi';
 
 import { OUTER_VERTICAL_MARGIN, palette } from '@/components/constants';
-import PageWithTransition from '@/components/PageWithTransition';
 import Text from '@/components/Text';
 import Spinner from '@/components/Spinner';
 
@@ -84,11 +83,7 @@ const UsersPage = () => {
     </>
   );
 
-  return (
-    <PageWithTransition>
-      <Container $isMobile={isMobile}>{PageContent}</Container>
-    </PageWithTransition>
-  );
+  return <Container $isMobile={isMobile}>{PageContent}</Container>;
 };
 
 const Container = styled.div<{ $isMobile: boolean }>`

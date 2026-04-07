@@ -10,7 +10,6 @@ import { selectReportsSorted } from './selectors';
 
 import Text from '@/components/Text';
 import Spinner from '@/components/Spinner';
-import PageWithTransition from '@/components/PageWithTransition';
 import ReportList from './components/List';
 import { Report } from './models';
 import ExpandedReportCard from './components/ReportCard/Expanded';
@@ -34,43 +33,39 @@ const ReportsPage = () => {
 
   if (isChatViewOpen && selectedReport) {
     return (
-      <PageWithTransition>
-        <ChatInspection
-          reopenReport={() => setIsChatViewOpen(false)}
-          recipientId={selectedReport?.report.reportedUserId}
-          senderId={selectedReport.report.reporterUserId}
-        />
-      </PageWithTransition>
+      <ChatInspection
+        reopenReport={() => setIsChatViewOpen(false)}
+        recipientId={selectedReport?.report.reportedUserId}
+        senderId={selectedReport.report.reporterUserId}
+      />
     );
   }
 
   return (
-    <PageWithTransition>
-      <Container $isMobile={isMobile}>
-        <PageHeader $isMobile={isMobile}>
-          <TitleWrapper $isMobile={isMobile}>
-            <Text variant="h1">{t('title')}</Text>
-          </TitleWrapper>
-        </PageHeader>
-        <PageContainer>
-          {selectedReport && (
-            <ExpandedReportCard
-              report={selectedReport.report}
-              reportNumber={selectedReport.reportNumber}
-              onDismiss={() => setSelectedReport(null)}
-              reopen={() => setSelectedReport(selectedReport)}
-              openChat={() => setIsChatViewOpen(true)}
-            />
-          )}
-          <ReportList
-            reports={reports}
-            setVisibleCard={(report, reportNumber) =>
-              setSelectedReport({ report, reportNumber })
-            }
-          ></ReportList>
-        </PageContainer>
-      </Container>
-    </PageWithTransition>
+    <Container $isMobile={isMobile}>
+      <PageHeader $isMobile={isMobile}>
+        <TitleWrapper $isMobile={isMobile}>
+          <Text variant="h1">{t('title')}</Text>
+        </TitleWrapper>
+      </PageHeader>
+      <PageContainer>
+        {selectedReport && (
+          <ExpandedReportCard
+            report={selectedReport.report}
+            reportNumber={selectedReport.reportNumber}
+            onDismiss={() => setSelectedReport(null)}
+            reopen={() => setSelectedReport(selectedReport)}
+            openChat={() => setIsChatViewOpen(true)}
+          />
+        )}
+        <ReportList
+          reports={reports}
+          setVisibleCard={(report, reportNumber) =>
+            setSelectedReport({ report, reportNumber })
+          }
+        ></ReportList>
+      </PageContainer>
+    </Container>
   );
 };
 
