@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { type Mentor } from './models';
 import { useGetMentorsQuery } from './mentorPageApi';
@@ -17,12 +17,22 @@ import {
   OUTER_VERTICAL_MARGIN,
   spacing,
 } from '@/components/constants';
+import { Pagination } from '@/components/Pagination';
 
 const MentorPage = () => {
   const { isMobile } = useGetLayoutMode();
   const { isLoading } = useGetMentorsQuery();
   const [selectedMentor, setSelectedMentor] = useState<Mentor | null>(null);
   const mentors = useAppSelector(selectFilteredMentors());
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 6;
+
+  useEffect(() => setCurrentPage(1), [mentors.length]);
+
+  const displayedMentors = isMobile
+    ? mentors
+    : mentors.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   const PageContent = isLoading ? (
     <Spinner variant="large" />
@@ -35,7 +45,18 @@ const MentorPage = () => {
         />
       )}
       <MentorsFilter />
-      <MentorList setVisibleCard={setSelectedMentor} mentors={mentors} />
+      <MentorList
+        setVisibleCard={setSelectedMentor}
+        mentors={displayedMentors}
+      />
+      {!isMobile && (
+        <Pagination
+          totalCount={mentors.length}
+          currentPage={currentPage}
+          pageSize={pageSize}
+          onPageChange={setCurrentPage}
+        />
+      )}
     </>
   );
 

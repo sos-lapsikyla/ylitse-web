@@ -63,6 +63,7 @@ export const Pagination = ({
 
 const Container = styled.div`
   align-items: center;
+  align-self: center;
   display: flex;
   width: fit-content;
 `;
