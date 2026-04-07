@@ -34,7 +34,7 @@ export const Pagination = ({
   if (!isPaginated) return null;
 
   return (
-    <Container>
+    <Nav aria-label="Pagination">
       {!isFirstPage && (
         <Prev
           variant="prev"
@@ -59,11 +59,11 @@ export const Pagination = ({
           onClick={() => onPageChange(currentPage + 1)}
         />
       )}
-    </Container>
+    </Nav>
   );
 };
 
-const Container = styled.div`
+const Nav = styled.nav`
   align-items: center;
   align-self: center;
   display: flex;
