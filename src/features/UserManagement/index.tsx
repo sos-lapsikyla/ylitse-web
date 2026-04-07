@@ -22,7 +22,7 @@ import { TextButton } from '@/components/Buttons';
 import NewUserModal from './components/NewUserModal';
 import { useEffect, useState } from 'react';
 import FilterFunctions from './components/FilterFunctions';
-import { Pagination } from '@/components/Pagination';
+import { Pagination, DEFAULT_PAGE_SIZE } from '@/components/Pagination';
 
 const UsersPage = () => {
   const { t } = useTranslation('users');
@@ -43,13 +43,12 @@ const UsersPage = () => {
   const [isNewUserModalVisible, setIsNewUserModalVisible] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 25;
 
   useEffect(() => setCurrentPage(1), [filter, sort, search]);
 
   const paginatedUsers = managedUsers.slice(
-    (currentPage - 1) * pageSize,
-    currentPage * pageSize,
+    (currentPage - 1) * DEFAULT_PAGE_SIZE,
+    currentPage * DEFAULT_PAGE_SIZE,
   );
 
   const isLoading =
@@ -94,7 +93,6 @@ const UsersPage = () => {
       <Pagination
         totalCount={managedUsers.length}
         currentPage={currentPage}
-        pageSize={pageSize}
         onPageChange={setCurrentPage}
       />
     </>

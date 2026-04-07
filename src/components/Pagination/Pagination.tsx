@@ -6,15 +6,17 @@ import { usePagination } from './usePagination';
 type Props = {
   totalCount: number;
   currentPage: number;
-  pageSize: number;
+  pageSize?: number;
   onPageChange: (page: number) => void;
   siblingCount?: number;
 };
 
+export const DEFAULT_PAGE_SIZE = 24;
+
 export const Pagination = ({
   totalCount,
   currentPage,
-  pageSize,
+  pageSize = DEFAULT_PAGE_SIZE,
   onPageChange,
   siblingCount,
 }: Props) => {

@@ -17,7 +17,7 @@ import {
   OUTER_VERTICAL_MARGIN,
   spacing,
 } from '@/components/constants';
-import { Pagination } from '@/components/Pagination';
+import { Pagination, DEFAULT_PAGE_SIZE } from '@/components/Pagination';
 
 const MentorPage = () => {
   const { isMobile } = useGetLayoutMode();
@@ -26,13 +26,15 @@ const MentorPage = () => {
   const mentors = useAppSelector(selectFilteredMentors());
 
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 6;
 
   useEffect(() => setCurrentPage(1), [mentors.length]);
 
   const displayedMentors = isMobile
     ? mentors
-    : mentors.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+    : mentors.slice(
+        (currentPage - 1) * DEFAULT_PAGE_SIZE,
+        currentPage * DEFAULT_PAGE_SIZE,
+      );
 
   const PageContent = isLoading ? (
     <Spinner variant="large" />
@@ -53,7 +55,6 @@ const MentorPage = () => {
         <Pagination
           totalCount={mentors.length}
           currentPage={currentPage}
-          pageSize={pageSize}
           onPageChange={setCurrentPage}
         />
       )}
