@@ -6,11 +6,11 @@ import {
   selectFilteredAndSortedUsers,
   SortOrder,
   UserFilter,
-} from '../UserManagement/selectors';
+} from './selectors';
 import {
   useGetManagedAccountsQuery,
   useGetManagedUsersQuery,
-} from '././userManagementApi';
+} from './userManagementApi';
 import { useGetMentorsQuery } from '../MentorPage/mentorPageApi';
 
 import { OUTER_VERTICAL_MARGIN, palette } from '@/components/constants';
@@ -20,8 +20,9 @@ import Spinner from '@/components/Spinner';
 import UserCardList from './components/List';
 import { TextButton } from '@/components/Buttons';
 import NewUserModal from './components/NewUserModal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FilterFunctions from './components/FilterFunctions';
+import { Pagination } from '@/components/Pagination';
 
 const UsersPage = () => {
   const { t } = useTranslation('users');
@@ -40,6 +41,16 @@ const UsersPage = () => {
     selectFilteredAndSortedUsers(filter, sort, search),
   );
   const [isNewUserModalVisible, setIsNewUserModalVisible] = useState(false);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 25;
+
+  useEffect(() => setCurrentPage(1), [filter, sort, search]);
+
+  const paginatedUsers = managedUsers.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize,
+  );
 
   const isLoading =
     isMentorsQueryLoading ||
@@ -79,7 +90,13 @@ const UsersPage = () => {
           onDismiss={() => setIsNewUserModalVisible(false)}
         ></NewUserModal>
       )}
-      <UserCardList managedUsers={managedUsers}></UserCardList>
+      <UserCardList managedUsers={paginatedUsers}></UserCardList>
+      <Pagination
+        totalCount={managedUsers.length}
+        currentPage={currentPage}
+        pageSize={pageSize}
+        onPageChange={setCurrentPage}
+      />
     </>
   );
 
