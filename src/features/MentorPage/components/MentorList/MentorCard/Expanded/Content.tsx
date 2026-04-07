@@ -67,6 +67,7 @@ export const Content = ({
         onClick={handleClick}
         size="large"
         variant={isStartingConversationDisabled ? 'disabled' : 'dark'}
+        data-testid="open-conversation-button"
       >
         {t('card.chat')}
       </OpenConversationButton>

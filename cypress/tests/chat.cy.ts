@@ -42,7 +42,7 @@ describe('chat', () => {
     cy.getByText(mentor.displayName, 'h2').should('be.visible');
 
     cy.getByText('Avaa kortti', 'button').scrollIntoView().click();
-    cy.getByText('Aloita keskustelu', 'button').should('be.disabled');
+    cy.get('[data-testid="open-conversation-button"]').should('be.disabled');
   });
 
   it('can start a conversation with mentor', () => {
@@ -58,7 +58,7 @@ describe('chat', () => {
     // send message
     cy.getByText('Avaa kortti', 'button').scrollIntoView().click();
     cy.wait(200);
-    cy.getByText('Aloita keskustelu', 'button').click();
+    cy.get('[data-testid="open-conversation-button"]').click();
     cy.get('textarea[placeholder*="Kirjoita viestisi tähän"]')
       .click()
       .type('Hello there');
