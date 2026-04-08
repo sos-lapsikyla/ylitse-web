@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { THREE_DOTS } from './usePagination';
 
 import { palette } from '@/components/constants';
@@ -11,6 +12,8 @@ type Props = {
 };
 
 export const PageButton = ({ isSelected, onClick, page }: Props) => {
+  const { t } = useTranslation('common');
+
   if (page === THREE_DOTS) {
     return (
       <Dots aria-hidden="true">
@@ -23,7 +26,7 @@ export const PageButton = ({ isSelected, onClick, page }: Props) => {
     <PageNumber
       $isSelected={isSelected}
       onClick={onClick}
-      aria-label={`Page ${page}`}
+      aria-label={t('pagination.page', { page })}
       aria-current={isSelected ? 'page' : undefined}
     >
       <Text variant="bold">{page}</Text>
