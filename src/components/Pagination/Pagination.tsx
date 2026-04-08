@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { IconButton } from '@/components/Buttons';
 import { PageButton } from './PageButton';
 import { usePagination } from './usePagination';
@@ -20,6 +21,7 @@ export const Pagination = ({
   onPageChange,
   siblingCount,
 }: Props) => {
+  const { t } = useTranslation('common');
   const paginationRange = usePagination({
     currentPage,
     pageSize,
@@ -34,11 +36,12 @@ export const Pagination = ({
   if (!isPaginated) return null;
 
   return (
-    <Nav aria-label="Pagination">
+    <Nav aria-label={t('pagination.label')}>
       {!isFirstPage && (
         <Prev
           variant="prev"
           sizeInPx={28}
+          aria-label={t('pagination.previous')}
           onClick={() => onPageChange(currentPage - 1)}
         />
       )}
@@ -56,6 +59,7 @@ export const Pagination = ({
         <Next
           variant="next"
           sizeInPx={28}
+          aria-label={t('pagination.next')}
           onClick={() => onPageChange(currentPage + 1)}
         />
       )}
