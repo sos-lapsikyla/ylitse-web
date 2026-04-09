@@ -93,5 +93,10 @@
     "appStore": "Download on the App Store",
     "downloadButton": "Download Ylitse-app"
   },
-  "welcomeMessage": "Welcome, {{user.display_name}}!"
+  "welcomeMessage": "Welcome, {{user.display_name}}!",
+  "skillQuickFilter": {
+    "title": "Start by finding a mentor",
+    "description": "Browse mentor profiles or search by a specific keyword. Once you find a suitable mentor, you can start a conversation with them.",
+    "button": "Find a mentor"
+  }
 }
