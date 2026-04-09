@@ -14,8 +14,9 @@ import { useAppDispatch, useAppSelector } from '@/store';
 import { Chip } from '@/components/Chip';
 import { TextButton } from '@/components/Buttons';
 import Text from '@/components/Text';
+import { NAVIGATION_HEIGHT, palette } from '@/components/constants';
 
-const POPULAR_SKILLS_COUNT = 8;
+const POPULAR_SKILLS_COUNT = 12;
 
 const SkillQuickFilter = () => {
   const { t } = useTranslation('home');
@@ -47,10 +48,9 @@ const SkillQuickFilter = () => {
 
   return (
     <Container>
-      <Text variant="h1" color="white">
-        {t('skillQuickFilter.title')}
-      </Text>
-      <Text color="white">{t('skillQuickFilter.description')}</Text>
+      <DecorativeBar />
+      <Title variant="h2">{t('skillQuickFilter.title')}</Title>
+      <Description>{t('skillQuickFilter.description')}</Description>
       <ChipContainer>
         {popularSkills.map(skill => (
           <Chip
@@ -61,7 +61,7 @@ const SkillQuickFilter = () => {
           />
         ))}
       </ChipContainer>
-      <TextButton variant="outlineOrange" size="large" onClick={handleNavigate}>
+      <TextButton variant="dark" size="large" onClick={handleNavigate}>
         {t('skillQuickFilter.button')}
       </TextButton>
     </Container>
@@ -70,25 +70,48 @@ const SkillQuickFilter = () => {
 
 const Container = styled.div`
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.35);
-  border-radius: 10px;
-  bottom: 2rem;
+  background-color: ${palette.blue2};
+  border-bottom-right-radius: 333px;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  left: 50%;
-  max-width: 90%;
-  padding: 1.5rem 2rem;
+  height: calc(37rem - ${NAVIGATION_HEIGHT} - 2rem);
+  left: 6rem;
+  max-width: 26rem;
+  padding: 6rem 3rem 0 3.5rem;
   position: absolute;
-  transform: translateX(-50%);
-  width: max-content;
+  text-align: center;
+  top: 3rem;
+
+  @media only screen and (max-width: 1920px) {
+    left: 6vw;
+  }
+`;
+
+const DecorativeBar = styled.div`
+  background-color: ${palette.purpleDark};
+  height: 4px;
+  left: -3rem;
+  position: absolute;
+  top: 8.5rem;
+  width: 79px;
+`;
+
+const Title = styled(Text)`
+  margin-bottom: 0;
+`;
+
+const Description = styled(Text)`
+  margin-top: 0;
 `;
 
 const ChipContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.75rem;
   justify-content: center;
+  margin-bottom: 0.75rem;
 `;
 
 export default SkillQuickFilter;

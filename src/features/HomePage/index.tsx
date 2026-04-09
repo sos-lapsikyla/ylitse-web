@@ -42,9 +42,8 @@ const HomePage = () => {
   ) : (
     <>
       <TopContainer>
-        <Info />
-        <WelcomeMessage />
         <SkillQuickFilter />
+        <WelcomeMessage />
       </TopContainer>
       <MiddleContainer>
         <InnerContainer>
