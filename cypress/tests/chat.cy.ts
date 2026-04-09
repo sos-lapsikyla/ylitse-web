@@ -41,7 +41,10 @@ describe('chat', () => {
     cy.location('pathname').should('eq', '/mentors');
     cy.getByText(mentor.displayName, 'h2').should('be.visible');
 
-    cy.getByText('Avaa kortti', 'button').scrollIntoView().click();
+    cy.getByText('Avaa kortti', 'button')
+      .scrollIntoView()
+      .should('be.visible')
+      .click();
     cy.get('[data-testid="open-conversation-button"]').should('be.disabled');
   });
 
@@ -56,9 +59,14 @@ describe('chat', () => {
     cy.getByText(mentor.displayName, 'h2').should('be.visible');
 
     // send message
-    cy.getByText('Avaa kortti', 'button').scrollIntoView().click();
-    cy.wait(200);
-    cy.get('[data-testid="open-conversation-button"]').click();
+    cy.getByText('Avaa kortti', 'button')
+      .scrollIntoView()
+      .should('be.visible')
+      .click();
+    cy.get('[data-testid="open-conversation-button"]')
+      .should('be.visible')
+      .click();
+
     cy.get('textarea[placeholder*="Kirjoita viestisi tähän"]')
       .click()
       .type('Hello there');
