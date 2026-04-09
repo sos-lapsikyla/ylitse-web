@@ -93,5 +93,10 @@
     "appStore": "Lataa App Storesta",
     "downloadButton": "Lataa Ylitse-sovellus"
   },
-  "welcomeMessage": "Tervetuloa, {{user.display_name}}!"
+  "welcomeMessage": "Tervetuloa, {{user.display_name}}!",
+  "skillQuickFilter": {
+    "title": "Aloita etsimällä mentori",
+    "description": "Selaa mentoreiden profiileja tai hae tietyn hakusanan mukaan. Kun sopiva mentori löytyy, voit aloittaa keskustelun hänen kanssaan.",
+    "button": "Etsi mentori"
+  }
 }

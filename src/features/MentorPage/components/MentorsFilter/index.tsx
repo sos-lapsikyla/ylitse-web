@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import {
   changeSearchString,
   selectSearchString,
+  selectSelectedSkills,
 } from '@/features/MentorPage/mentorsFilterSlice';
 import { selectSkills } from '@/features/MentorPage/selectors';
 import { useAppSelector, useAppDispatch } from '@/store';
@@ -17,8 +18,12 @@ import Skills from './Skills';
 import { Text } from '@/components/Text/Text';
 
 const MentorsFilter = () => {
-  const [isSkillFilterExpanded, setIsSKillFilterExpanded] = useState(false);
-  const skills = useAppSelector(selectSkills());
+  const preSelectedSkills = useAppSelector(selectSelectedSkills);
+  const [isSkillFilterExpanded, setIsSKillFilterExpanded] = useState(
+    preSelectedSkills.length > 0,
+  );
+  const skillsSelector = useMemo(() => selectSkills(), []);
+  const skills = useAppSelector(skillsSelector);
   const searchString = useAppSelector(selectSearchString);
 
   const dispatch = useAppDispatch();

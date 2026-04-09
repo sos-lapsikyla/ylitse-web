@@ -20,6 +20,7 @@ import WelcomeMessage from './components/WelcomeMessage';
 import Feedback from './components/Feedback';
 import MentorFeedback from './components/MentorFeedback';
 import MobileAppAd from './components/MobileAppAd';
+import SkillQuickFilter from './components/SkillQuickFilter';
 
 const HomePage = () => {
   const hasUnreadMessages = useAppSelector(selectHasUnreadMessages);
@@ -43,6 +44,7 @@ const HomePage = () => {
       <TopContainer>
         <Info />
         <WelcomeMessage />
+        <SkillQuickFilter />
       </TopContainer>
       <MiddleContainer>
         <InnerContainer>
