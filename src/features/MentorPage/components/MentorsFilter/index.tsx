@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
@@ -18,7 +18,8 @@ import { Text } from '@/components/Text/Text';
 
 const MentorsFilter = () => {
   const [isSkillFilterExpanded, setIsSKillFilterExpanded] = useState(false);
-  const skills = useAppSelector(selectSkills());
+  const skillsSelector = useMemo(() => selectSkills(), []);
+  const skills = useAppSelector(skillsSelector);
   const searchString = useAppSelector(selectSearchString);
 
   const dispatch = useAppDispatch();
