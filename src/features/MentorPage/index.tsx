@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { type Mentor } from './models';
 import { useGetMentorsQuery } from './mentorPageApi';
@@ -23,7 +23,8 @@ const MentorPage = () => {
   const { isMobile } = useGetLayoutMode();
   const { isLoading } = useGetMentorsQuery();
   const [selectedMentor, setSelectedMentor] = useState<Mentor | null>(null);
-  const mentors = useAppSelector(selectFilteredMentors());
+  const filteredMentorsSelector = useMemo(() => selectFilteredMentors(), []);
+  const mentors = useAppSelector(filteredMentorsSelector);
 
   const [currentPage, setCurrentPage] = useState(1);
 
