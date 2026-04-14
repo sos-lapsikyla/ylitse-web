@@ -79,7 +79,7 @@ const Container = styled.div`
   height: calc(37rem - ${NAVIGATION_HEIGHT} - 2rem);
   left: 6rem;
   max-width: 26rem;
-  padding: 6rem 3rem 0 3.5rem;
+  padding: 5rem 3.5rem 1rem 3rem;
   position: absolute;
   text-align: center;
   top: 3rem;
@@ -111,7 +111,7 @@ const ChipContainer = styled.div`
   flex-wrap: wrap;
   gap: 0.75rem;
   justify-content: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
 `;
 
 export default SkillQuickFilter;

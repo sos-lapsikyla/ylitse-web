@@ -282,4 +282,35 @@ describe('home', () => {
     cy.getByText('Sinulla on lukemattomia viestejä', 'h2').should('not.exist');
     cy.getByText('Keskustele aktoreiden kanssa', 'h2').should('be.visible');
   });
+
+  it('can select skills on homepage and navigate to mentors page with filters applied', () => {
+    const mentee = accounts.mentees[0];
+    const mentor = accounts.mentors[0];
+    api.signUpMentee(mentee);
+    api.signUpMentor(mentor);
+    cy.loginUser(mentee.loginName, mentee.password);
+
+    // skill quick filter should be visible
+    cy.getByText('Aloita etsimällä mentori', 'h2').should('be.visible');
+
+    // select a skill chip from the mentor's skills
+    const skillToSelect = mentor.skills[0];
+    cy.contains('button', skillToSelect, { matchCase: false }).click();
+
+    // click the navigate button
+    cy.getByText('Etsi mentori', 'button').click();
+
+    // should navigate to mentors page
+    cy.url().should('match', /mentors/);
+
+    // the skill filter section should be expanded with the selected skill
+    cy.contains('button', skillToSelect, { matchCase: false }).should(
+      'have.attr',
+      'aria-pressed',
+      'true',
+    );
+
+    // the mentor with that skill should be visible
+    cy.getByText(mentor.displayName, 'h2').should('be.visible');
+  });
 });
