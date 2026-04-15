@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { THREE_DOTS } from './usePagination';
 
 import { palette } from '@/components/constants';
@@ -11,25 +12,38 @@ type Props = {
 };
 
 export const PageButton = ({ isSelected, onClick, page }: Props) => {
-  const handleOnClick = () => {
-    if (page === THREE_DOTS) return;
+  const { t } = useTranslation('common');
 
-    onClick();
-  };
+  if (page === THREE_DOTS) {
+    return (
+      <Dots aria-hidden="true">
+        <Text variant="bold">{page}</Text>
+      </Dots>
+    );
+  }
 
   return (
     <PageNumber
       $isSelected={isSelected}
-      onClick={handleOnClick}
-      $isClickable={page !== THREE_DOTS}
+      onClick={onClick}
+      aria-label={t('pagination.page', { page })}
+      aria-current={isSelected ? 'page' : undefined}
     >
       <Text variant="bold">{page}</Text>
     </PageNumber>
   );
 };
 
-const PageNumber = styled.span<{ $isSelected: boolean; $isClickable: boolean }>`
+const Dots = styled.span`
   border-radius: 16%;
+  padding: 0.2rem 0.8rem;
+`;
+
+const PageNumber = styled.button<{ $isSelected: boolean }>`
+  background: none;
+  border: none;
+  border-radius: 16%;
+  cursor: pointer;
   padding: 0.2rem 0.8rem;
 
   ${({ $isSelected }) =>
@@ -41,12 +55,7 @@ const PageNumber = styled.span<{ $isSelected: boolean; $isClickable: boolean }>`
           color: ${palette.purpleDark};
         `}
 
-  ${({ $isClickable }) =>
-    $isClickable &&
-    css`
-      cursor: pointer;
-      &:hover {
-        opacity: 0.7;
-      }
-    `};
+  &:hover {
+    opacity: 0.7;
+  }
 `;

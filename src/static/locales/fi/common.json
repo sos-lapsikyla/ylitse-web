@@ -52,5 +52,11 @@
   "password": {
     "hide": "Piilota salasana",
     "show": "Näytä salasana"
+  },
+  "pagination": {
+    "label": "Sivutus",
+    "page": "Sivu {{page}}",
+    "previous": "Edellinen sivu",
+    "next": "Seuraava sivu"
   }
 }

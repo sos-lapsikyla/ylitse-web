@@ -49,6 +49,7 @@ const UserCardsList = styled.div<{ $isMobile: boolean }>`
   gap: clamp(4rem, 2vw, 1.5rem);
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   justify-items: center;
+  margin-bottom: 1.5rem;
   margin-top: 3rem;
   width: 100%;
 

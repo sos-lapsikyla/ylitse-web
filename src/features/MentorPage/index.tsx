@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { type Mentor } from './models';
 import { useGetMentorsQuery } from './mentorPageApi';
@@ -17,12 +17,25 @@ import {
   OUTER_VERTICAL_MARGIN,
   spacing,
 } from '@/components/constants';
+import { Pagination, DEFAULT_PAGE_SIZE } from '@/components/Pagination';
 
 const MentorPage = () => {
   const { isMobile } = useGetLayoutMode();
   const { isLoading } = useGetMentorsQuery();
   const [selectedMentor, setSelectedMentor] = useState<Mentor | null>(null);
-  const mentors = useAppSelector(selectFilteredMentors());
+  const filteredMentorsSelector = useMemo(() => selectFilteredMentors(), []);
+  const mentors = useAppSelector(filteredMentorsSelector);
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => setCurrentPage(1), [mentors.length]);
+
+  const displayedMentors = isMobile
+    ? mentors
+    : mentors.slice(
+        (currentPage - 1) * DEFAULT_PAGE_SIZE,
+        currentPage * DEFAULT_PAGE_SIZE,
+      );
 
   const PageContent = isLoading ? (
     <Spinner variant="large" />
@@ -35,7 +48,17 @@ const MentorPage = () => {
         />
       )}
       <MentorsFilter />
-      <MentorList setVisibleCard={setSelectedMentor} mentors={mentors} />
+      <MentorList
+        setVisibleCard={setSelectedMentor}
+        mentors={displayedMentors}
+      />
+      {!isMobile && (
+        <Pagination
+          totalCount={mentors.length}
+          currentPage={currentPage}
+          onPageChange={setCurrentPage}
+        />
+      )}
     </>
   );
 

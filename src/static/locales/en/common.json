@@ -52,5 +52,11 @@
   "password": {
     "hide": "Hide password",
     "show": "Show password"
+  },
+  "pagination": {
+    "label": "Pagination",
+    "page": "Page {{page}}",
+    "previous": "Previous page",
+    "next": "Next page"
   }
 }

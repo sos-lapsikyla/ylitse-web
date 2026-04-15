@@ -1,13 +1,12 @@
 import { resetFilters } from '@/features/MentorPage/mentorsFilterSlice';
 import { useAppDispatch } from '@/store';
 
-import { usePagination } from './usePagination';
 import { useTranslation } from 'react-i18next';
 
 import styled from 'styled-components';
-import { PageButton } from './PageButton';
-import { Button, IconButton } from '@/components/Buttons';
+import { Button } from '@/components/Buttons';
 import { DropdownMenu } from '@/components/Dropdown';
+import { Pagination } from '@/components/Pagination';
 import { pageSizes } from '../constants';
 
 type Props = {
@@ -28,12 +27,6 @@ export const BottomBar = ({
   const dispatch = useAppDispatch();
   const { t } = useTranslation('mentors');
 
-  const paginationRange = usePagination({
-    currentPage,
-    pageSize: skillsInPage,
-    totalCount: skillTotalAmount,
-  });
-
   const handleReset = () => {
     dispatch(resetFilters());
   };
@@ -43,10 +36,6 @@ export const BottomBar = ({
     setSkillsInPage(nextSize);
     setCurrentPage(1);
   };
-
-  const isLastPage = currentPage === paginationRange?.slice(-1)[0];
-  const isFirstPage = currentPage === paginationRange?.[0];
-  const isPaginated = paginationRange ? paginationRange.length > 1 : false;
 
   return (
     <Container>
@@ -61,32 +50,12 @@ export const BottomBar = ({
         }}
       />
 
-      <PaginationContainer>
-        {!isFirstPage && (
-          <Prev
-            variant="prev"
-            sizeInPx={28}
-            onClick={() => setCurrentPage(currentPage - 1)}
-          />
-        )}
-
-        {isPaginated &&
-          paginationRange?.map((page, index) => (
-            <PageButton
-              key={`${page}_${index}`}
-              isSelected={currentPage === page}
-              page={page}
-              onClick={() => setCurrentPage(Number(page))}
-            />
-          ))}
-        {!isLastPage && (
-          <Next
-            variant="next"
-            sizeInPx={28}
-            onClick={() => setCurrentPage(currentPage + 1)}
-          />
-        )}
-      </PaginationContainer>
+      <Pagination
+        totalCount={skillTotalAmount}
+        currentPage={currentPage}
+        pageSize={skillsInPage}
+        onPageChange={setCurrentPage}
+      />
 
       <PageSizeDropdown
         skillsInPage={skillsInPage}
@@ -123,18 +92,5 @@ const PageSizeDropdown = ({
     />
   );
 };
-
-const PaginationContainer = styled.div`
-  display: flex;
-  width: fit-content;
-`;
-
-const Next = styled(IconButton)`
-  margin-left: 0.5rem;
-`;
-
-const Prev = styled(IconButton)`
-  margin-right: 0.5rem;
-`;
 
 export default BottomBar;

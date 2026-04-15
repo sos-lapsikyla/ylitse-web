@@ -4,13 +4,12 @@ import {
 } from '@/features/MentorPage/mentorsFilterSlice';
 import { useAppDispatch, useAppSelector } from '@/store';
 
-import { usePagination } from './usePagination';
 import { useTranslation } from 'react-i18next';
 
 import styled from 'styled-components';
-import { PageButton } from './PageButton';
-import { Button, IconButton } from '@/components/Buttons';
+import { Button } from '@/components/Buttons';
 import { DropdownMenu } from '@/components/Dropdown';
+import { Pagination } from '@/components/Pagination';
 import { pageSizes } from '../constants';
 
 type Props = {
@@ -31,12 +30,6 @@ export const MobileBottomBar = ({
   const dispatch = useAppDispatch();
   const { t } = useTranslation('mentors');
 
-  const paginationRange = usePagination({
-    currentPage,
-    pageSize: skillsInPage,
-    totalCount: skillTotalAmount,
-  });
-
   const handleReset = () => {
     dispatch(resetFilters());
   };
@@ -47,41 +40,17 @@ export const MobileBottomBar = ({
     setCurrentPage(1);
   };
 
-  const isLastPage = currentPage === paginationRange?.slice(-1)[0];
-  const isFirstPage = currentPage === paginationRange?.[0];
-  const isPaginated = paginationRange ? paginationRange.length > 1 : false;
-
   const selectedSkills = useAppSelector(selectSelectedSkills);
   const shouldShowRemoveFiltersButton = selectedSkills.length !== 0;
 
   return (
     <Container>
-      <PaginationContainer>
-        {!isFirstPage && (
-          <Prev
-            variant="prev"
-            sizeInPx={28}
-            onClick={() => setCurrentPage(currentPage - 1)}
-          />
-        )}
-
-        {isPaginated &&
-          paginationRange?.map((page, index) => (
-            <PageButton
-              key={`${page}_${index}`}
-              isSelected={currentPage === page}
-              page={page}
-              onClick={() => setCurrentPage(Number(page))}
-            />
-          ))}
-        {!isLastPage && (
-          <Next
-            variant="next"
-            sizeInPx={28}
-            onClick={() => setCurrentPage(currentPage + 1)}
-          />
-        )}
-      </PaginationContainer>
+      <Pagination
+        totalCount={skillTotalAmount}
+        currentPage={currentPage}
+        pageSize={skillsInPage}
+        onPageChange={setCurrentPage}
+      />
 
       <DropdownMenu
         variant="inline"
@@ -122,19 +91,6 @@ const Container = styled.div`
   padding-bottom: 2rem;
   padding-top: 0.5rem;
   width: 100%;
-`;
-
-const PaginationContainer = styled.div`
-  display: flex;
-  width: fit-content;
-`;
-
-const Next = styled(IconButton)`
-  margin-left: 0.5rem;
-`;
-
-const Prev = styled(IconButton)`
-  margin-right: 0.5rem;
 `;
 
 export default MobileBottomBar;
