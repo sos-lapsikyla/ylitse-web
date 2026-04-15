@@ -17,15 +17,9 @@ describe('home', () => {
     api.signUpMentor(mentor);
     cy.loginUser(mentee.loginName, mentee.password);
 
-    cy.getByText('Tukea ja seuraa', 'h1').should('be.visible');
-    cy.getByText(
-      'Ylitse MentorApp -vertaismentoripalvelussa mentorit auttavat sinua henkilökohtaisessa tilanteessasi luottamuksellisesti. Voit valita sopivan mentorin ongelmasi perusteella ja saada apua ajasta ja paikasta riippumatta.',
-      'p',
-    ).should('be.visible');
+    cy.getByText('Aloita etsimällä mentori', 'h2').should('be.visible');
 
     cy.getByText(`Tervetuloa, ${mentee.displayName}`, 'p').should('be.visible');
-
-    cy.getByText('Aloita etsimällä mentori', 'h2').should('be.visible');
     // assure that find mentor button works
     cy.getByText('Etsi mentori', 'button').click();
     cy.url().should('match', /mentors/);
@@ -67,11 +61,11 @@ describe('home', () => {
 
     // should show texts in English
     cy.getByText(
-      'Ylitse MentorApp -vertaismentoripalvelussa mentorit auttavat sinua henkilökohtaisessa tilanteessasi luottamuksellisesti. Voit valita sopivan mentorin ongelmasi perusteella ja saada apua ajasta ja paikasta riippumatta.',
+      'Selaa mentoreiden profiileja tai hae tietyn hakusanan mukaan. Kun sopiva mentori löytyy, voit aloittaa keskustelun hänen kanssaan.',
       'p',
     ).should('not.exist');
     cy.getByText(
-      'In the Ylitse MentorApp peer mentoring service, mentors help you with your personal situation confidentially. You can choose a suitable mentor based on your problem and get help regardless of time and place.',
+      'Browse mentor profiles or search by a specific keyword. Once you find a suitable mentor, you can start a conversation with them.',
       'p',
     ).should('be.visible');
 
@@ -79,11 +73,11 @@ describe('home', () => {
 
     // should show texts in Finnish again
     cy.getByText(
-      'In the Ylitse MentorApp peer mentoring service, mentors help you with your personal situation confidentially. You can choose a suitable mentor based on your problem and get help regardless of time and place.',
+      'Browse mentor profiles or search by a specific keyword. Once you find a suitable mentor, you can start a conversation with them.',
       'p',
     ).should('not.exist');
     cy.getByText(
-      'Ylitse MentorApp -vertaismentoripalvelussa mentorit auttavat sinua henkilökohtaisessa tilanteessasi luottamuksellisesti. Voit valita sopivan mentorin ongelmasi perusteella ja saada apua ajasta ja paikasta riippumatta.',
+      'Selaa mentoreiden profiileja tai hae tietyn hakusanan mukaan. Kun sopiva mentori löytyy, voit aloittaa keskustelun hänen kanssaan.',
       'p',
     ).should('be.visible');
   });
@@ -114,9 +108,7 @@ describe('home', () => {
 
     cy.loginUser(mentee.loginName, mentee.password);
 
-    cy.getByText('Tukea ja seuraa', 'h1').should('be.visible');
-
-    cy.getByText('Aloita etsimällä mentori', 'h2').should('not.exist');
+    cy.getByText('Aloita etsimällä mentori', 'h2').should('be.visible');
     cy.getByText('Keskustele mentoreiden kanssa', 'h2').should('be.visible');
 
     // assure that go to chat button works
@@ -130,7 +122,7 @@ describe('home', () => {
     api.signUpMentor(mentor);
     cy.loginUser(mentor.loginName, mentor.password);
 
-    cy.getByText('Tukea ja seuraa', 'h1').should('be.visible');
+    cy.getByText('Aloita etsimällä mentori', 'h2').should('be.visible');
 
     cy.getByText(`Tervetuloa, ${mentor.displayName}`, 'p').should('be.visible');
 
@@ -170,7 +162,7 @@ describe('home', () => {
 
     cy.loginUser(mentor.loginName, mentor.password);
 
-    cy.getByText('Tukea ja seuraa', 'h1').should('be.visible');
+    cy.getByText('Aloita etsimällä mentori', 'h2').should('be.visible');
 
     cy.getByText('Keskustele aktoreiden kanssa', 'h2').should('not.exist');
     cy.getByText('Sinulla on lukemattomia viestejä', 'h2').should('be.visible');
@@ -226,7 +218,7 @@ describe('home', () => {
 
     cy.loginUser(mentor.loginName, mentor.password);
 
-    cy.getByText('Tukea ja seuraa', 'h1').should('be.visible');
+    cy.getByText('Aloita etsimällä mentori', 'h2').should('be.visible');
 
     cy.getByText('Sinulla on lukemattomia viestejä', 'h2').should('not.exist');
     cy.getByText('Keskustele aktoreiden kanssa', 'h2').should('be.visible');
@@ -277,7 +269,7 @@ describe('home', () => {
 
     cy.loginUser(mentor.loginName, mentor.password);
 
-    cy.getByText('Tukea ja seuraa', 'h1').should('be.visible');
+    cy.getByText('Aloita etsimällä mentori', 'h2').should('be.visible');
 
     cy.getByText('Sinulla on lukemattomia viestejä', 'h2').should('not.exist');
     cy.getByText('Keskustele aktoreiden kanssa', 'h2').should('be.visible');
