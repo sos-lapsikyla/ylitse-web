@@ -39,6 +39,20 @@ export const selectMentorById = (buddyId: string | null) =>
     buddyId ? mentors.data?.[buddyId] : undefined,
   );
 
+export const selectPopularSkills = (amount: number) =>
+  createSelector(selectMentors, mentorsQuery => {
+    const mentors = mentorsQuery.data ?? {};
+    const allSkills = Object.values(mentors).flatMap(mentor => mentor.skills);
+    const countMap = allSkills.reduce<Record<string, number>>((acc, skill) => {
+      acc[skill] = (acc[skill] ?? 0) + 1;
+      return acc;
+    }, {});
+    return Object.entries(countMap)
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, amount)
+      .map(([skill]) => skill);
+  });
+
 export const selectAllSkillOptions = () =>
   createSelector(selectMentors, mentorsQuery => {
     const mentors = mentorsQuery.data ?? {};

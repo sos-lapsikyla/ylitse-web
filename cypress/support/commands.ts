@@ -33,9 +33,7 @@ Cypress.Commands.add('registerUser', (username: string, password: string) => {
   cy.get(`button[id="submit"]`).click();
   cy.wait(500);
 
-  cy.getByText('Ylitse MentorApp -vertaismentoripalvelu', 'p').should(
-    'be.visible',
-  );
+  cy.getByText('Mikä on Ylitse?', 'h2').should('be.visible');
 });
 
 Cypress.Commands.add(
@@ -53,9 +51,7 @@ Cypress.Commands.add(
     cy.get('button[id="submit"]').should('be.visible').click();
 
     cy.location('pathname').should('not.include', '/login');
-    cy.getByText('Ylitse MentorApp -vertaismentoripalvelu', 'p').should(
-      'be.visible',
-    );
+    cy.getByText('Mikä on Ylitse?', 'h2').should('be.visible');
   },
 );
 
