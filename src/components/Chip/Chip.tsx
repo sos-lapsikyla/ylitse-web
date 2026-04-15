@@ -8,6 +8,7 @@ type Props = {
   text: string;
   isSelected?: boolean;
   shouldShake?: boolean;
+  showClose?: boolean;
   onToggle: (text: string) => void;
   children?: ReactNode;
 };
@@ -16,6 +17,7 @@ const Chip: React.FC<Props> = ({
   text,
   isSelected = true,
   shouldShake = false,
+  showClose = true,
   onToggle,
   children,
 }) => {
@@ -32,7 +34,7 @@ const Chip: React.FC<Props> = ({
         {text}
       </Text>
       {children}
-      {isSelected && <Close />}
+      {isSelected && showClose && <Close />}
     </StyledChip>
   );
 };

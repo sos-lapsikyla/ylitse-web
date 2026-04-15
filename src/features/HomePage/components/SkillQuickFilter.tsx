@@ -58,6 +58,7 @@ const SkillQuickFilter = () => {
             text={skill}
             isSelected={selectedSkills.includes(skill)}
             onToggle={handleSkillToggle}
+            showClose={false}
           />
         ))}
       </ChipContainer>
