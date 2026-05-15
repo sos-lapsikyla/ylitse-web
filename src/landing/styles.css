@@ -136,7 +136,8 @@ header {
   margin-top: 1.563rem;
 }
 
-#language-buttons a, #language-buttons span {
+#language-buttons a,
+#language-buttons span {
   font-family: var(--ff-heading);
   text-decoration: none;
   font-style: normal;
@@ -578,6 +579,7 @@ footer {
   font-size: 1.125rem;
   color: var(--font-color-primary);
   margin: 0 auto;
+  gap: 18px;
 }
 
 footer a {
@@ -603,6 +605,21 @@ footer a:target {
 .footer-logo {
   height: 2rem;
   margin-left: 0.8rem;
+}
+
+.externalLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.externalLinkIcon {
+  height: 1rem;
+}
+
+.externalLinkText {
+  text-decoration: underline;
+  font-weight: 700 !important;
 }
 
 /* MEDIA QUERIES */
