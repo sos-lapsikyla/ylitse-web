@@ -52,7 +52,7 @@ const StyledChip = styled.button<{
   display: flex;
   flex: 0 0 auto;
   gap: 0.5rem;
-  height: 2.5rem;
+  height: 2.2rem;
   padding: 0 1rem;
 
   ${({ $isSelected }) =>
