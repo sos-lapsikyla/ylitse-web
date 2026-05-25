@@ -39,10 +39,18 @@ export const selectMentorById = (buddyId: string | null) =>
     buddyId ? mentors.data?.[buddyId] : undefined,
   );
 
-export const selectPopularSkills = (amount: number) =>
+export const selectPopularSkills = (amount: number, language?: string) =>
   createSelector(selectMentors, mentorsQuery => {
     const mentors = mentorsQuery.data ?? {};
-    const allSkills = Object.values(mentors).flatMap(mentor => mentor.skills);
+    const allMentors = Object.values(mentors);
+    const filteredMentors = language
+      ? allMentors.filter(mentor =>
+          mentor.languages.some(
+            lang => lang.toLowerCase() === language.toLowerCase(),
+          ),
+        )
+      : allMentors;
+    const allSkills = filteredMentors.flatMap(mentor => mentor.skills);
     const countMap = allSkills.reduce<Record<string, number>>((acc, skill) => {
       acc[skill] = (acc[skill] ?? 0) + 1;
       return acc;

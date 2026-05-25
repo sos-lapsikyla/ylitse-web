@@ -14,19 +14,22 @@ import { useAppDispatch, useAppSelector } from '@/store';
 import { Chip } from '@/components/Chip';
 import { TextButton } from '@/components/Buttons';
 import Text from '@/components/Text';
-import { NAVIGATION_HEIGHT, palette } from '@/components/constants';
+import { Languages, NAVIGATION_HEIGHT, palette } from '@/components/constants';
 
 const POPULAR_SKILLS_COUNT = 12;
 
 const SkillQuickFilter = () => {
-  const { t } = useTranslation('home');
+  const { t, i18n } = useTranslation('home');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const { isLoading } = useGetMentorsQuery();
+  const currentLanguageName = Languages.find(
+    lang => lang.id === i18n.language,
+  )?.name;
   const popularSkillsSelector = useMemo(
-    () => selectPopularSkills(POPULAR_SKILLS_COUNT),
-    [],
+    () => selectPopularSkills(POPULAR_SKILLS_COUNT, currentLanguageName),
+    [currentLanguageName],
   );
   const popularSkills = useAppSelector(popularSkillsSelector);
 
