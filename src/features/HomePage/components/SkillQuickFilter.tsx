@@ -14,7 +14,7 @@ import { useAppDispatch, useAppSelector } from '@/store';
 import { Chip } from '@/components/Chip';
 import { TextButton } from '@/components/Buttons';
 import Text from '@/components/Text';
-import { Languages, NAVIGATION_HEIGHT, palette } from '@/components/constants';
+import { NAVIGATION_HEIGHT, palette } from '@/components/constants';
 
 const POPULAR_SKILLS_COUNT = 12;
 
@@ -24,12 +24,10 @@ const SkillQuickFilter = () => {
   const navigate = useNavigate();
 
   const { isLoading } = useGetMentorsQuery();
-  const currentLanguageName = Languages.find(
-    lang => lang.id === i18n.language,
-  )?.name;
+  const currentLanguage = i18n.language;
   const popularSkillsSelector = useMemo(
-    () => selectPopularSkills(POPULAR_SKILLS_COUNT, currentLanguageName),
-    [currentLanguageName],
+    () => selectPopularSkills(POPULAR_SKILLS_COUNT, currentLanguage),
+    [currentLanguage],
   );
   const popularSkills = useAppSelector(popularSkillsSelector);
 

@@ -3,6 +3,7 @@ import { createSelector } from 'reselect';
 import { selectUserId } from '../Authentication/selectors';
 import { mentorsApi } from './mentorPageApi';
 import { selectSearchString, selectSelectedSkills } from './mentorsFilterSlice';
+import { Languages } from '@/components/constants';
 
 export const selectMentors = mentorsApi.endpoints.getMentors.select();
 
@@ -39,26 +40,37 @@ export const selectMentorById = (buddyId: string | null) =>
     buddyId ? mentors.data?.[buddyId] : undefined,
   );
 
-export const selectPopularSkills = (amount: number, language?: string) =>
+export const getPopularSkills = (
+  mentors: Mentors,
+  amount: number,
+  localeCode?: string,
+): Array<string> => {
+  const allMentors = Object.values(mentors);
+  const languageName = Languages.find(l => l.id === localeCode)?.name;
+  const filteredMentors = localeCode
+    ? allMentors.filter(mentor =>
+        mentor.languages.some(
+          lang =>
+            lang.toLowerCase() === localeCode.toLowerCase() ||
+            (languageName && lang.toLowerCase() === languageName.toLowerCase()),
+        ),
+      )
+    : allMentors;
+  const allSkills = filteredMentors.flatMap(mentor => mentor.skills);
+  const countMap = allSkills.reduce<Record<string, number>>((acc, skill) => {
+    acc[skill] = (acc[skill] ?? 0) + 1;
+    return acc;
+  }, {});
+  return Object.entries(countMap)
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, amount)
+    .map(([skill]) => skill);
+};
+
+export const selectPopularSkills = (amount: number, localeCode?: string) =>
   createSelector(selectMentors, mentorsQuery => {
     const mentors = mentorsQuery.data ?? {};
-    const allMentors = Object.values(mentors);
-    const filteredMentors = language
-      ? allMentors.filter(mentor =>
-          mentor.languages.some(
-            lang => lang.toLowerCase() === language.toLowerCase(),
-          ),
-        )
-      : allMentors;
-    const allSkills = filteredMentors.flatMap(mentor => mentor.skills);
-    const countMap = allSkills.reduce<Record<string, number>>((acc, skill) => {
-      acc[skill] = (acc[skill] ?? 0) + 1;
-      return acc;
-    }, {});
-    return Object.entries(countMap)
-      .sort(([, a], [, b]) => b - a)
-      .slice(0, amount)
-      .map(([skill]) => skill);
+    return getPopularSkills(mentors, amount, localeCode);
   });
 
 export const selectAllSkillOptions = () =>
