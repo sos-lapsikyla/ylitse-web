@@ -128,6 +128,18 @@ header {
   clip-path: polygon(-1px 0, calc(100% + 1px) 0, 50% 100%);
 }
 
+.card > :first-child {
+  position: absolute;
+  top: 1.563rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#language-buttons-bg {
+  margin-top: 0;
+}
+
+
 #language-buttons {
   display: flex;
   align-items: center;
@@ -722,6 +734,10 @@ footer a:target {
     line-height: 1.75rem;
   }
 
+  .card > :first-child {
+  top: 0.563rem;
+}
+
   nav {
     flex-direction: column;
     gap: 1.5rem;
@@ -895,6 +911,27 @@ footer a:target {
 
   section.bg-mobile {
     background-color: var(--background-color);
+  }
+
+  #language-buttons {
+    display: flex;
+    align-items: center;
+    margin: 0.638rem;
+  }
+
+  #language-buttons a,
+  #language-buttons span {
+    margin: 0;
+  }
+
+  #language-buttons-bg {
+    display: flex;
+    background-color: var(--secondary-color);
+    position: fixed;
+    height: fit-content;
+    top: 0;
+    width: 100%;
+    justify-content: center;
   }
 
   .information {
