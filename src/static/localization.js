@@ -84,6 +84,15 @@
       element.setAttribute('alt', translation);
     });
   };
+  // For icon textelement
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const translation = translations[key];
+
+    if (translation) {
+      el.textContent = translation;
+    }
+  });
 
   const styleButton = (button, color, fontWeight, pointerEvents) => {
     if (button) {
