@@ -97,6 +97,7 @@
   "skillQuickFilter": {
     "title": "Start by finding a mentor",
     "description": "Browse mentor profiles or search by a specific keyword. Once you find a suitable mentor, you can start a conversation with them.",
+    "subTitle": "Popular topics",
     "button": "Find a mentor"
   }
 }

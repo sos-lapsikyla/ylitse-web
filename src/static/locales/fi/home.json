@@ -97,6 +97,7 @@
   "skillQuickFilter": {
     "title": "Aloita etsimällä mentori",
     "description": "Selaa mentoreiden profiileja tai hae tietyn hakusanan mukaan. Kun sopiva mentori löytyy, voit aloittaa keskustelun hänen kanssaan.",
+    "subTitle": "Suositut aiheet",
     "button": "Etsi mentori"
   }
 }

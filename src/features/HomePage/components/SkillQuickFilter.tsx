@@ -19,14 +19,15 @@ import { NAVIGATION_HEIGHT, palette } from '@/components/constants';
 const POPULAR_SKILLS_COUNT = 12;
 
 const SkillQuickFilter = () => {
-  const { t } = useTranslation('home');
+  const { t, i18n } = useTranslation('home');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const { isLoading } = useGetMentorsQuery();
+  const currentLanguage = i18n.language;
   const popularSkillsSelector = useMemo(
-    () => selectPopularSkills(POPULAR_SKILLS_COUNT),
-    [],
+    () => selectPopularSkills(POPULAR_SKILLS_COUNT, currentLanguage),
+    [currentLanguage],
   );
   const popularSkills = useAppSelector(popularSkillsSelector);
 
@@ -51,6 +52,7 @@ const SkillQuickFilter = () => {
       <DecorativeBar />
       <Title variant="h2">{t('skillQuickFilter.title')}</Title>
       <Description>{t('skillQuickFilter.description')}</Description>
+      <Title variant="h3">{t('skillQuickFilter.subTitle')}</Title>
       <ChipContainer>
         {popularSkills.map(skill => (
           <Chip
@@ -80,7 +82,7 @@ const Container = styled.div`
   height: calc(37rem - ${NAVIGATION_HEIGHT} - 2rem);
   left: 6rem;
   max-width: 26rem;
-  padding: 5rem 3.5rem 1rem 3rem;
+  padding: 4rem 3.5rem 2rem 3rem;
   position: absolute;
   text-align: center;
   top: 3rem;
