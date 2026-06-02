@@ -122,7 +122,7 @@ describe('home', () => {
     api.signUpMentor(mentor);
     cy.loginUser(mentor.loginName, mentor.password);
 
-    cy.getByText('Aloita etsimällä mentori', 'h2').should('be.visible');
+    cy.getByText('Tukea ja seuraa', 'h1').should('be.visible');
 
     cy.getByText(`Tervetuloa, ${mentor.displayName}`, 'p').should('be.visible');
 
@@ -162,7 +162,7 @@ describe('home', () => {
 
     cy.loginUser(mentor.loginName, mentor.password);
 
-    cy.getByText('Aloita etsimällä mentori', 'h2').should('be.visible');
+    cy.getByText('Tukea ja seuraa', 'h1').should('be.visible');
 
     cy.getByText('Keskustele aktoreiden kanssa', 'h2').should('not.exist');
     cy.getByText('Sinulla on lukemattomia viestejä', 'h2').should('be.visible');
@@ -218,7 +218,7 @@ describe('home', () => {
 
     cy.loginUser(mentor.loginName, mentor.password);
 
-    cy.getByText('Aloita etsimällä mentori', 'h2').should('be.visible');
+    cy.getByText('Tukea ja seuraa', 'h1').should('be.visible');
 
     cy.getByText('Sinulla on lukemattomia viestejä', 'h2').should('not.exist');
     cy.getByText('Keskustele aktoreiden kanssa', 'h2').should('be.visible');
@@ -269,7 +269,7 @@ describe('home', () => {
 
     cy.loginUser(mentor.loginName, mentor.password);
 
-    cy.getByText('Aloita etsimällä mentori', 'h2').should('be.visible');
+    cy.getByText('Tukea ja seuraa', 'h1').should('be.visible');
 
     cy.getByText('Sinulla on lukemattomia viestejä', 'h2').should('not.exist');
     cy.getByText('Keskustele aktoreiden kanssa', 'h2').should('be.visible');
