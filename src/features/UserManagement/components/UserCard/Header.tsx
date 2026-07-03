@@ -14,6 +14,7 @@ import RoleTag from './RoleTag';
 import { ManagedUser } from '../../models';
 import { useAppSelector } from '@/store';
 import { selectAccount } from '@/features/Authentication/selectors';
+import { Action } from './Action';
 
 type Props = {
   managedUser: ManagedUser;
@@ -76,6 +77,7 @@ export const Header: React.FC<Props> = ({
       <NameText variant="h2" color={headerColorMap[role].text}>
         {managedUser.nickname}
       </NameText>
+      <Action managedUser={managedUser}></Action>
     </Container>
   );
 };
