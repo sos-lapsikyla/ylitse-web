@@ -100,11 +100,11 @@ export const MentorHeader: React.FC<Props> = ({
 };
 
 const ActionMenuContainer = styled.div`
+  bottom: 0;
   display: flex;
   gap: 1rem;
   position: absolute;
   right: 1rem;
-  bottom: 0;
   transform: translate(0, 50%);
 `;
 

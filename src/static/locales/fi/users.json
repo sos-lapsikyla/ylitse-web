@@ -198,10 +198,10 @@
     "mentor": "Mentori"
   },
   "myUser": "Sinä",
-    "action":{
+  "action": {
     "title": "Toiminnot",
-    "conversation":"Aloita keskustelu",
+    "conversation": "Aloita keskustelu",
     "delete": "Poista käyttäjätili",
-    "edit":"Muokkaa käyttäjää"
+    "edit": "Muokkaa käyttäjää"
   }
 }

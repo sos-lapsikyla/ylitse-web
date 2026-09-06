@@ -51,9 +51,9 @@ const Card = styled.div<{ $isMobile: boolean }>`
   gap: 1.5rem;
   justify-content: space-between;
   max-height: 32.5rem;
+  overflow: visible;
   padding: ${({ $isMobile }) => ($isMobile ? '1.5rem' : '2.5rem')};
   padding-bottom: 2rem;
-  overflow: visible;
 `;
 
 const UserInfoText = styled(Text)`

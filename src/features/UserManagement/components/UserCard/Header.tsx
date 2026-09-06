@@ -24,7 +24,6 @@ type Props = {
   isVacationingMentor: boolean;
   isAdmin: boolean;
   onOpenEditModal: (user: ManagedUser) => void;
-
 };
 
 export const Header: React.FC<Props> = ({
@@ -33,11 +32,11 @@ export const Header: React.FC<Props> = ({
   isMentee,
   isAdmin,
   isVacationingMentor,
-  onOpenEditModal
+  onOpenEditModal,
 }) => {
   const { isMobile } = useGetLayoutMode();
   const { t } = useTranslation('users');
-  
+
   const { id: currentUserId } = useAppSelector(selectAccount);
   const isMe = currentUserId === managedUser.account_id;
 
@@ -84,18 +83,18 @@ export const Header: React.FC<Props> = ({
         {managedUser.nickname}
       </NameText>
       <ActionMenuContainer>
-      <Action managedUser={managedUser} onOpenEditModal={onOpenEditModal}/>
+        <Action managedUser={managedUser} onOpenEditModal={onOpenEditModal} />
       </ActionMenuContainer>
     </Container>
   );
 };
 
 const ActionMenuContainer = styled.div`
+  bottom: 0;
   display: flex;
   gap: 1rem;
   position: absolute;
   right: 1rem;
-  bottom: 0;
   transform: translate(0, 50%);
 `;
 

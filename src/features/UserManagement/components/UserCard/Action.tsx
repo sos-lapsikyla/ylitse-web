@@ -127,9 +127,9 @@ const ActionButton = styled.button`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  overflow: visible;
   position: relative;
   z-index: 100;
-  overflow: visible;
 `;
 
 const Menu = styled.div`
@@ -137,15 +137,15 @@ const Menu = styled.div`
   border: 1px solid ${palette.purple};
   border-radius: 10px;
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 20px 16px;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 100;
-  overflow: visible;
   filter: drop-shadow(-0.5rem 0 0.5rem rgba(0, 0, 0, 0.02))
     drop-shadow(0.5rem 0 0.5rem rgba(0, 0, 0, 0.02))
     drop-shadow(0 0.5rem 0.5rem rgba(0, 0, 0, 0.02));
+  flex-direction: column;
+  gap: 12px;
+  left: 0;
+  overflow: visible;
+  padding: 20px 16px;
+  position: absolute;
+  top: 100%;
+  z-index: 100;
 `;
