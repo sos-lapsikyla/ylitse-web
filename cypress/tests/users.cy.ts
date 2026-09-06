@@ -88,16 +88,14 @@ describe('Users page', () => {
     cy.location('pathname').should('eq', '/users');
     cy.contains('Käyttäjät').should('be.visible');
     cy.getByText('Toiminnot', 'button').click();
-    cy.get('button[aria-label="deleteWithBackground"]')
-      .eq(1)
-      .click({ force: true });
+    cy.getByText('Poista käyttäjätili', 'button').click();
     cy.contains(
       'Käyttäjän poistamista ei voi tämän jälkeen perua. Kaikki tämän käyttäjän käymät keskustelut poistetaan.',
     ).should('be.visible');
-    cy.getByText('Poista', 'button').click();
+    cy.contains('Button', 'Poista').click({ force: true });
     cy.contains('Käyttäjän poistaminen onnistui').should('be.visible');
     // assure deleted account is not displayed in userlisting
-    cy.getByText(mentor.displayName, 'h2').should('not.exist');
+    cy.getByText(mentee.displayName, 'h2').should('not.exist');
   });
 
   it('can create a new mentee', () => {
@@ -199,8 +197,8 @@ describe('Users page', () => {
     cy.contains('Käyttäjät').should('be.visible');
 
     // Open edit user form
-    cy.getByText('Toiminnot', 'button').click();
-    cy.get('button[aria-label="edit"]').eq(0).click({ force: true });
+    cy.get('[data-cy="actions-button"]').eq(0).click();
+    cy.getByText('Muokkaa käyttäjää', 'button').click();
     cy.contains('h2', /^Muokkaa käyttäjätiliä$/);
     cy.getByText(mentee.role).should('be.visible');
     cy.getByText(mentee.loginName).should('be.visible');
@@ -231,8 +229,8 @@ describe('Users page', () => {
     cy.contains('Käyttäjät').should('be.visible');
 
     // Open edit user form
-    cy.getByText('Toiminnot', 'button').click();
-    cy.get('button[aria-label="edit"]').eq(1).click({ force: true });
+    cy.get('[data-cy="actions-button"]').eq(1).click();
+    cy.getByText('Muokkaa käyttäjää', 'button').click();
     cy.contains('h2', /^Muokkaa käyttäjätiliä$/);
     cy.getByText(mentor.role).should('be.visible');
     cy.getByText(mentor.loginName).should('be.visible');

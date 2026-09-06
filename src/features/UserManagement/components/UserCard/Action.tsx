@@ -24,7 +24,7 @@ export const Action = ({ managedUser, onOpenEditModal }: Props) => {
 
   return (
     <Container>
-      <ActionButton onClick={() => setIsOpen(!isOpen)}>
+      <ActionButton data-cy="actions-button" onClick={() => setIsOpen(!isOpen)}>
         <Text variant="bold" color="purple">
           {t('action.title')}{' '}
         </Text>
