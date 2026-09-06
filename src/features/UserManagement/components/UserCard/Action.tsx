@@ -4,53 +4,104 @@ import { palette } from '@/components/constants';
 import { Chevron } from '@/components/Icons/Chevron';
 import { useState } from 'react';
 import { Button } from '@/components/Buttons';
-import { useAppDispatch } from '@/store';
+import { useAppDispatch, useAppSelector } from '@/store';
 import { useNavigate } from 'react-router';
 import { setConversation } from '@/features/Chat/chatSlice';
 import { ManagedUser } from '../../models';
+import { useTranslation } from 'react-i18next';
+import { useDeleteManagedUserMutation } from '../../userManagementApi';
+import { useConfirmDelete } from '@/hooks/useConfirmDelete';
+import { selectAccount } from '@/features/Authentication/selectors';
 
 type Props = {
   managedUser: ManagedUser;
+  onOpenEditModal: (user: ManagedUser) => void;
 };
 
-export const Action = ({ managedUser }: Props) => {
+export const Action = ({ managedUser, onOpenEditModal }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation('users');
 
   return (
     <Container>
       <ActionButton onClick={() => setIsOpen(!isOpen)}>
         <Text variant="bold" color="purple">
-          Toiminnot
+          {t('action.title')}{' '}
         </Text>
         <Chevron variant={isOpen ? 'up' : 'down'} color={'purple'} isLarge />
       </ActionButton>
-      {isOpen && <ActionMenu managedUser={managedUser} />}
+      {isOpen && (
+        <ActionMenu
+          managedUser={managedUser}
+          onOpenEditModal={onOpenEditModal}
+        />
+      )}
     </Container>
   );
 };
 
-const ActionMenu = ({ managedUser }: Props) => {
+const ActionMenu = ({ managedUser, onOpenEditModal }: Props) => {
+  const { t } = useTranslation('users');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const name = managedUser.nickname;
-  const buddyId = managedUser.account_id;
+  const buddyId = managedUser.id;
+  const [deleteManagedUser] = useDeleteManagedUserMutation();
+  const confirmDelete = useConfirmDelete();
+  const { id: currentUserId } = useAppSelector(selectAccount);
+  const id = managedUser.account_id;
+  const isMe = currentUserId === managedUser.account_id;
 
-  const handleClick = () => {
+  const handleConversationStart = () => {
     dispatch(setConversation({ name, buddyId }));
     navigate('/chat');
   };
+
   return (
     <Menu>
       <Button
-        onClick={handleClick}
+        onClick={handleConversationStart}
         sizeInPx={46}
         leftIcon="chatWithBackground"
         text={{
           variant: 'bold',
           color: 'purple',
-          text: 'Aloita keskustelu',
+          text: t('action.conversation'),
         }}
       />
+      <Button
+        onClick={() => onOpenEditModal(managedUser)}
+        sizeInPx={46}
+        leftIcon="edit"
+        text={{
+          variant: 'bold',
+          color: 'purple',
+          text: t('action.edit'),
+        }}
+      />
+      {!isMe && (
+        <Button
+          onClick={() => {
+            void confirmDelete({
+              id,
+              onDelete: deleteManagedUser,
+              title: t('delete.title'),
+              description: t('delete.description'),
+              confirmId: 'confirm-delete',
+              borderColor: palette.redSalmon,
+              closeText: t('delete.cancel'),
+              confirmText: t('delete.confirm'),
+            });
+          }}
+          sizeInPx={46}
+          leftIcon="deleteWithBackground"
+          text={{
+            variant: 'bold',
+            color: 'purple',
+            text: t('action.delete'),
+          }}
+        />
+      )}
     </Menu>
   );
 };
@@ -76,6 +127,9 @@ const ActionButton = styled.button`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 100;
+  overflow: visible;
 `;
 
 const Menu = styled.div`
@@ -86,5 +140,12 @@ const Menu = styled.div`
   flex-direction: column;
   gap: 12px;
   padding: 20px 16px;
-  width: 300;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 100;
+  overflow: visible;
+  filter: drop-shadow(-0.5rem 0 0.5rem rgba(0, 0, 0, 0.02))
+    drop-shadow(0.5rem 0 0.5rem rgba(0, 0, 0, 0.02))
+    drop-shadow(0 0.5rem 0.5rem rgba(0, 0, 0, 0.02));
 `;

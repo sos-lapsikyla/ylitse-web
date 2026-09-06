@@ -10,8 +10,11 @@ import { Text } from '@/components/Text/Text';
 
 import { getRoleStatus } from '@/utils/utils';
 import RoleTag from './RoleTag';
+import { Action } from './Action';
+import { ManagedUser } from '../../models';
 
 type Props = {
+  managedUser: ManagedUser;
   name: string;
   age: number;
   region: string;
@@ -20,9 +23,11 @@ type Props = {
   isMentee: boolean;
   isVacationingMentor: boolean;
   isAdmin: boolean;
+  onOpenEditModal: (user: ManagedUser) => void;
 };
 
 export const MentorHeader: React.FC<Props> = ({
+  managedUser,
   name,
   age,
   region,
@@ -31,6 +36,7 @@ export const MentorHeader: React.FC<Props> = ({
   isMentee,
   isAdmin,
   isVacationingMentor,
+  onOpenEditModal,
 }) => {
   const { t } = useTranslation('users');
   const { isMobile } = useGetLayoutMode();
@@ -86,9 +92,21 @@ export const MentorHeader: React.FC<Props> = ({
         </WrappedText>
         <TruncateText color={headerColorMap[role].text}>{message}</TruncateText>
       </BasicInfo>
+      <ActionMenuContainer>
+        <Action managedUser={managedUser} onOpenEditModal={onOpenEditModal} />
+      </ActionMenuContainer>
     </Container>
   );
 };
+
+const ActionMenuContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  position: absolute;
+  right: 1rem;
+  bottom: 0;
+  transform: translate(0, 50%);
+`;
 
 const Container = styled.div<{ $isMobile: boolean; $headerColor: string }>`
   align-items: center;
