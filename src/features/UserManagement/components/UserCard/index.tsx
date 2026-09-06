@@ -73,9 +73,9 @@ const Container = styled.div<{ $isMobile: boolean }>`
     drop-shadow(0 0.5rem 0.5rem rgba(0, 0, 0, 0.02));
   flex-direction: column;
   max-width: 440px;
-  width: 100%;
-  padding-bottom: 4rem;
   overflow: visible;
+  padding-bottom: 4rem;
+  width: 100%;
 
   ${({ $isMobile }) =>
     $isMobile &&

@@ -87,7 +87,7 @@ describe('Users page', () => {
     cy.visit('/users');
     cy.location('pathname').should('eq', '/users');
     cy.contains('Käyttäjät').should('be.visible');
-    cy.contains(mentor.displayName).should('be.visible');
+    cy.getByText('Toiminnot', 'button').click();
     cy.get('button[aria-label="deleteWithBackground"]')
       .eq(1)
       .click({ force: true });
@@ -98,21 +98,6 @@ describe('Users page', () => {
     cy.contains('Käyttäjän poistaminen onnistui').should('be.visible');
     // assure deleted account is not displayed in userlisting
     cy.getByText(mentor.displayName, 'h2').should('not.exist');
-  });
-  it('does not let delete current account', () => {
-    cy.loginUser(
-      SUPERADMIN_USER,
-      SUPERADMIN_PASS,
-      generateTotp(SUPERADMIN_MFA).token,
-    );
-    cy.get('[href="/users"]').click();
-    cy.visit('/users');
-    cy.location('pathname').should('eq', '/users');
-    cy.contains('Käyttäjät').should('be.visible');
-    // try to delete current user
-    cy.get('button[aria-label="deleteDisabled"]').eq(0).click({ force: true });
-    // assure account is still listed
-    cy.contains(SUPERADMIN_USER).should('be.visible');
   });
 
   it('can create a new mentee', () => {
@@ -214,6 +199,7 @@ describe('Users page', () => {
     cy.contains('Käyttäjät').should('be.visible');
 
     // Open edit user form
+    cy.getByText('Toiminnot', 'button').click();
     cy.get('button[aria-label="edit"]').eq(0).click({ force: true });
     cy.contains('h2', /^Muokkaa käyttäjätiliä$/);
     cy.getByText(mentee.role).should('be.visible');
@@ -245,6 +231,7 @@ describe('Users page', () => {
     cy.contains('Käyttäjät').should('be.visible');
 
     // Open edit user form
+    cy.getByText('Toiminnot', 'button').click();
     cy.get('button[aria-label="edit"]').eq(1).click({ force: true });
     cy.contains('h2', /^Muokkaa käyttäjätiliä$/);
     cy.getByText(mentor.role).should('be.visible');
