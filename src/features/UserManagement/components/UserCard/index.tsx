@@ -7,7 +7,6 @@ import type { ManagedUser } from '../../models';
 import { Header } from './Header';
 import { CardContent } from './CardContent';
 import { MentorHeader } from './MentorHeader';
-import CardFooter from './CardFooter';
 
 type Props = {
   managedUser: ManagedUser;
@@ -43,9 +42,11 @@ export const UserCard: React.FC<Props> = ({ managedUser, onOpenEditModal }) => {
           isMentee={isMentee}
           isVacationingMentor={isVacationingMentor}
           managedUser={managedUser}
+          onOpenEditModal={onOpenEditModal}
         />
       ) : (
         <MentorHeader
+          managedUser={managedUser}
           isAdmin={isAdmin}
           isMentor={isMentor}
           isMentee={isMentee}
@@ -54,15 +55,10 @@ export const UserCard: React.FC<Props> = ({ managedUser, onOpenEditModal }) => {
           age={mentorAge}
           region={mentorRegion}
           message={mentorMessage}
+          onOpenEditModal={onOpenEditModal}
         ></MentorHeader>
       )}
       <CardContent managedUser={managedUser} />
-      <FooterWrapper>
-        <CardFooter
-          managedUser={managedUser}
-          onOpenEditModal={onOpenEditModal}
-        />
-      </FooterWrapper>
     </Container>
   );
 };
@@ -77,6 +73,8 @@ const Container = styled.div<{ $isMobile: boolean }>`
     drop-shadow(0 0.5rem 0.5rem rgba(0, 0, 0, 0.02));
   flex-direction: column;
   max-width: 440px;
+  overflow: visible;
+  padding-bottom: 4rem;
   width: 100%;
 
   ${({ $isMobile }) =>
@@ -86,20 +84,6 @@ const Container = styled.div<{ $isMobile: boolean }>`
       max-width: 350px;
       width: 100%;
     `}
-`;
-
-const FooterWrapper = styled.div`
-  opacity: 0;
-  transition:
-    opacity 0.3s ease,
-    visibility 0s linear 0.3s;
-  visibility: hidden;
-
-  ${Container}:hover & {
-    opacity: 1;
-    transition-delay: 0s;
-    visibility: visible;
-  }
 `;
 
 export default UserCard;

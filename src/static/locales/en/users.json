@@ -196,5 +196,11 @@
     "mentee": "Mentee",
     "mentor": "Mentor"
   },
-  "myUser": "Me"
+  "myUser": "Me",
+  "action": {
+    "title": "Actions",
+    "conversation": "Start conversation",
+    "delete": "Delete account",
+    "edit": "Edit user"
+  }
 }

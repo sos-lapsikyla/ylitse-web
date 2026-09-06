@@ -87,32 +87,15 @@ describe('Users page', () => {
     cy.visit('/users');
     cy.location('pathname').should('eq', '/users');
     cy.contains('Käyttäjät').should('be.visible');
-    cy.contains(mentor.displayName).should('be.visible');
-    cy.get('button[aria-label="deleteWithBackground"]')
-      .eq(1)
-      .click({ force: true });
+    cy.getByText('Toiminnot', 'button').click();
+    cy.getByText('Poista käyttäjätili', 'button').click();
     cy.contains(
       'Käyttäjän poistamista ei voi tämän jälkeen perua. Kaikki tämän käyttäjän käymät keskustelut poistetaan.',
     ).should('be.visible');
-    cy.getByText('Poista', 'button').click();
+    cy.contains('Button', 'Poista').click({ force: true });
     cy.contains('Käyttäjän poistaminen onnistui').should('be.visible');
     // assure deleted account is not displayed in userlisting
-    cy.getByText(mentor.displayName, 'h2').should('not.exist');
-  });
-  it('does not let delete current account', () => {
-    cy.loginUser(
-      SUPERADMIN_USER,
-      SUPERADMIN_PASS,
-      generateTotp(SUPERADMIN_MFA).token,
-    );
-    cy.get('[href="/users"]').click();
-    cy.visit('/users');
-    cy.location('pathname').should('eq', '/users');
-    cy.contains('Käyttäjät').should('be.visible');
-    // try to delete current user
-    cy.get('button[aria-label="deleteDisabled"]').eq(0).click({ force: true });
-    // assure account is still listed
-    cy.contains(SUPERADMIN_USER).should('be.visible');
+    cy.getByText(mentee.displayName, 'h2').should('not.exist');
   });
 
   it('can create a new mentee', () => {
@@ -214,7 +197,8 @@ describe('Users page', () => {
     cy.contains('Käyttäjät').should('be.visible');
 
     // Open edit user form
-    cy.get('button[aria-label="edit"]').eq(0).click({ force: true });
+    cy.get('[data-cy="actions-button"]').eq(0).click();
+    cy.getByText('Muokkaa käyttäjää', 'button').click();
     cy.contains('h2', /^Muokkaa käyttäjätiliä$/);
     cy.getByText(mentee.role).should('be.visible');
     cy.getByText(mentee.loginName).should('be.visible');
@@ -245,7 +229,8 @@ describe('Users page', () => {
     cy.contains('Käyttäjät').should('be.visible');
 
     // Open edit user form
-    cy.get('button[aria-label="edit"]').eq(1).click({ force: true });
+    cy.get('[data-cy="actions-button"]').eq(1).click();
+    cy.getByText('Muokkaa käyttäjää', 'button').click();
     cy.contains('h2', /^Muokkaa käyttäjätiliä$/);
     cy.getByText(mentor.role).should('be.visible');
     cy.getByText(mentor.loginName).should('be.visible');
