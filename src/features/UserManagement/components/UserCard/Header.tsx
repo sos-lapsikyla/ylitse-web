@@ -15,6 +15,7 @@ import { ManagedUser } from '../../models';
 import { useAppSelector } from '@/store';
 import { selectAccount } from '@/features/Authentication/selectors';
 import { Action } from './Action';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   managedUser: ManagedUser;
@@ -22,6 +23,8 @@ type Props = {
   isMentee: boolean;
   isVacationingMentor: boolean;
   isAdmin: boolean;
+  onOpenEditModal: (user: ManagedUser) => void;
+
 };
 
 export const Header: React.FC<Props> = ({
@@ -30,8 +33,11 @@ export const Header: React.FC<Props> = ({
   isMentee,
   isAdmin,
   isVacationingMentor,
+  onOpenEditModal
 }) => {
   const { isMobile } = useGetLayoutMode();
+  const { t } = useTranslation('users');
+  
   const { id: currentUserId } = useAppSelector(selectAccount);
   const isMe = currentUserId === managedUser.account_id;
 
@@ -68,7 +74,7 @@ export const Header: React.FC<Props> = ({
   return (
     <Container $headerColor={headerColorMap[role].header} $isMobile={isMobile}>
       <TagContainer>
-        {isMe && <MeTag>Sinä</MeTag>}
+        {isMe && <MeTag>{t('myUser')}</MeTag>}
         <RoleTag role={role} />
       </TagContainer>
       <ProfilePicture
@@ -77,10 +83,21 @@ export const Header: React.FC<Props> = ({
       <NameText variant="h2" color={headerColorMap[role].text}>
         {managedUser.nickname}
       </NameText>
-      <Action managedUser={managedUser}></Action>
+      <ActionMenuContainer>
+      <Action managedUser={managedUser} onOpenEditModal={onOpenEditModal}/>
+      </ActionMenuContainer>
     </Container>
   );
 };
+
+const ActionMenuContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  position: absolute;
+  right: 1rem;
+  bottom: 0;
+  transform: translate(0, 50%);
+`;
 
 const Container = styled.div<{ $isMobile: boolean; $headerColor: string }>`
   align-items: center;
