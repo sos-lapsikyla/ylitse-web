@@ -206,12 +206,6 @@ const LabelRow = styled.div<{ $isInline: boolean; $variant: DropdownVariant }>`
     `}
 `;
 
-// ${({ $variant }) =>
-// $variant === 'filter' &&
-// css`
-//   margin-bottom: 0.5rem;
-// `}
-
 // Form variant styles
 
 const FormContainer = styled.div`
