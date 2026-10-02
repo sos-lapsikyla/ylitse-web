@@ -1,8 +1,8 @@
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import Text from '@/components/Text';
 import { palette } from '@/components/constants';
 import { Chevron } from '@/components/Icons/Chevron';
-import { useState } from 'react';
 import { Button } from '@/components/Buttons';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { useNavigate } from 'react-router';
@@ -21,9 +21,27 @@ type Props = {
 export const Action = ({ managedUser, onOpenEditModal }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation('users');
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
-    <Container>
+    <Container ref={containerRef}>
       <ActionButton data-cy="actions-button" onClick={() => setIsOpen(!isOpen)}>
         <Text variant="bold" color="purple">
           {t('action.title')}{' '}
@@ -142,10 +160,10 @@ const Menu = styled.div`
     drop-shadow(0 0.5rem 0.5rem rgba(0, 0, 0, 0.02));
   flex-direction: column;
   gap: 12px;
-  left: 0;
   overflow: visible;
   padding: 20px 16px;
   position: absolute;
+  right: 0;
   top: 100%;
   z-index: 100;
 `;
