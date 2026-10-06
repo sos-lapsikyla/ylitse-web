@@ -197,5 +197,11 @@
     "mentee": "Aktori",
     "mentor": "Mentori"
   },
-  "myUser": "Sinä"
+  "myUser": "Sinä",
+  "action": {
+    "title": "Toiminnot",
+    "conversation": "Aloita keskustelu",
+    "delete": "Poista käyttäjätili",
+    "edit": "Muokkaa käyttäjää"
+  }
 }
