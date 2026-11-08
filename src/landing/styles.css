@@ -230,6 +230,27 @@ section.max-width {
   max-width: calc(1921px - 4rem);
 }
 
+/* CLOSING BANNER */
+
+.ylitse-closing-banner {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 86rem; 
+  background-color: var(--background-color-light);
+  margin-top: 10.35rem;
+  border-radius: 1.125rem;
+  padding: 5rem;
+  gap: 2rem;
+}
+
+.ylitse-closing-heading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
 /* INFORMATION CONTAINER */
 
 .information {
@@ -873,6 +894,13 @@ footer a:target {
     flex-direction: column-reverse;
   }
 
+  .ylitse-closing-banner {
+    margin-top: 5rem;
+    margin-bottom: 2.5rem;
+    border-radius: 0;
+    padding: 2rem;
+  }
+
   .card {
     max-width: none;
     width: calc(100% - 4rem);
@@ -911,6 +939,10 @@ footer a:target {
 
   section.bg-mobile {
     background-color: var(--background-color);
+  }
+
+  section.bg-mobile-light {
+    background-color: var(--background-color-light);
   }
 
   #language-buttons {
@@ -986,7 +1018,7 @@ footer a:target {
   .mobile-app-mobile {
     display: flex;
     flex-direction: column;
-    padding-top: 7rem;
+    padding-top: 6rem;
     padding-bottom: 3rem;
   }
 
